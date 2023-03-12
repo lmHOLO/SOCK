@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
-import './styles/reset.css';
+// import './styles/reset.css';
+import '@/styles/reset.css';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Redirect from './pages/Redirect';

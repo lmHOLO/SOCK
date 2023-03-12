@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from 'store';
-import { setMember } from 'store/member';
+import { RootState } from '@/store';
+import { setMember } from '@/store/member';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 export default function Redirect() {
   let [searchParams, setSearchParams] = useSearchParams();
