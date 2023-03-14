@@ -33,7 +33,7 @@ const router = createBrowserRouter([
 ]);
 export default function App() {
   return (
-    <div style={{ margin: '0 5%' }}>
+    <div>
       <RouterProvider router={router} />
     </div>
   );

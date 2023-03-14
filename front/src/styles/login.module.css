@@ -1,2 +1,60 @@
-.test {
+.page {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+}
+.golden-ticket-container {
+  width: 100vw;
+  height: 50vh;
+  overflow: hidden;
+}
+
+.golden-ticket {
+  width: 100%;
+  height: 100%;
+  background-image: url('/src/assets/login/golden_ticket.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: calc(50px + 80vw) auto;
+  transform: translate(-5vw) rotate(-10deg) scale(110%);
+}
+
+.login-btns > button {
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 12px;
+  width: 52%;
+  height: 35px;
+}
+.kakao-btn {
+  background-color: #fee500;
+}
+.naver-btn {
+  background-color: #03c75a;
+  color: #fff;
+}
+.google-btn {
+  background-color: #fff;
+}
+.login-btn-contant {
+  height: 100%;
+  display: flex;
+}
+.login-btn-img {
+  height: 100%;
+  width: 18px;
+  margin-right: 10px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+}
+.kakao-btn > .login-btn-contant > .login-btn-img {
+  background-image: url('/src/assets/login/kakao.png');
+}
+.naver-btn > .login-btn-contant > .login-btn-img {
+  background-image: url('/src/assets/login/naver.png');
+}
+.google-btn > .login-btn-contant > .login-btn-img {
+  background-image: url('/src/assets/login/google.png');
 }

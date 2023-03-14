@@ -16,12 +16,25 @@ export default function LoginBtn() {
     );
   };
   return (
-    <div>
-      <button onClick={kakaoLogin} className={styles.test}>
-        카카오로 로그인
+    <div className={styles['login-btns']}>
+      <button onClick={kakaoLogin} className={`${styles['kakao-btn']}`}>
+        <div className={styles['login-btn-contant']}>
+          <div className={`${styles['login-btn-img']}`}></div>
+          <p>카카오로 로그인하기</p>
+        </div>
       </button>
-      <button>네이버로 로그인</button>
-      <button onClick={googleLogin}>구글로 로그인</button>
+      <button className={`${styles['naver-btn']}`}>
+        <div className={styles['login-btn-contant']}>
+          <div className={`${styles['login-btn-img']}`}></div>
+          <p>네이버로 로그인하기</p>
+        </div>
+      </button>
+      <button className={`${styles['google-btn']}`} onClick={googleLogin}>
+        <div className={styles['login-btn-contant']}>
+          <div className={styles['login-btn-img']}></div>
+          <p>구글로 로그인하기</p>
+        </div>
+      </button>
     </div>
   );
 }
