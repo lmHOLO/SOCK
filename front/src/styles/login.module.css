@@ -1,3 +1,5 @@
+@value sock-brown, kakao-color, naver-color, google-color, white-color  from './common/colors.css';
+
 .page {
   position: relative;
   overflow: hidden;
@@ -14,7 +16,7 @@
   background-repeat: no-repeat;
   background-position: 50% 30%;
   background-size: calc(50px + 80vw) auto;
-  transform: translate(10px) rotate(-5deg) scale(120%);
+  transform: translate(10px) rotate(-5deg) scale(115%);
 }
 
 .login-container {
@@ -27,23 +29,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: none;
   border-radius: 12px;
   width: 52%;
   height: 3rem;
   max-width: 300px;
   min-width: 200px;
   margin: 4px auto;
+  font-weight: 600;
 }
 .kakao-btn {
-  background-color: #fee500;
+  background-color: kakao-color;
 }
 .naver-btn {
-  background-color: #03c75a;
-  color: #fff;
+  background-color: naver-color;
+  color: white-color;
 }
 .google-btn {
-  background-color: #fff;
+  background-color: google-color;
 }
 
 .login-btn-img {
@@ -62,4 +64,15 @@
 }
 .google-btn > .login-btn-img {
   background-image: url('/src/assets/login/google.png');
+}
+
+/* 닉네임 설정 */
+.nickname-container > h2 {
+  font-size: large;
+}
+.nickname-container > button {
+  background-color: sock-brown;
+  color: white-color;
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
 }
