@@ -1,31 +1,39 @@
 .page {
+  position: relative;
+  overflow: hidden;
   height: 100vh;
   width: 100vw;
-  position: relative;
 }
-.golden-ticket-container {
-  width: 100vw;
-  height: 50vh;
-  overflow: hidden;
-}
-
-.golden-ticket {
+.page::before {
+  content: '';
+  position: absolute;
   width: 100%;
   height: 100%;
+  z-index: -1;
   background-image: url('/src/assets/login/golden_ticket.jpg');
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: 50% 30%;
   background-size: calc(50px + 80vw) auto;
-  transform: translate(-5vw) rotate(-10deg) scale(110%);
+  transform: translate(10px) rotate(-5deg) scale(120%);
 }
 
-.login-btns > button {
+.login-container {
+  position: absolute;
+  top: 70%;
+  width: 100%;
+  margin: 0 auto;
+}
+.login-container > button {
   display: flex;
+  justify-content: center;
   align-items: center;
   border: none;
   border-radius: 12px;
   width: 52%;
-  height: 35px;
+  height: 3rem;
+  max-width: 300px;
+  min-width: 200px;
+  margin: 4px auto;
 }
 .kakao-btn {
   background-color: #fee500;
@@ -37,10 +45,7 @@
 .google-btn {
   background-color: #fff;
 }
-.login-btn-contant {
-  height: 100%;
-  display: flex;
-}
+
 .login-btn-img {
   height: 100%;
   width: 18px;
@@ -49,12 +54,12 @@
   background-size: contain;
   background-position: center center;
 }
-.kakao-btn > .login-btn-contant > .login-btn-img {
+.kakao-btn > .login-btn-img {
   background-image: url('/src/assets/login/kakao.png');
 }
-.naver-btn > .login-btn-contant > .login-btn-img {
+.naver-btn > .login-btn-img {
   background-image: url('/src/assets/login/naver.png');
 }
-.google-btn > .login-btn-contant > .login-btn-img {
+.google-btn > .login-btn-img {
   background-image: url('/src/assets/login/google.png');
 }
