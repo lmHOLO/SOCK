@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
-import './styles/reset.css';
+import '@/styles/reset.css';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Redirect from './pages/Redirect';
@@ -31,9 +31,12 @@ const router = createBrowserRouter([
   },
 ]);
 export default function App() {
+  const isLogined = localStorage.getItem('token') ? true : false;
   return (
-    <div style={{ margin: '1rem 5rem' }}>
-      <RouterProvider router={router} />
+    <div>
+      <div style={isLogined ? { margin: '52px 1rem' } : { margin: 0 }}>
+        <RouterProvider router={router} />
+      </div>
     </div>
   );
 }
