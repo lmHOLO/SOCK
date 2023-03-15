@@ -7,6 +7,13 @@
   margin: 0;
   padding: 0;
 }
+body {
+  background-color: #fde8dc;
+}
+button,
+input {
+  border: none;
+}
 html,
 body,
 div,

@@ -1,2 +1,78 @@
-.test {
+@value sock-brown, kakao-color, naver-color, google-color, white-color  from './common/colors.css';
+
+.page {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+.page::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image: url('/src/assets/login/golden_ticket.jpg');
+  background-repeat: no-repeat;
+  background-position: 50% 30%;
+  background-size: calc(50px + 80vw) auto;
+  transform: translate(10px) rotate(-5deg) scale(115%);
+}
+
+.login-container {
+  position: absolute;
+  top: 70%;
+  width: 100%;
+  margin: 0 auto;
+}
+.login-container > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  width: 52%;
+  height: 3rem;
+  max-width: 300px;
+  min-width: 200px;
+  margin: 4px auto;
+  font-weight: 600;
+}
+.kakao-btn {
+  background-color: kakao-color;
+}
+.naver-btn {
+  background-color: naver-color;
+  color: white-color;
+}
+.google-btn {
+  background-color: google-color;
+}
+
+.login-btn-img {
+  height: 100%;
+  width: 18px;
+  margin-right: 10px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+}
+.kakao-btn > .login-btn-img {
+  background-image: url('/src/assets/login/kakao.png');
+}
+.naver-btn > .login-btn-img {
+  background-image: url('/src/assets/login/naver.png');
+}
+.google-btn > .login-btn-img {
+  background-image: url('/src/assets/login/google.png');
+}
+
+/* 닉네임 설정 */
+.nickname-container > h2 {
+  font-size: large;
+}
+.nickname-container > button {
+  background-color: sock-brown;
+  color: white-color;
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
 }

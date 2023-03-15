@@ -23,7 +23,8 @@ export default function Redirect() {
       navigate('/login');
       return;
     }
-    dispatch(setMember('임시닉네임'));
+    dispatch(setMember('SOCK'));
+    localStorage.setItem('token', 'tokentest');
     console.log(member);
     navigate('/');
     return;
