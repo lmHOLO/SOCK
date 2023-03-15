@@ -4,7 +4,7 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import useMember from '@/hooks/memberHook';
 export default function Redirect() {
   let [searchParams, setSearchParams] = useSearchParams();
-  const { isLoggedIn, memberData, login, logout } = useMember();
+  const { login } = useMember();
   const navigate = useNavigate();
   // const dispatch = useDispatch();
   useEffect(() => {

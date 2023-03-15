@@ -6,6 +6,7 @@ import Home from '@/pages/Home';
 import Redirect from '@/pages/Redirect';
 import NotFound from '@/pages/NotFound';
 import useMember from '@/hooks/memberHook';
+
 const router = createBrowserRouter([
   /*   {
     path: '/',
