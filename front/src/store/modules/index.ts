@@ -1,39 +1,23 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { combineReducers } from 'redux';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-// 초기 상태 타입
-export type MemberState = {
-  isLoggedIn: boolean;
-  memberData: any;
+import member from './member';
+
+const persistConfig = {
+  key: 'root',
+  // localStorage에 저장합니다.
+  storage,
+  // auth, board, studio 3개의 reducer 중에 auth reducer만 localstorage에 저장합니다.
+  whitelist: ['member'],
+  // blacklist -> 그것만 제외합니다
 };
 
-// 액션 Payload 타입
-export type LoginPayload = {
-  nickname: string;
-};
+// 루트 리듀서
+const rootReducer = combineReducers({ member });
 
-// 초기상태
-const initialState: MemberState = {
-  isLoggedIn: false,
-  memberData: null,
-};
-
-// 리듀서 슬라이스
-const memberSlice = createSlice({
-  name: 'member',
-  initialState,
-  reducers: {
-    loginAction(state: MemberState, action: PayloadAction<LoginPayload>) {
-      state.isLoggedIn = true;
-      state.memberData = action.payload;
-    },
-    logoutAction(state: MemberState) {
-      state.isLoggedIn = false;
-      state.memberData = null;
-    },
-  },
-});
-
-// 리듀서 & 액션 리턴
-const { reducer, actions } = memberSlice;
-export const { loginAction, logoutAction } = actions;
-export default reducer;
+// export default rootReducer;
+export default persistReducer(persistConfig, rootReducer);
+// 루트 리듀서의 반환값를 유추해줍니다
+// 추후 이 타입을 컨테이너 컴포넌트에서 불러와서 사용해야 하므로 내보내줍니다.
+export type RootState = ReturnType<typeof rootReducer>;
