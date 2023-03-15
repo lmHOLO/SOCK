@@ -3,10 +3,7 @@ package com.holo.sock.entity.common;
 import com.holo.sock.entity.BaseEntity;
 import com.holo.sock.entity.Recipe.Recipe;
 import com.holo.sock.entity.Snack.Snack;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,6 +12,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @RequiredArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Builder
 public class Tag extends BaseEntity {

@@ -3,16 +3,14 @@ package com.holo.sock.entity.Member;
 import com.holo.sock.entity.BaseEntity;
 import com.holo.sock.entity.Member.Badge.Badge;
 import com.holo.sock.entity.Member.Profile.Profile;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @AllArgsConstructor
 @RequiredArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Builder
 @Table(name = "member")

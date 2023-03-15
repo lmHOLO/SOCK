@@ -3,16 +3,14 @@ package com.holo.sock.entity.Member.Profile;
 import com.holo.sock.entity.BaseEntity;
 import com.holo.sock.entity.Member.Member;
 import com.holo.sock.entity.Snack.Snack;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @AllArgsConstructor
 @RequiredArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Builder
 public class LikeSnack extends BaseEntity {
