@@ -27,8 +27,5 @@ public class Snack extends BaseEntity {
     private int sumOfStars;
 
     private int numberOfParticipants;
-
-    private String engName;
-
-    private boolean domestic;
+    
 }
