@@ -1,4 +1,4 @@
-package com.holo.sock.security.oauth2;
+package com.holo.sock.common.config.security.oauth2.cookie;
 
 import com.nimbusds.oauth2.sdk.util.StringUtils;
 import org.springframework.security.oauth2.client.web.AuthorizationRequestRepository;

@@ -1,19 +1,15 @@
-package com.holo.sock.security;
+package com.holo.sock.common.config.security.jwt;
 
-import com.holo.sock.entity.User;
-import com.holo.sock.repository.UserRepository;
-import lombok.AllArgsConstructor;
+import com.holo.sock.entity.member.Member;
+import com.holo.sock.repository.MemberRepository;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -23,18 +19,18 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Optional;
 
 @Slf4j
 @NoArgsConstructor
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
     private static final Logger logger = LoggerFactory.getLogger(TokenAuthenticationFilter.class);
     private TokenProvider tokenProvider;
-    private UserRepository userRepository;
+    private MemberRepository memberRepository;
+
     @Autowired
-    public TokenAuthenticationFilter(TokenProvider tokenProvider,UserRepository userRepository) {
+    public TokenAuthenticationFilter(TokenProvider tokenProvider, MemberRepository memberRepository) {
         this.tokenProvider = tokenProvider;
-        this.userRepository = userRepository;
+        this.memberRepository = memberRepository;
     }
 
     @Override
@@ -44,8 +40,8 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             // 토큰 유효성 검사
             if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
                 Long userId = tokenProvider.getUserIdFromToken(jwt);
-                User user = userRepository.findById(userId).get();
-                UserDetails userDetails = UserDetail.create(user);
+                Member member = memberRepository.findById(userId).get();
+                UserDetails userDetails = UserDetail.create(member);
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authentication);

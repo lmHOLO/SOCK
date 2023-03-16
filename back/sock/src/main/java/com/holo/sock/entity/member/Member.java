@@ -6,6 +6,7 @@ import com.holo.sock.entity.member.badge.SBTI;
 import com.holo.sock.entity.member.profile.Profile;
 import com.holo.sock.entity.recipe.LikeRecipe;
 import com.holo.sock.entity.snack.LikeSnack;
+import com.holo.sock.common.config.security.oauth2.userinfo.AuthProvider;
 import lombok.*;
 
 import javax.persistence.*;
@@ -47,4 +48,10 @@ public class Member extends BaseEntity {
 
     @OneToMany(mappedBy = "member")
     private List<LikeRecipe> likeRecipes = new ArrayList<>();
+
+    @Column @Enumerated(EnumType.STRING)
+    private AuthProvider provider;
+
+    @Column @Enumerated(EnumType.STRING)
+    private Role role; // USER, ADMIN
 }

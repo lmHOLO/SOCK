@@ -1,4 +1,4 @@
-package com.holo.sock.security.oauth2;
+package com.holo.sock.common.config.security.oauth2.cookie;
 
 import org.springframework.util.SerializationUtils;
 

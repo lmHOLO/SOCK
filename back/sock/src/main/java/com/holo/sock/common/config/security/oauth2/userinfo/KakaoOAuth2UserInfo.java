@@ -1,4 +1,4 @@
-package com.holo.sock.security.oauth2.user;
+package com.holo.sock.common.config.security.oauth2.userinfo;
 
 import java.util.Map;
 

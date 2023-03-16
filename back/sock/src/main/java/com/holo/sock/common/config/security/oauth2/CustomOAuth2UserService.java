@@ -1,12 +1,14 @@
-package com.holo.sock.security;
+package com.holo.sock.common.config.security.oauth2;
 
 
-import com.holo.sock.entity.User;
-import com.holo.sock.repository.UserRepository;
-import com.holo.sock.security.oauth2.user.AuthProvider;
-import com.holo.sock.security.oauth2.user.OAuth2UserInfo;
-import com.holo.sock.security.oauth2.user.OAuth2UserInfoFactory;
-import com.holo.sock.security.oauth2.user.Role;
+import com.holo.sock.common.config.security.jwt.UserDetail;
+import com.holo.sock.common.config.security.oauth2.userinfo.AuthProvider;
+import com.holo.sock.common.config.security.oauth2.userinfo.OAuth2UserInfo;
+import com.holo.sock.common.config.security.oauth2.userinfo.OAuth2UserInfoFactory;
+import com.holo.sock.entity.member.Member;
+import com.holo.sock.entity.member.profile.Profile;
+import com.holo.sock.repository.MemberRepository;
+import com.holo.sock.entity.member.Role;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
@@ -24,7 +26,7 @@ import java.util.Optional;
 @Slf4j
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
@@ -43,11 +45,11 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         String registrationId = authProvider.toString();
 
         OAuth2UserInfo userInfo = OAuth2UserInfoFactory.getOAuth2UserInfo(registrationId, oAuth2User.getAttributes());
-        Optional<User> optionalUser = userRepository.findByEmailAndProvider(userInfo.getEmail(),authProvider);
-        User user;
+        Optional<Member> optionalMember = memberRepository.findByEmailAndProvider(userInfo.getEmail(),authProvider);
+        Member user;
 
-        if (optionalUser.isPresent()) {
-            user = updateUser(optionalUser.get(), userInfo);
+        if (optionalMember.isPresent()) {
+            user = updateUser(optionalMember.get(), userInfo);
         } else {
             user = createUser(userInfo, authProvider);
         }
@@ -56,31 +58,26 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     }
 
     @Transactional
-    User createUser(OAuth2UserInfo userInfo, AuthProvider authProvider) {
-        User user = User.builder()
+    Member createUser(OAuth2UserInfo userInfo, AuthProvider authProvider) {
+        Profile profile = Profile.builder()
+                .image(userInfo.getImageUrl())
+                .build();
+
+        Member member = Member.builder()
                 .email(userInfo.getEmail())
                 .nickname(userInfo.getName())
-                .imageUrl(userInfo.getImageUrl())
+                .profile(profile)
                 .provider(authProvider)
                 .checkPreference(false)
                 .role(Role.USER)
                 .exp(0)
                 .build();
-        log.info("email: {}",user.getEmail());
-        log.info("nickname: {}",user.getNickname());
-        log.info("imageUrl: {}",user.getImageUrl());
 
-        return userRepository.save(user);
+        return memberRepository.save(member);
     }
 
     @Transactional
-    User updateUser(User existingUser, OAuth2UserInfo userInfo) {
-        if (userInfo.getName() != null && !existingUser.getNickname().equals(userInfo.getName())) {
-            existingUser.setNickname(userInfo.getName());
-        }
-        if (userInfo.getImageUrl() != null && !existingUser.getImageUrl().equals(userInfo.getImageUrl())) {
-            existingUser.setImageUrl(userInfo.getImageUrl());
-        }
-        return existingUser;
+    Member updateUser(Member existingMember, OAuth2UserInfo userInfo) {
+        return existingMember;
     }
 }
