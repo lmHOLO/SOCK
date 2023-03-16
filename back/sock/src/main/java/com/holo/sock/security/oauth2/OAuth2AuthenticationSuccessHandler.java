@@ -33,27 +33,20 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         String targetUrl = determineTargetUrl(request, response, authentication);
-
         if (response.isCommitted()) {
             logger.debug("Response has already been committed. Unable to redirect to " + targetUrl);
             return;
         }
-        log.info("Target URL====================> {}", targetUrl);
-
+        log.info("Target URL : {}", targetUrl);
         clearAuthenticationAttributes(request, response);
         getRedirectStrategy().sendRedirect(request, response, targetUrl);
-        log.info("After sendRedirect Target URL====================> {}", targetUrl);
     }
 
     protected String determineTargetUrl(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
         Optional<String> redirectUri = CookieUtils.getCookie(request, REDIRECT_URI_PARAM_COOKIE_NAME)
                 .map(Cookie::getValue);
-
-
         String targetUrl = redirectUri.orElse(getDefaultTargetUrl());
-
         String token = tokenProvider.createToken(authentication);
-
         return UriComponentsBuilder.fromUriString(targetUrl)
                 .queryParam("token", token).encode()
                 .build().toUriString();

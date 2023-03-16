@@ -1,6 +1,7 @@
 package com.holo.sock.security;
 
 import io.jsonwebtoken.*;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 
 @Service
+@Slf4j
 public class TokenProvider {
 
     private static final Logger logger = LoggerFactory.getLogger(TokenProvider.class);
@@ -20,6 +22,7 @@ public class TokenProvider {
 
     public String createToken(Authentication authentication) {
         UserDetail userDetail = (UserDetail) authentication.getPrincipal();
+        log.info("createToken==>{}",authentication.getName());
 
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + appProperties.getAuth().getTokenExpirationMsec());

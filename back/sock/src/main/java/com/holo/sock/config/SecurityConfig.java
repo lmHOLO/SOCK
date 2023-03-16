@@ -1,6 +1,7 @@
 package com.holo.sock.config;
 
 import com.holo.sock.security.CustomOAuth2UserService;
+import com.holo.sock.security.TokenAuthenticationFilter;
 import com.holo.sock.security.oauth2.HttpCookieOAuth2AuthorizationRequestRepository;
 import com.holo.sock.security.oauth2.OAuth2AuthenticationFailureHandler;
 import com.holo.sock.security.oauth2.OAuth2AuthenticationSuccessHandler;
@@ -37,6 +38,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
 
     private OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
+    @Bean
+    public TokenAuthenticationFilter tokenAuthenticationFilter() {
+        return new TokenAuthenticationFilter();
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -63,17 +68,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                     .oauth2Login()
-                    .authorizationEndpoint().baseUri("/oauth2/authorize")
-                    .authorizationRequestRepository(httpCookieOAuth2AuthorizationRequestRepository)
-                .and()
-                    .redirectionEndpoint()
-                    .baseUri("/oauth2/callback/*")
-                .and()
-                    .userInfoEndpoint()
-                    .userService(customOAuth2UserService)
-                .and()
-                    .successHandler(oAuth2AuthenticationSuccessHandler)
-                    .failureHandler(oAuth2AuthenticationFailureHandler);
+                        .authorizationEndpoint().baseUri("/oauth2/authorize")
+                        .authorizationRequestRepository(httpCookieOAuth2AuthorizationRequestRepository)
+                    .and()
+                        .redirectionEndpoint()
+                        .baseUri("/oauth2/callback/*")
+                    .and()
+                        .userInfoEndpoint()
+                        .userService(customOAuth2UserService)
+                    .and()
+                        .successHandler(oAuth2AuthenticationSuccessHandler)
+                        .failureHandler(oAuth2AuthenticationFailureHandler);
         http.addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }

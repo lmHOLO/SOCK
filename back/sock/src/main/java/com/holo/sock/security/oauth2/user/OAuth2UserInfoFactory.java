@@ -8,11 +8,14 @@ import java.util.Map;
 public class OAuth2UserInfoFactory {
 
     public static OAuth2UserInfo getOAuth2UserInfo(String registrationId, Map<String, Object> attributes) {
-        log.info("registrationId:{}",registrationId);
+        log.info("registrationId: {}",registrationId);
+        log.info("attributes: {}",attributes.toString());
         if(registrationId.equalsIgnoreCase(AuthProvider.google.toString())) {
             return new GoogleOAuth2UserInfo(attributes);
         } else if(registrationId.equalsIgnoreCase(AuthProvider.kakao.toString())){
             return new KakaoOAuth2UserInfo(attributes);
+        }else if(registrationId.equalsIgnoreCase(AuthProvider.naver.toString())){
+            return new NaverOAuth2UserInfo(attributes);
         }
         else return null; //exception 처리하는법 듣고 바꾸기
         /*else {
