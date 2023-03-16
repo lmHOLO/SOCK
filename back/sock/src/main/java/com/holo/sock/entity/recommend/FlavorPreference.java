@@ -1,22 +1,23 @@
-package com.holo.sock.entity.common;
+package com.holo.sock.entity.recommend;
 
 import com.holo.sock.entity.BaseEntity;
-import com.holo.sock.entity.Member.Member;
+import com.holo.sock.entity.member.Member;
+import com.holo.sock.entity.snack.Flavor;
 import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @AllArgsConstructor
-@RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Builder
 public class FlavorPreference extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "flavorPreference_id")
-    private long Id;
+    @Column(name = "flavor_preference_id")
+    private Long id;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
@@ -24,5 +25,6 @@ public class FlavorPreference extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "flavor_id")
     private Flavor flavor;
-    private int like;
+
+    private int likes;
 }

@@ -1,27 +1,26 @@
-package com.holo.sock.entity.Snack;
+package com.holo.sock.entity.snack;
 
 import com.holo.sock.entity.BaseEntity;
-import com.holo.sock.entity.common.Flavor;
 import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @AllArgsConstructor
-@RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Builder
 public class SnackFlavor extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "snackFlavor_id")
-    private long Id;
+    @Column(name = "snack_flavor_id")
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "snack_id")
     private Snack snack;
-    @OneToOne
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "flavor_id")
     private Flavor flavor;
 }

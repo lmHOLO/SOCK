@@ -1,4 +1,4 @@
-package com.holo.sock.entity.Member.Profile;
+package com.holo.sock.entity.snack;
 
 import com.holo.sock.entity.BaseEntity;
 import lombok.*;
@@ -7,18 +7,14 @@ import javax.persistence.*;
 
 @Entity
 @AllArgsConstructor
-@RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Builder
-
-public class Profile extends BaseEntity {
+public class Type extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "profile_id")
-    private long Id;
+    @Column(name = "type_id")
+    private Long id;
 
-    private String image;
-
-    private String content;
+    private String name;
 }

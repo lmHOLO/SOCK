@@ -1,28 +1,26 @@
-package com.holo.sock.entity.Snack;
+package com.holo.sock.entity.qscore;
 
 import com.holo.sock.entity.BaseEntity;
-import com.holo.sock.entity.Member.Member;
+import com.holo.sock.entity.snack.Snack;
 import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @AllArgsConstructor
-@RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Builder
-public class Purchase extends BaseEntity {
+@Table(name = "snack_qscore")
+public class SnackQScore extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "purchase_id")
-    private long Id;
+    @Column(name = "snack_qscore_id")
+    private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "member_id")
-    private Member member;
     @OneToOne
     @JoinColumn(name = "snack_id")
     private Snack snack;
-    private int count;
+
+    private long score;
 }

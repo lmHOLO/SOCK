@@ -1,14 +1,13 @@
-package com.holo.sock.entity.Recipe;
+package com.holo.sock.entity.recipe;
 
 import com.holo.sock.entity.BaseEntity;
-import com.holo.sock.entity.Member.Member;
+import com.holo.sock.entity.member.Member;
 import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @AllArgsConstructor
-@RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Builder
@@ -16,10 +15,11 @@ public class Comment extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comment_id")
-    private long Id;
+    private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "member_id")
-    private Member member;
+    @JoinColumn(name = "writer_id")
+    private Member writer;
+
     private String content;
 }

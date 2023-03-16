@@ -1,4 +1,4 @@
-package com.holo.sock.entity.Recipe;
+package com.holo.sock.entity.recipe;
 
 import com.holo.sock.entity.BaseEntity;
 import lombok.*;
@@ -7,18 +7,18 @@ import javax.persistence.*;
 
 @Entity
 @AllArgsConstructor
-@RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Builder
-public class RecipeQScore extends BaseEntity {
+public class RecipeImage extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "recipeQscore_id")
-    private long Id;
+    @Column(name = "recipe_image_id")
+    private Long id;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "recipe_id")
     private Recipe recipe;
-    private long score;
+
+    private String name;
 }
