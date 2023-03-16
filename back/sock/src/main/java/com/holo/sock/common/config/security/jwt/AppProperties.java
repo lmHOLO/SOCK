@@ -1,4 +1,4 @@
-package com.holo.sock.security;
+package com.holo.sock.common.config.security.jwt;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

@@ -1,10 +1,10 @@
-package com.holo.sock.config;
+package com.holo.sock.common.config;
 
-import com.holo.sock.security.CustomOAuth2UserService;
-import com.holo.sock.security.TokenAuthenticationFilter;
-import com.holo.sock.security.oauth2.HttpCookieOAuth2AuthorizationRequestRepository;
-import com.holo.sock.security.oauth2.OAuth2AuthenticationFailureHandler;
-import com.holo.sock.security.oauth2.OAuth2AuthenticationSuccessHandler;
+import com.holo.sock.common.config.security.oauth2.CustomOAuth2UserService;
+import com.holo.sock.common.config.security.jwt.TokenAuthenticationFilter;
+import com.holo.sock.common.config.security.oauth2.cookie.HttpCookieOAuth2AuthorizationRequestRepository;
+import com.holo.sock.common.config.security.oauth2.handler.OAuth2AuthenticationFailureHandler;
+import com.holo.sock.common.config.security.oauth2.handler.OAuth2AuthenticationSuccessHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

@@ -1,7 +1,7 @@
-package com.holo.sock.security;
+package com.holo.sock.common.config.security.jwt;
 
 
-import com.holo.sock.entity.User;
+import com.holo.sock.entity.member.Member;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -27,16 +27,16 @@ public class UserDetail implements OAuth2User, UserDetails {
         this.authorities = authorities;
     }
 
-    public static UserDetail create(User user, Map<String, Object> attributes) {
-        UserDetail userDetail = UserDetail.create(user);
+    public static UserDetail create(Member member, Map<String, Object> attributes) {
+        UserDetail userDetail = UserDetail.create(member);
         userDetail.setAttributes(attributes);
         return userDetail;
     }
 
-    public static UserDetail create(User user) {
+    public static UserDetail create(Member member) {
         List<GrantedAuthority> authorities = Collections.
                 singletonList(new SimpleGrantedAuthority("ROLE_USER"));
-        return new UserDetail(user.getId(), user.getEmail(), authorities);
+        return new UserDetail(member.getId(), member.getEmail(), authorities);
     }
 
 

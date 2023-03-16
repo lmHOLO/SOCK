@@ -1,6 +1,8 @@
-package com.holo.sock.security.oauth2;
+package com.holo.sock.common.config.security.oauth2.handler;
 
-import com.holo.sock.security.TokenProvider;
+import com.holo.sock.common.config.security.jwt.TokenProvider;
+import com.holo.sock.common.config.security.oauth2.cookie.CookieUtils;
+import com.holo.sock.common.config.security.oauth2.cookie.HttpCookieOAuth2AuthorizationRequestRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -15,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
 
-import static com.holo.sock.security.oauth2.HttpCookieOAuth2AuthorizationRequestRepository.REDIRECT_URI_PARAM_COOKIE_NAME;
+import static com.holo.sock.common.config.security.oauth2.cookie.HttpCookieOAuth2AuthorizationRequestRepository.REDIRECT_URI_PARAM_COOKIE_NAME;
 
 @Component
 @Slf4j
