@@ -20,7 +20,7 @@ public class Snack extends BaseEntity {
 
     private String name;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "type_id")
     private Type type;
 
