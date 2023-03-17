@@ -27,6 +27,6 @@ public class Recipe extends BaseEntity {
 
     private String content;
 
-    @OneToMany(mappedBy = "recipe")
+    @OneToMany(mappedBy = "recipe",cascade = CascadeType.ALL)
     List<RecipeImage> images = new ArrayList<>();
 }

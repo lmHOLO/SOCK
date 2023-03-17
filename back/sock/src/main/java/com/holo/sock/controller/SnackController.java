@@ -14,7 +14,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("snacks")
+@RequestMapping("/snacks")
 @RequiredArgsConstructor
 public class SnackController {
 
@@ -27,7 +27,7 @@ public class SnackController {
         return responseService.getSuccessResult();
     }
 
-    @GetMapping("{snack-id}")
+    @GetMapping("/{snack-id}")
     public SingleResult<SnackDetailResponseDto> searchSnackDetail(@PathVariable("snack-id") Long snackId){
         SnackDetailResponseDto responseDto = snackService.searchSnackDetail(snackId);
         return responseService.getSingleResult(responseDto);
