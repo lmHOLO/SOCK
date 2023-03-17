@@ -29,7 +29,10 @@
 }
 
 .page {
-  margin: 52px 5px;
+  /* margin: 52px 16px; */
+  margin: 52px auto;
+  width: 360px;
+  overflow: hidden;
 }
 
 .login {

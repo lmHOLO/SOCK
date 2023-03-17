@@ -11,6 +11,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 }
 .menu-btn {
   flex-grow: 1;
@@ -30,6 +31,7 @@
   left: 0;
   right: 0;
   top: 0;
+  z-index: 1000;
 }
 
 .search-btn {
