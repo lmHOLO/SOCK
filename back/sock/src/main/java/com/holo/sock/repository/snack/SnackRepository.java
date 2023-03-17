@@ -1,4 +1,4 @@
-package com.holo.sock.repository;
+package com.holo.sock.repository.snack;
 
 import com.holo.sock.entity.snack.Snack;
 import org.springframework.data.jpa.repository.JpaRepository;
