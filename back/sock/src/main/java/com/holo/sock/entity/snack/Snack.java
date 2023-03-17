@@ -34,4 +34,8 @@ public class Snack extends BaseEntity {
     @OneToMany(mappedBy = "snack", cascade = CascadeType.ALL)
     private List<SnackFlavor> flavors = new ArrayList<>();
 
+    public void registerReview(int star){
+        this.sumOfStars += star;
+        this.numberOfParticipants++;
+    }
 }

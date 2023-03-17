@@ -3,6 +3,7 @@ package com.holo.sock.controller;
 import com.holo.sock.common.response.ResponseService;
 import com.holo.sock.common.result.Result;
 import com.holo.sock.common.result.SingleResult;
+import com.holo.sock.dto.snack.request.RegisterReviewRequestDto;
 import com.holo.sock.dto.snack.request.RegisterSnackRequestDto;
 import com.holo.sock.dto.snack.response.SnackDetailResponseDto;
 import com.holo.sock.service.SnackService;
@@ -33,5 +34,11 @@ public class SnackController {
     public SingleResult<SnackDetailResponseDto> searchSnackDetail(@PathVariable("snack-id") Long snackId){
         SnackDetailResponseDto responseDto = snackService.searchSnackDetail(snackId);
         return responseService.getSingleResult(responseDto);
+    }
+
+    @PostMapping("/{snack-id}/reviews")
+    public Result registerReview(@PathVariable("snack-id") Long snackId, @RequestBody RegisterReviewRequestDto requestDto){
+        snackService.registerReview(snackId, requestDto);
+        return responseService.getSuccessResult();
     }
 }
