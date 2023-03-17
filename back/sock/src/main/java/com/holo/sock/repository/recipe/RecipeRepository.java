@@ -1,4 +1,4 @@
-package com.holo.sock.repository;
+package com.holo.sock.repository.recipe;
 
 import com.holo.sock.entity.recipe.Recipe;
 import org.springframework.data.jpa.repository.JpaRepository;
