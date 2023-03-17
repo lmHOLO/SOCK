@@ -69,10 +69,7 @@ public class SnackService {
     }
 
     @Transactional
-    public void registerReview(Long snackId, RegisterReviewRequestDto requestDto){
-        Long writerId = requestDto.getWriterId();
-        Member writer = memberRepository.findById(writerId).orElseThrow(MemberNotFoundException::new);
-
+    public void registerReview(Long snackId, RegisterReviewRequestDto requestDto, Member writer){
         Snack snack = snackRepository.findById(snackId).orElseThrow(SnackNotFoundException::new);
 
         Review review = requestDto.toEntity(writer, snack);

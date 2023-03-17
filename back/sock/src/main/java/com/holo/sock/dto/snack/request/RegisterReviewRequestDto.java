@@ -11,7 +11,6 @@ import lombok.*;
 @Builder
 public class RegisterReviewRequestDto {
 
-    private Long writerId;
     private String content;
     private int star;
 

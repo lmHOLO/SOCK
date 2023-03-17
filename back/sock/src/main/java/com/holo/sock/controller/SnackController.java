@@ -1,11 +1,13 @@
 package com.holo.sock.controller;
 
+import com.holo.sock.common.annotation.LoginMember;
 import com.holo.sock.common.response.ResponseService;
 import com.holo.sock.common.result.Result;
 import com.holo.sock.common.result.SingleResult;
 import com.holo.sock.dto.snack.request.RegisterReviewRequestDto;
 import com.holo.sock.dto.snack.request.RegisterSnackRequestDto;
 import com.holo.sock.dto.snack.response.SnackDetailResponseDto;
+import com.holo.sock.entity.member.Member;
 import com.holo.sock.service.SnackService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -37,8 +39,9 @@ public class SnackController {
     }
 
     @PostMapping("/{snack-id}/reviews")
-    public Result registerReview(@PathVariable("snack-id") Long snackId, @RequestBody RegisterReviewRequestDto requestDto){
-        snackService.registerReview(snackId, requestDto);
+    public Result registerReview(@LoginMember Member member, @PathVariable("snack-id") Long snackId,
+                                 @RequestBody RegisterReviewRequestDto requestDto){
+        snackService.registerReview(snackId, requestDto, member);
         return responseService.getSuccessResult();
     }
 }
