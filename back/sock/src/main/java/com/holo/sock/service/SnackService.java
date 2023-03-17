@@ -60,7 +60,10 @@ public class SnackService {
     }
 
     public SnackDetailResponseDto searchSnackDetail(Long snackId){
-        Snack snack = snackRepository.findById(snackId).orElseThrow(SnackNotFoundException::new);
+        Snack snack = snackRepository.findSnackByIdWithTypeAndFlavor(snackId).orElseThrow(SnackNotFoundException::new);
+
+        log.info("snack type name = {}", snack.getType().getName());
+
         return SnackDetailResponseDto.create(snack);
     }
 }
