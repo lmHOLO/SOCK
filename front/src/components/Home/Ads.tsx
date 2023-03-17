@@ -3,16 +3,10 @@ import Carousel from 'react-material-ui-carousel';
 import AdItem from '@/components/Home/AdItem';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import Home from '@mui/icons-material/Home';
-export type AdType = {
-  id: number;
-  image: string;
-  link: string;
-  title: string;
-};
+import { Ad } from '@/components/types';
 export default function Ads() {
   // 나중에 api로 받기
-  const [adList, setAdList] = useState<AdType[]>([
+  const [adList, setAdList] = useState<Ad[]>([
     {
       id: 1,
       image: 'https://i.postimg.cc/DypC9rTC/2019-10-01-155730.jpg',

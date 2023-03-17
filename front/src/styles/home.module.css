@@ -1,0 +1,16 @@
+@value sock-brown, kakao-color, naver-color, google-color, white-color  from './common/colors.css';
+
+.title {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  font-size: 14px;
+}
+.recommend {
+  background-color: sock-brown;
+  color: white-color;
+}
+
+.theme {
+  border: 1px sock-brown;
+}
