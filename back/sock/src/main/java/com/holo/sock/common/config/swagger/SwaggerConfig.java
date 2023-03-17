@@ -1,4 +1,4 @@
-package com.holo.sock.common.config;
+package com.holo.sock.common.config.swagger;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;

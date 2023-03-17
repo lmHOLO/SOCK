@@ -3,6 +3,7 @@ package com.holo.sock.common.config.security.jwt;
 import com.holo.sock.entity.member.Member;
 import com.holo.sock.repository.member.MemberRepository;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -21,17 +23,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Slf4j
-@NoArgsConstructor
+@Component
+@RequiredArgsConstructor
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
     private static final Logger logger = LoggerFactory.getLogger(TokenAuthenticationFilter.class);
-    private TokenProvider tokenProvider;
-    private MemberRepository memberRepository;
-
-    @Autowired
-    public TokenAuthenticationFilter(TokenProvider tokenProvider, MemberRepository memberRepository) {
-        this.tokenProvider = tokenProvider;
-        this.memberRepository = memberRepository;
-    }
+    private final TokenProvider tokenProvider;
+    private final MemberRepository memberRepository;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
