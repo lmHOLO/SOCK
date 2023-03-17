@@ -6,7 +6,6 @@ import Home from '@/pages/Home';
 import Redirect from '@/pages/Redirect';
 import NotFound from '@/pages/NotFound';
 import useMember from '@/hooks/memberHook';
-
 const router = createBrowserRouter([
   /*   {
     path: '/',
@@ -35,7 +34,11 @@ export default function App() {
   const { isLoggedIn } = useMember();
   return (
     <div>
-      <div style={isLoggedIn ? { margin: '52px 1rem' } : { margin: 0 }}>
+      {/* <div
+        style={isLoggedIn ? { width: '360px', margin: '52px auto' } : { margin: 0 }}
+        className={isLoggedIn ? 'page' : 'login'}
+      > */}
+      <div className={isLoggedIn ? 'page' : 'login'}>
         <RouterProvider router={router} />
       </div>
     </div>

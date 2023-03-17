@@ -1,8 +1,8 @@
 import React from 'react';
-import { snackListItem } from '@/components/types';
+import { SnackListItemType } from '@/components/types';
 import styles from '@/styles/snack_list.module.css';
 interface Props {
-  snack: snackListItem;
+  snack: SnackListItemType;
 }
 export default function RecommendListItem({ snack }: Props) {
   return (

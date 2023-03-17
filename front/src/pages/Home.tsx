@@ -5,12 +5,13 @@ import Ads from '@/components/Home/Ads';
 import SnackList from '@/components/common/SnackList';
 import useMember from '@/hooks/memberHook';
 import styles from '@/styles/home.module.css';
-import { snackListItem } from '@/components/types';
+import { SnackListItemType } from '@/components/types';
+import ThemeList from '@/components/Home/ThemeList';
 export default function Home() {
   // const nickname = useSelector((state: RootState) => state.member.nickname);
   const { memberData } = useMember();
-  // 나중에 api로 추천 snack 받아오기
-  const [recommendSnackList, setRecommendSnackList] = useState<snackListItem[]>([
+  // TODO: 나중에 api로 추천 snack 받아오기
+  const [recommendSnackList, setRecommendSnackList] = useState<SnackListItemType[]>([
     {
       id: 1,
       image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
@@ -37,15 +38,22 @@ export default function Home() {
       title: '첫번째 과자',
     },
   ]);
+
   return (
     <div>
       <TopNav />
       <Ads />
-      <div>
+      <div style={{ margin: '10px 0px' }}>
         <div className={`${styles.title} ${styles.recommend}`}>
           <p>{memberData.nickname}님을 위한 맞춤 추천</p>
         </div>
         <SnackList snackList={recommendSnackList} />
+      </div>
+      <div>
+        <div className={`${styles.title} ${styles.theme}`}>
+          <p>테마별 추천</p>
+        </div>
+        <ThemeList />
       </div>
       <BottomNav />
     </div>
