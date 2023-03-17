@@ -1,6 +1,6 @@
 package com.holo.sock.service;
 
-import com.holo.sock.dto.snack.request.RegisterRequestDto;
+import com.holo.sock.dto.snack.request.RegisterSnackRequestDto;
 import com.holo.sock.dto.snack.response.SnackDetailResponseDto;
 import com.holo.sock.entity.snack.Flavor;
 import com.holo.sock.entity.snack.Snack;
@@ -31,9 +31,9 @@ public class SnackService {
     private final FlavorRepository flavorRepository;
 
     @Transactional
-    public void registerSnacks(List<RegisterRequestDto> requestDto){
+    public void registerSnacks(List<RegisterSnackRequestDto> requestDto){
         HashSet<Long> flavorIdsSet = new HashSet<>();
-        for (RegisterRequestDto dto : requestDto) {
+        for (RegisterSnackRequestDto dto : requestDto) {
             Arrays.stream(dto.getFlavor().split(", ")).map(Long::parseLong).forEach(flavorIdsSet::add);
         }
 
@@ -41,7 +41,7 @@ public class SnackService {
         Map<Long, Flavor> flavorMap = flavorsByIdIn.stream()
                 .collect(Collectors.toMap(Flavor::getId, Function.identity()));
 
-        for (RegisterRequestDto dto : requestDto) {
+        for (RegisterSnackRequestDto dto : requestDto) {
             Type type = typeRepository.findById(dto.getType_id()).orElseThrow(TypeNotFoundException::new);
             List<Long> flavorIds = Arrays.stream(dto.getFlavor().split(", "))
                     .map(Long::parseLong).collect(Collectors.toList());
