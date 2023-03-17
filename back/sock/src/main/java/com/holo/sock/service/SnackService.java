@@ -1,14 +1,16 @@
 package com.holo.sock.service;
 
+import com.holo.sock.dto.snack.request.RegisterReviewRequestDto;
 import com.holo.sock.dto.snack.request.RegisterSnackRequestDto;
 import com.holo.sock.dto.snack.response.SnackDetailResponseDto;
-import com.holo.sock.entity.snack.Flavor;
-import com.holo.sock.entity.snack.Snack;
-import com.holo.sock.entity.snack.SnackFlavor;
-import com.holo.sock.entity.snack.Type;
+import com.holo.sock.entity.member.Member;
+import com.holo.sock.entity.snack.*;
+import com.holo.sock.exception.member.MemberNotFoundException;
 import com.holo.sock.exception.snack.SnackNotFoundException;
 import com.holo.sock.exception.type.TypeNotFoundException;
+import com.holo.sock.repository.member.MemberRepository;
 import com.holo.sock.repository.snack.FlavorRepository;
+import com.holo.sock.repository.snack.ReviewRepository;
 import com.holo.sock.repository.snack.SnackRepository;
 import com.holo.sock.repository.snack.TypeRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +31,8 @@ public class SnackService {
     private final SnackRepository snackRepository;
     private final TypeRepository typeRepository;
     private final FlavorRepository flavorRepository;
+    private final MemberRepository memberRepository;
+    private final ReviewRepository reviewRepository;
 
     @Transactional
     public void registerSnacks(List<RegisterSnackRequestDto> requestDto){
@@ -62,5 +66,18 @@ public class SnackService {
     public SnackDetailResponseDto searchSnackDetail(Long snackId){
         Snack snack = snackRepository.findSnackByIdWithTypeAndFlavor(snackId).orElseThrow(SnackNotFoundException::new);
         return SnackDetailResponseDto.create(snack);
+    }
+
+    @Transactional
+    public void registerReview(Long snackId, RegisterReviewRequestDto requestDto){
+        Long writerId = requestDto.getWriterId();
+        Member writer = memberRepository.findById(writerId).orElseThrow(MemberNotFoundException::new);
+
+        Snack snack = snackRepository.findById(snackId).orElseThrow(SnackNotFoundException::new);
+
+        Review review = requestDto.toEntity(writer, snack);
+        reviewRepository.save(review);
+
+        snack.registerReview(requestDto.getStar());
     }
 }
