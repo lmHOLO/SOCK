@@ -5,7 +5,13 @@ export type Ad = {
   title: string;
 };
 
-export type snackListItem = {
+export type SnackListItemType = {
+  id: number;
+  image: string;
+  title: string;
+};
+
+export type ThemeType = {
   id: number;
   image: string;
   title: string;

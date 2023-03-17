@@ -1,11 +1,11 @@
 import React from 'react';
 import SnackListItem from '@/components/common/SnackListItem';
-import { snackListItem } from '@/components/types';
+import { SnackListItemType } from '@/components/types';
 import styles from '@/styles/snack_list.module.css';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 interface Props {
-  snackList: snackListItem[];
+  snackList: SnackListItemType[];
 }
 export default function RecommendList({ snackList }: Props) {
   return (

@@ -10,8 +10,8 @@
 
 .snack-list-item-container {
   display: inline-block;
-  width: 25vw;
-  height: 25vw;
+  width: calc(100px+1vw);
+  height: calc(100px + 1vh);
   margin: 10px;
 }
 .snack-list-item {
@@ -30,5 +30,4 @@
 
 .more-btn {
   color: sock-brown;
-  margin-bottom: 10%;
 }
