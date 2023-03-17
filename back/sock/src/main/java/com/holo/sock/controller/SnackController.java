@@ -6,6 +6,8 @@ import com.holo.sock.common.result.SingleResult;
 import com.holo.sock.dto.snack.request.RegisterSnackRequestDto;
 import com.holo.sock.dto.snack.response.SnackDetailResponseDto;
 import com.holo.sock.service.SnackService;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +28,7 @@ public class SnackController {
         snackService.registerSnacks(requestDto);
         return responseService.getSuccessResult();
     }
-
+    
     @GetMapping("/{snack-id}")
     public SingleResult<SnackDetailResponseDto> searchSnackDetail(@PathVariable("snack-id") Long snackId){
         SnackDetailResponseDto responseDto = snackService.searchSnackDetail(snackId);

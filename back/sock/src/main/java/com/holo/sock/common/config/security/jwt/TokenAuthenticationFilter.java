@@ -1,7 +1,7 @@
 package com.holo.sock.common.config.security.jwt;
 
 import com.holo.sock.entity.member.Member;
-import com.holo.sock.repository.MemberRepository;
+import com.holo.sock.repository.member.MemberRepository;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;

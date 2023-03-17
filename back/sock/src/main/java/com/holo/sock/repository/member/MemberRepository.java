@@ -1,4 +1,4 @@
-package com.holo.sock.repository;
+package com.holo.sock.repository.member;
 
 import com.holo.sock.common.config.security.oauth2.userinfo.AuthProvider;
 import com.holo.sock.entity.member.Member;
