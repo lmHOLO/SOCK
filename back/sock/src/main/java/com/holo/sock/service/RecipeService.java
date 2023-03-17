@@ -7,7 +7,7 @@ import com.holo.sock.entity.recipe.RecipeImage;
 import com.holo.sock.entity.recipe.Tag;
 import com.holo.sock.entity.snack.Snack;
 import com.holo.sock.exception.member.MemberNotFoundException;
-import com.holo.sock.repository.MemberRepository;
+import com.holo.sock.repository.member.MemberRepository;
 import com.holo.sock.repository.recipe.RecipeRepository;
 import com.holo.sock.repository.recipe.TagRepository;
 import com.holo.sock.repository.snack.SnackRepository;
