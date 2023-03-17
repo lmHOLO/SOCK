@@ -10,7 +10,7 @@ import java.util.ArrayList;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
-public class RegisterRequestDto {
+public class RegisterSnackRequestDto {
 
     private String image;
     private String name;
