@@ -4,6 +4,9 @@ import com.holo.sock.entity.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Entity
 @AllArgsConstructor
@@ -27,5 +30,8 @@ public class Snack extends BaseEntity {
     private int sumOfStars;
 
     private int numberOfParticipants;
-    
+
+    @OneToMany(mappedBy = "snack", cascade = CascadeType.ALL)
+    private List<SnackFlavor> flavors = new ArrayList<>();
+
 }
