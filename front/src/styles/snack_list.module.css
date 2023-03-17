@@ -1,0 +1,34 @@
+@value sock-brown, kakao-color, naver-color, google-color, white-color  from './common/colors.css';
+
+.snack-list {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.snack-list::-webkit-scrollbar {
+  display: none;
+}
+
+.snack-list-item-container {
+  display: inline-block;
+  width: 25vw;
+  height: 25vw;
+  margin: 10px;
+}
+.snack-list-item {
+  border-radius: 3px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* .snack-list-item {
+  height: 100%;
+  background-color: aqua;
+  background-size: contain;
+  background-repeat: no-repeat;
+} */
+
+.more-btn {
+  color: sock-brown;
+  margin-bottom: 10%;
+}
