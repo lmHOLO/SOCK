@@ -1,12 +1,11 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
-// import './styles/reset.css';
 import '@/styles/reset.css';
-import Login from './pages/Login';
-import Home from './pages/Home';
-import Redirect from './pages/Redirect';
-import NotFound from './pages/NotFound';
-
+import Login from '@/pages/Login';
+import Home from '@/pages/Home';
+import Redirect from '@/pages/Redirect';
+import NotFound from '@/pages/NotFound';
+import useMember from '@/hooks/memberHook';
 const router = createBrowserRouter([
   /*   {
     path: '/',
@@ -32,9 +31,16 @@ const router = createBrowserRouter([
   },
 ]);
 export default function App() {
+  const { isLoggedIn } = useMember();
   return (
-    <div style={{ margin: '1rem 5rem' }}>
-      <RouterProvider router={router} />
+    <div>
+      {/* <div
+        style={isLoggedIn ? { width: '360px', margin: '52px auto' } : { margin: 0 }}
+        className={isLoggedIn ? 'page' : 'login'}
+      > */}
+      <div className={isLoggedIn ? 'page' : 'login'}>
+        <RouterProvider router={router} />
+      </div>
     </div>
   );
 }

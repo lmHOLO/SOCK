@@ -1,0 +1,51 @@
+@value sock-brown, kakao-color, naver-color, google-color, white-color  from './common/colors.css';
+
+.title {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  font-size: 14px;
+}
+.recommend {
+  background-color: sock-brown;
+  color: white-color;
+}
+
+.theme {
+  width: 100%;
+  text-align: center;
+  border: 1px solid sock-brown;
+}
+
+.theme-list {
+  display: flex;
+  padding: 10px 0px;
+  justify-content: space-around;
+}
+
+.theme-item {
+  display: inline-block;
+  padding: 10px 3px;
+  width: 90px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: sock-brown;
+  border-radius: 15px;
+}
+
+.theme-item > img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 100px;
+  margin-bottom: 5px;
+}
+
+.theme-item > p {
+  color: white-color;
+  font-size: 10px;
+  text-align: center;
+  display: flex;
+}

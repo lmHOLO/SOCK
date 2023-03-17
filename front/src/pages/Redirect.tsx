@@ -1,13 +1,12 @@
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '@/store';
-import { setMember } from '@/store/member';
+// import { setMember } from '@/store/member';
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import useMember from '@/hooks/memberHook';
 export default function Redirect() {
   let [searchParams, setSearchParams] = useSearchParams();
+  const { login } = useMember();
   const navigate = useNavigate();
-  const member = useSelector((state: RootState) => state.member);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   useEffect(() => {
     const token = searchParams.get('token');
     const error = searchParams.get('error');
@@ -15,16 +14,19 @@ export default function Redirect() {
     if (token) {
       console.log(token);
       localStorage.setItem('token', token);
+      login('토큰로그인닉네임');
       navigate('/');
       return;
     }
     if (error) {
       console.log(error);
+      login('에러로그인닉네임');
       navigate('/login');
       return;
     }
-    dispatch(setMember('임시닉네임'));
-    console.log(member);
+    // dispatch(setMember('SOCK'));
+    login('임시테스트닉네임');
+    localStorage.setItem('token', 'tokentest');
     navigate('/');
     return;
   });
