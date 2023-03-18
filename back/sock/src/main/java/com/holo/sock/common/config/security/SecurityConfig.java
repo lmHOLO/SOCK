@@ -1,12 +1,13 @@
 package com.holo.sock.common.config.security;
 
+import com.holo.sock.common.config.security.AuthenticationEntryPoint.JwtAuthenticationEntryPoint;
+import com.holo.sock.common.config.security.jwt.JwtExceptionFilter;
 import com.holo.sock.common.config.security.oauth2.CustomOAuth2UserService;
 import com.holo.sock.common.config.security.jwt.TokenAuthenticationFilter;
 import com.holo.sock.common.config.security.oauth2.cookie.HttpCookieOAuth2AuthorizationRequestRepository;
 import com.holo.sock.common.config.security.oauth2.handler.OAuth2AuthenticationFailureHandler;
 import com.holo.sock.common.config.security.oauth2.handler.OAuth2AuthenticationSuccessHandler;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -29,6 +30,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
     private final TokenAuthenticationFilter tokenAuthenticationFilter;
+    private final JwtExceptionFilter jwtExceptionFilter;
+    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -48,6 +51,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)  // 세션 사용 x
+
+                .and()
+                .exceptionHandling()
+                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
 
                 .and()
                 .authorizeRequests()
@@ -71,5 +78,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureHandler(oAuth2AuthenticationFailureHandler);
 
         http.addFilterBefore(tokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(jwtExceptionFilter, TokenAuthenticationFilter.class);
     }
 }

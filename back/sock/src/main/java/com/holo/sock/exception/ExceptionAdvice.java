@@ -5,6 +5,7 @@ import com.holo.sock.common.result.Result;
 import com.holo.sock.exception.member.MemberNotFoundException;
 import com.holo.sock.exception.snack.SnackNotFoundException;
 import com.holo.sock.exception.type.TypeNotFoundException;
+import io.jsonwebtoken.JwtException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -16,6 +17,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class ExceptionAdvice {
 
     private final ResponseService responseService;
+
+    @ExceptionHandler(JwtException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public Result jwtException(){
+        return responseService.getFailureResult(-99, "토큰이 없습니다.");
+    }
 
     @ExceptionHandler(TypeNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
