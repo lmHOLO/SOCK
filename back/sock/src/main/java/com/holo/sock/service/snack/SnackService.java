@@ -31,7 +31,6 @@ public class SnackService {
     private final SnackRepository snackRepository;
     private final TypeRepository typeRepository;
     private final FlavorRepository flavorRepository;
-    private final ReviewRepository reviewRepository;
 
     private final SearchService searchService;
     private final SnackQScoreService snackQScoreService;
@@ -79,13 +78,4 @@ public class SnackService {
         return SnackDetailResponseDto.create(snack);
     }
 
-    @Transactional
-    public void registerReview(Long snackId, RegisterReviewRequestDto requestDto, Member writer){
-        Snack snack = snackRepository.findById(snackId).orElseThrow(SnackNotFoundException::new);
-
-        Review review = requestDto.toEntity(writer, snack);
-        reviewRepository.save(review);
-
-        snack.registerReview(requestDto.getStar());
-    }
 }
