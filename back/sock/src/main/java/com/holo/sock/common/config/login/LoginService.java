@@ -5,6 +5,7 @@ import com.holo.sock.common.config.security.jwt.UserDetail;
 import com.holo.sock.entity.member.Member;
 import com.holo.sock.exception.member.MemberNotFoundException;
 import com.holo.sock.repository.member.MemberRepository;
+import io.jsonwebtoken.JwtException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,8 @@ public class LoginService {
 
     public Member getLoginMember(HttpServletRequest request){
         String token = getTokenFromRequest(request);
+        if(token == null) throw new JwtException("토큰이 없습니다.");
+
         Long memberId = tokenProvider.getUserIdFromToken(token);
         return memberRepository.findById(memberId).orElseThrow(MemberNotFoundException::new);
     }
