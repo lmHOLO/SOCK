@@ -7,7 +7,7 @@ import com.holo.sock.common.config.security.oauth2.userinfo.OAuth2UserInfo;
 import com.holo.sock.common.config.security.oauth2.userinfo.OAuth2UserInfoFactory;
 import com.holo.sock.entity.member.Member;
 import com.holo.sock.entity.member.profile.Profile;
-import com.holo.sock.repository.MemberRepository;
+import com.holo.sock.repository.member.MemberRepository;
 import com.holo.sock.entity.member.Role;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

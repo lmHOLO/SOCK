@@ -23,4 +23,8 @@ public class SnackQScore extends BaseEntity {
     private Snack snack;
 
     private long score;
+
+    public void addScore(){
+        score++;
+    }
 }
