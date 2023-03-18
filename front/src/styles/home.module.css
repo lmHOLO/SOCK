@@ -1,5 +1,11 @@
 @value sock-brown, kakao-color, naver-color, google-color, white-color  from './common/colors.css';
 
+.ad-img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
 .title {
   display: inline-block;
   padding: 0.5rem 1rem;
@@ -9,6 +15,7 @@
 .recommend {
   background-color: sock-brown;
   color: white-color;
+  margin-top: 10px;
 }
 
 .theme {
@@ -19,12 +26,12 @@
 
 .theme-list {
   display: flex;
-  padding: 10px 0px;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .theme-item {
   display: inline-block;
+  margin: 10px;
   padding: 10px 3px;
   width: 90px;
   height: 100px;
