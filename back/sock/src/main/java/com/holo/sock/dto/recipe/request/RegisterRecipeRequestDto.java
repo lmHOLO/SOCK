@@ -11,7 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class RegisterRecipeRequestDto {
-     private Long writerId;
      private List<String> images = new ArrayList<>();
      private String title;
      private List<Long> snackIds = new ArrayList<>();
