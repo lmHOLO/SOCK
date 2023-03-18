@@ -45,4 +45,10 @@ public class SnackController {
         reviewService.registerReview(snackId, requestDto, member);
         return responseService.getSuccessResult();
     }
+
+    @DeleteMapping("/{snack-id}/reviews")
+    public Result deleteReview(@LoginMember Member member, @PathVariable("snack-id") Long snackId){
+        reviewService.deleteReview(member, snackId);
+        return responseService.getSuccessResult();
+    }
 }
