@@ -8,6 +8,7 @@ import com.holo.sock.dto.snack.request.RegisterReviewRequestDto;
 import com.holo.sock.dto.snack.request.RegisterSnackRequestDto;
 import com.holo.sock.dto.snack.response.SnackDetailResponseDto;
 import com.holo.sock.entity.member.Member;
+import com.holo.sock.service.snack.ReviewService;
 import com.holo.sock.service.snack.SnackService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +24,7 @@ public class SnackController {
 
     private final ResponseService responseService;
     private final SnackService snackService;
+    private final ReviewService reviewService;
 
     @PostMapping
     public Result registerSnacks(@RequestBody List<RegisterSnackRequestDto> requestDto){
@@ -40,7 +42,7 @@ public class SnackController {
     @PostMapping("/{snack-id}/reviews")
     public Result registerReview(@LoginMember Member member, @PathVariable("snack-id") Long snackId,
                                  @RequestBody RegisterReviewRequestDto requestDto){
-        snackService.registerReview(snackId, requestDto, member);
+        reviewService.registerReview(snackId, requestDto, member);
         return responseService.getSuccessResult();
     }
 }
