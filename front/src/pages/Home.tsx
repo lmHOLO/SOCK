@@ -43,13 +43,13 @@ export default function Home() {
     <div>
       <TopNav />
       <Ads />
-      <div style={{ margin: '10px 0px' }}>
+      <div className='side-margin'>
         <div className={`${styles.title} ${styles.recommend}`}>
           <p>{memberData.nickname}님을 위한 맞춤 추천</p>
         </div>
         <SnackList snackList={recommendSnackList} />
       </div>
-      <div>
+      <div className='side-margin'>
         <div className={`${styles.title} ${styles.theme}`}>
           <p>테마별 추천</p>
         </div>
