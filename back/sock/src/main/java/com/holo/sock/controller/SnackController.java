@@ -8,9 +8,7 @@ import com.holo.sock.dto.snack.request.RegisterReviewRequestDto;
 import com.holo.sock.dto.snack.request.RegisterSnackRequestDto;
 import com.holo.sock.dto.snack.response.SnackDetailResponseDto;
 import com.holo.sock.entity.member.Member;
-import com.holo.sock.service.SnackService;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import com.holo.sock.service.snack.SnackService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -33,8 +31,9 @@ public class SnackController {
     }
     
     @GetMapping("/{snack-id}")
-    public SingleResult<SnackDetailResponseDto> searchSnackDetail(@PathVariable("snack-id") Long snackId){
-        SnackDetailResponseDto responseDto = snackService.searchSnackDetail(snackId);
+    public SingleResult<SnackDetailResponseDto> searchSnackDetail(@LoginMember Member member,
+                                                                  @PathVariable("snack-id") Long snackId){
+        SnackDetailResponseDto responseDto = snackService.searchSnackDetail(member, snackId);
         return responseService.getSingleResult(responseDto);
     }
 

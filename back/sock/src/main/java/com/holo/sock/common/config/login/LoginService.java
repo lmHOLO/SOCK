@@ -1,13 +1,11 @@
 package com.holo.sock.common.config.login;
 
 import com.holo.sock.common.config.security.jwt.TokenProvider;
-import com.holo.sock.common.config.security.jwt.UserDetail;
 import com.holo.sock.entity.member.Member;
 import com.holo.sock.exception.member.MemberNotFoundException;
 import com.holo.sock.repository.member.MemberRepository;
 import io.jsonwebtoken.JwtException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
