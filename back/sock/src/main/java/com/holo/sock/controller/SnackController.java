@@ -51,4 +51,10 @@ public class SnackController {
         reviewService.deleteReview(member, snackId);
         return responseService.getSuccessResult();
     }
+
+    @PostMapping("/{snack-id}/like")
+    public Result likeSnack(@LoginMember Member member, @PathVariable("snack-id") Long snackId){
+        snackService.likeSnack(member, snackId);
+        return responseService.getSuccessResult();
+    }
 }
