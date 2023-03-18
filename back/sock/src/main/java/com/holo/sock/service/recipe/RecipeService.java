@@ -1,4 +1,4 @@
-package com.holo.sock.service;
+package com.holo.sock.service.recipe;
 
 import com.holo.sock.dto.recipe.request.RegisterRecipeRequestDto;
 import com.holo.sock.entity.member.Member;
@@ -31,9 +31,7 @@ public class RecipeService {
     private final MemberRepository memberRepository;
 
     @Transactional
-    public void registerRecipe(RegisterRecipeRequestDto requestDto){
-        Member member = memberRepository.findById(requestDto.getWriterId()).orElseThrow(MemberNotFoundException::new);
-
+    public void registerRecipe(Member member,RegisterRecipeRequestDto requestDto){
         Recipe recipe = Recipe.builder()
                 .writer(member)
                 .title(requestDto.getTitle())
