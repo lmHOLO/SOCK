@@ -19,5 +19,14 @@ import java.util.Optional;
 public class MemberService {
     private final MemberRepository memberRepository;
 
+    public Boolean isUniqueNickname(String nickname) {
+        Long count = memberRepository.countByNickname(nickname);
+        if (count == 0) {
+            return new Boolean(true);
+        }
+        return new Boolean(false);
+    }
+
+
 
 }
