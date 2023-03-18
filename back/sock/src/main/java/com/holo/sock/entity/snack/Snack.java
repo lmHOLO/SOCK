@@ -38,4 +38,9 @@ public class Snack extends BaseEntity {
         this.sumOfStars += star;
         this.numberOfParticipants++;
     }
+
+    public void deleteReview(int star){
+        this.sumOfStars -= star;
+        this.numberOfParticipants--;
+    }
 }
