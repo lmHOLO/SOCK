@@ -2,6 +2,7 @@ package com.holo.sock.exception;
 
 import com.holo.sock.common.response.ResponseService;
 import com.holo.sock.common.result.Result;
+import com.holo.sock.exception.likesnack.LikeSnackExistedException;
 import com.holo.sock.exception.member.MemberNotFoundException;
 import com.holo.sock.exception.review.ReviewNotFoundException;
 import com.holo.sock.exception.snack.SnackNotFoundException;
@@ -41,6 +42,12 @@ public class ExceptionAdvice {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public Result reviewNotFoundException(){
         return responseService.getFailureResult(-102, "해당 리뷰를 찾을 수 없습니다.");
+    }
+
+    @ExceptionHandler(LikeSnackExistedException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Result likeSnackExistedException(){
+        return responseService.getFailureResult(-103, "이미 좋아요한 과자입니다.");
     }
 
     @ExceptionHandler(MemberNotFoundException.class)

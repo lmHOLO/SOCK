@@ -22,6 +22,7 @@ public class SnackQScore extends BaseEntity {
     @JoinColumn(name = "snack_id")
     private Snack snack;
 
+    // 좋아요수 + 검색수 + 구매링크 클릭수
     private long score;
 
     public void addScore(){

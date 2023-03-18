@@ -5,12 +5,10 @@ import com.holo.sock.dto.snack.request.RegisterSnackRequestDto;
 import com.holo.sock.dto.snack.response.SnackDetailResponseDto;
 import com.holo.sock.entity.member.Member;
 import com.holo.sock.entity.snack.*;
+import com.holo.sock.exception.likesnack.LikeSnackExistedException;
 import com.holo.sock.exception.snack.SnackNotFoundException;
 import com.holo.sock.exception.type.TypeNotFoundException;
-import com.holo.sock.repository.snack.FlavorRepository;
-import com.holo.sock.repository.snack.ReviewRepository;
-import com.holo.sock.repository.snack.SnackRepository;
-import com.holo.sock.repository.snack.TypeRepository;
+import com.holo.sock.repository.snack.*;
 import com.holo.sock.service.qscore.SnackQScoreService;
 import com.holo.sock.service.recommend.SearchService;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +29,7 @@ public class SnackService {
     private final SnackRepository snackRepository;
     private final TypeRepository typeRepository;
     private final FlavorRepository flavorRepository;
+    private final LikeSnackRepository likeSnackRepository;
 
     private final SearchService searchService;
     private final SnackQScoreService snackQScoreService;
@@ -76,6 +75,22 @@ public class SnackService {
         snackQScoreService.addQScore(snack);
 
         return SnackDetailResponseDto.create(snack);
+    }
+
+    @Transactional
+    public void likeSnack(Member loginMember, Long snackId){
+        Snack snack = snackRepository.findById(snackId).orElseThrow(SnackNotFoundException::new);
+
+        boolean existedLikeSnack = likeSnackRepository.existsByMemberAndSnack(loginMember, snack);
+        if(existedLikeSnack) throw new LikeSnackExistedException();
+
+        LikeSnack likeSnack = LikeSnack.builder()
+                .member(loginMember)
+                .snack(snack)
+                .build();
+        likeSnackRepository.save(likeSnack);
+
+        snackQScoreService.addQScore(snack);
     }
 
 }
