@@ -1,16 +1,18 @@
-package com.holo.sock.service;
+package com.holo.sock.service.snack;
 
+import com.holo.sock.dto.snack.request.RegisterReviewRequestDto;
 import com.holo.sock.dto.snack.request.RegisterSnackRequestDto;
 import com.holo.sock.dto.snack.response.SnackDetailResponseDto;
-import com.holo.sock.entity.snack.Flavor;
-import com.holo.sock.entity.snack.Snack;
-import com.holo.sock.entity.snack.SnackFlavor;
-import com.holo.sock.entity.snack.Type;
+import com.holo.sock.entity.member.Member;
+import com.holo.sock.entity.snack.*;
 import com.holo.sock.exception.snack.SnackNotFoundException;
 import com.holo.sock.exception.type.TypeNotFoundException;
 import com.holo.sock.repository.snack.FlavorRepository;
+import com.holo.sock.repository.snack.ReviewRepository;
 import com.holo.sock.repository.snack.SnackRepository;
 import com.holo.sock.repository.snack.TypeRepository;
+import com.holo.sock.service.qscore.SnackQScoreService;
+import com.holo.sock.service.recommend.SearchService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -29,6 +31,10 @@ public class SnackService {
     private final SnackRepository snackRepository;
     private final TypeRepository typeRepository;
     private final FlavorRepository flavorRepository;
+
+    private final SearchService searchService;
+    private final SnackQScoreService snackQScoreService;
+
 
     @Transactional
     public void registerSnacks(List<RegisterSnackRequestDto> requestDto){
@@ -59,8 +65,17 @@ public class SnackService {
         }
     }
 
-    public SnackDetailResponseDto searchSnackDetail(Long snackId){
+    @Transactional
+    public SnackDetailResponseDto searchSnackDetail(Member member, Long snackId){
         Snack snack = snackRepository.findSnackByIdWithTypeAndFlavor(snackId).orElseThrow(SnackNotFoundException::new);
+
+        // 회원 당 검색 횟수 증가
+        searchService.addCountByMember(member, snack);
+
+        // 과자 인기도 증가
+        snackQScoreService.addQScore(snack);
+
         return SnackDetailResponseDto.create(snack);
     }
+
 }

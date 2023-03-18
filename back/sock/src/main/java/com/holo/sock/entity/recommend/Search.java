@@ -27,4 +27,8 @@ public class Search extends BaseEntity {
     private Snack snack;
 
     private int count;
+
+    public void addCount(){
+        this.count++;
+    }
 }
