@@ -4,6 +4,7 @@ import com.holo.sock.dto.recipe.request.RegisterCommentRequestDto;
 import com.holo.sock.entity.member.Member;
 import com.holo.sock.entity.recipe.Comment;
 import com.holo.sock.entity.recipe.Recipe;
+import com.holo.sock.exception.comment.CommentNotFoundException;
 import com.holo.sock.exception.recipe.RecipeNotFoundException;
 import com.holo.sock.repository.recipe.CommentRepository;
 import com.holo.sock.repository.recipe.RecipeRepository;
@@ -24,8 +25,15 @@ public class CommentService {
     public void registerComment(Member writer, RegisterCommentRequestDto requestDto,Long recipeId){
         Recipe recipe = recipeRepository.findById(recipeId).orElseThrow(RecipeNotFoundException::new);
 
-        Comment comment = requestDto.toEntity(writer);
+        Comment comment = requestDto.toEntity(writer,recipe);
         commentRepository.save(comment);
 
+    }
+    @Transactional
+    public void deleteComment(Member writer, Long recipeId, Long commentId){
+        Recipe recipe = recipeRepository.findById(recipeId).orElseThrow(RecipeNotFoundException::new);
+
+        Comment comment = commentRepository.findByWriterAndIdAndRecipe(writer, commentId,recipe).orElseThrow(CommentNotFoundException::new);
+        commentRepository.delete(comment);
     }
 }
