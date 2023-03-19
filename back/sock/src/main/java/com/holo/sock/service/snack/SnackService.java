@@ -1,8 +1,9 @@
 package com.holo.sock.service.snack;
 
-import com.holo.sock.dto.snack.request.RegisterReviewRequestDto;
 import com.holo.sock.dto.snack.request.RegisterSnackRequestDto;
+import com.holo.sock.dto.snack.request.SearchSnackListRequestDto;
 import com.holo.sock.dto.snack.response.SnackDetailResponseDto;
+import com.holo.sock.dto.snack.response.SnackResponseDto;
 import com.holo.sock.entity.member.Member;
 import com.holo.sock.entity.snack.*;
 import com.holo.sock.exception.likesnack.LikeSnackExistedException;
@@ -14,6 +15,8 @@ import com.holo.sock.service.qscore.SnackQScoreService;
 import com.holo.sock.service.recommend.SearchService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,6 +38,14 @@ public class SnackService {
     private final SearchService searchService;
     private final SnackQScoreService snackQScoreService;
 
+    public Page<SnackResponseDto> snackList(Member member, SearchSnackListRequestDto requestDto, Pageable pageable){
+        Page<Snack> result = snackRepository.findSnacks(requestDto, pageable);
+
+        List<Long> snackIds = result.getContent().stream().map(Snack::getId).collect(Collectors.toList());
+        HashSet<Long> snackIdsWithLike = new HashSet<>(likeSnackRepository.findSnackIdsWithLike(snackIds, member));
+
+        return result.map(snack -> SnackResponseDto.create(snack, snackIdsWithLike));
+    }
 
     @Transactional
     public void registerSnacks(List<RegisterSnackRequestDto> requestDto){
