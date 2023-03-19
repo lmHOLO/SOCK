@@ -13,4 +13,5 @@ public interface LikeSnackRepository extends JpaRepository<LikeSnack, Long> {
 
     boolean existsByMemberAndSnack(Member member, Snack snack);
     Optional<LikeSnack> findByMemberAndSnack(Member member, Snack snack);
+    Long countBySnack(Snack snack);
 }
