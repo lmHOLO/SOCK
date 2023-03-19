@@ -28,4 +28,8 @@ public class SnackQScore extends BaseEntity {
     public void addScore(){
         score++;
     }
+
+    public void subScore(){
+        score--;
+    }
 }

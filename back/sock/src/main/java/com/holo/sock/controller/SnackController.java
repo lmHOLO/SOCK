@@ -57,4 +57,10 @@ public class SnackController {
         snackService.likeSnack(member, snackId);
         return responseService.getSuccessResult();
     }
+
+    @DeleteMapping("/{snack-id}/like")
+    public Result deleteLikeSnack(@LoginMember Member member, @PathVariable("snack-id") Long snackId){
+        snackService.deleteLikeSnack(member, snackId);
+        return responseService.getSuccessResult();
+    }
 }

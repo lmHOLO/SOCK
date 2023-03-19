@@ -2,6 +2,7 @@ package com.holo.sock.service.qscore;
 
 import com.holo.sock.entity.qscore.SnackQScore;
 import com.holo.sock.entity.snack.Snack;
+import com.holo.sock.exception.snackqscore.SnackQScoreNotFoundException;
 import com.holo.sock.repository.qscore.SnackQScoreRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,5 +34,13 @@ public class SnackQScoreService {
 
             snackQScoreRepository.save(snackQScore);
         }
+    }
+
+    @Transactional
+    public void subQScore(Snack snack){
+        SnackQScore snackQScore = snackQScoreRepository.findBySnack(snack)
+                .orElseThrow(SnackQScoreNotFoundException::new);
+
+        snackQScore.subScore();
     }
 }

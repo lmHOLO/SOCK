@@ -6,6 +6,7 @@ import com.holo.sock.dto.snack.response.SnackDetailResponseDto;
 import com.holo.sock.entity.member.Member;
 import com.holo.sock.entity.snack.*;
 import com.holo.sock.exception.likesnack.LikeSnackExistedException;
+import com.holo.sock.exception.likesnack.LikeSnackNotFoundException;
 import com.holo.sock.exception.snack.SnackNotFoundException;
 import com.holo.sock.exception.type.TypeNotFoundException;
 import com.holo.sock.repository.snack.*;
@@ -93,4 +94,14 @@ public class SnackService {
         snackQScoreService.addQScore(snack);
     }
 
+    @Transactional
+    public void deleteLikeSnack(Member loginMember, Long snackId){
+        Snack snack = snackRepository.findById(snackId).orElseThrow(SnackNotFoundException::new);
+
+        LikeSnack likeSnack = likeSnackRepository.findByMemberAndSnack(loginMember, snack)
+                .orElseThrow(LikeSnackNotFoundException::new);
+
+        likeSnackRepository.delete(likeSnack);
+        snackQScoreService.subQScore(snack);
+    }
 }
