@@ -68,6 +68,8 @@ public class SnackService {
     @Transactional
     public SnackDetailResponseDto searchSnackDetail(Member member, Long snackId){
         Snack snack = snackRepository.findSnackByIdWithTypeAndFlavor(snackId).orElseThrow(SnackNotFoundException::new);
+        boolean like = likeSnackRepository.existsByMemberAndSnack(member, snack);
+        Long totalLikes = likeSnackRepository.countBySnack(snack);
 
         // 회원 당 검색 횟수 증가
         searchService.addCountByMember(member, snack);
@@ -75,7 +77,7 @@ public class SnackService {
         // 과자 인기도 증가
         snackQScoreService.addQScore(snack);
 
-        return SnackDetailResponseDto.create(snack);
+        return SnackDetailResponseDto.create(snack, like, totalLikes);
     }
 
     @Transactional
