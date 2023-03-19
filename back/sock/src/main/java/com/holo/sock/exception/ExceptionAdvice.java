@@ -2,6 +2,7 @@ package com.holo.sock.exception;
 
 import com.holo.sock.common.response.ResponseService;
 import com.holo.sock.common.result.Result;
+import com.holo.sock.exception.comment.CommentNotFoundException;
 import com.holo.sock.exception.likesnack.LikeSnackExistedException;
 import com.holo.sock.exception.likesnack.LikeSnackNotFoundException;
 import com.holo.sock.exception.member.MemberNotFoundException;
@@ -75,6 +76,10 @@ public class ExceptionAdvice {
     @ExceptionHandler(RecipeNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public Result recipeNotFoundException() { return responseService.getFailureResult(-300,"해당 레시피를 찾을 수 없습니다.");}
+
+    @ExceptionHandler(CommentNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public Result commentNotFoundException() { return responseService.getFailureResult(-301,"해당 댓글을 찾을 수 없습니다.");}
 
 
 }

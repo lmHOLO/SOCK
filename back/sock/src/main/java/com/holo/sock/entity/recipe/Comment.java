@@ -22,4 +22,9 @@ public class Comment extends BaseEntity {
     private Member writer;
 
     private String content;
+
+    @ManyToOne
+    @JoinColumn(name = "recipe_id")
+    private Recipe recipe;
+
 }

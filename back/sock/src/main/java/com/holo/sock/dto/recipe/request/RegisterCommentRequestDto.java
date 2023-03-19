@@ -2,6 +2,7 @@ package com.holo.sock.dto.recipe.request;
 
 import com.holo.sock.entity.member.Member;
 import com.holo.sock.entity.recipe.Comment;
+import com.holo.sock.entity.recipe.Recipe;
 import lombok.*;
 
 @Getter
@@ -11,9 +12,10 @@ import lombok.*;
 public class RegisterCommentRequestDto {
      private String content;
 
-     public Comment toEntity(Member writer){
+     public Comment toEntity(Member writer, Recipe recipe){
           return Comment.builder()
                   .writer(writer)
+                  .recipe(recipe)
                   .content(content)
                   .build();
      }

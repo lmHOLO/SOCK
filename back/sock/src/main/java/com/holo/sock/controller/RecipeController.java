@@ -33,4 +33,12 @@ public class RecipeController {
         commentService.registerComment(member,requestDto,recipeId);
         return responseService.getSuccessResult();
     }
+    @DeleteMapping("/{recipe-id}/comments/{comment-id}")
+    public Result deleteComment(@LoginMember Member member, @PathVariable("recipe-id") Long recipeId,
+                                @PathVariable("comment-id") Long commentId){
+        commentService.deleteComment(member, recipeId, commentId);
+        return responseService.getSuccessResult();
+    }
+
+
 }
