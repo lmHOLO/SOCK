@@ -54,4 +54,8 @@ public class Member extends BaseEntity {
 
     @Column @Enumerated(EnumType.STRING)
     private Role role; // USER, ADMIN
+
+    public void modifyNickname(String nickname) {
+        this.nickname = nickname;
+    }
 }

@@ -1,16 +1,15 @@
 package com.holo.sock.service;
 
+import com.holo.sock.dto.member.response.MemberSearchResponseDto;
 import com.holo.sock.entity.member.Member;
 import com.holo.sock.repository.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -22,11 +21,25 @@ public class MemberService {
     public Boolean isUniqueNickname(String nickname) {
         Long count = memberRepository.countByNickname(nickname);
         if (count == 0) {
-            return new Boolean(true);
+            return Boolean.TRUE;
         }
-        return new Boolean(false);
+        return Boolean.FALSE;
     }
 
+    @Transactional
+    public void modifyNickname(String nickname) {
 
+    }
 
+    public List<MemberSearchResponseDto> searchMember(String nickname) {
+        List<Member> members = memberRepository.findByNicknameContaining(nickname);
+        log.info("members: {}",members);
+        return members.stream()
+                .map(member -> MemberSearchResponseDto.builder()
+                            .nickname(member.getNickname())
+                            .profile(member.getProfile())
+                            .build()
+                )
+                .collect(Collectors.toList());
+    }
 }
