@@ -6,6 +6,7 @@ import Home from '@/pages/Home';
 import Redirect from '@/pages/Redirect';
 import NotFound from '@/pages/NotFound';
 import useMember from '@/hooks/memberHook';
+import SnackDetail from './pages/SnackDetail';
 const router = createBrowserRouter([
   /*   {
     path: '/',
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: 'oauth2/redirect',
     element: <Redirect />,
+  },
+  {
+    path: '/snacks/:id',
+    element: <SnackDetail />,
   },
 ]);
 export default function App() {

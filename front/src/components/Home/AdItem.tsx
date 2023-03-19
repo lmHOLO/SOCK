@@ -1,9 +1,9 @@
 import React from 'react';
 import { Paper } from '@mui/material';
-import { Ad } from '@/components/types';
+import { AdType } from '@/components/types';
 import styles from '@/styles/home.module.css';
 interface Props {
-  ad: Ad;
+  ad: AdType;
 }
 
 export default function AdItem({ ad }: Props) {
