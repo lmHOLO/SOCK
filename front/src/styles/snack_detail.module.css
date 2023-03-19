@@ -1,0 +1,43 @@
+@value sock-brown, kakao-color, naver-color, google-color, white-color  from './common/colors.css';
+
+.title {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px;
+  font-size: 14px;
+  background-color: sock-brown;
+  color: white-color;
+  margin-top: 10px;
+}
+
+.purchase-btn {
+  float: right;
+  margin-bottom: 10px;
+}
+/* snack content */
+.grade-like {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.snack-grade {
+  display: flex;
+  align-items: center;
+}
+
+.snack-img-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 215px;
+  margin-bottom: 10px;
+}
+
+.snack-img-container > img {
+  height: 100%;
+}
+
+/* recipe recommend */
+.recipe-container {
+  margin-bottom: 20px;
+}

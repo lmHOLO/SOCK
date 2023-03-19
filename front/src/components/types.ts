@@ -5,6 +5,12 @@ export type AdType = {
   title: string;
 };
 
+export type RecipeListItemType = {
+  id: number;
+  image: string;
+  title: string;
+};
+
 export type SnackListItemType = {
   id: number;
   image: string;
