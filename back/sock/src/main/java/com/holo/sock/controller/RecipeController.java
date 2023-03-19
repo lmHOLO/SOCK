@@ -39,6 +39,11 @@ public class RecipeController {
         commentService.deleteComment(member, recipeId, commentId);
         return responseService.getSuccessResult();
     }
+    @PostMapping("/{recipe-id}/like")
+    public Result likeRecipe(@LoginMember Member member, @PathVariable("recipe-id") Long recipeId){
+        recipeService.likeRecipe(member,recipeId);
+        return responseService.getSuccessResult();
+    }
 
 
 }
