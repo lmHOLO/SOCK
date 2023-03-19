@@ -4,6 +4,7 @@ import com.holo.sock.common.response.ResponseService;
 import com.holo.sock.common.result.Result;
 import com.holo.sock.exception.likesnack.LikeSnackExistedException;
 import com.holo.sock.exception.member.MemberNotFoundException;
+import com.holo.sock.exception.recipe.RecipeNotFoundException;
 import com.holo.sock.exception.review.ReviewNotFoundException;
 import com.holo.sock.exception.snack.SnackNotFoundException;
 import com.holo.sock.exception.type.TypeNotFoundException;
@@ -55,6 +56,11 @@ public class ExceptionAdvice {
     public Result memberNotFoundException(){
         return responseService.getFailureResult(-200, "해당 회원을 찾을 수 없습니다.");
     }
+
+
+    @ExceptionHandler(RecipeNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public Result recipeNotFoundException() { return responseService.getFailureResult(-300,"해당 레시피를 찾을 수 없습니다.");}
 
 
 }
