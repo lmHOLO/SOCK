@@ -1,5 +1,6 @@
 import React, { useCallback, useRef } from 'react';
-import styles from '@/styles/snack_detail.module.css';
+import styles from '@/styles/comment.module.css';
+import CommentList from './CommentList';
 export default function Comment() {
   const textRef = useRef<HTMLTextAreaElement>(null);
   const handleResizeHeight = useCallback(() => {
@@ -10,14 +11,17 @@ export default function Comment() {
   }, []);
   return (
     <div>
-      <textarea
-        rows={1}
-        ref={textRef}
-        className={styles.content_text}
-        placeholder='댓글 입력하기'
-        onInput={handleResizeHeight}
-      />
-      <button>작성</button>
+      <div className={styles['comment-write']}>
+        <textarea
+          rows={1}
+          ref={textRef}
+          className={styles.content_text}
+          placeholder='댓글 입력하기'
+          onInput={handleResizeHeight}
+        />
+        <button>작성</button>
+      </div>
+      <CommentList />
     </div>
   );
 }

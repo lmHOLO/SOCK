@@ -42,3 +42,13 @@ export type SnackDetailType = {
   type: SnackType;
   flavors: FlavorType[];
 };
+
+// 댓글
+export type CommentType = {
+  id: string;
+  image: string;
+  nickname: string;
+  content: string;
+  sumOfStar: string;
+  creatingDate: string;
+};

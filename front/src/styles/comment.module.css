@@ -1,0 +1,36 @@
+@value sock-brown, white-color  from './common/colors.css';
+
+.comment-write {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment-write > textarea {
+  border-radius: 3px;
+  width: 80%;
+}
+
+.comment-write > button {
+  background-color: sock-brown;
+  height: 24px;
+  width: 15%;
+  color: white-color;
+  border-radius: 4px;
+}
+
+.member-data {
+  display: flex;
+  align-items: center;
+}
+
+.member-data > img {
+  width: 28px;
+  height: 28px;
+  border-radius: 100px;
+  object-fit: cover;
+  margin-right: 5px;
+}
+
+.comment-data {
+  display: flex;
+}

@@ -1,4 +1,4 @@
-@value sock-brown, kakao-color, naver-color, google-color, white-color  from './common/colors.css';
+@value sock-brown, white-color  from './common/colors.css';
 
 .snack-list {
   overflow-x: auto;
