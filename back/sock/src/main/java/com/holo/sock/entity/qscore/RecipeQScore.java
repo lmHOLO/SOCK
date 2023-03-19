@@ -23,4 +23,6 @@ public class RecipeQScore extends BaseEntity {
     private Recipe recipe;
 
     private long score;
+
+    public void addScore(){score++;}
 }

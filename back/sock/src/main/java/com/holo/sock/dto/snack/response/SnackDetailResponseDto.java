@@ -19,8 +19,10 @@ public class SnackDetailResponseDto {
 
     private TypeInfoDto type;
     private List<FlavorInfoDto> flavors;
+    private boolean like;
+    private long totalLikes;
 
-    public static SnackDetailResponseDto create(Snack snack){
+    public static SnackDetailResponseDto create(Snack snack, boolean like, long totalLikes){
         return SnackDetailResponseDto.builder()
                 .image(snack.getImage())
                 .name(snack.getName())
@@ -33,6 +35,8 @@ public class SnackDetailResponseDto {
                                 .map(s -> new FlavorInfoDto(s.getId(), s.getFlavor().getName()))
                                 .collect(Collectors.toList())
                 )
+                .like(like)
+                .totalLikes(totalLikes)
                 .build();
     }
 
