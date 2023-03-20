@@ -76,7 +76,7 @@ public class SnackRepositoryImpl implements SnackRepositoryCustom{
 
         BooleanExpression result = snack.type.name.eq(types.get(0));
         for(int i = 1; i < types.size(); i++){
-            result.or(snack.type.name.eq(types.get(i)));
+            result = result.or(snack.type.name.eq(types.get(i)));
         }
 
         return result;
@@ -85,12 +85,9 @@ public class SnackRepositoryImpl implements SnackRepositoryCustom{
     private BooleanExpression flavorEq(List<String> flavors){
         if(flavors == null || flavors.size() == 0) return null;
 
-        log.info("flavors = {}", flavors);
-        log.info(flavors.get(0));
-
         BooleanExpression result = flavor.name.eq(flavors.get(0));
         for(int i = 1; i < flavors.size(); i++){
-            result.or(flavor.name.eq(flavors.get(i)));
+            result = result.or(flavor.name.eq(flavors.get(i)));
         }
 
         return result;
