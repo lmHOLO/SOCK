@@ -8,6 +8,7 @@ import com.holo.sock.entity.recipe.RecipeImage;
 import com.holo.sock.entity.recipe.Tag;
 import com.holo.sock.entity.snack.Snack;
 import com.holo.sock.exception.likerecipe.LikeRecipeExistedException;
+import com.holo.sock.exception.likerecipe.LikeRecipeNotFoundException;
 import com.holo.sock.exception.member.MemberNotFoundException;
 import com.holo.sock.exception.recipe.RecipeNotFoundException;
 import com.holo.sock.repository.member.MemberRepository;
@@ -23,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -83,6 +85,17 @@ public class RecipeService {
         likeRecipeRepository.save(likeRecipe);
 
         recipeQScoreService.addQScore(recipe);
+    }
+
+    @Transactional
+    public void deleteLikeRecipe(Member loginMember,Long recipeId){
+        Recipe recipe = recipeRepository.findById(recipeId).orElseThrow(RecipeNotFoundException::new);
+
+        LikeRecipe likeRecipe = likeRecipeRepository.findByMemberAndRecipe(loginMember, recipe)
+                .orElseThrow(LikeRecipeNotFoundException::new);
+
+        likeRecipeRepository.delete(likeRecipe);
+        recipeQScoreService.subQScore(recipe);
     }
 
 
