@@ -2,6 +2,7 @@ package com.holo.sock.service.qscore;
 
 import com.holo.sock.entity.qscore.RecipeQScore;
 import com.holo.sock.entity.recipe.Recipe;
+import com.holo.sock.exception.recipeqscore.RecipeQScoreNotFoundException;
 import com.holo.sock.repository.qscore.RecipeQScoreRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,5 +32,13 @@ public class RecipeQScoreService {
                     .build();
             recipeQScoreRepository.save(recipeQScore);
         }
+    }
+
+    @Transactional
+    public void subQScore(Recipe recipe) {
+        RecipeQScore recipeQScore = recipeQScoreRepository.findByRecipe(recipe)
+                .orElseThrow(RecipeQScoreNotFoundException::new);
+
+        recipeQScore.subScore();
     }
 }

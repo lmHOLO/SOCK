@@ -1,3 +1,8 @@
+export type SnackTagType = {
+  id: string;
+  image: string;
+  name: string;
+};
 export type AdType = {
   id: number;
   image: string;
@@ -43,6 +48,22 @@ export type SnackDetailType = {
   flavors: FlavorType[];
 };
 
+export type RecipeDetailType = {
+  id: string;
+  memberId: string;
+  memberNickname: string;
+  memberImage: string;
+  images: string[];
+  title: string;
+  tags: SnackTagType[];
+  content: string;
+  likeCnt: string;
+};
+
+export type RecipeImageType = {
+  image: string;
+};
+
 // 댓글
 export type CommentType = {
   id: string;
@@ -50,5 +71,15 @@ export type CommentType = {
   nickname: string;
   content: string;
   sumOfStar: string;
+  creatingDate: string;
+};
+
+// 레시피 댓글
+export type RecipeCommentType = {
+  commentId: string;
+  memberId: string;
+  image: string;
+  nickname: string;
+  content: string;
   creatingDate: string;
 };

@@ -6,7 +6,8 @@ import Home from '@/pages/Home';
 import Redirect from '@/pages/Redirect';
 import NotFound from '@/pages/NotFound';
 import useMember from '@/hooks/memberHook';
-import SnackDetail from './pages/SnackDetail';
+import SnackDetail from '@/pages/SnackDetail';
+import RecipeDetail from '@/pages/RecipeDetail';
 const router = createBrowserRouter([
   /*   {
     path: '/',
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
   {
     path: '/snacks/:id',
     element: <SnackDetail />,
+  },
+  {
+    path: '/recipes/:id',
+    element: <RecipeDetail />,
   },
 ]);
 export default function App() {

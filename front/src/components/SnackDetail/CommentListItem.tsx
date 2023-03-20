@@ -1,6 +1,7 @@
 import React from 'react';
 import { CommentType } from '../types';
 import styles from '@/styles/comment.module.css';
+import StarRating from './StarRating';
 interface Props {
   comment: CommentType;
 }
@@ -13,6 +14,7 @@ export default function CommentListItem({ comment }: Props) {
       </div>
       <div className={styles['comment-data']}>
         <div>{comment.sumOfStar}</div>
+        <StarRating />
         <p>{comment.creatingDate}</p>
       </div>
       <p>{comment.content}</p>
