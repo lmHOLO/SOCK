@@ -33,8 +33,9 @@ public class MemberService {
         log.info("members: {}",members);
         return members.stream()
                 .map(member -> MemberSearchResponseDto.builder()
+                            .id(member.getId())
                             .nickname(member.getNickname())
-                            .profile(member.getProfile())
+                            .image(member.getProfile().getImage())
                             .build()
                 )
                 .collect(Collectors.toList());

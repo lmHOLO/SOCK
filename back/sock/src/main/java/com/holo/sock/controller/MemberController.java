@@ -22,7 +22,7 @@ public class MemberController {
     private final ResponseService responseService;
     private final MemberService memberService;
 
-    @GetMapping
+    @GetMapping("search")
     public ListResult<MemberSearchResponseDto> searchMember(@RequestParam String nickname) {
         log.info("nickname:{}",nickname);
         List<MemberSearchResponseDto> searchMemberList = memberService.searchMember(nickname);
@@ -42,6 +42,6 @@ public class MemberController {
         return responseService.getSuccessResult();
     }
 
-    
+
 
 }

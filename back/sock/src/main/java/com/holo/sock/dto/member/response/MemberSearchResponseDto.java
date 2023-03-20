@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class MemberSearchResponseDto {
+    private Long id;
     private String nickname;
-    private Profile profile;
+    private String image;
 }
