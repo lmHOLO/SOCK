@@ -6,6 +6,8 @@ import com.holo.sock.common.config.security.oauth2.userinfo.AuthProvider;
 import com.holo.sock.common.config.security.oauth2.userinfo.OAuth2UserInfo;
 import com.holo.sock.common.config.security.oauth2.userinfo.OAuth2UserInfoFactory;
 import com.holo.sock.entity.member.Member;
+import com.holo.sock.entity.member.badge.Grade;
+import com.holo.sock.entity.member.badge.SBTI;
 import com.holo.sock.entity.member.profile.Profile;
 import com.holo.sock.repository.member.MemberRepository;
 import com.holo.sock.entity.member.Role;
@@ -73,6 +75,8 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                 .checkPreference(false)
                 .role(Role.USER)
                 .exp(0)
+                .grade(Grade.FIRST_FLOOR)
+                .sbti(SBTI.NONE)
                 .build();
 
         return memberRepository.save(member);
