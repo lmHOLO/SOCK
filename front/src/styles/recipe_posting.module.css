@@ -1,0 +1,16 @@
+@value sock-brown, white-color  from './common/colors.css';
+.posting-btn {
+  float: right;
+  width: 70px;
+  background-color: sock-brown;
+  color: white-color;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-top: 14px;
+}
+
+.upload-container {
+  width: 150;
+  height: 150;
+  background-color: aqua;
+}
