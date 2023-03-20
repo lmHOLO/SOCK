@@ -1,4 +1,4 @@
-package com.holo.sock.service;
+package com.holo.sock.service.member;
 
 import com.holo.sock.dto.member.request.MemberModifyRequestDto;
 import com.holo.sock.dto.member.response.MemberDetailResponseDto;
