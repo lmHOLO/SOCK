@@ -1,5 +1,6 @@
 package com.holo.sock.service;
 
+import com.holo.sock.dto.member.request.MemberModifyRequestDto;
 import com.holo.sock.dto.member.response.MemberSearchResponseDto;
 import com.holo.sock.entity.member.Member;
 import com.holo.sock.repository.member.MemberRepository;
@@ -26,10 +27,6 @@ public class MemberService {
         return Boolean.FALSE;
     }
 
-    @Transactional
-    public void modifyNickname(String nickname) {
-
-    }
 
     public List<MemberSearchResponseDto> searchMember(String nickname) {
         List<Member> members = memberRepository.findByNicknameContaining(nickname);
@@ -41,5 +38,11 @@ public class MemberService {
                             .build()
                 )
                 .collect(Collectors.toList());
+    }
+    @Transactional
+    public void modifyMember(MemberModifyRequestDto memberModifyDto, Member member) {
+        log.info("beforeModify :{}",memberModifyDto);
+        member.modifyMember(memberModifyDto);
+        memberRepository.save(member);
     }
 }
