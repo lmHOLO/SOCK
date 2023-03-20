@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -31,10 +30,11 @@ public class MemberService {
     }
 
 
-    public List<MemberSearchResponseDto> searchMember(String nickname) {
+    public List<MemberSearchResponseDto> searchMember(Member loginMember, String nickname) {
         List<Member> members = memberRepository.findByNicknameContaining(nickname);
         log.info("members: {}", members);
         return members.stream()
+                .filter(member-> loginMember.getId()!=member.getId())
                 .map(member -> MemberSearchResponseDto.builder()
                         .id(member.getId())
                         .nickname(member.getNickname())
