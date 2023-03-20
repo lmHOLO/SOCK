@@ -113,7 +113,8 @@ public class SnackService {
                 .member(loginMember)
                 .snack(snack)
                 .build();
-        likeSnackRepository.save(likeSnack);
+        LikeSnack savedLikeSnack = likeSnackRepository.save(likeSnack);
+        loginMember.getLikeSnacks().add(savedLikeSnack);
 
         snackQScoreService.addQScore(snack);
     }
