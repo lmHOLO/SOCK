@@ -18,7 +18,6 @@
 .grade-like {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
 }
 .snack-grade {
   display: flex;
@@ -35,9 +34,4 @@
 
 .snack-img-container > img {
   height: 100%;
-}
-
-/* recipe recommend */
-.recipe-container {
-  margin-bottom: 20px;
 }

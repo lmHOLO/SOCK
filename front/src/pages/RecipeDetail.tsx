@@ -6,7 +6,7 @@ import { SnackListItemType } from '@/components/types';
 import RecipeContent from '@/components/RecipeDetail/RecipeContent';
 import SnackList from '@/components/common/SnackList';
 import RecipeList from '@/components/common/RecipeList';
-import styles from '@/styles/snack_detail.module.css';
+import styles from '@/styles/recipe_detail.module.css';
 import Comment from '@/components/RecipeDetail/Comment';
 export default function RecipeDetail() {
   const { id } = useParams();

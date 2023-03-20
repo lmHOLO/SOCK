@@ -50,10 +50,14 @@ export type SnackDetailType = {
 
 export type RecipeDetailType = {
   id: string;
-  image: string;
+  memberId: string;
+  memberNickname: string;
+  memberImage: string;
+  images: string[];
   title: string;
   tags: SnackTagType[];
   content: string;
+  likeCnt: string;
 };
 
 export type RecipeImageType = {
@@ -67,5 +71,15 @@ export type CommentType = {
   nickname: string;
   content: string;
   sumOfStar: string;
+  creatingDate: string;
+};
+
+// 레시피 댓글
+export type RecipeCommentType = {
+  commentId: string;
+  memberId: string;
+  image: string;
+  nickname: string;
+  content: string;
   creatingDate: string;
 };
