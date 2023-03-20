@@ -1,12 +1,21 @@
 @value sock-brown, white-color  from './common/colors.css';
-
+.comment-container {
+  margin: 10px 0px;
+}
+.member-date {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .comment-write {
   display: flex;
   justify-content: space-between;
+  margin: 10px 0px;
 }
 
 .comment-write > textarea {
-  border-radius: 3px;
+  border-radius: 5px;
+  padding: 3px;
   width: 80%;
 }
 
@@ -21,6 +30,7 @@
 .member-data {
   display: flex;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 .member-data > img {
