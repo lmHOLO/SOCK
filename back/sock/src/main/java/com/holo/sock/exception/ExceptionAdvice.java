@@ -10,6 +10,7 @@ import com.holo.sock.exception.likesnack.LikeSnackNotFoundException;
 import com.holo.sock.exception.member.MemberNotFoundException;
 import com.holo.sock.exception.recipe.RecipeNotFoundException;
 import com.holo.sock.exception.recipeqscore.RecipeQScoreNotFoundException;
+import com.holo.sock.exception.review.ReviewExistedException;
 import com.holo.sock.exception.review.ReviewNotFoundException;
 import com.holo.sock.exception.snack.SnackNotFoundException;
 import com.holo.sock.exception.snackqscore.SnackQScoreNotFoundException;
@@ -67,6 +68,12 @@ public class ExceptionAdvice {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public Result snackQScoreNotFoundException(){
         return responseService.getFailureResult(-105, "해당 과자 인기도를 찾을 수 없습니다.");
+    }
+
+    @ExceptionHandler(ReviewExistedException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Result reviewExistedException(){
+        return responseService.getFailureResult(-106, "이미 리뷰를 작성한 과자입니다.");
     }
 
     @ExceptionHandler(MemberNotFoundException.class)

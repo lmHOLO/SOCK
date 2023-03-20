@@ -16,6 +16,8 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 
     Optional<Review> findByWriterAndSnack(Member member, Snack snack);
 
+    boolean existsByWriterAndSnack(Member member, Snack snack);
+
     @Query("select r from Review r join fetch r.writer w where r.writer = :member and r.snack = :snack")
     Optional<Review> findWithWriter(Member member, Snack snack);
 

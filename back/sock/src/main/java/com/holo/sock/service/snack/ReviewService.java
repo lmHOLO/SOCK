@@ -5,6 +5,7 @@ import com.holo.sock.dto.review.response.ReviewResponseDto;
 import com.holo.sock.entity.member.Member;
 import com.holo.sock.entity.snack.Review;
 import com.holo.sock.entity.snack.Snack;
+import com.holo.sock.exception.review.ReviewExistedException;
 import com.holo.sock.exception.review.ReviewNotFoundException;
 import com.holo.sock.exception.snack.SnackNotFoundException;
 import com.holo.sock.repository.snack.ReviewRepository;
@@ -39,6 +40,8 @@ public class ReviewService {
     @Transactional
     public void registerReview(Long snackId, RegisterReviewRequestDto requestDto, Member writer){
         Snack snack = snackRepository.findById(snackId).orElseThrow(SnackNotFoundException::new);
+        boolean existedReview = reviewRepository.existsByWriterAndSnack(writer, snack);
+        if(existedReview) throw new ReviewExistedException();
 
         Review review = requestDto.toEntity(writer, snack);
         reviewRepository.save(review);
