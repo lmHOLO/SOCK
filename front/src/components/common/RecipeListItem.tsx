@@ -1,5 +1,5 @@
 import React from 'react';
-import { RecipeListItemType } from '@/components/types';
+import { RecipeListItemType } from '@/types';
 import styles from '@/styles/recipe_list.module.css';
 interface Props {
   recipe: RecipeListItemType;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { RecipeDetailType } from '@/components/types';
+import { RecipeDetailType } from '@/types';
 import styles from '@/styles/recipe_detail.module.css';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Images from '@/components/RecipeDetail/Images';

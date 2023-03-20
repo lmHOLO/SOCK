@@ -1,6 +1,6 @@
 import React from 'react';
 import RecipeListItem from '@/components/common/RecipeListItem';
-import { RecipeListItemType } from '@/components/types';
+import { RecipeListItemType } from '@/types';
 import styles from '@/styles/recipe_list.module.css';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';

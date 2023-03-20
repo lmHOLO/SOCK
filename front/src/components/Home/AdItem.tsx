@@ -1,6 +1,6 @@
 import React from 'react';
 import { Paper } from '@mui/material';
-import { AdType } from '@/components/types';
+import { AdType } from '@/types';
 import styles from '@/styles/home.module.css';
 interface Props {
   ad: AdType;
