@@ -2,16 +2,14 @@ package com.holo.sock.service.recipe;
 
 import com.holo.sock.dto.recipe.request.RegisterRecipeRequestDto;
 import com.holo.sock.entity.member.Member;
-import com.holo.sock.entity.recipe.LikeRecipe;
-import com.holo.sock.entity.recipe.Recipe;
-import com.holo.sock.entity.recipe.RecipeImage;
-import com.holo.sock.entity.recipe.Tag;
+import com.holo.sock.entity.recipe.*;
 import com.holo.sock.entity.snack.Snack;
 import com.holo.sock.exception.likerecipe.LikeRecipeExistedException;
 import com.holo.sock.exception.likerecipe.LikeRecipeNotFoundException;
 import com.holo.sock.exception.member.MemberNotFoundException;
 import com.holo.sock.exception.recipe.RecipeNotFoundException;
 import com.holo.sock.repository.member.MemberRepository;
+import com.holo.sock.repository.recipe.CommentRepository;
 import com.holo.sock.repository.recipe.LikeRecipeRepository;
 import com.holo.sock.repository.recipe.RecipeRepository;
 import com.holo.sock.repository.recipe.TagRepository;
@@ -19,6 +17,8 @@ import com.holo.sock.repository.snack.SnackRepository;
 import com.holo.sock.service.qscore.RecipeQScoreService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,6 +37,7 @@ public class RecipeService {
     private final SnackRepository snackRepository;
     private final LikeRecipeRepository likeRecipeRepository;
     private final RecipeQScoreService recipeQScoreService;
+    private final CommentRepository commentRepository;
 
     @Transactional
     public void registerRecipe(Member member,RegisterRecipeRequestDto requestDto){
@@ -96,6 +97,19 @@ public class RecipeService {
 
         likeRecipeRepository.delete(likeRecipe);
         recipeQScoreService.subQScore(recipe);
+    }
+
+    @Transactional
+    public void deleteRecipe(Member loginMember, Long recipeId, Pageable pageable){
+        Recipe recipe = recipeRepository.findById(recipeId).orElseThrow(RecipeNotFoundException::new);
+        LikeRecipe likeRecipe = likeRecipeRepository.findByMemberAndRecipe(loginMember, recipe)
+                .orElseThrow(LikeRecipeNotFoundException::new);
+        Page<Comment> commentPage = commentRepository.findByRecipeId(recipeId, pageable);
+        // recipe 삭제에 따른
+        // comment 전체 삭제
+        // like 전체 삭제
+        // qscore 전체 삭제
+
     }
 
 
