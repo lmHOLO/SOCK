@@ -2,6 +2,7 @@ package com.holo.sock.controller;
 
 import com.holo.sock.common.annotation.LoginMember;
 import com.holo.sock.common.response.ResponseService;
+import com.holo.sock.common.result.ListResult;
 import com.holo.sock.common.result.Result;
 import com.holo.sock.common.result.SingleResult;
 import com.holo.sock.dto.snack.request.RegisterReviewRequestDto;
@@ -44,7 +45,13 @@ public class SnackController {
         Page<SnackResponseDto> responseDto = snackService.snackList(member, requestDto, pageable);
         return responseService.getSingleResult(responseDto);
     }
-    
+
+    @GetMapping("/like")
+    public ListResult<SnackResponseDto> likeSnackList(@RequestParam("member-id") Long memberId){
+        List<SnackResponseDto> responseDto = snackService.likeSnackList(memberId);
+        return responseService.getListResult(responseDto);
+    }
+
     @GetMapping("/{snack-id}")
     public SingleResult<SnackDetailResponseDto> searchSnackDetail(@LoginMember Member member,
                                                                   @PathVariable("snack-id") Long snackId){

@@ -1,5 +1,6 @@
 package com.holo.sock.dto.snack.response;
 
+import com.holo.sock.entity.snack.Snack;
 import com.holo.sock.repository.snack.SnackQueryDto;
 import lombok.*;
 
@@ -25,6 +26,17 @@ public class SnackResponseDto {
                 .sumOfStarts(dto.getSumOfStarts())
                 .numberOfParticipants(dto.getNumberOfParticipants())
                 .like(snackIdsWithLik.contains(dto.getSnackId()))
+                .build();
+    }
+
+    public static SnackResponseDto createFromLikeSnack(Snack snack){
+        return SnackResponseDto.builder()
+                .snackId(snack.getId())
+                .image(snack.getImage())
+                .name(snack.getName())
+                .sumOfStarts(snack.getSumOfStars())
+                .numberOfParticipants(snack.getNumberOfParticipants())
+                .like(true)
                 .build();
     }
 }

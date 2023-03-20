@@ -8,8 +8,10 @@ import com.holo.sock.entity.member.Member;
 import com.holo.sock.entity.snack.*;
 import com.holo.sock.exception.likesnack.LikeSnackExistedException;
 import com.holo.sock.exception.likesnack.LikeSnackNotFoundException;
+import com.holo.sock.exception.member.MemberNotFoundException;
 import com.holo.sock.exception.snack.SnackNotFoundException;
 import com.holo.sock.exception.type.TypeNotFoundException;
+import com.holo.sock.repository.member.MemberRepository;
 import com.holo.sock.repository.snack.*;
 import com.holo.sock.service.qscore.SnackQScoreService;
 import com.holo.sock.service.recommend.SearchService;
@@ -30,6 +32,7 @@ import java.util.stream.Collectors;
 @Transactional(readOnly = true)
 public class SnackService {
 
+    private final MemberRepository memberRepository;
     private final SnackRepository snackRepository;
     private final TypeRepository typeRepository;
     private final FlavorRepository flavorRepository;
@@ -37,15 +40,6 @@ public class SnackService {
 
     private final SearchService searchService;
     private final SnackQScoreService snackQScoreService;
-
-    public Page<SnackResponseDto> snackList(Member member, SearchSnackListRequestDto requestDto, Pageable pageable){
-        Page<SnackQueryDto> result = snackRepository.findSnacks(requestDto, pageable);
-
-        List<Long> snackIds = result.getContent().stream().map(SnackQueryDto::getSnackId).collect(Collectors.toList());
-        HashSet<Long> snackIdsWithLike = new HashSet<>(likeSnackRepository.findSnackIdsWithLike(snackIds, member));
-
-        return result.map(dto -> SnackResponseDto.create(dto, snackIdsWithLike));
-    }
 
     @Transactional
     public void registerSnacks(List<RegisterSnackRequestDto> requestDto){
@@ -74,6 +68,23 @@ public class SnackService {
             }
             snackRepository.save(snack);
         }
+    }
+
+    public Page<SnackResponseDto> snackList(Member member, SearchSnackListRequestDto requestDto, Pageable pageable){
+        Page<SnackQueryDto> result = snackRepository.findSnacks(requestDto, pageable);
+
+        List<Long> snackIds = result.getContent().stream().map(SnackQueryDto::getSnackId).collect(Collectors.toList());
+        HashSet<Long> snackIdsWithLike = new HashSet<>(likeSnackRepository.findSnackIdsWithLike(snackIds, member));
+
+        return result.map(dto -> SnackResponseDto.create(dto, snackIdsWithLike));
+    }
+
+    public List<SnackResponseDto> likeSnackList(Long memberId){
+        Member member = memberRepository.findById(memberId).orElseThrow(MemberNotFoundException::new);
+        return member.getLikeSnacks()
+                .stream()
+                .map(likeSnack -> SnackResponseDto.createFromLikeSnack(likeSnack.getSnack()))
+                .collect(Collectors.toList());
     }
 
     @Transactional
