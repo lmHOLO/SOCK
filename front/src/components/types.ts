@@ -1,3 +1,8 @@
+export type SnackTagType = {
+  id: string;
+  image: string;
+  name: string;
+};
 export type AdType = {
   id: number;
   image: string;
@@ -41,6 +46,18 @@ export type SnackDetailType = {
   numberOfParticipants: string;
   type: SnackType;
   flavors: FlavorType[];
+};
+
+export type RecipeDetailType = {
+  id: string;
+  image: string;
+  title: string;
+  tags: SnackTagType[];
+  content: string;
+};
+
+export type RecipeImageType = {
+  image: string;
 };
 
 // 댓글
