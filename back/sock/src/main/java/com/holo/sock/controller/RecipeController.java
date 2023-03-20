@@ -3,6 +3,8 @@ package com.holo.sock.controller;
 import com.holo.sock.common.annotation.LoginMember;
 import com.holo.sock.common.response.ResponseService;
 import com.holo.sock.common.result.Result;
+import com.holo.sock.common.result.SingleResult;
+import com.holo.sock.dto.comment.response.CommentResponseDto;
 import com.holo.sock.dto.recipe.request.RegisterCommentRequestDto;
 import com.holo.sock.dto.recipe.request.RegisterRecipeRequestDto;
 import com.holo.sock.entity.member.Member;
@@ -10,6 +12,9 @@ import com.holo.sock.service.recipe.CommentService;
 import com.holo.sock.service.recipe.RecipeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -48,6 +53,13 @@ public class RecipeController {
     public Result deleteLikeSnack(@LoginMember Member member,@PathVariable("recipe-id") Long recipeId){
         recipeService.deleteLikeRecipe(member,recipeId);
         return responseService.getSuccessResult();
+    }
+    @GetMapping("/{recipe-id}/comments")
+    public SingleResult<Page<CommentResponseDto>> selectComments(@LoginMember Member loginMember,
+                                                                 @PathVariable("recipe-id") Long recipeId,
+                                                                 @PageableDefault(size = 10) Pageable pageable){
+        Page<CommentResponseDto> commentResponseDtos = commentService.selectComment(loginMember, recipeId, pageable);
+        return responseService.getSingleResult(commentResponseDtos);
     }
 
 
