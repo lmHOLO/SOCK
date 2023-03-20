@@ -44,9 +44,9 @@ public class MemberController {
     }
 
     @GetMapping("search")
-    public ListResult<MemberSearchResponseDto> searchMember(@RequestParam String nickname) {
+    public ListResult<MemberSearchResponseDto> searchMember(@RequestParam String nickname,@LoginMember Member member) {
         log.info("nickname:{}", nickname);
-        List<MemberSearchResponseDto> searchMemberList = memberService.searchMember(nickname);
+        List<MemberSearchResponseDto> searchMemberList = memberService.searchMember(member,nickname);
         return responseService.getListResult(searchMemberList);
     }
 
