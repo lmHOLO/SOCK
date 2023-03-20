@@ -11,6 +11,7 @@ import com.holo.sock.dto.member.response.MemberSearchResponseDto;
 import com.holo.sock.dto.member.request.MemberPreferenceRequestDto;
 import com.holo.sock.entity.member.Member;
 import com.holo.sock.service.member.MemberService;
+import com.holo.sock.service.member.PreferenceService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,7 @@ import java.util.List;
 public class MemberController {
     private final ResponseService responseService;
     private final MemberService memberService;
+    private final PreferenceService preferenceService;
 
     @GetMapping
     public SingleResult<MemberDetailResponseDto> getMyDetail(@LoginMember Member member) {
@@ -56,7 +58,7 @@ public class MemberController {
 
     @PostMapping("preference")
     public Result registerPreference(@LoginMember Member member, @RequestBody List<MemberPreferenceRequestDto> preferenceList) {
-
+        preferenceService.registerPreferences(member,preferenceList);
         return responseService.getSuccessResult();
     }
 }
