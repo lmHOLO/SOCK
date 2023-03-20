@@ -4,7 +4,7 @@ import styles from '@/styles/home.module.css';
 import ThemeListItem from './ThemeListItem';
 export default function ThemeList() {
   // TODO: 나중에 api로 themList 받아오기
-  const [themeList, setThemList] = useState<ThemeType[]>([
+  const [themeList, setThemeList] = useState<ThemeType[]>([
     {
       id: 1,
       image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
