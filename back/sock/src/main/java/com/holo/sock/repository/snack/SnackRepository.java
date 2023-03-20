@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface SnackRepository extends JpaRepository<Snack, Long> {
+public interface SnackRepository extends JpaRepository<Snack, Long>, SnackRepositoryCustom {
 
     @Query("select s from Snack s join fetch s.type t where s.id = :snackId")
     Optional<Snack> findSnackByIdWithTypeAndFlavor(@Param("snackId") Long snackId);

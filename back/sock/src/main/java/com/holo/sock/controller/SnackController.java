@@ -6,12 +6,17 @@ import com.holo.sock.common.result.Result;
 import com.holo.sock.common.result.SingleResult;
 import com.holo.sock.dto.snack.request.RegisterReviewRequestDto;
 import com.holo.sock.dto.snack.request.RegisterSnackRequestDto;
+import com.holo.sock.dto.snack.request.SearchSnackListRequestDto;
 import com.holo.sock.dto.snack.response.SnackDetailResponseDto;
+import com.holo.sock.dto.snack.response.SnackResponseDto;
 import com.holo.sock.entity.member.Member;
 import com.holo.sock.service.snack.ReviewService;
 import com.holo.sock.service.snack.SnackService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,6 +35,14 @@ public class SnackController {
     public Result registerSnacks(@RequestBody List<RegisterSnackRequestDto> requestDto){
         snackService.registerSnacks(requestDto);
         return responseService.getSuccessResult();
+    }
+
+    @GetMapping
+    public SingleResult<Page<SnackResponseDto>> snackList(@LoginMember Member member,
+                                                          SearchSnackListRequestDto requestDto,
+                                                          @PageableDefault(size = 10) Pageable pageable){
+        Page<SnackResponseDto> responseDto = snackService.snackList(member, requestDto, pageable);
+        return responseService.getSingleResult(responseDto);
     }
     
     @GetMapping("/{snack-id}")
