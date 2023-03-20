@@ -1,0 +1,68 @@
+@value sock-brown, sprinkle-blue, sprinkle-yellow , sprinkle-pink from './common/colors.css';
+
+.bottom-nav-container {
+  position: fixed;
+  height: 60px;
+  width: 100%;
+  background-color: sock-brown;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.menu-btn {
+  flex-grow: 1;
+  padding: 2px 0px;
+}
+
+.menu-content > p {
+  font-size: 0.7rem;
+  color: white;
+}
+
+.top-nav-container {
+  position: fixed;
+  height: 52px;
+  width: 100%;
+  background-color: sock-brown;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+}
+
+.search-btn {
+  position: absolute;
+  transform: translate(0, -50%);
+  top: 50%;
+  right: 20px;
+}
+/* sprinkle  */
+.sprinkle-container {
+  width: 100%;
+  height: 100%;
+}
+.sprinkle {
+  position: absolute;
+  width: 30px;
+  height: 0.5px;
+}
+
+.sprinkle:nth-child(1) {
+  top: 50%;
+  left: 10%;
+}
+.blue {
+  background-color: sprinkle-blue;
+}
+
+.yellow {
+  background-color: sprinkle-yellow;
+}
+
+.pink {
+  background-color: sprinkle-pink;
+}

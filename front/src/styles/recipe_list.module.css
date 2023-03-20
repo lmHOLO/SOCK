@@ -1,0 +1,33 @@
+@value sock-brown, white-color  from './common/colors.css';
+
+.recipe-list {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.recipe-list::-webkit-scrollbar {
+  display: none;
+}
+
+.recipe-list-item-container {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+}
+.recipe-list-item {
+  border-radius: 3px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* .snack-list-item {
+  height: 100%;
+  background-color: aqua;
+  background-size: contain;
+  background-repeat: no-repeat;
+} */
+
+.more-btn {
+  color: sock-brown;
+}

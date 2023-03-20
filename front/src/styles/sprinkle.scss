@@ -1,0 +1,51 @@
+$colors: #66ffe3, #f6ce4e, #ff8a8a;
+
+.square {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.light {
+  width: 30px;
+  height: 5px;
+  border-radius: 100px;
+  background: #f1678e;
+  position: relative;
+  float: left;
+  transition: all 0.5s ease;
+}
+.light:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0px;
+  width: 40px;
+  height: 40px;
+  z-index: 0;
+  border-radius: 100px;
+  transform: translate3d(-50%, -50%);
+}
+
+@for $i from 1 through 6 {
+  .light:nth-child(#{length($colors)}n + #{$i}) {
+    margin-left: random(50) + px;
+    animation: orbit 10s linear (random($i) + -150s) infinite;
+    background: nth($colors, random(length($colors)));
+  }
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateX(1px) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(100deg) translateX(1px) rotate(-120deg) scale(0.7);
+  }
+  100% {
+    transform: rotate(360deg) translateX(1px) rotate(-360deg) scale(1);
+  }
+}
