@@ -1,5 +1,5 @@
 import React from 'react';
-import { SnackTagType } from '@/components/types';
+import { SnackTagType } from '@/types';
 import styles from '@/styles/recipe_detail.module.css';
 interface Props {
   tag: SnackTagType;

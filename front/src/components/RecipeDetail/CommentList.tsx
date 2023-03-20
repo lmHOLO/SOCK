@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { RecipeCommentType } from '@/components/types';
+import { RecipeCommentType } from '@/types';
 import CommentListItem from './CommentListItem';
 // 레시피 댓글
 export default function CommentList() {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { SnackDetailType } from '@/components/types';
+import { SnackDetailType } from '@/types';
 import StarIcon from '@mui/icons-material/Star';
 import styles from '@/styles/snack_detail.module.css';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
