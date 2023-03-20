@@ -4,10 +4,12 @@ import com.holo.sock.common.response.ResponseService;
 import com.holo.sock.common.result.Result;
 import com.holo.sock.exception.comment.CommentNotFoundException;
 import com.holo.sock.exception.likerecipe.LikeRecipeExistedException;
+import com.holo.sock.exception.likerecipe.LikeRecipeNotFoundException;
 import com.holo.sock.exception.likesnack.LikeSnackExistedException;
 import com.holo.sock.exception.likesnack.LikeSnackNotFoundException;
 import com.holo.sock.exception.member.MemberNotFoundException;
 import com.holo.sock.exception.recipe.RecipeNotFoundException;
+import com.holo.sock.exception.recipeqscore.RecipeQScoreNotFoundException;
 import com.holo.sock.exception.review.ReviewNotFoundException;
 import com.holo.sock.exception.snack.SnackNotFoundException;
 import com.holo.sock.exception.snackqscore.SnackQScoreNotFoundException;
@@ -86,4 +88,13 @@ public class ExceptionAdvice {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public Result likeRecipeExistedException(){ return responseService.getFailureResult(-302,"이미 좋아요 누른 레시피입니다.");}
 
+    @ExceptionHandler(LikeRecipeNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public Result likeRecipeNotFoundException(){ return responseService.getFailureResult(-303,"해당 레시피 좋아요를 찾을 수 없습니다.");}
+
+    @ExceptionHandler(RecipeQScoreNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public Result recipeQScoreNotFoundException(){
+        return responseService.getFailureResult(-304, "해당 레시피 인기도를 찾을 수 없습니다.");
+    }
 }

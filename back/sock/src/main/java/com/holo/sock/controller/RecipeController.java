@@ -44,6 +44,11 @@ public class RecipeController {
         recipeService.likeRecipe(member,recipeId);
         return responseService.getSuccessResult();
     }
+    @DeleteMapping("/{recipe-id}/like")
+    public Result deleteLikeSnack(@LoginMember Member member,@PathVariable("recipe-id") Long recipeId){
+        recipeService.deleteLikeRecipe(member,recipeId);
+        return responseService.getSuccessResult();
+    }
 
 
 }
