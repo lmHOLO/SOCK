@@ -2,7 +2,6 @@ package com.holo.sock.dto.snack.response;
 
 import com.holo.sock.entity.snack.Snack;
 import lombok.*;
-import org.springframework.security.core.parameters.P;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,6 +11,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Builder
 public class SnackDetailResponseDto {
+    private Long snackId;
     private String image;
     private String name;
     private int sumOfStars;
@@ -24,6 +24,7 @@ public class SnackDetailResponseDto {
 
     public static SnackDetailResponseDto create(Snack snack, boolean like, long totalLikes){
         return SnackDetailResponseDto.builder()
+                .snackId(snack.getId())
                 .image(snack.getImage())
                 .name(snack.getName())
                 .sumOfStars(snack.getSumOfStars())
