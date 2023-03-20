@@ -34,3 +34,83 @@
 .comment-data {
   display: flex;
 }
+
+/* 별점 관련 */
+.starpoint-wrap {
+  display: inline-block;
+}
+.starpoint-box {
+  position: relative;
+  background: url(https://ido-archive.github.io/svc/etc/element/img/sp_star.png) 0 0 no-repeat;
+  font-size: 0;
+}
+.starpoint-box .starpoint-bg {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 18px;
+  background: url(https://ido-archive.github.io/svc/etc/element/img/sp_star.png) 0 -20px no-repeat;
+  pointer-events: none;
+}
+.starpoint-box .label-star {
+  display: inline-block;
+  width: 10px;
+  height: 18px;
+  box-sizing: border-box;
+}
+.starpoint-box .star-radio {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+.starpoint-box .star-radio:nth-of-type(1):hover ~ .starpoint-bg,
+.starpoint-box .star-radio:nth-of-type(1):checked ~ .starpoint-bg {
+  width: 10%;
+}
+.starpoint-box .star-radio:nth-of-type(2):hover ~ .starpoint-bg,
+.starpoint-box .star-radio:nth-of-type(2):checked ~ .starpoint-bg {
+  width: 20%;
+}
+.starpoint-box .star-radio:nth-of-type(3):hover ~ .starpoint-bg,
+.starpoint-box .star-radio:nth-of-type(3):checked ~ .starpoint-bg {
+  width: 30%;
+}
+.starpoint-box .star-radio:nth-of-type(4):hover ~ .starpoint-bg,
+.starpoint-box .star-radio:nth-of-type(4):checked ~ .starpoint-bg {
+  width: 40%;
+}
+.starpoint-box .star-radio:nth-of-type(5):hover ~ .starpoint-bg,
+.starpoint-box .star-radio:nth-of-type(5):checked ~ .starpoint-bg {
+  width: 50%;
+}
+.starpoint-box .star-radio:nth-of-type(6):hover ~ .starpoint-bg,
+.starpoint-box .star-radio:nth-of-type(6):checked ~ .starpoint-bg {
+  width: 60%;
+}
+.starpoint-box .star-radio:nth-of-type(7):hover ~ .starpoint-bg,
+.starpoint-box .star-radio:nth-of-type(7):checked ~ .starpoint-bg {
+  width: 70%;
+}
+.starpoint-box .star-radio:nth-of-type(8):hover ~ .starpoint-bg,
+.starpoint-box .star-radio:nth-of-type(8):checked ~ .starpoint-bg {
+  width: 80%;
+}
+.starpoint-box .star-radio:nth-of-type(9):hover ~ .starpoint-bg,
+.starpoint-box .star-radio:nth-of-type(9):checked ~ .starpoint-bg {
+  width: 90%;
+}
+.starpoint-box .star-radio:nth-of-type(10):hover ~ .starpoint-bg,
+.starpoint-box .star-radio:nth-of-type(10):checked ~ .starpoint-bg {
+  width: 100%;
+}
+
+.blind {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  margin: -1px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
