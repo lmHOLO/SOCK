@@ -1,6 +1,6 @@
 package com.holo.sock.dto.snack.response;
 
-import com.holo.sock.entity.snack.Snack;
+import com.holo.sock.repository.snack.SnackQueryDto;
 import lombok.*;
 
 import java.util.HashSet;
@@ -17,14 +17,14 @@ public class SnackResponseDto {
     private int numberOfParticipants;
     private boolean like;
 
-    public static SnackResponseDto create(Snack snack, HashSet<Long> snackIdsWithLike){
+    public static SnackResponseDto create(SnackQueryDto dto, HashSet<Long> snackIdsWithLik){
         return SnackResponseDto.builder()
-                .snackId(snack.getId())
-                .image(snack.getImage())
-                .name(snack.getName())
-                .sumOfStarts(snack.getSumOfStars())
-                .numberOfParticipants(snack.getNumberOfParticipants())
-                .like(snackIdsWithLike.contains(snack.getId()))
+                .snackId(dto.getSnackId())
+                .image(dto.getImage())
+                .name(dto.getName())
+                .sumOfStarts(dto.getSumOfStarts())
+                .numberOfParticipants(dto.getNumberOfParticipants())
+                .like(snackIdsWithLik.contains(dto.getSnackId()))
                 .build();
     }
 }

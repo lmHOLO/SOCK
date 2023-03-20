@@ -39,12 +39,12 @@ public class SnackService {
     private final SnackQScoreService snackQScoreService;
 
     public Page<SnackResponseDto> snackList(Member member, SearchSnackListRequestDto requestDto, Pageable pageable){
-        Page<Snack> result = snackRepository.findSnacks(requestDto, pageable);
+        Page<SnackQueryDto> result = snackRepository.findSnacks(requestDto, pageable);
 
-        List<Long> snackIds = result.getContent().stream().map(Snack::getId).collect(Collectors.toList());
+        List<Long> snackIds = result.getContent().stream().map(SnackQueryDto::getSnackId).collect(Collectors.toList());
         HashSet<Long> snackIdsWithLike = new HashSet<>(likeSnackRepository.findSnackIdsWithLike(snackIds, member));
 
-        return result.map(snack -> SnackResponseDto.create(snack, snackIdsWithLike));
+        return result.map(dto -> SnackResponseDto.create(dto, snackIdsWithLike));
     }
 
     @Transactional

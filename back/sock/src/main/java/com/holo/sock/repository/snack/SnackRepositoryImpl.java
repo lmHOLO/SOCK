@@ -1,10 +1,7 @@
 package com.holo.sock.repository.snack;
 
 import com.holo.sock.dto.snack.request.SearchSnackListRequestDto;
-import com.holo.sock.entity.snack.QFlavor;
-import com.holo.sock.entity.snack.QSnackFlavor;
-import com.holo.sock.entity.snack.QType;
-import com.holo.sock.entity.snack.Snack;
+import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.domain.Page;
@@ -15,6 +12,7 @@ import javax.persistence.EntityManager;
 
 import java.util.List;
 
+import static com.holo.sock.entity.qscore.QSnackQScore.snackQScore;
 import static com.holo.sock.entity.snack.QFlavor.*;
 import static com.holo.sock.entity.snack.QSnack.snack;
 import static com.holo.sock.entity.snack.QSnackFlavor.*;
@@ -29,21 +27,25 @@ public class SnackRepositoryImpl implements SnackRepositoryCustom{
     }
 
     @Override
-    public Page<Snack> findSnacks(SearchSnackListRequestDto requestDto, Pageable pageable) {
+    public Page<SnackQueryDto> findSnacks(SearchSnackListRequestDto requestDto, Pageable pageable) {
         String snackName = requestDto.getKeyword();
         String flavorName = requestDto.getFlavor();
         String typeName = requestDto.getType();
+        String arrange = requestDto.getArrange();
 
-        List<Snack> content = queryFactory.selectFrom(snack).distinct()
+        List<SnackQueryDto> content = queryFactory
+                .select(new QSnackQueryDto(snack.id, snack.image, snack.name, snack.sumOfStars, snack.numberOfParticipants, snackQScore.score, snack.createDate, snack.lastModifiedDate)).distinct()
+                .from(snack)
                 .join(snack.type, type)
                 .join(snackFlavor).on(snackFlavor.snack.eq(snack))
                 .join(snackFlavor.flavor, flavor)
+                .leftJoin(snackQScore).on(snackQScore.snack.id.eq(snack.id))
                 .where(
                         nameContain(snackName),
                         typeEq(typeName),
                         flavorEq(flavorName)
                 )
-                .orderBy(snack.id.asc())
+                .orderBy(orderCond(arrange))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
@@ -73,6 +75,11 @@ public class SnackRepositoryImpl implements SnackRepositoryCustom{
 
     private BooleanExpression flavorEq(String flavorName){
         return flavorName != null ? flavor.name.eq(flavorName) : null;
+    }
+
+    private OrderSpecifier orderCond(String arrange){
+        if(arrange == null || arrange.equals("recent")) return snack.lastModifiedDate.desc();
+        else return snackQScore.score.nullif(0L).desc();
     }
 
 }

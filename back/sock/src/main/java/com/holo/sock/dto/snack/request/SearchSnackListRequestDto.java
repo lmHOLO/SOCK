@@ -11,6 +11,7 @@ public class SearchSnackListRequestDto {
     private String keyword;
     private String flavor;
     private String type;
+    private String arrange;
 
 
 }
