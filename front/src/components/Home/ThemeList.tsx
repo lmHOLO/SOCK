@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ThemeType } from '@/components/types';
+import { ThemeType } from '@/types';
 import styles from '@/styles/home.module.css';
 import ThemeListItem from './ThemeListItem';
 export default function ThemeList() {

@@ -5,7 +5,7 @@ import Ads from '@/components/Home/Ads';
 import SnackList from '@/components/common/SnackList';
 import useMember from '@/hooks/memberHook';
 import styles from '@/styles/home.module.css';
-import { SnackListItemType } from '@/components/types';
+import { SnackListItemType } from '@/types';
 import ThemeList from '@/components/Home/ThemeList';
 export default function Home() {
   // const nickname = useSelector((state: RootState) => state.member.nickname);

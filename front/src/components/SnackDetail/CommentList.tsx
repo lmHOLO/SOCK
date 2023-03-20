@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CommentType } from '../types';
+import { CommentType } from '@/types';
 import CommentListItem from './CommentListItem';
 
 export default function CommentList() {

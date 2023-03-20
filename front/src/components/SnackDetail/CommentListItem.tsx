@@ -1,5 +1,5 @@
 import React from 'react';
-import { CommentType } from '../types';
+import { CommentType } from '@/types';
 import styles from '@/styles/comment.module.css';
 import StarRating from './StarRating';
 interface Props {

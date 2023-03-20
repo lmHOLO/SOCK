@@ -1,5 +1,5 @@
 import React from 'react';
-import { SnackListItemType } from '@/components/types';
+import { SnackListItemType } from '@/types';
 import styles from '@/styles/snack_list.module.css';
 interface Props {
   snack: SnackListItemType;

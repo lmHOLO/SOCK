@@ -10,7 +10,14 @@
 }
 
 .upload-container {
-  width: 150;
-  height: 150;
+  width: 150px;
+  height: 150px;
   background-color: aqua;
+}
+
+.image-regist-btn {
+  width: 215px;
+  height: 215px;
+  border: 2px solid sock-brown;
+  border-radius: 3px;
 }

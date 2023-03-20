@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '@/styles/home.module.css';
-import { ThemeType } from '@/components/types';
+import { ThemeType } from '@/types';
 interface Props {
   theme: ThemeType;
 }

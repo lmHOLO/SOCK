@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { RecipeImageType } from '@/components/types';
+import { RecipeImageType } from '@/types';
 import ImageItem from '@/components/RecipeDetail/ImageItem';
 import Carousel from 'react-material-ui-carousel';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
