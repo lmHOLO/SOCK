@@ -34,6 +34,11 @@ public class MemberController {
         return responseService.getSuccessResult();
     }
 
+    @GetMapping("{memberId}")
+    public SingleResult<MemberDetailResponseDto> getMemberDetail(@PathVariable Long memberId) {
+        return responseService.getSingleResult(memberService.getMemberDetail(memberId));
+    }
+
     @GetMapping("search")
     public ListResult<MemberSearchResponseDto> searchMember(@RequestParam String nickname) {
         log.info("nickname:{}",nickname);
