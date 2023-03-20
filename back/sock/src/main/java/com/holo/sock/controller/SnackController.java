@@ -5,7 +5,8 @@ import com.holo.sock.common.response.ResponseService;
 import com.holo.sock.common.result.ListResult;
 import com.holo.sock.common.result.Result;
 import com.holo.sock.common.result.SingleResult;
-import com.holo.sock.dto.snack.request.RegisterReviewRequestDto;
+import com.holo.sock.dto.review.request.RegisterReviewRequestDto;
+import com.holo.sock.dto.review.response.ReviewResponseDto;
 import com.holo.sock.dto.snack.request.RegisterSnackRequestDto;
 import com.holo.sock.dto.snack.request.SearchSnackListRequestDto;
 import com.holo.sock.dto.snack.response.SnackDetailResponseDto;
@@ -56,6 +57,13 @@ public class SnackController {
     public SingleResult<SnackDetailResponseDto> searchSnackDetail(@LoginMember Member member,
                                                                   @PathVariable("snack-id") Long snackId){
         SnackDetailResponseDto responseDto = snackService.searchSnackDetail(member, snackId);
+        return responseService.getSingleResult(responseDto);
+    }
+
+    @GetMapping("/{snack-id}/reviews")
+    public SingleResult<ReviewResponseDto> reviewList(@LoginMember Member member, @PathVariable("snack-id") Long snackId,
+                                                      @PageableDefault(size = 10) Pageable pageable){
+        ReviewResponseDto responseDto = reviewService.reviewList(member, snackId, pageable);
         return responseService.getSingleResult(responseDto);
     }
 
