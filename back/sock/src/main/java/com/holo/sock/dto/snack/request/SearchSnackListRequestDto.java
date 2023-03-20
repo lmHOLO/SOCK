@@ -2,6 +2,8 @@ package com.holo.sock.dto.snack.request;
 
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -9,8 +11,8 @@ import lombok.*;
 public class SearchSnackListRequestDto {
 
     private String keyword;
-    private String flavor;
-    private String type;
+    private List<String> flavors;
+    private List<String> types;
     private String arrange;
 
 
