@@ -99,11 +99,10 @@ public class SnackController {
     }
 
     @GetMapping("/similar")
-    public SingleResult<SnackResponseDto> similarSnackList(@RequestParam(value="snack-id", required = false) Long snackId,
+    public ListResult<SnackResponseDto> similarSnackList(@LoginMember Member member,
+                                                           @RequestParam(value="snack-id", required = false) Long snackId,
                                                            @RequestParam(value="recipe-id", required = false) Long recipeId){
-        log.info("snackId = {}", snackId);
-        log.info("recipeId = {}", recipeId);
-        snackService.similarSnackList(snackId, recipeId);
-        return null;
+        List<SnackResponseDto> responseDto = snackService.similarSnackList(member, snackId, recipeId);
+        return responseService.getListResult(responseDto);
     }
 }

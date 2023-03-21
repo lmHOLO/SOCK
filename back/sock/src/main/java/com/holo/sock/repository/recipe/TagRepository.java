@@ -10,11 +10,10 @@ import java.util.List;
 
 @Repository
 public interface TagRepository extends JpaRepository<Tag,Long> {
-<<<<<<< Updated upstream
+
     List<Tag> findAllByRecipe(Recipe recipe);
-=======
 
     @Query("select t from Tag t join fetch t.snack s join fetch s.type ty where t.recipe.id = :recipeId")
     List<Tag> findByRecipeIdWithSnackAndType(Long recipeId);
->>>>>>> Stashed changes
+
 }

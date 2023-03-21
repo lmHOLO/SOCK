@@ -39,4 +39,15 @@ public class SnackResponseDto {
                 .like(true)
                 .build();
     }
+
+    public static SnackResponseDto createForSimilar(Snack snack, HashSet<Long> snackIdsWithLik){
+        return SnackResponseDto.builder()
+                .snackId(snack.getId())
+                .image(snack.getImage())
+                .name(snack.getName())
+                .sumOfStarts(snack.getSumOfStars())
+                .numberOfParticipants(snack.getNumberOfParticipants())
+                .like(snackIdsWithLik.contains(snack.getId()))
+                .build();
+    }
 }

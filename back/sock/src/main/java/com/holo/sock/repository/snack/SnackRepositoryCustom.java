@@ -11,5 +11,5 @@ public interface SnackRepositoryCustom {
 
     Page<SnackQueryDto> findSnacks(SearchSnackListRequestDto requestDto, Pageable pageable);
 
-    List<Snack> findSimilarSnacks(List<Long> typeIds, List<Long> flavorIds);
+    List<Snack> findSimilarSnacks(List<Long> typeIds, List<Long> flavorIds, Long snackId);
 }

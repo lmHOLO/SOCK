@@ -144,7 +144,7 @@ public class SnackService {
         snackQScoreService.subQScore(snack);
     }
 
-    public SnackResponseDto similarSnackList(Long snackId, Long recipeId){
+    public List<SnackResponseDto> similarSnackList(Member loginMember, Long snackId, Long recipeId){
         Set<Long> typeIds = new HashSet<>();
         Set<Long> flavorIds;
 
@@ -164,7 +164,6 @@ public class SnackService {
             List<Tag> tags = tagRepository.findByRecipeIdWithSnackAndType(recipeId);
             for (Tag tag : tags) {
                 typeIds.add(tag.getSnack().getType().getId());
-
                 tag.getSnack().getFlavors()
                         .stream()
                         .map(snackFlavor -> snackFlavor.getFlavor().getId())
@@ -172,8 +171,14 @@ public class SnackService {
             }
         }
 
-        List<Snack> similarSnacks = snackRepository.findSimilarSnacks(new ArrayList<>(typeIds), new ArrayList<>(flavorIds));
-        
-        return null;
+        List<Snack> similarSnacks = snackRepository.findSimilarSnacks(new ArrayList<>(typeIds), new ArrayList<>(flavorIds), snackId);
+        List<Long> snackIds = similarSnacks.stream()
+                .map(Snack::getId)
+                .collect(Collectors.toList());
+        HashSet<Long> snackIdsWithLike = new HashSet<>(likeSnackRepository.findSnackIdsWithLike(snackIds, loginMember));
+
+        return similarSnacks.stream()
+                .map(snack -> SnackResponseDto.createForSimilar(snack, snackIdsWithLike))
+                .collect(Collectors.toList());
     }
 }
