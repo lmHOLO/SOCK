@@ -1,6 +1,5 @@
 package com.holo.sock.service.member;
 
-import com.holo.sock.entity.member.Member;
 import com.holo.sock.entity.member.badge.Grade;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,18 +22,4 @@ public class MemberGradeService {
             )
     );
 
-    private Grade updateGrade(Member member){
-        Grade grade = gradeMap.floorEntry(member.getExp()).getValue();
-        if (grade == Grade.THIRD_FLOOR) {
-
-        }
-
-        return gradeMap.floorEntry(member.getExp()).getValue();
-    }
-
-
-    /* 로직 민우와 추가로 협의 필요 */
-    private Grade getFlavorBadge(Member member) {
-        return null;
-    }
 }
