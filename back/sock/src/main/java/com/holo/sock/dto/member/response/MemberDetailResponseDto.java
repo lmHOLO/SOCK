@@ -21,6 +21,7 @@ public class MemberDetailResponseDto {
     private SBTI sbti;
     private Grade grade;
     private int exp;
+    private boolean checkPreference;
 
     public static MemberDetailResponseDto create(Member member) {
         return MemberDetailResponseDto.builder()
@@ -31,6 +32,7 @@ public class MemberDetailResponseDto {
                 .sbti(member.getSbti())
                 .grade(member.getGrade())
                 .exp(member.getExp())
+                .checkPreference(member.isCheckPreference())
                 .build();
     }
 
