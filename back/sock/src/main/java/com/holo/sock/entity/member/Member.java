@@ -64,4 +64,8 @@ public class Member extends BaseEntity {
     public void addExp(int exp) {
         this.exp += exp;
     }
+
+    public void completePreference(){
+        this.checkPreference = true;
+    }
 }
