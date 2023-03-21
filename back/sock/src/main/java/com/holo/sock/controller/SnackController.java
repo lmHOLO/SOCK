@@ -80,6 +80,12 @@ public class SnackController {
         return responseService.getSuccessResult();
     }
 
+    @PostMapping("/{snack-id}/purchase")
+    public Result purchaseSnack(@LoginMember Member member, @PathVariable("snack-id") Long snackId){
+        snackService.purchaseSnack(member, snackId);
+        return responseService.getSuccessResult();
+    }
+
     @PostMapping("/{snack-id}/like")
     public Result likeSnack(@LoginMember Member member, @PathVariable("snack-id") Long snackId){
         snackService.likeSnack(member, snackId);
