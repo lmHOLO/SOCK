@@ -50,17 +50,19 @@ public class RecipeController {
         return responseService.getSuccessResult();
     }
     @DeleteMapping("/{recipe-id}/like")
-    public Result deleteLikeSnack(@LoginMember Member member,@PathVariable("recipe-id") Long recipeId){
+    public Result deleteLikeRecipe(@LoginMember Member member,@PathVariable("recipe-id") Long recipeId){
         recipeService.deleteLikeRecipe(member,recipeId);
         return responseService.getSuccessResult();
     }
     @GetMapping("/{recipe-id}/comments")
-    public SingleResult<Page<CommentResponseDto>> selectComments(@LoginMember Member loginMember,
+    public SingleResult<Page<CommentResponseDto>> commentList(@LoginMember Member loginMember,
                                                                  @PathVariable("recipe-id") Long recipeId,
                                                                  @PageableDefault(size = 10) Pageable pageable){
         Page<CommentResponseDto> commentResponseDtos = commentService.selectComment(loginMember, recipeId, pageable);
         return responseService.getSingleResult(commentResponseDtos);
     }
+
+  
 
 
 }
