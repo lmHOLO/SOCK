@@ -62,6 +62,11 @@ public class RecipeController {
         return responseService.getSingleResult(commentResponseDtos);
     }
 
+    @DeleteMapping("/{recipe-id}")
+    public Result deleteRecipe(@LoginMember Member member, @PathVariable("recipe-id") Long recipeId){
+        recipeService.deleteRecipe(member, recipeId);
+        return responseService.getSuccessResult();
+    }
   
 
 

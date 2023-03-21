@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -21,4 +22,5 @@ public interface CommentRepository extends JpaRepository<Comment,Long> {
     countQuery = "select count(c) from Comment c where c.recipe.id =:recipeId")
     Page<Comment> findByRecipeId(@Param("recipeId") Long recipeId , Pageable pageable);
 
+    List<Comment> findAllByRecipe(Recipe recipe);
 }

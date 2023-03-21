@@ -41,4 +41,10 @@ public class RecipeQScoreService {
 
         recipeQScore.subScore();
     }
+
+    @Transactional
+    public void deleteRecipeQScore(Recipe recipe){
+        RecipeQScore recipeQScore = recipeQScoreRepository.findByRecipe(recipe).orElseThrow(RecipeQScoreNotFoundException::new);
+        recipeQScoreRepository.delete(recipeQScore);
+    }
 }

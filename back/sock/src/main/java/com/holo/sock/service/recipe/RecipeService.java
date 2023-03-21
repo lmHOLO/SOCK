@@ -2,16 +2,12 @@ package com.holo.sock.service.recipe;
 
 import com.holo.sock.dto.recipe.request.RegisterRecipeRequestDto;
 import com.holo.sock.entity.member.Member;
-import com.holo.sock.entity.recipe.LikeRecipe;
-import com.holo.sock.entity.recipe.Recipe;
-import com.holo.sock.entity.recipe.RecipeImage;
-import com.holo.sock.entity.recipe.Tag;
+import com.holo.sock.entity.recipe.*;
 import com.holo.sock.entity.snack.Snack;
 import com.holo.sock.exception.likerecipe.LikeRecipeExistedException;
 import com.holo.sock.exception.likerecipe.LikeRecipeNotFoundException;
-import com.holo.sock.exception.member.MemberNotFoundException;
 import com.holo.sock.exception.recipe.RecipeNotFoundException;
-import com.holo.sock.repository.member.MemberRepository;
+import com.holo.sock.repository.recipe.CommentRepository;
 import com.holo.sock.repository.recipe.LikeRecipeRepository;
 import com.holo.sock.repository.recipe.RecipeRepository;
 import com.holo.sock.repository.recipe.TagRepository;
@@ -24,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -37,6 +32,7 @@ public class RecipeService {
     private final SnackRepository snackRepository;
     private final LikeRecipeRepository likeRecipeRepository;
     private final RecipeQScoreService recipeQScoreService;
+    private final CommentRepository commentRepository;
 
     @Transactional
     public void registerRecipe(Member member,RegisterRecipeRequestDto requestDto){
@@ -96,6 +92,26 @@ public class RecipeService {
 
         likeRecipeRepository.delete(likeRecipe);
         recipeQScoreService.subQScore(recipe);
+    }
+
+    @Transactional
+    public void deleteRecipe(Member loginMember, Long recipeId){
+        Recipe recipe = recipeRepository.findByWriterAndId(loginMember,recipeId).orElseThrow(RecipeNotFoundException::new);
+
+        List<Comment> commentList = commentRepository.findAllByRecipe(recipe);
+        commentRepository.deleteAllInBatch(commentList);
+
+        List<LikeRecipe> likeRecipes = likeRecipeRepository.findAllByRecipe(recipe);
+        likeRecipeRepository.deleteAllInBatch(likeRecipes);
+
+        recipeQScoreService.deleteRecipeQScore(recipe);
+
+        List<Tag> tagList = tagRepository.findAllByRecipe(recipe);
+        tagRepository.deleteAllInBatch(tagList);
+        
+        recipeRepository.delete(recipe);
+
+
     }
 
 
