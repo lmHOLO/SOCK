@@ -1,5 +1,5 @@
 import React from 'react';
-import { RecipeCommentType } from '../types';
+import { RecipeCommentType } from '@/types';
 import styles from '@/styles/comment.module.css';
 interface Props {
   comment: RecipeCommentType;

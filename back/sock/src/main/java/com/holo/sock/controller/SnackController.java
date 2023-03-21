@@ -2,9 +2,11 @@ package com.holo.sock.controller;
 
 import com.holo.sock.common.annotation.LoginMember;
 import com.holo.sock.common.response.ResponseService;
+import com.holo.sock.common.result.ListResult;
 import com.holo.sock.common.result.Result;
 import com.holo.sock.common.result.SingleResult;
-import com.holo.sock.dto.snack.request.RegisterReviewRequestDto;
+import com.holo.sock.dto.review.request.RegisterReviewRequestDto;
+import com.holo.sock.dto.review.response.ReviewResponseDto;
 import com.holo.sock.dto.snack.request.RegisterSnackRequestDto;
 import com.holo.sock.dto.snack.request.SearchSnackListRequestDto;
 import com.holo.sock.dto.snack.response.SnackDetailResponseDto;
@@ -44,11 +46,24 @@ public class SnackController {
         Page<SnackResponseDto> responseDto = snackService.snackList(member, requestDto, pageable);
         return responseService.getSingleResult(responseDto);
     }
-    
+
+    @GetMapping("/like")
+    public ListResult<SnackResponseDto> likeSnackList(@RequestParam("member-id") Long memberId){
+        List<SnackResponseDto> responseDto = snackService.likeSnackList(memberId);
+        return responseService.getListResult(responseDto);
+    }
+
     @GetMapping("/{snack-id}")
     public SingleResult<SnackDetailResponseDto> searchSnackDetail(@LoginMember Member member,
                                                                   @PathVariable("snack-id") Long snackId){
         SnackDetailResponseDto responseDto = snackService.searchSnackDetail(member, snackId);
+        return responseService.getSingleResult(responseDto);
+    }
+
+    @GetMapping("/{snack-id}/reviews")
+    public SingleResult<ReviewResponseDto> reviewList(@LoginMember Member member, @PathVariable("snack-id") Long snackId,
+                                                      @PageableDefault(size = 10) Pageable pageable){
+        ReviewResponseDto responseDto = reviewService.reviewList(member, snackId, pageable);
         return responseService.getSingleResult(responseDto);
     }
 
@@ -62,6 +77,12 @@ public class SnackController {
     @DeleteMapping("/{snack-id}/reviews")
     public Result deleteReview(@LoginMember Member member, @PathVariable("snack-id") Long snackId){
         reviewService.deleteReview(member, snackId);
+        return responseService.getSuccessResult();
+    }
+
+    @PostMapping("/{snack-id}/purchase")
+    public Result purchaseSnack(@LoginMember Member member, @PathVariable("snack-id") Long snackId){
+        snackService.purchaseSnack(member, snackId);
         return responseService.getSuccessResult();
     }
 

@@ -1,4 +1,4 @@
-package com.holo.sock.dto.snack.request;
+package com.holo.sock.dto.review.request;
 
 import com.holo.sock.entity.member.Member;
 import com.holo.sock.entity.snack.Review;

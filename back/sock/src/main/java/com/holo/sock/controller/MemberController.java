@@ -11,7 +11,7 @@ import com.holo.sock.dto.member.response.MemberSearchResponseDto;
 import com.holo.sock.dto.member.request.MemberPreferenceRequestDto;
 import com.holo.sock.entity.member.Member;
 import com.holo.sock.service.member.MemberService;
-import com.holo.sock.service.member.PreferenceService;
+import com.holo.sock.service.recommend.PreferenceService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;

@@ -2,7 +2,7 @@ import BottomNav from '@/components/Navbar/BottomNav';
 import TopNav from '@/components/Navbar/TopNav';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { SnackListItemType } from '@/components/types';
+import { SnackListItemType } from '@/types';
 import RecipeContent from '@/components/RecipeDetail/RecipeContent';
 import SnackList from '@/components/common/SnackList';
 import RecipeList from '@/components/common/RecipeList';

@@ -8,6 +8,7 @@ import NotFound from '@/pages/NotFound';
 import useMember from '@/hooks/memberHook';
 import SnackDetail from '@/pages/SnackDetail';
 import RecipeDetail from '@/pages/RecipeDetail';
+import RecipePosting from '@/pages/RecipePosting';
 const router = createBrowserRouter([
   /*   {
     path: '/',
@@ -39,15 +40,15 @@ const router = createBrowserRouter([
     path: '/recipes/:id',
     element: <RecipeDetail />,
   },
+  {
+    path: '/recipe-posting',
+    element: <RecipePosting />,
+  },
 ]);
 export default function App() {
   const { isLoggedIn } = useMember();
   return (
     <div>
-      {/* <div
-        style={isLoggedIn ? { width: '360px', margin: '52px auto' } : { margin: 0 }}
-        className={isLoggedIn ? 'page' : 'login'}
-      > */}
       <div className={isLoggedIn ? 'page' : 'login'}>
         <RouterProvider router={router} />
       </div>

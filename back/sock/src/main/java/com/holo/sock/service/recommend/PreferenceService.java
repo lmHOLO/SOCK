@@ -1,4 +1,4 @@
-package com.holo.sock.service.member;
+package com.holo.sock.service.recommend;
 
 import com.holo.sock.dto.member.request.MemberPreferenceRequestDto;
 import com.holo.sock.entity.member.Member;
