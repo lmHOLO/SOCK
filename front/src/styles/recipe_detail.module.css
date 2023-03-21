@@ -49,6 +49,7 @@
   margin: 10px 0px;
   overflow-x: auto;
   white-space: nowrap;
+  display: inline-flex;
 }
 
 .tag-list::-webkit-scrollbar {
