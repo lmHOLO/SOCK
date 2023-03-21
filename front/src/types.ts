@@ -86,7 +86,7 @@ export type RecipeCommentType = {
 
 // 레시피 작성 관련
 export type PostingStateType = {
-  imageList: File[];
+  imageList: string[];
   content: string;
   tagList: SnackTagType[];
 };
@@ -102,5 +102,5 @@ export type Area = {
 //
 export type ModifyPhotoType = {
   index: number;
-  image: File;
+  image: string;
 };

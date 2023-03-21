@@ -10,7 +10,7 @@ import {
   deleteTagAction,
 } from '@/store/modules/recipePosting';
 
-import { ModifyPhotoType } from '@/types';
+import { ModifyPhotoType, SnackTagType } from '@/types';
 export default function useRecipePosting() {
   const { imageList, content, tagList } = useSelector((state: RootState) => state.recipePosting);
 
@@ -23,8 +23,8 @@ export default function useRecipePosting() {
     [dispatch],
   );
   const addPhoto = useCallback(
-    (data: File[]) => {
-      dispatch(addPhotoAction(data));
+    (data: string[]) => {
+      dispatch(addPhotoAction(Array(10)));
     },
     [dispatch],
   );
@@ -34,6 +34,25 @@ export default function useRecipePosting() {
     },
     [dispatch],
   );
+  const deletePhoto = useCallback(
+    (data: number) => {
+      dispatch(deletePhotoAction(data));
+    },
+    [dispatch],
+  );
+  const addTag = useCallback(
+    (data: SnackTagType) => {
+      dispatch(addTagAction({ id: data.id, image: data.image, name: data.name }));
+    },
+    [dispatch],
+  );
 
-  return { imageList, content, tagList, contentWrite, addPhoto, modifyPhoto };
+  const deleteTag = useCallback(
+    (data: number) => {
+      dispatch(deleteTagAction(data));
+    },
+    [dispatch],
+  );
+
+  return { imageList, content, tagList, contentWrite, addPhoto, modifyPhoto, deletePhoto, addTag, deleteTag };
 }

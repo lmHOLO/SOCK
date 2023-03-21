@@ -15,7 +15,7 @@ const postingSlice = createSlice({
     contentWriteAction(state: PostingStateType, action: PayloadAction<string>) {
       state.content = action.payload;
     },
-    addPhotoAction(state: PostingStateType, action: PayloadAction<File[]>) {
+    addPhotoAction(state: PostingStateType, action: PayloadAction<string[]>) {
       let tempImageList = [...state.imageList];
       for (let i = 0; i < action.payload.length; i++) {
         tempImageList.push(action.payload[i]);
