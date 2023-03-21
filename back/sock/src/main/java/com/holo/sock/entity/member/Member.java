@@ -60,4 +60,8 @@ public class Member extends BaseEntity {
         this.nickname = dto.getNickname();
         this.profile = dto.getProfile();
     }
+
+    public void addExp(int exp) {
+        this.exp += exp;
+    }
 }
