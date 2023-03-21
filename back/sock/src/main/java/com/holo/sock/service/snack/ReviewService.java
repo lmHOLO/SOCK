@@ -10,6 +10,7 @@ import com.holo.sock.exception.review.ReviewNotFoundException;
 import com.holo.sock.exception.snack.SnackNotFoundException;
 import com.holo.sock.repository.snack.ReviewRepository;
 import com.holo.sock.repository.snack.SnackRepository;
+import com.holo.sock.service.member.GradeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -27,6 +28,7 @@ public class ReviewService {
 
     private final SnackRepository snackRepository;
     private final ReviewRepository reviewRepository;
+    private final GradeService gradeService;
 
     public ReviewResponseDto reviewList(Member loginMember, Long snackId, Pageable pageable){
         Snack snack = snackRepository.findById(snackId).orElseThrow(SnackNotFoundException::new);
@@ -47,6 +49,8 @@ public class ReviewService {
         reviewRepository.save(review);
 
         snack.registerReview(requestDto.getStar());
+
+        gradeService.addExp(writer, gradeService.REGISTER_REVIEW);
     }
 
     @Transactional
