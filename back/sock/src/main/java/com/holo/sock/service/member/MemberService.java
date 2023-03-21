@@ -49,4 +49,9 @@ public class MemberService {
                 .orElseThrow(MemberNotFoundException::new);
         return MemberDetailResponseDto.create(member);
     }
+
+    @Transactional
+    public void completePreference(Member member) {
+        member.isCheckPreference();
+    }
 }

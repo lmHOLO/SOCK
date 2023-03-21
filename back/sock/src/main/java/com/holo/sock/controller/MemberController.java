@@ -49,20 +49,19 @@ public class MemberController {
     public SingleResult<Page<MemberSearchResponseDto>> searchMember(@RequestParam String nickname,
                                                                     @LoginMember Member member,
                                                                     @PageableDefault(size = 10) Pageable pageable) {
-        log.info("nickname:{}", nickname);
         Page<MemberSearchResponseDto> searchMember = memberService.searchMemberList(member,nickname,pageable);
         return responseService.getSingleResult(searchMember);
     }
 
     @GetMapping("nickname")
     public Result isUniqueNickname(@RequestParam String nickname) {
-        log.info("nickname: {}", nickname);
         return responseService.getSingleResult(memberService.isUniqueNickname(nickname));
     }
 
     @PostMapping("preference")
     public Result registerPreference(@LoginMember Member member, @RequestBody List<MemberPreferenceRequestDto> preferenceList) {
         preferenceService.registerPreferences(member,preferenceList);
+        memberService.completePreference(member);
         return responseService.getSuccessResult();
     }
 }
