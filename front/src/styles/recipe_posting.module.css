@@ -21,3 +21,11 @@
   border: 2px solid sock-brown;
   border-radius: 3px;
 }
+
+.photo-list-container {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+/* .photo-list-container::-webkit-scrollbar {
+  display: none;
+} */

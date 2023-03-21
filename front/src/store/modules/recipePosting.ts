@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { PostingStateType, SnackTagType } from '@/types';
-
+import { ModifyPhotoType } from '@/types';
 // 초기상태
 const initialState: PostingStateType = {
   imageList: [],
@@ -15,25 +15,36 @@ const postingSlice = createSlice({
     contentWriteAction(state: PostingStateType, action: PayloadAction<string>) {
       state.content = action.payload;
     },
-    addPhotos(state: PostingStateType, action: PayloadAction<File[]>) {
+    addPhotoAction(state: PostingStateType, action: PayloadAction<File[]>) {
       let tempImageList = [...state.imageList];
       for (let i = 0; i < action.payload.length; i++) {
         tempImageList.push(action.payload[i]);
       }
       state.imageList = tempImageList;
     },
-    deletePhoto(state: PostingStateType, action: PayloadAction<number>) {
+    modifyPhotoAction(state: PostingStateType, action: PayloadAction<ModifyPhotoType>) {
+      state.imageList[action.payload.index] = action.payload.image;
+    },
+
+    deletePhotoAction(state: PostingStateType, action: PayloadAction<number>) {
       state.imageList.splice(action.payload, 1);
     },
-    addTag(state: PostingStateType, action: PayloadAction<SnackTagType>) {
+    addTagAction(state: PostingStateType, action: PayloadAction<SnackTagType>) {
       state.tagList.push(action.payload);
     },
-    deleteTag(state: PostingStateType, action: PayloadAction<number>) {
+    deleteTagAction(state: PostingStateType, action: PayloadAction<number>) {
       state.tagList.splice(action.payload, 1);
     },
   },
 });
 
 const { reducer, actions } = postingSlice;
-export const { contentWriteAction, addPhotos, deletePhoto, addTag, deleteTag } = actions;
+export const {
+  contentWriteAction,
+  addPhotoAction,
+  modifyPhotoAction,
+  deletePhotoAction,
+  addTagAction,
+  deleteTagAction,
+} = actions;
 export default reducer;

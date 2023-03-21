@@ -90,3 +90,17 @@ export type PostingStateType = {
   content: string;
   tagList: SnackTagType[];
 };
+
+// crop
+export type Area = {
+  width: number;
+  height: number;
+  x: number;
+  y: number;
+};
+
+//
+export type ModifyPhotoType = {
+  index: number;
+  image: File;
+};
