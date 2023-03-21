@@ -68,4 +68,8 @@ public class Member extends BaseEntity {
     public void completePreference(){
         this.checkPreference = true;
     }
+
+    public void upgradeGrade(Grade grade){
+        this.grade = grade;
+    }
 }
