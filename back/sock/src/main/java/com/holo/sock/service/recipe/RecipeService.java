@@ -6,9 +6,7 @@ import com.holo.sock.entity.recipe.*;
 import com.holo.sock.entity.snack.Snack;
 import com.holo.sock.exception.likerecipe.LikeRecipeExistedException;
 import com.holo.sock.exception.likerecipe.LikeRecipeNotFoundException;
-import com.holo.sock.exception.member.MemberNotFoundException;
 import com.holo.sock.exception.recipe.RecipeNotFoundException;
-import com.holo.sock.repository.member.MemberRepository;
 import com.holo.sock.repository.recipe.CommentRepository;
 import com.holo.sock.repository.recipe.LikeRecipeRepository;
 import com.holo.sock.repository.recipe.RecipeRepository;
@@ -17,14 +15,11 @@ import com.holo.sock.repository.snack.SnackRepository;
 import com.holo.sock.service.qscore.RecipeQScoreService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -100,15 +95,22 @@ public class RecipeService {
     }
 
     @Transactional
-    public void deleteRecipe(Member loginMember, Long recipeId, Pageable pageable){
-        Recipe recipe = recipeRepository.findById(recipeId).orElseThrow(RecipeNotFoundException::new);
-        LikeRecipe likeRecipe = likeRecipeRepository.findByMemberAndRecipe(loginMember, recipe)
-                .orElseThrow(LikeRecipeNotFoundException::new);
-        Page<Comment> commentPage = commentRepository.findByRecipeId(recipeId, pageable);
-        // recipe 삭제에 따른
-        // comment 전체 삭제
-        // like 전체 삭제
-        // qscore 전체 삭제
+    public void deleteRecipe(Member loginMember, Long recipeId){
+        Recipe recipe = recipeRepository.findByWriterAndId(loginMember,recipeId).orElseThrow(RecipeNotFoundException::new);
+
+        List<Comment> commentList = commentRepository.findAllByRecipe(recipe);
+        commentRepository.deleteAllInBatch(commentList);
+
+        List<LikeRecipe> likeRecipes = likeRecipeRepository.findAllByRecipe(recipe);
+        likeRecipeRepository.deleteAllInBatch(likeRecipes);
+
+        recipeQScoreService.deleteRecipeQScore(recipe);
+
+        List<Tag> tagList = tagRepository.findAllByRecipe(recipe);
+        tagRepository.deleteAllInBatch(tagList);
+        
+        recipeRepository.delete(recipe);
+
 
     }
 
