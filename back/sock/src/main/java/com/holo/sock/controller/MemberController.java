@@ -2,7 +2,6 @@ package com.holo.sock.controller;
 
 import com.holo.sock.common.annotation.LoginMember;
 import com.holo.sock.common.response.ResponseService;
-import com.holo.sock.common.result.ListResult;
 import com.holo.sock.common.result.Result;
 import com.holo.sock.common.result.SingleResult;
 import com.holo.sock.dto.member.request.MemberModifyRequestDto;
@@ -14,6 +13,9 @@ import com.holo.sock.service.member.MemberService;
 import com.holo.sock.service.recommend.PreferenceService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -44,10 +46,12 @@ public class MemberController {
     }
 
     @GetMapping("search")
-    public ListResult<MemberSearchResponseDto> searchMember(@RequestParam String nickname,@LoginMember Member member) {
+    public SingleResult<Page<MemberSearchResponseDto>> searchMember(@RequestParam String nickname,
+                                                                    @LoginMember Member member,
+                                                                    @PageableDefault(size = 10) Pageable pageable) {
         log.info("nickname:{}", nickname);
-        List<MemberSearchResponseDto> searchMemberList = memberService.searchMember(member,nickname);
-        return responseService.getListResult(searchMemberList);
+        Page<MemberSearchResponseDto> searchMember = memberService.searchMemberList(member,nickname,pageable);
+        return responseService.getSingleResult(searchMember);
     }
 
     @GetMapping("nickname")

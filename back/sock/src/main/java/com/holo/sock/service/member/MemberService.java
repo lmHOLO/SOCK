@@ -8,6 +8,8 @@ import com.holo.sock.exception.member.MemberNotFoundException;
 import com.holo.sock.repository.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,18 +32,9 @@ public class MemberService {
     }
 
 
-    public List<MemberSearchResponseDto> searchMember(Member loginMember, String nickname) {
-        List<Member> members = memberRepository.findByNicknameContaining(nickname);
-        log.info("members: {}", members);
-        return members.stream()
-                .filter(member-> loginMember.getId()!=member.getId())
-                .map(member -> MemberSearchResponseDto.builder()
-                        .id(member.getId())
-                        .nickname(member.getNickname())
-                        .image(member.getProfile().getImage())
-                        .build()
-                )
-                .collect(Collectors.toList());
+    public Page<MemberSearchResponseDto> searchMemberList(Member loginMember, String nickname, Pageable pageable) {
+        return memberRepository.findByNicknameContaining(nickname, loginMember.getId(), pageable)
+                .map(MemberSearchResponseDto::create);
     }
 
     @Transactional
