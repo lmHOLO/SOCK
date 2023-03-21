@@ -39,7 +39,6 @@ public class MemberService {
 
     @Transactional
     public void modifyMember(MemberModifyRequestDto memberModifyDto, Member member) {
-        log.info("beforeModify :{}", memberModifyDto);
         member.modifyMember(memberModifyDto);
         memberRepository.save(member);
     }
@@ -52,6 +51,6 @@ public class MemberService {
 
     @Transactional
     public void completePreference(Member member) {
-        member.isCheckPreference();
+        member.completePreference();
     }
 }
