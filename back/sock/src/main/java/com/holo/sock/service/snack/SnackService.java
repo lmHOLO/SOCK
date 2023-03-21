@@ -14,6 +14,7 @@ import com.holo.sock.exception.type.TypeNotFoundException;
 import com.holo.sock.repository.member.MemberRepository;
 import com.holo.sock.repository.snack.*;
 import com.holo.sock.service.qscore.SnackQScoreService;
+import com.holo.sock.service.recommend.PurchaseService;
 import com.holo.sock.service.recommend.SearchService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +40,7 @@ public class SnackService {
     private final LikeSnackRepository likeSnackRepository;
 
     private final SearchService searchService;
+    private final PurchaseService purchaseService;
     private final SnackQScoreService snackQScoreService;
 
     @Transactional
@@ -100,6 +102,14 @@ public class SnackService {
         snackQScoreService.addQScore(snack);
 
         return SnackDetailResponseDto.create(snack, like, totalLikes);
+    }
+
+    @Transactional
+    public void purchaseSnack(Member member, Long snackId){
+        Snack snack = snackRepository.findById(snackId).orElseThrow(SnackNotFoundException::new);
+
+        purchaseService.addCount(member, snack);
+        snackQScoreService.addQScore(snack);
     }
 
     @Transactional
