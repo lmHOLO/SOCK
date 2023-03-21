@@ -82,7 +82,7 @@ public class SnackRepositoryImpl implements SnackRepositoryCustom{
                 .join(snack.type, type).fetchJoin()
                 .join(snackFlavor).on(snackFlavor.snack.eq(snack))
                 .join(snackFlavor.flavor, flavor)
-                .where(snack.type.id.in(typeIds).or(flavor.id.in(flavorIds)).and(snack.id.ne(snackId)))
+                .where(snack.type.id.in(typeIds).or(flavor.id.in(flavorIds)).and(snackNe(snackId)))
                 .orderBy(NumberExpression.random().asc())
                 .limit(5)
                 .fetch();
@@ -117,6 +117,10 @@ public class SnackRepositoryImpl implements SnackRepositoryCustom{
     private OrderSpecifier orderCond(String arrange){
         if(arrange == null || arrange.equals("recent")) return snack.lastModifiedDate.desc();
         else return snackQScore.score.nullif(0L).desc();
+    }
+
+    private BooleanExpression snackNe(Long snackId){
+        return snackId != null ? snack.id.ne(snackId) : null;
     }
 
 }
