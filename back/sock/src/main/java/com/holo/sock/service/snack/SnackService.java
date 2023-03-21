@@ -5,13 +5,16 @@ import com.holo.sock.dto.snack.request.SearchSnackListRequestDto;
 import com.holo.sock.dto.snack.response.SnackDetailResponseDto;
 import com.holo.sock.dto.snack.response.SnackResponseDto;
 import com.holo.sock.entity.member.Member;
+import com.holo.sock.entity.recipe.Tag;
 import com.holo.sock.entity.snack.*;
 import com.holo.sock.exception.likesnack.LikeSnackExistedException;
 import com.holo.sock.exception.likesnack.LikeSnackNotFoundException;
 import com.holo.sock.exception.member.MemberNotFoundException;
+import com.holo.sock.exception.snack.SimilarSnackParamException;
 import com.holo.sock.exception.snack.SnackNotFoundException;
 import com.holo.sock.exception.type.TypeNotFoundException;
 import com.holo.sock.repository.member.MemberRepository;
+import com.holo.sock.repository.recipe.TagRepository;
 import com.holo.sock.repository.snack.*;
 import com.holo.sock.service.qscore.SnackQScoreService;
 import com.holo.sock.service.recommend.PurchaseService;
@@ -38,6 +41,7 @@ public class SnackService {
     private final TypeRepository typeRepository;
     private final FlavorRepository flavorRepository;
     private final LikeSnackRepository likeSnackRepository;
+    private final TagRepository tagRepository;
 
     private final SearchService searchService;
     private final PurchaseService purchaseService;
@@ -138,5 +142,38 @@ public class SnackService {
 
         likeSnackRepository.delete(likeSnack);
         snackQScoreService.subQScore(snack);
+    }
+
+    public SnackResponseDto similarSnackList(Long snackId, Long recipeId){
+        Set<Long> typeIds = new HashSet<>();
+        Set<Long> flavorIds;
+
+        if((snackId == null && recipeId == null) || (snackId != null && recipeId != null)) {
+            throw new SimilarSnackParamException();
+        }
+        else if(snackId != null) {
+            Snack snack = snackRepository.findSnackByIdWithTypeAndFlavor(snackId).orElseThrow(SnackNotFoundException::new);
+            typeIds.add(snack.getType().getId());
+            flavorIds = snack.getFlavors()
+                    .stream()
+                    .map(snackFlavor -> snackFlavor.getFlavor().getId())
+                    .collect(Collectors.toSet());
+        }
+        else {
+            flavorIds = new HashSet<>();
+            List<Tag> tags = tagRepository.findByRecipeIdWithSnackAndType(recipeId);
+            for (Tag tag : tags) {
+                typeIds.add(tag.getSnack().getType().getId());
+
+                tag.getSnack().getFlavors()
+                        .stream()
+                        .map(snackFlavor -> snackFlavor.getFlavor().getId())
+                        .forEach(flavorIds::add);
+            }
+        }
+
+        List<Snack> similarSnacks = snackRepository.findSimilarSnacks(new ArrayList<>(typeIds), new ArrayList<>(flavorIds));
+        
+        return null;
     }
 }

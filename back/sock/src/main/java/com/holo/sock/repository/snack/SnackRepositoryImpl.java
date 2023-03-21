@@ -1,6 +1,7 @@
 package com.holo.sock.repository.snack;
 
 import com.holo.sock.dto.snack.request.SearchSnackListRequestDto;
+import com.holo.sock.entity.snack.Snack;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -65,6 +66,16 @@ public class SnackRepositoryImpl implements SnackRepositoryCustom{
                 .fetchOne();
 
         return new PageImpl<>(content, pageable, count);
+    }
+
+    @Override
+    public List<Snack> findSimilarSnacks(List<Long> typeIds, List<Long> flavorIds) {
+        return queryFactory.selectFrom(snack)
+                .join(snack.type, type).fetchJoin()
+                .join(snackFlavor).on(snackFlavor.snack.eq(snack))
+                .join(snackFlavor.flavor, flavor)
+                .where(snack.type.id.in(typeIds), flavor.id.in(flavorIds))
+                .fetch();
     }
 
     private BooleanExpression nameContain(String snackName){
