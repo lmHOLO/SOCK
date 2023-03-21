@@ -29,7 +29,7 @@ public class ReviewDto {
     }
 
     public static ReviewDto create(Review review){
-        return        ReviewDto.builder()
+        return ReviewDto.builder()
                 .reviewId(review.getId())
                 .content(review.getContent())
                 .star(review.getStar())

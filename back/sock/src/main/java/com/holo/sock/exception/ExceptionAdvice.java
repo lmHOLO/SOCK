@@ -12,6 +12,7 @@ import com.holo.sock.exception.recipe.RecipeNotFoundException;
 import com.holo.sock.exception.recipeqscore.RecipeQScoreNotFoundException;
 import com.holo.sock.exception.review.ReviewExistedException;
 import com.holo.sock.exception.review.ReviewNotFoundException;
+import com.holo.sock.exception.snack.SimilarSnackParamException;
 import com.holo.sock.exception.snack.SnackNotFoundException;
 import com.holo.sock.exception.snackqscore.SnackQScoreNotFoundException;
 import com.holo.sock.exception.type.TypeNotFoundException;
@@ -75,6 +76,13 @@ public class ExceptionAdvice {
     public Result reviewExistedException(){
         return responseService.getFailureResult(-106, "이미 리뷰를 작성한 과자입니다.");
     }
+
+    @ExceptionHandler(SimilarSnackParamException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Result similarSnackParamException(){
+        return responseService.getFailureResult(-107, "유사한 과자 목록 시 파라미터가 올바르지 않습니다.");
+    }
+
 
     @ExceptionHandler(MemberNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
