@@ -14,7 +14,7 @@ public class SnackResponseDto {
     private Long snackId;
     private String image;
     private String name;
-    private int sumOfStarts;
+    private int sumOfStars;
     private int numberOfParticipants;
     private boolean like;
 
@@ -23,7 +23,7 @@ public class SnackResponseDto {
                 .snackId(dto.getSnackId())
                 .image(dto.getImage())
                 .name(dto.getName())
-                .sumOfStarts(dto.getSumOfStarts())
+                .sumOfStars(dto.getSumOfStarts())
                 .numberOfParticipants(dto.getNumberOfParticipants())
                 .like(snackIdsWithLik.contains(dto.getSnackId()))
                 .build();
@@ -34,7 +34,7 @@ public class SnackResponseDto {
                 .snackId(snack.getId())
                 .image(snack.getImage())
                 .name(snack.getName())
-                .sumOfStarts(snack.getSumOfStars())
+                .sumOfStars(snack.getSumOfStars())
                 .numberOfParticipants(snack.getNumberOfParticipants())
                 .like(true)
                 .build();
@@ -45,7 +45,7 @@ public class SnackResponseDto {
                 .snackId(snack.getId())
                 .image(snack.getImage())
                 .name(snack.getName())
-                .sumOfStarts(snack.getSumOfStars())
+                .sumOfStars(snack.getSumOfStars())
                 .numberOfParticipants(snack.getNumberOfParticipants())
                 .like(snackIdsWithLik.contains(snack.getId()))
                 .build();
