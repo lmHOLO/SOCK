@@ -86,7 +86,21 @@ export type RecipeCommentType = {
 
 // 레시피 작성 관련
 export type PostingStateType = {
-  imageList: File[];
+  imageList: string[];
   content: string;
   tagList: SnackTagType[];
+};
+
+// crop
+export type Area = {
+  width: number;
+  height: number;
+  x: number;
+  y: number;
+};
+
+//
+export type ModifyPhotoType = {
+  index: number;
+  image: string;
 };
