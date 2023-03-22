@@ -1,3 +1,4 @@
+import { MemberStateType, MemberLoginType } from '@/types/member';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // 상태에서 사용할 멤버 데이터 타입 정의
@@ -5,21 +6,22 @@ export type Member = {
   nickname: string;
 };
 // 초기 상태 타입
-export type MemberState = {
-  isLoggedIn: boolean;
-  memberData: Member;
-};
-
-// 액션 Payload 타입
-export type LoginPayload = {
-  nickname: string;
-};
 
 // 초기상태
-const initialState: MemberState = {
+const initialState: MemberStateType = {
   isLoggedIn: false,
   memberData: {
+    id: '',
+    email: '',
     nickname: '',
+    profile: {
+      image: '',
+      content: '',
+    },
+    sbti: '',
+    grade: '',
+    exp: 0,
+    checkPreference: false,
   },
 };
 
@@ -28,14 +30,24 @@ const memberSlice = createSlice({
   name: 'member',
   initialState,
   reducers: {
-    loginAction(state: MemberState, action: PayloadAction<LoginPayload>) {
+    loginAction(state: MemberStateType, action: PayloadAction<MemberLoginType>) {
       state.isLoggedIn = true;
       state.memberData = action.payload;
     },
-    logoutAction(state: MemberState) {
+    logoutAction(state: MemberStateType) {
       state.isLoggedIn = false;
       state.memberData = {
+        id: '',
+        email: '',
         nickname: '',
+        profile: {
+          image: '',
+          content: '',
+        },
+        sbti: '',
+        grade: '',
+        exp: 0,
+        checkPreference: false,
       };
     },
   },

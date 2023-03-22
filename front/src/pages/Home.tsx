@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TopNav from '@/components/Navbar/TopNav';
 import BottomNav from '@/components/Navbar/BottomNav';
 import Ads from '@/components/Home/Ads';
@@ -10,6 +10,7 @@ import ThemeList from '@/components/Home/ThemeList';
 export default function Home() {
   // const nickname = useSelector((state: RootState) => state.member.nickname);
   const { memberData } = useMember();
+
   // TODO: 나중에 api로 추천 snack 받아오기
   const [recommendSnackList, setRecommendSnackList] = useState<SnackListItemType[]>([
     {
