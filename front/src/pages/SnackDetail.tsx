@@ -10,7 +10,9 @@ import styles from '@/styles/snack_detail.module.css';
 import Comment from '@/components/SnackDetail/Comment';
 export default function SnackDetail() {
   const { id } = useParams();
+
   // TODO: 나중에 api로 추천 snack, 추천 recipe 받아오기
+
   const [similarSnackList, setSimilarSnackList] = useState<SnackListItemType[]>([
     {
       id: 1,
