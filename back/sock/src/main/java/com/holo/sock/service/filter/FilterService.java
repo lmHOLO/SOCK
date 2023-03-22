@@ -1,8 +1,8 @@
 package com.holo.sock.service.filter;
 
-import com.holo.sock.dto.filter.FlavorDto;
-import com.holo.sock.entity.snack.Flavor;
+import com.holo.sock.dto.filter.FilterDto;
 import com.holo.sock.repository.snack.FlavorRepository;
+import com.holo.sock.repository.snack.TypeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,10 +16,17 @@ import java.util.stream.Collectors;
 public class FilterService {
 
     private final FlavorRepository flavorRepository;
+    private final TypeRepository typeRepository;
 
-    public List<FlavorDto> flavorList(){
+    public List<FilterDto> flavorList(){
         return flavorRepository.findAll().stream()
-                .map(FlavorDto::create)
+                .map(FilterDto::create)
+                .collect(Collectors.toList());
+    }
+
+    public List<FilterDto> typeList(){
+        return typeRepository.findAll().stream()
+                .map(FilterDto::create)
                 .collect(Collectors.toList());
     }
 
