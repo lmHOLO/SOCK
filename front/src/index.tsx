@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import store from '@/store/store';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
+import { firestore } from './firebase';
 
 // import { legacy_createStore as createStore } from 'redux';
 // import rootReducer from '@/store/modules';
