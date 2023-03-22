@@ -134,6 +134,9 @@ public class RecipeService {
                 .map(tag -> new TagDto(tag))
                 .collect(Collectors.toList());
 
+        // 레시피 인기도 증가
+        recipeQScoreService.addQScore(recipe);
+
         return new RecipeDetailResponseDto(recipe,tagDtoList,existsLike,totalLikes);
 
     }
