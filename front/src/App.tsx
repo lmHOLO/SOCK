@@ -9,6 +9,7 @@ import useMember from '@/hooks/memberHook';
 import SnackDetail from '@/pages/SnackDetail';
 import RecipeDetail from '@/pages/RecipeDetail';
 import RecipePosting from '@/pages/RecipePosting';
+import FirebaseUploadTest from './pages/FirebaseUploadTest';
 const router = createBrowserRouter([
   /*   {
     path: '/',
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
   {
     path: '/recipe-posting',
     element: <RecipePosting />,
+  },
+  {
+    path: '/firebasetest',
+    element: <FirebaseUploadTest />,
   },
 ]);
 export default function App() {
