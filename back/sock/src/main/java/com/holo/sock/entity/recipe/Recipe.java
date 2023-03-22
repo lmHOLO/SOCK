@@ -1,5 +1,6 @@
 package com.holo.sock.entity.recipe;
 
+import com.holo.sock.dto.recipe.request.UpdateRecipeRequestDto;
 import com.holo.sock.entity.BaseEntity;
 import com.holo.sock.entity.member.Member;
 import lombok.*;
@@ -29,4 +30,11 @@ public class Recipe extends BaseEntity {
 
     @OneToMany(mappedBy = "recipe",cascade = CascadeType.ALL)
     List<RecipeImage> images = new ArrayList<>();
+
+
+    public void updateRecipe(String title, String content, List<RecipeImage> images) {
+        this.title = title;
+        this.content = content;
+        this.images = images;
+    }
 }

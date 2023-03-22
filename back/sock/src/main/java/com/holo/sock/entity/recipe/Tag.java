@@ -5,6 +5,7 @@ import com.holo.sock.entity.snack.Snack;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -24,4 +25,9 @@ public class Tag extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "snack_id")
     private Snack snack;
+    
+    public void updateRecipeTag(Snack snack) {
+
+    }
+
 }
