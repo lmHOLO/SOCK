@@ -14,4 +14,6 @@ public interface LikeRecipeRepository extends JpaRepository<LikeRecipe, Long> {
     boolean existsByMemberAndRecipe(Member member, Recipe recipe);
     Optional<LikeRecipe> findByMemberAndRecipe(Member member,Recipe recipe);
     List<LikeRecipe> findAllByRecipe(Recipe recipe);
+
+    Long countByRecipe(Recipe recipe);
 }

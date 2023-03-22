@@ -1,6 +1,8 @@
 package com.holo.sock.service.recipe;
 
 import com.holo.sock.dto.recipe.request.RegisterRecipeRequestDto;
+import com.holo.sock.dto.recipe.response.RecipeDetailResponseDto;
+import com.holo.sock.dto.tag.TagDto;
 import com.holo.sock.entity.member.Member;
 import com.holo.sock.entity.recipe.*;
 import com.holo.sock.entity.snack.Snack;
@@ -20,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -111,8 +114,28 @@ public class RecipeService {
         
         recipeRepository.delete(recipe);
 
-
     }
 
+    @Transactional
+    public RecipeDetailResponseDto detailRecipe(Member loginMember, Long recipeId){
+        // 레시피 아이디별로 레시피 찾기
+        Recipe recipe = recipeRepository.findFetchJoinById(recipeId).orElseThrow(RecipeNotFoundException::new);
+
+        // 해당 레시피의 좋아요 가져오기
+        Long totalLikes = likeRecipeRepository.countByRecipe(recipe);
+
+        // loginMember에 따라 해당 레시피의 좋아요를 눌렀는지도 가져오기
+        boolean existsLike = likeRecipeRepository.existsByMemberAndRecipe(loginMember, recipe);
+
+
+        // 레시피에 해당한 태그 가져오기
+        List<Tag> tagList = tagRepository.findAllFetchJoinByRecipe(recipe);
+        List<TagDto> tagDtoList = tagList.stream()
+                .map(tag -> new TagDto(tag))
+                .collect(Collectors.toList());
+
+        return new RecipeDetailResponseDto(recipe,tagDtoList,existsLike,totalLikes);
+
+    }
 
 }
