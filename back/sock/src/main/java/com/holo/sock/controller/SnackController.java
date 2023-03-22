@@ -97,4 +97,12 @@ public class SnackController {
         snackService.deleteLikeSnack(member, snackId);
         return responseService.getSuccessResult();
     }
+
+    @GetMapping("/similar")
+    public ListResult<SnackResponseDto> similarSnackList(@LoginMember Member member,
+                                                           @RequestParam(value="snack-id", required = false) Long snackId,
+                                                           @RequestParam(value="recipe-id", required = false) Long recipeId){
+        List<SnackResponseDto> responseDto = snackService.similarSnackList(member, snackId, recipeId);
+        return responseService.getListResult(responseDto);
+    }
 }

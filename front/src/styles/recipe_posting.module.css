@@ -15,9 +15,24 @@
   background-color: aqua;
 }
 
-.image-regist-btn {
+/* .image-regist-btn {
   width: 215px;
   height: 215px;
   border: 2px solid sock-brown;
   border-radius: 3px;
+} */
+
+.photo-list-container {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+/* .photo-list-container::-webkit-scrollbar {
+  display: none;
+} */
+
+.crop-paper {
+  width: 100%;
+  max-width: 350px;
+  max-height: 350px;
+  margin: 0 auto;
 }

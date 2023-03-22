@@ -1,10 +1,15 @@
 package com.holo.sock.repository.snack;
 
+import com.holo.sock.common.jpqltemplates.MySqlJpaTemplates;
 import com.holo.sock.dto.snack.request.SearchSnackListRequestDto;
+import com.holo.sock.entity.snack.Snack;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.NumberExpression;
+import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -22,10 +27,12 @@ import static com.holo.sock.entity.snack.QType.type;
 @Slf4j
 public class SnackRepositoryImpl implements SnackRepositoryCustom{
 
+    private final EntityManager em;
     private final JPAQueryFactory queryFactory;
 
     public SnackRepositoryImpl(EntityManager em) {
-        this.queryFactory = new JPAQueryFactory(em);
+        this.em = em;
+        this.queryFactory = new JPAQueryFactory(this.em);
     }
 
     @Override
@@ -67,6 +74,20 @@ public class SnackRepositoryImpl implements SnackRepositoryCustom{
         return new PageImpl<>(content, pageable, count);
     }
 
+    @Override
+    public List<Snack> findSimilarSnacks(List<Long> typeIds, List<Long> flavorIds, Long snackId) {
+        JPAQuery<Snack> query = new JPAQuery<>(em, MySqlJpaTemplates.DEFAULT);
+
+        return query.from(snack).distinct()
+                .join(snack.type, type).fetchJoin()
+                .join(snackFlavor).on(snackFlavor.snack.eq(snack))
+                .join(snackFlavor.flavor, flavor)
+                .where(snack.type.id.in(typeIds).or(flavor.id.in(flavorIds)).and(snackNe(snackId)))
+                .orderBy(NumberExpression.random().asc())
+                .limit(5)
+                .fetch();
+    }
+
     private BooleanExpression nameContain(String snackName){
         return snackName != null ? snack.name.contains(snackName) : null;
     }
@@ -96,6 +117,10 @@ public class SnackRepositoryImpl implements SnackRepositoryCustom{
     private OrderSpecifier orderCond(String arrange){
         if(arrange == null || arrange.equals("recent")) return snack.lastModifiedDate.desc();
         else return snackQScore.score.nullif(0L).desc();
+    }
+
+    private BooleanExpression snackNe(Long snackId){
+        return snackId != null ? snack.id.ne(snackId) : null;
     }
 
 }
