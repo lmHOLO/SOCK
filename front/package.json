@@ -22,8 +22,6 @@
     "jsx-runtime": "^1.2.0",
     "node-sass": "^8.0.0",
     "react": "^18.2.0",
-    "react-cropper": "^2.3.2",
-    "react-cropper-custom": "^1.2.7",
     "react-dom": "^18.2.0",
     "react-drag-drop-files": "^2.3.9",
     "react-image-crop": "^10.0.9",
