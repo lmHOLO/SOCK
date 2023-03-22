@@ -69,7 +69,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         Member member = Member.builder()
                 .email(userInfo.getEmail())
-                .nickname(userInfo.getName()+RandomStringUtils.randomAlphanumeric(RANDOM_STRING_SIZE))
+                .nickname((userInfo.getName()+"_"+RandomStringUtils.randomAlphanumeric(RANDOM_STRING_SIZE)).trim())
                 .profile(profile)
                 .provider(authProvider)
                 .checkPreference(false)

@@ -57,7 +57,7 @@ public class Member extends BaseEntity {
     private Role role; // USER, ADMIN
 
     public void modifyMember(MemberModifyRequestDto dto) {
-        this.nickname = dto.getNickname();
+        this.nickname = dto.getNickname().trim();
         this.profile = dto.getProfile();
     }
 
