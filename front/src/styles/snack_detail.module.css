@@ -1,4 +1,4 @@
-@value sock-brown, white-color  from './common/colors.css';
+@value sock-brown, sock-yellow, white-color  from './common/colors.css';
 
 .title {
   display: inline-block;
@@ -15,13 +15,24 @@
   margin-bottom: 10px;
 }
 /* snack content */
-.grade-like {
+.grade-flavors-like {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+.grade-flavors {
+  display: inline-flex;
+  align-items: center;
 }
 .snack-grade {
   display: flex;
   align-items: center;
+  margin-right: 5px;
+}
+
+.snack-grade > svg {
+  color: sock-yellow;
 }
 
 .snack-img-container {
@@ -30,8 +41,25 @@
   width: 100%;
   height: 215px;
   margin-bottom: 10px;
+  border-radius: 3px;
 }
 
 .snack-img-container > img {
   height: 100%;
+  border-radius: 3px;
+}
+
+/* 과자맛 */
+
+.flavor-list-container {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.flavor-list-item-container {
+  display: inline-block;
+  background-color: sock-yellow;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 100px;
+  margin-right: 5px;
 }
