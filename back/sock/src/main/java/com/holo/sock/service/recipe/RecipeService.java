@@ -1,6 +1,7 @@
 package com.holo.sock.service.recipe;
 
 import com.holo.sock.dto.recipe.request.RegisterRecipeRequestDto;
+import com.holo.sock.dto.recipe.request.UpdateRecipeRequestDto;
 import com.holo.sock.dto.recipe.response.RecipeDetailResponseDto;
 import com.holo.sock.dto.tag.TagDto;
 import com.holo.sock.entity.member.Member;
@@ -138,6 +139,48 @@ public class RecipeService {
         recipeQScoreService.addQScore(recipe);
 
         return new RecipeDetailResponseDto(recipe,tagDtoList,existsLike,totalLikes);
+
+    }
+    @Transactional
+    public void updateRecipeDetail(Member loginMember,Long recipeId, UpdateRecipeRequestDto updateDto){
+        // 해당 번호 레시피 아이디 찾기 , 해당 회원
+        Recipe recipe = recipeRepository.findByWriterAndId(loginMember,recipeId).orElseThrow(RecipeNotFoundException::new);
+
+        List<Tag> tags = tagRepository.findAllByRecipe(recipe);
+        //업데이트 - 변경감지
+        // recipe.updateDetail , 제목 내용 태그 이미지만 바꿀 수 있다
+
+        //이미지를 전부 삭제했다가 다시 builder
+        // 등록된 레시피에 있는 첫번째 이미지 제거 -> 등록되어 있던 image과의 관계 끊어짐
+        recipe.getImages().clear();
+
+        List<String> imageName = updateDto.getImages();
+        for (String name : imageName) {
+            recipe.getImages().add(
+                    RecipeImage.builder()
+                            .recipe(recipe)
+                            .name(name)
+                            .build()
+            );
+        }
+
+        recipe.updateRecipe(updateDto.getTitle(), updateDto.getContent(), recipe.getImages());
+
+
+        // 1. 태그를 전부 삭제하고 다시 builder
+        tagRepository.deleteAllInBatch(tags);
+
+        List<Long> snackIds = updateDto.getSnackIds();
+
+        List<Snack> snacks = snackRepository.findByIdIn(snackIds);
+        for(Snack snack: snacks){
+            Tag saveTag = Tag.builder()
+                    .snack(snack)
+                    .recipe(recipe)
+                    .build();
+
+            tagRepository.save(saveTag);
+        }
 
     }
 
