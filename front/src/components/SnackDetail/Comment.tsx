@@ -1,8 +1,11 @@
 import React, { useCallback, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import styles from '@/styles/comment.module.css';
 import CommentList from './CommentList';
 import CommentRating from './CommentRating';
+import { postSnackReviewAPI } from '@/apis/api/snackDetail';
 export default function Comment() {
+  const { id } = useParams();
   const textRef = useRef<HTMLTextAreaElement>(null);
   let [comment, setComment] = useState('');
   let [isValid, setIsValid] = useState(false);
@@ -13,7 +16,6 @@ export default function Comment() {
       textRef.current.style.height = textRef.current.scrollHeight + 'px';
     }
   }, []);
-
   const delSpace = (data: string) => {
     return data.replace(/\s/g, '');
   };
@@ -22,7 +24,7 @@ export default function Comment() {
     setComment(e.target.value);
   };
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = () => {
     let newComment = comment;
     if (delSpace(newComment) === '') {
       alert('댓글을 작성해주세요');
@@ -34,6 +36,10 @@ export default function Comment() {
       return;
     }
     // 리뷰 등록하기
+    if (id) {
+      postSnackReviewAPI(id, { content: comment, star: starPoint });
+      window.history.go(0); // 임시로
+    }
 
     console.log(newComment);
   };

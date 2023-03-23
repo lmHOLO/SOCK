@@ -6,12 +6,12 @@ export const getSnackDetail = (snackDetail: SnackDetailType) => {
 
 // 리뷰 관련 데이터 정제
 export const getMyReview = (rawReview: ReviewListType) => {
-  console.log(rawReview.myReview);
+  // console.log(rawReview.myReview);
   return rawReview.myReview;
 };
 
 export const getOtherReviewList = (rawReview: ReviewListType) => {
-  console.log(rawReview.otherReviews.content);
+  // console.log(rawReview.otherReviews.content);
   return rawReview.otherReviews.content;
 };
 

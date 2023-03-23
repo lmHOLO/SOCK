@@ -77,3 +77,9 @@ export type SnackListItemType = {
   image: string;
   title: string;
 };
+
+// 리뷰
+export type ReviewSubmitType = {
+  content: string;
+  star: number;
+};
