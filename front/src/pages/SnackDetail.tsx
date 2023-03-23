@@ -1,46 +1,29 @@
 import BottomNav from '@/components/Navbar/BottomNav';
 import TopNav from '@/components/Navbar/TopNav';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { SnackListItemType } from '@/types';
+import { RecipeListItemType, SnackListItemType } from '@/types';
 import SnackContent from '@/components/SnackDetail/SnackContent';
 import SnackList from '@/components/common/SnackList';
 import RecipeList from '@/components/common/RecipeList';
 import styles from '@/styles/snack_detail.module.css';
 import Comment from '@/components/SnackDetail/Comment';
+import { getSimilarSnackAPI } from '@/apis/api/snackDetail';
 export default function SnackDetail() {
   const { id } = useParams();
 
-  // TODO: 나중에 api로 추천 snack, 추천 recipe 받아오기
+  // TODO: 추천 recipe 받아오기
+  useEffect(() => {
+    if (id) {
+      getSimilarSnackAPI('snack', id).then((data) => {
+        console.log('similar', data);
+        setSimilarSnackList(data);
+      });
+    }
+  }, [id]);
 
-  const [similarSnackList, setSimilarSnackList] = useState<SnackListItemType[]>([
-    {
-      id: 1,
-      image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      title: '첫번째 과자',
-    },
-    {
-      id: 2,
-      image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      title: '두번째 과자',
-    },
-    {
-      id: 3,
-      image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      title: '세번째 과자',
-    },
-    {
-      id: 4,
-      image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      title: '네번째 과자',
-    },
-    {
-      id: 5,
-      image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      title: '다섯번째 과자',
-    },
-  ]);
-  const [recommendRecipeList, setRecommendRecipeList] = useState<SnackListItemType[]>([
+  const [similarSnackList, setSimilarSnackList] = useState<SnackListItemType[]>([]);
+  const [recommendRecipeList, setRecommendRecipeList] = useState<RecipeListItemType[]>([
     {
       id: 1,
       image: 'https://i.postimg.cc/VL6npV0x/recipe.jpg',

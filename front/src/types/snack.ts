@@ -70,3 +70,9 @@ export type SortType = {
   sorted: boolean;
   empty: boolean;
 };
+
+export type SnackListItemType = {
+  id: number;
+  image: string;
+  title: string;
+};

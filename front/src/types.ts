@@ -17,7 +17,7 @@ export type RecipeListItemType = {
 };
 
 export type SnackListItemType = {
-  id: number;
+  snackId: number;
   image: string;
   title: string;
 };

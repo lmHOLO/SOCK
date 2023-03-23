@@ -26,3 +26,15 @@ export const getSnackReviewsAPI = async (id: string) => {
     }
   }
 };
+
+export const getSimilarSnackAPI = async (page: string, id: string) => {
+  try {
+    const { data } = await authApi.get(`snacks/similar?${page}-id=${id}`);
+    return data.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      console.log('에러: ', error.response);
+      return error.response?.data;
+    }
+  }
+};
