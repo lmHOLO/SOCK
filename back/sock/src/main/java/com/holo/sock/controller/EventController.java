@@ -1,9 +1,11 @@
 package com.holo.sock.controller;
 
+import com.holo.sock.common.annotation.LoginMember;
 import com.holo.sock.common.response.ResponseService;
 import com.holo.sock.common.result.ListResult;
 import com.holo.sock.common.result.SingleResult;
 import com.holo.sock.dto.event.response.SBTIQuestionResponseDto;
+import com.holo.sock.entity.member.Member;
 import com.holo.sock.service.event.EventService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,12 +29,8 @@ public class EventController {
     }
 
     @PostMapping("/sbti")
-    public SingleResult<String> sbtiAnswer(@RequestBody List<Integer> answers){
-        for (Integer answer : answers) {
-            log.info("ans = {}", answer);
-        }
-
-        String sbti = eventService.sbtiAnswer(answers);
+    public SingleResult<String> sbtiAnswer(@LoginMember Member member, @RequestBody List<Integer> answers){
+        String sbti = eventService.sbtiAnswer(member, answers);
         return responseService.getSingleResult(sbti);
     }
 }
