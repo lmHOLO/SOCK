@@ -19,6 +19,7 @@ import com.holo.sock.repository.recipe.LikeRecipeRepository;
 import com.holo.sock.repository.recipe.RecipeRepository;
 import com.holo.sock.repository.recipe.TagRepository;
 import com.holo.sock.repository.snack.SnackRepository;
+import com.holo.sock.service.member.GradeService;
 import com.holo.sock.service.qscore.RecipeQScoreService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -42,11 +43,12 @@ public class RecipeService {
     private final RecipeQScoreService recipeQScoreService;
     private final CommentRepository commentRepository;
     private final MemberRepository memberRepository;
+    private final GradeService gradeService;
 
     @Transactional
-    public void registerRecipe(Member member,RegisterRecipeRequestDto requestDto){
+    public void registerRecipe(Member writer,RegisterRecipeRequestDto requestDto){
         Recipe recipe = Recipe.builder()
-                .writer(member)
+                .writer(writer)
                 .title(requestDto.getTitle())
                 .content(requestDto.getContent())
                 .images(new ArrayList<>())
@@ -74,6 +76,7 @@ public class RecipeService {
 
             tagRepository.save(saveTag);
         }
+        gradeService.addExp(writer, gradeService.REGISTER_RECIPE);
 
     }
     @Transactional
@@ -91,6 +94,7 @@ public class RecipeService {
         loginMember.getLikeRecipes().add(savedLikeRecipe);
 
         recipeQScoreService.addQScore(recipe);
+        gradeService.addExp(recipe.getWriter(), gradeService.GET_LIKE_TO_RECIPE);
     }
 
     @Transactional
