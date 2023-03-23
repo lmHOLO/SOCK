@@ -3,6 +3,7 @@ package com.holo.sock.service.recipe;
 import com.holo.sock.dto.recipe.request.RegisterRecipeRequestDto;
 import com.holo.sock.dto.recipe.request.UpdateRecipeRequestDto;
 import com.holo.sock.dto.recipe.response.LikeRecipeResponseDto;
+import com.holo.sock.dto.recipe.response.RecipeByContainsSnackResponseDto;
 import com.holo.sock.dto.recipe.response.RecipeDetailResponseDto;
 import com.holo.sock.dto.recipeImage.RecipeImageDto;
 import com.holo.sock.dto.tag.TagDto;
@@ -13,7 +14,7 @@ import com.holo.sock.exception.likerecipe.LikeRecipeExistedException;
 import com.holo.sock.exception.likerecipe.LikeRecipeNotFoundException;
 import com.holo.sock.exception.member.MemberNotFoundException;
 import com.holo.sock.exception.recipe.RecipeNotFoundException;
-import com.holo.sock.exception.recipe.SimilarRecipeParamException;
+import com.holo.sock.exception.recipe.UsedRecipeParamException;
 import com.holo.sock.repository.member.MemberRepository;
 import com.holo.sock.repository.recipe.CommentRepository;
 import com.holo.sock.repository.recipe.LikeRecipeRepository;
@@ -197,15 +198,17 @@ public class RecipeService {
 
     }
     // (1) 해당 과자를 사용한 레시피 추천, (2) 해당과자를 사용한 레시피 추천
-    public void similarRecipeList(Long snackId,Long recipeId){
+    public List<RecipeByContainsSnackResponseDto> containsRecipeList(Long snackId, Long recipeId){
         if((snackId == null && recipeId == null) || (snackId != null && recipeId != null)){
-            throw new SimilarRecipeParamException();
-        }else if(snackId != null){ // snackid 일 경우 -> 해당 과자를 사용한 레시피 추천
-            List<Recipe> recipesBySnack = recipeRepository.findBySnackIdWithTag(snackId);
-
-        }else { // recipeid일 경우 -> 태그(해당 과자)를 사용한 레시피 추천
-
+            throw new UsedRecipeParamException();
         }
+        List<Recipe> recipes = recipeRepository.findRecipesByContainsSnack(snackId, recipeId);
+
+        List<RecipeByContainsSnackResponseDto> result = recipes.stream()
+                .map(recipe -> new RecipeByContainsSnackResponseDto(recipe))
+                .collect(Collectors.toList());
+
+        return result;
 
     }
 

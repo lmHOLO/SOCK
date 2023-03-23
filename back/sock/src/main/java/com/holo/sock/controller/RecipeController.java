@@ -10,8 +10,10 @@ import com.holo.sock.dto.recipe.request.RegisterCommentRequestDto;
 import com.holo.sock.dto.recipe.request.RegisterRecipeRequestDto;
 import com.holo.sock.dto.recipe.request.UpdateRecipeRequestDto;
 import com.holo.sock.dto.recipe.response.LikeRecipeResponseDto;
+import com.holo.sock.dto.recipe.response.RecipeByContainsSnackResponseDto;
 import com.holo.sock.dto.recipe.response.RecipeDetailResponseDto;
 import com.holo.sock.entity.member.Member;
+import com.holo.sock.entity.recipe.Recipe;
 import com.holo.sock.service.recipe.CommentService;
 import com.holo.sock.service.recipe.RecipeService;
 import lombok.RequiredArgsConstructor;
@@ -93,5 +95,12 @@ public class RecipeController {
         return responseService.getListResult(responseDto);
     }
 
+    @GetMapping("/contain")
+    public ListResult<RecipeByContainsSnackResponseDto> recipesByContainsSnack (
+            @RequestParam(value = "snack-id" ,required = false) Long snackId
+            ,@RequestParam(value = "recipe-id",required = false) Long recipeId){
+        List<RecipeByContainsSnackResponseDto> recipes = recipeService.containsRecipeList(snackId, recipeId);
+        return responseService.getListResult(recipes);
+    }
 
 }
