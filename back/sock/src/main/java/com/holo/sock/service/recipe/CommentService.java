@@ -6,7 +6,6 @@ import com.holo.sock.entity.member.Member;
 import com.holo.sock.entity.recipe.Comment;
 import com.holo.sock.entity.recipe.Recipe;
 import com.holo.sock.exception.comment.CommentNotFoundException;
-import com.holo.sock.exception.member.MemberNotFoundException;
 import com.holo.sock.exception.recipe.RecipeNotFoundException;
 import com.holo.sock.repository.recipe.CommentRepository;
 import com.holo.sock.repository.recipe.RecipeRepository;
@@ -14,12 +13,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Slf4j
