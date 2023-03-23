@@ -3,6 +3,7 @@ package com.holo.sock.service.snack;
 import com.holo.sock.dto.snack.request.RegisterSnackRequestDto;
 import com.holo.sock.dto.snack.request.SearchSnackListRequestDto;
 import com.holo.sock.dto.snack.response.SnackDetailResponseDto;
+import com.holo.sock.dto.snack.response.SnackPreferenceResponseDto;
 import com.holo.sock.dto.snack.response.SnackResponseDto;
 import com.holo.sock.entity.member.Member;
 import com.holo.sock.entity.recipe.Tag;
@@ -13,6 +14,7 @@ import com.holo.sock.exception.member.MemberNotFoundException;
 import com.holo.sock.exception.snack.SimilarSnackParamException;
 import com.holo.sock.exception.snack.SnackNotFoundException;
 import com.holo.sock.exception.type.TypeNotFoundException;
+import com.holo.sock.repository.jdbc.JdbcRepository;
 import com.holo.sock.repository.member.MemberRepository;
 import com.holo.sock.repository.recipe.TagRepository;
 import com.holo.sock.repository.snack.*;
@@ -42,6 +44,7 @@ public class SnackService {
     private final FlavorRepository flavorRepository;
     private final LikeSnackRepository likeSnackRepository;
     private final TagRepository tagRepository;
+    private final JdbcRepository jdbcRepository;
 
     private final SearchService searchService;
     private final PurchaseService purchaseService;
@@ -180,5 +183,43 @@ public class SnackService {
         return similarSnacks.stream()
                 .map(snack -> SnackResponseDto.createForSimilar(snack, snackIdsWithLike))
                 .collect(Collectors.toList());
+    }
+
+    public List<SnackPreferenceResponseDto> preferenceSnackList(){
+        List<String> groupSnackList = jdbcRepository.preferenceSnacksGroup();
+        // SELECT * FROM sock.snack where snack_id in (2, 1, 199, 3) order by FIELD(snack_id, 2, 1, 199, 3);
+
+        long[][] groupSnack = new long[groupSnackList.size()][];
+        for(int i = 0; i < groupSnackList.size(); i++){
+            String[] split = groupSnackList.get(i).split(",");
+            groupSnack[i] = new long[split.length];
+            for(int j = 0; j < split.length; j++){
+                groupSnack[i][j] = Long.parseLong(split[j]);
+            }
+        }
+
+        HashSet<Long> set = new HashSet<>();
+        StringBuilder sb = new StringBuilder();
+
+        int count = 0;
+        while(count < 30){
+            for (long[] group : groupSnack) {
+                int size = group.length;
+                while (true) {
+                    int idx = (int) (Math.random() * size);
+
+                    long id = group[idx];
+                    if(!set.contains(id)){
+                        count++;
+                        set.add(id);
+                        sb.append(id);
+                        if(count != 30) sb.append(',');
+                        break;
+                    }
+                }
+            }
+        }
+
+        return jdbcRepository.preferenceSnackList(sb.toString());
     }
 }
