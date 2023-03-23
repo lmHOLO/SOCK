@@ -5,6 +5,8 @@ import com.holo.sock.entity.member.badge.SBTI;
 import com.holo.sock.entity.snack.Review;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -15,6 +17,7 @@ public class ReviewDto {
     private String content;
     private int star;
     private WriterDto writer;
+    private LocalDateTime createdDate;
 
 
     @Getter
@@ -42,6 +45,7 @@ public class ReviewDto {
                                 review.getWriter().getGrade()
                         )
                 )
+                .createdDate(review.getCreateDate())
                 .build();
     }
 }
