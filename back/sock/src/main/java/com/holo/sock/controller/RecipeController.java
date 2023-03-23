@@ -7,6 +7,7 @@ import com.holo.sock.common.result.SingleResult;
 import com.holo.sock.dto.comment.response.CommentResponseDto;
 import com.holo.sock.dto.recipe.request.RegisterCommentRequestDto;
 import com.holo.sock.dto.recipe.request.RegisterRecipeRequestDto;
+import com.holo.sock.dto.recipe.request.UpdateRecipeRequestDto;
 import com.holo.sock.dto.recipe.response.RecipeDetailResponseDto;
 import com.holo.sock.entity.member.Member;
 import com.holo.sock.service.recipe.CommentService;
@@ -74,6 +75,12 @@ public class RecipeController {
         RecipeDetailResponseDto recipeDetailResponseDto = recipeService.detailRecipe(member, recipeId);
         return responseService.getSingleResult(recipeDetailResponseDto);
 
+    }
+    @PutMapping("/{recipe-id}")
+    public Result updateRecipeDetail(@LoginMember Member member,@PathVariable("recipe-id") Long recipeId,
+                                     @RequestBody UpdateRecipeRequestDto updateDto){
+        recipeService.updateRecipeDetail(member, recipeId, updateDto);
+        return responseService.getSuccessResult();
     }
   
 

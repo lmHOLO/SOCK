@@ -25,9 +25,6 @@ public class Tag extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "snack_id")
     private Snack snack;
-    
-    public void updateRecipeTag(Snack snack) {
 
-    }
 
 }

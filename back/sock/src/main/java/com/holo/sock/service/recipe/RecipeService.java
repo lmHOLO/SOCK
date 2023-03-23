@@ -141,14 +141,31 @@ public class RecipeService {
         return new RecipeDetailResponseDto(recipe,tagDtoList,existsLike,totalLikes);
 
     }
+    @Transactional
     public void updateRecipeDetail(Member loginMember,Long recipeId, UpdateRecipeRequestDto updateDto){
-        // 해당 번호 레시피 아이디 찾기
-        Recipe recipe = recipeRepository.findById(recipeId).orElseThrow(RecipeNotFoundException::new);
+        // 해당 번호 레시피 아이디 찾기 , 해당 회원
+        Recipe recipe = recipeRepository.findByWriterAndId(loginMember,recipeId).orElseThrow(RecipeNotFoundException::new);
 
-        //업데이트 - 변경감지
-        // recipe.updateDetail
-        recipe.updateRecipe(recipe.getTitle(), recipe.getContent(), recipe.getImages());
         List<Tag> tags = tagRepository.findAllByRecipe(recipe);
+        //업데이트 - 변경감지
+        // recipe.updateDetail , 제목 내용 태그 이미지만 바꿀 수 있다
+
+        //이미지를 전부 삭제했다가 다시 builder
+        // 등록된 레시피에 있는 첫번째 이미지 제거 -> 등록되어 있던 image과의 관계 끊어짐
+        recipe.getImages().clear();
+
+        List<String> imageName = updateDto.getImages();
+        for (String name : imageName) {
+            recipe.getImages().add(
+                    RecipeImage.builder()
+                            .recipe(recipe)
+                            .name(name)
+                            .build()
+            );
+        }
+
+        recipe.updateRecipe(updateDto.getTitle(), updateDto.getContent(), recipe.getImages());
+
 
         // 1. 태그를 전부 삭제하고 다시 builder
         tagRepository.deleteAllInBatch(tags);
@@ -164,7 +181,6 @@ public class RecipeService {
 
             tagRepository.save(saveTag);
         }
-        // 테스트 해보기 3/22
 
     }
 
