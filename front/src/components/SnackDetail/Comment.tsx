@@ -13,6 +13,30 @@ export default function Comment() {
       textRef.current.style.height = textRef.current.scrollHeight + 'px';
     }
   }, []);
+
+  const delSpace = (data: string) => {
+    return data.replace(/\s/g, '');
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setComment(e.target.value);
+  };
+
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    let newComment = comment;
+    if (delSpace(newComment) === '') {
+      alert('댓글을 작성해주세요');
+      setComment('');
+      return;
+    }
+    if (starPoint <= 0) {
+      alert('별점을 등록해주세요');
+      return;
+    }
+    // 리뷰 등록하기
+
+    console.log(newComment);
+  };
   return (
     <div>
       {isValid && <CommentRating setStarPoint={setStarPoint} />}
@@ -25,8 +49,10 @@ export default function Comment() {
               className={styles.content_text}
               placeholder='댓글 남기기'
               onInput={handleResizeHeight}
+              onChange={handleChange}
+              value={comment}
             />
-            <button>작성</button>
+            <button onClick={handleSubmit}>작성</button>
           </>
         ) : (
           <>
