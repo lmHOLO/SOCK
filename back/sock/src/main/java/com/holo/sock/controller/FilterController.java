@@ -2,7 +2,7 @@ package com.holo.sock.controller;
 
 import com.holo.sock.common.response.ResponseService;
 import com.holo.sock.common.result.ListResult;
-import com.holo.sock.dto.filter.FlavorDto;
+import com.holo.sock.dto.filter.FilterDto;
 import com.holo.sock.service.filter.FilterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +20,14 @@ public class FilterController {
     private final FilterService filterService;
 
     @GetMapping("/flavors")
-    public ListResult<FlavorDto> flavorList(){
-        List<FlavorDto> responseDto = filterService.flavorList();
+    public ListResult<FilterDto> flavorList(){
+        List<FilterDto> responseDto = filterService.flavorList();
+        return responseService.getListResult(responseDto);
+    }
+
+    @GetMapping("/types")
+    public ListResult<FilterDto> typeList(){
+        List<FilterDto> responseDto = filterService.typeList();
         return responseService.getListResult(responseDto);
     }
 
