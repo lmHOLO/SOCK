@@ -13,6 +13,7 @@ import com.holo.sock.exception.likerecipe.LikeRecipeExistedException;
 import com.holo.sock.exception.likerecipe.LikeRecipeNotFoundException;
 import com.holo.sock.exception.member.MemberNotFoundException;
 import com.holo.sock.exception.recipe.RecipeNotFoundException;
+import com.holo.sock.exception.recipe.SimilarRecipeParamException;
 import com.holo.sock.repository.member.MemberRepository;
 import com.holo.sock.repository.recipe.CommentRepository;
 import com.holo.sock.repository.recipe.LikeRecipeRepository;
@@ -193,6 +194,18 @@ public class RecipeService {
         return member.getLikeRecipes().stream()
                 .map(likeRecipe -> LikeRecipeResponseDto.createFromLikeRecipe(likeRecipe.getRecipe()))
                 .collect(Collectors.toList());
+
+    }
+    // (1) 해당 과자를 사용한 레시피 추천, (2) 해당과자를 사용한 레시피 추천
+    public void similarRecipeList(Long snackId,Long recipeId){
+        if((snackId == null && recipeId == null) || (snackId != null && recipeId != null)){
+            throw new SimilarRecipeParamException();
+        }else if(snackId != null){ // snackid 일 경우 -> 해당 과자를 사용한 레시피 추천
+            List<Recipe> recipesBySnack = recipeRepository.findBySnackIdWithTag(snackId);
+
+        }else { // recipeid일 경우 -> 태그(해당 과자)를 사용한 레시피 추천
+
+        }
 
     }
 
