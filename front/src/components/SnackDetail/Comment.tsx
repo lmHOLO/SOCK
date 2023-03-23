@@ -1,8 +1,10 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import styles from '@/styles/comment.module.css';
 import CommentList from './CommentList';
 export default function Comment() {
   const textRef = useRef<HTMLTextAreaElement>(null);
+  let [comment, setComment] = useState('');
+  let [isValid, setIsValid] = useState(false);
   const handleResizeHeight = useCallback(() => {
     if (textRef && textRef.current) {
       textRef.current.style.height = 'auto';
@@ -12,16 +14,31 @@ export default function Comment() {
   return (
     <div>
       <div className={styles['comment-write']}>
-        <textarea
-          rows={1}
-          ref={textRef}
-          className={styles.content_text}
-          placeholder='댓글 입력하기'
-          onInput={handleResizeHeight}
-        />
-        <button>작성</button>
+        {isValid ? (
+          <>
+            <textarea
+              rows={1}
+              ref={textRef}
+              className={styles.content_text}
+              placeholder='댓글 남기기'
+              onInput={handleResizeHeight}
+            />
+            <button>작성</button>
+          </>
+        ) : (
+          <>
+            <textarea
+              rows={1}
+              ref={textRef}
+              className={styles.content_text}
+              placeholder='이미 등록하셨습니다'
+              disabled
+            />
+            <button disabled>작성</button>
+          </>
+        )}
       </div>
-      <CommentList />
+      <CommentList setIsValid={setIsValid} />
     </div>
   );
 }

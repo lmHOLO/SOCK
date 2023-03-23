@@ -1,21 +1,21 @@
 import React from 'react';
-import { CommentType } from '@/types';
+import { ReviewType } from '@/types/snack';
 import styles from '@/styles/comment.module.css';
 import StarRating from './StarRating';
 interface Props {
-  comment: CommentType;
+  comment: ReviewType;
 }
 export default function CommentListItem({ comment }: Props) {
   return (
     <div>
       <div className={styles['member-data']}>
-        <img src={comment.image} alt={comment.nickname} />
-        <p>{comment.nickname}</p>
+        <img src={comment.writer.image} alt={comment.writer.image} />
+        <p>{comment.writer.nickname}</p>
       </div>
       <div className={styles['comment-data']}>
-        <div>{comment.sumOfStar}</div>
+        <div>{comment.star}</div>
         <StarRating />
-        <p>{comment.creatingDate}</p>
+        <p>{comment.createdDate}</p>
       </div>
       <p>{comment.content}</p>
     </div>

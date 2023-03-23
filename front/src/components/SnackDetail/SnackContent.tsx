@@ -7,6 +7,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { getSnackDetailApi } from '@/apis/api/snackDetail';
 import { getSnackDetail } from '@/apis/services/snackDetail';
 import { ErrorType } from '@/types/error';
+import FlavorList from './FlavorList';
 export default function SnackContent() {
   const { id } = useParams();
   const [snack, setSnack] = useState<SnackDetailType>({
@@ -43,10 +44,13 @@ export default function SnackContent() {
         <img src={snack.image} alt={snack.name} />
       </div>
       <h2>{snack.name}</h2>
-      <div className={styles['grade-like']}>
-        <div className={styles['snack-grade']}>
-          <StarIcon />
-          <p>{snack.sumOfStars}</p>
+      <div className={styles['grade-flavors-like']}>
+        <div className={styles['grade-flavors']}>
+          <div className={styles['snack-grade']}>
+            <StarIcon />
+            <p>{snack.sumOfStars}</p>
+          </div>
+          <FlavorList flavors={snack.flavors} />
         </div>
         <FavoriteBorderIcon />
       </div>
