@@ -25,6 +25,8 @@ public class RecipeDetailResponseDto {
     private SBTI sbti;
     private Grade grade;
 
+    // 레시피 이미지 추가
+
     private String content;
 
     // 태그(과자) , 좋아요, 총 좋아요 수

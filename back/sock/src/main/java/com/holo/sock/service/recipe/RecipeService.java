@@ -2,6 +2,7 @@ package com.holo.sock.service.recipe;
 
 import com.holo.sock.dto.recipe.request.RegisterRecipeRequestDto;
 import com.holo.sock.dto.recipe.request.UpdateRecipeRequestDto;
+import com.holo.sock.dto.recipe.response.LikeRecipeResponseDto;
 import com.holo.sock.dto.recipe.response.RecipeDetailResponseDto;
 import com.holo.sock.dto.tag.TagDto;
 import com.holo.sock.entity.member.Member;
@@ -9,7 +10,9 @@ import com.holo.sock.entity.recipe.*;
 import com.holo.sock.entity.snack.Snack;
 import com.holo.sock.exception.likerecipe.LikeRecipeExistedException;
 import com.holo.sock.exception.likerecipe.LikeRecipeNotFoundException;
+import com.holo.sock.exception.member.MemberNotFoundException;
 import com.holo.sock.exception.recipe.RecipeNotFoundException;
+import com.holo.sock.repository.member.MemberRepository;
 import com.holo.sock.repository.recipe.CommentRepository;
 import com.holo.sock.repository.recipe.LikeRecipeRepository;
 import com.holo.sock.repository.recipe.RecipeRepository;
@@ -18,6 +21,8 @@ import com.holo.sock.repository.snack.SnackRepository;
 import com.holo.sock.service.qscore.RecipeQScoreService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,6 +42,8 @@ public class RecipeService {
     private final LikeRecipeRepository likeRecipeRepository;
     private final RecipeQScoreService recipeQScoreService;
     private final CommentRepository commentRepository;
+
+    private final MemberRepository memberRepository;
 
     @Transactional
     public void registerRecipe(Member member,RegisterRecipeRequestDto requestDto){
@@ -181,6 +188,16 @@ public class RecipeService {
 
             tagRepository.save(saveTag);
         }
+
+    }
+
+    public List<LikeRecipeResponseDto> likeRecipeList(Long memberId){
+        // 해당 회원이 좋아요 누른 레시피
+        Member member = memberRepository.findById(memberId).orElseThrow(MemberNotFoundException::new);
+
+        return member.getLikeRecipes().stream()
+                .map(likeRecipe -> LikeRecipeResponseDto.createFromLikeRecipe(likeRecipe.getRecipe()))
+                .collect(Collectors.toList());
 
     }
 

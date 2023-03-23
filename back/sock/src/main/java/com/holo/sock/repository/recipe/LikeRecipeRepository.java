@@ -3,6 +3,8 @@ package com.holo.sock.repository.recipe;
 import com.holo.sock.entity.member.Member;
 import com.holo.sock.entity.recipe.LikeRecipe;
 import com.holo.sock.entity.recipe.Recipe;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,4 +18,6 @@ public interface LikeRecipeRepository extends JpaRepository<LikeRecipe, Long> {
     List<LikeRecipe> findAllByRecipe(Recipe recipe);
 
     Long countByRecipe(Recipe recipe);
+
+    List<LikeRecipe> findAllByMember(Member member);
 }
