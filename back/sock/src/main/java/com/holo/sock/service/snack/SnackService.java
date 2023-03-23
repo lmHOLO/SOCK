@@ -13,6 +13,8 @@ import com.holo.sock.exception.member.MemberNotFoundException;
 import com.holo.sock.exception.snack.SimilarSnackParamException;
 import com.holo.sock.exception.snack.SnackNotFoundException;
 import com.holo.sock.exception.type.TypeNotFoundException;
+import com.holo.sock.repository.jdbc.GroupSnackDto;
+import com.holo.sock.repository.jdbc.JdbcRepository;
 import com.holo.sock.repository.member.MemberRepository;
 import com.holo.sock.repository.recipe.TagRepository;
 import com.holo.sock.repository.snack.*;
@@ -42,6 +44,7 @@ public class SnackService {
     private final FlavorRepository flavorRepository;
     private final LikeSnackRepository likeSnackRepository;
     private final TagRepository tagRepository;
+    private final JdbcRepository jdbcRepository;
 
     private final SearchService searchService;
     private final PurchaseService purchaseService;
@@ -180,5 +183,11 @@ public class SnackService {
         return similarSnacks.stream()
                 .map(snack -> SnackResponseDto.createForSimilar(snack, snackIdsWithLike))
                 .collect(Collectors.toList());
+    }
+
+    public void preferenceSnackList(){
+        List<GroupSnackDto> GroupSnackList = jdbcRepository.preferenceSnacksGroup();
+        // SELECT * FROM sock.snack where snack_id in (2, 1, 199, 3) order by FIELD(snack_id, 2, 1, 199, 3);
+        // GroupSnackDto 쓸 필요 없을 꺼 같음.
     }
 }

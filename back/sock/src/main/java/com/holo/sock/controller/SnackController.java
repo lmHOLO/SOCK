@@ -105,4 +105,9 @@ public class SnackController {
         List<SnackResponseDto> responseDto = snackService.similarSnackList(member, snackId, recipeId);
         return responseService.getListResult(responseDto);
     }
+
+    @GetMapping("/preference")
+    public void preferenceSnackList(){
+        snackService.preferenceSnackList();
+    }
 }
