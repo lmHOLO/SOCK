@@ -2,7 +2,8 @@ import BottomNav from '@/components/Navbar/BottomNav';
 import TopNav from '@/components/Navbar/TopNav';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { SnackListItemType } from '@/types';
+import { RecipeListItemType } from '@/types';
+import { SnackListItemType } from '@/types/snack';
 import RecipeContent from '@/components/RecipeDetail/RecipeContent';
 import SnackList from '@/components/common/SnackList';
 import RecipeList from '@/components/common/RecipeList';
@@ -13,32 +14,32 @@ export default function RecipeDetail() {
   // TODO: 나중에 api로 추천 snack, 추천 recipe 받아오기
   const [similarSnackList, setSimilarSnackList] = useState<SnackListItemType[]>([
     {
-      id: 1,
+      snackId: '1',
       image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
       title: '첫번째 과자',
     },
     {
-      id: 2,
+      snackId: '2',
       image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
       title: '두번째 과자',
     },
     {
-      id: 3,
+      snackId: '3',
       image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
       title: '세번째 과자',
     },
     {
-      id: 4,
+      snackId: '4',
       image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
       title: '네번째 과자',
     },
     {
-      id: 5,
+      snackId: '5',
       image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
       title: '다섯번째 과자',
     },
   ]);
-  const [recommendRecipeList, setRecommendRecipeList] = useState<SnackListItemType[]>([
+  const [recommendRecipeList, setRecommendRecipeList] = useState<RecipeListItemType[]>([
     {
       id: 1,
       image: 'https://i.postimg.cc/VL6npV0x/recipe.jpg',

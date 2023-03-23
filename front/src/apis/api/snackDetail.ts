@@ -13,3 +13,28 @@ export const getSnackDetailApi = async (id: string) => {
     }
   }
 };
+
+// 과자 리뷰 출력
+export const getSnackReviewsAPI = async (id: string) => {
+  try {
+    const { data } = await authApi.get(`snacks/${id}/reviews`);
+    return data.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      console.log('에러: ', error.response);
+      return error.response?.data;
+    }
+  }
+};
+
+export const getSimilarSnackAPI = async (page: string, id: string) => {
+  try {
+    const { data } = await authApi.get(`snacks/similar?${page}-id=${id}`);
+    return data.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      console.log('에러: ', error.response);
+      return error.response?.data;
+    }
+  }
+};

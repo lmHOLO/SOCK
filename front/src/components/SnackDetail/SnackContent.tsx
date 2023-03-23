@@ -6,7 +6,6 @@ import styles from '@/styles/snack_detail.module.css';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { getSnackDetailApi } from '@/apis/api/snackDetail';
 import { getSnackDetail } from '@/apis/services/snackDetail';
-import e from 'express';
 import { ErrorType } from '@/types/error';
 export default function SnackContent() {
   const { id } = useParams();
@@ -33,7 +32,6 @@ export default function SnackContent() {
   useEffect(() => {
     // TODO: 없는 과자일 때 error 처리하기
     if (id) {
-      // getSnackDetailApi(id).then((data: SnackDetailType | ErrorType) => {});
       getSnackDetailApi(id).then(getSnackDetail).then(setSnack);
     }
   }, [id]);
