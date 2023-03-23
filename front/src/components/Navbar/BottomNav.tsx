@@ -13,7 +13,7 @@ export default function BottomNav() {
   };
   return (
     <div className={styles['bottom-nav-container']}>
-      <button className={styles['menu-btn']} onClick={() => navigateTo('snack')}>
+      <button className={styles['menu-btn']} onClick={() => navigateTo('snacks/1')}>
         <div className={styles['menu-content']}>
           <CookieIcon fontSize='large' style={{ color: 'white' }} />
           <p>SNACK</p>
