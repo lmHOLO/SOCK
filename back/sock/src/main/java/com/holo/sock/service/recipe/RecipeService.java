@@ -90,8 +90,9 @@ public class RecipeService {
                 .member(loginMember)
                 .recipe(recipe)
                 .build();
-        likeRecipeRepository.save(likeRecipe);
-        // 양뱡항 활용하기
+        LikeRecipe savedLikeRecipe = likeRecipeRepository.save(likeRecipe);
+        loginMember.getLikeRecipes().add(savedLikeRecipe);
+
         recipeQScoreService.addQScore(recipe);
     }
 
