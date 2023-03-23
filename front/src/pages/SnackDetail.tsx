@@ -2,7 +2,8 @@ import BottomNav from '@/components/Navbar/BottomNav';
 import TopNav from '@/components/Navbar/TopNav';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { RecipeListItemType, SnackListItemType } from '@/types';
+import { RecipeListItemType } from '@/types';
+import { SnackListItemType } from '@/types/snack';
 import SnackContent from '@/components/SnackDetail/SnackContent';
 import SnackList from '@/components/common/SnackList';
 import RecipeList from '@/components/common/RecipeList';
@@ -16,7 +17,6 @@ export default function SnackDetail() {
   useEffect(() => {
     if (id) {
       getSimilarSnackAPI('snack', id).then((data) => {
-        console.log('similar', data);
         setSimilarSnackList(data);
       });
     }

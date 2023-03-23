@@ -72,7 +72,7 @@ export type SortType = {
 };
 
 export type SnackListItemType = {
-  id: number;
+  snackId: string;
   image: string;
   title: string;
 };
