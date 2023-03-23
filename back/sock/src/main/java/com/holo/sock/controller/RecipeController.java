@@ -2,12 +2,14 @@ package com.holo.sock.controller;
 
 import com.holo.sock.common.annotation.LoginMember;
 import com.holo.sock.common.response.ResponseService;
+import com.holo.sock.common.result.ListResult;
 import com.holo.sock.common.result.Result;
 import com.holo.sock.common.result.SingleResult;
 import com.holo.sock.dto.comment.response.CommentResponseDto;
 import com.holo.sock.dto.recipe.request.RegisterCommentRequestDto;
 import com.holo.sock.dto.recipe.request.RegisterRecipeRequestDto;
 import com.holo.sock.dto.recipe.request.UpdateRecipeRequestDto;
+import com.holo.sock.dto.recipe.response.LikeRecipeResponseDto;
 import com.holo.sock.dto.recipe.response.RecipeDetailResponseDto;
 import com.holo.sock.entity.member.Member;
 import com.holo.sock.service.recipe.CommentService;
@@ -18,6 +20,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -82,7 +86,12 @@ public class RecipeController {
         recipeService.updateRecipeDetail(member, recipeId, updateDto);
         return responseService.getSuccessResult();
     }
-  
+
+    @GetMapping("/like")
+    public ListResult<LikeRecipeResponseDto> likeRecipeList(@RequestParam("member-id") Long memberId){
+        List<LikeRecipeResponseDto> responseDto = recipeService.likeRecipeList(memberId);
+        return responseService.getListResult(responseDto);
+    }
 
 
 }
