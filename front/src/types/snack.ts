@@ -71,6 +71,7 @@ export type SortType = {
   empty: boolean;
 };
 
+// 유사한 과자 추천
 export type SnackListItemType = {
   snackId: string;
   image: string;

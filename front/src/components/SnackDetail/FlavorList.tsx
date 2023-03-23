@@ -6,7 +6,6 @@ interface Props {
   flavors: FlavorType[];
 }
 export default function FlavorList({ flavors }: Props) {
-  console.log(flavors);
   return (
     <ul className={styles['flavor-list-container']}>
       {flavors.map((flavor) => (
