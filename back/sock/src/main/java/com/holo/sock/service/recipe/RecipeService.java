@@ -103,6 +103,14 @@ public class RecipeService {
                 .orElseThrow(LikeRecipeNotFoundException::new);
 
         likeRecipeRepository.delete(likeRecipe);
+
+        for (LikeRecipe lr: loginMember.getLikeRecipes()) {
+            if(lr.getId() == likeRecipe.getId()){
+              loginMember.getLikeRecipes().remove(lr.getId());
+            }
+        }
+
+
         recipeQScoreService.subQScore(recipe);
     }
 
