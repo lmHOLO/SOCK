@@ -13,8 +13,7 @@ export default function CommentListItem({ comment }: Props) {
         <p>{comment.writer.nickname}</p>
       </div>
       <div className={styles['comment-data']}>
-        <div>{comment.star}</div>
-        <StarRating />
+        <StarRating star={comment.star} />
         <p>{comment.createdDate}</p>
       </div>
       <p>{comment.content}</p>

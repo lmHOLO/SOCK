@@ -5,7 +5,7 @@ import StarOutlineIcon from '@mui/icons-material/StarOutline';
 interface Props {
   star: string;
 }
-export default function StarRating({ star }: Props) {
+export default function CommentRating() {
   let starRatingState: Array<string> = [];
 
   const [starRatingOnOff, setStarRatingOff] = useState(starRatingState);
@@ -29,14 +29,12 @@ export default function StarRating({ star }: Props) {
     setStarRatingOff(starRatingState);
   }, []);
   return (
-    <div className={styles['snack-grade']}>
-      {[...Array(5)].map((n, index) => {
-        if (n > star) {
-          return <StarOutlineIcon fontSize='small' />;
-        } else {
-          return <StarIcon fontSize='small' />;
-        }
-      })}
+    <div>
+      <StarIcon className={starRatingOnOff[0]} onMouseOver={() => mouseOverStarRating(0)} />
+      <StarIcon className={starRatingOnOff[1]} onMouseOver={() => mouseOverStarRating(1)} />
+      <StarIcon className={starRatingOnOff[2]} onMouseOver={() => mouseOverStarRating(2)} />
+      <StarIcon className={starRatingOnOff[3]} onMouseOver={() => mouseOverStarRating(3)} />
+      <StarIcon className={starRatingOnOff[4]} onMouseOver={() => mouseOverStarRating(4)} />
     </div>
   );
 }
