@@ -4,6 +4,7 @@ import com.holo.sock.dto.recipe.request.RegisterRecipeRequestDto;
 import com.holo.sock.dto.recipe.request.UpdateRecipeRequestDto;
 import com.holo.sock.dto.recipe.response.LikeRecipeResponseDto;
 import com.holo.sock.dto.recipe.response.RecipeDetailResponseDto;
+import com.holo.sock.dto.recipeImage.RecipeImageDto;
 import com.holo.sock.dto.tag.TagDto;
 import com.holo.sock.entity.member.Member;
 import com.holo.sock.entity.recipe.*;
@@ -90,7 +91,7 @@ public class RecipeService {
                 .recipe(recipe)
                 .build();
         likeRecipeRepository.save(likeRecipe);
-
+        // 양뱡항 활용하기
         recipeQScoreService.addQScore(recipe);
     }
 
@@ -135,6 +136,10 @@ public class RecipeService {
         // loginMember에 따라 해당 레시피의 좋아요를 눌렀는지도 가져오기
         boolean existsLike = likeRecipeRepository.existsByMemberAndRecipe(loginMember, recipe);
 
+        // 해당 레시피의 이미지 가져오기
+        List<RecipeImageDto> recipeImageDtoList = recipe.getImages().stream()
+                .map(recipeImage -> new RecipeImageDto(recipeImage))
+                .collect(Collectors.toList());
 
         // 레시피에 해당한 태그 가져오기
         List<Tag> tagList = tagRepository.findAllFetchJoinByRecipe(recipe);
@@ -145,7 +150,7 @@ public class RecipeService {
         // 레시피 인기도 증가
         recipeQScoreService.addQScore(recipe);
 
-        return new RecipeDetailResponseDto(recipe,tagDtoList,existsLike,totalLikes);
+        return new RecipeDetailResponseDto(recipe,tagDtoList,recipeImageDtoList,existsLike,totalLikes);
 
     }
     @Transactional
