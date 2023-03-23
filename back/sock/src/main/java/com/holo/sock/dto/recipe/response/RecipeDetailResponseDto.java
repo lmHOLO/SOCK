@@ -9,6 +9,7 @@ import com.holo.sock.entity.recipe.Recipe;
 import com.holo.sock.entity.recipe.Tag;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -18,6 +19,7 @@ import java.util.List;
 public class RecipeDetailResponseDto {
     private Long recipeId;
 
+    private LocalDateTime createdDate;
     private String title;
     private Long writerId;
     private String writerNickname;
@@ -39,6 +41,7 @@ public class RecipeDetailResponseDto {
 // tagDto 필요
     public RecipeDetailResponseDto(Recipe recipe, List<TagDto> tag,List<RecipeImageDto> images, boolean like,Long totalLikes) {
         this.recipeId = recipe.getId();
+        this.createdDate = recipe.getCreateDate();
         this.title = recipe.getTitle();
         this.writerId =recipe.getWriter().getId();
         this.writerNickname = recipe.getWriter().getNickname();
