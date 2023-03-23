@@ -43,7 +43,7 @@ export type OtherReviewsType = {
 export type ReviewType = {
   reviewId: string;
   content: string;
-  star: string;
+  star: number;
   writer: WriterType;
   createdDate: string;
 };
@@ -76,4 +76,10 @@ export type SnackListItemType = {
   snackId: string;
   image: string;
   title: string;
+};
+
+// 리뷰
+export type ReviewSubmitType = {
+  content: string;
+  star: number;
 };

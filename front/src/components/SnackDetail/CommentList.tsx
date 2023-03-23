@@ -19,12 +19,12 @@ export default function CommentList({ setIsValid }: Props) {
   useEffect(() => {
     if (id) {
       getSnackReviewsAPI(id).then((data) => {
-        console.log('data', data);
+        // console.log('data', data);
         const myReviewList = getMyReview(data);
         const otherReviewList = getOtherReviewList(data);
 
         if (myReviewList != null && otherReviewList != null) {
-          console.log(myReviewList);
+          // console.log(myReviewList);
           const newList: ReviewType[] = [...[myReviewList], ...otherReviewList];
           setCommentList(newList);
         } else {
@@ -33,7 +33,7 @@ export default function CommentList({ setIsValid }: Props) {
           setCommentList(newList);
         }
 
-        console.log('useEffect ', commentList);
+        // console.log('useEffect ', commentList);
       });
     }
   }, [id]);
