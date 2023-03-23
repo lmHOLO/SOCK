@@ -1,10 +1,12 @@
 import React, { useCallback, useRef, useState } from 'react';
 import styles from '@/styles/comment.module.css';
 import CommentList from './CommentList';
+import CommentRating from './CommentRating';
 export default function Comment() {
   const textRef = useRef<HTMLTextAreaElement>(null);
   let [comment, setComment] = useState('');
   let [isValid, setIsValid] = useState(false);
+  let [starPoint, setStarPoint] = useState(0);
   const handleResizeHeight = useCallback(() => {
     if (textRef && textRef.current) {
       textRef.current.style.height = 'auto';
@@ -13,6 +15,7 @@ export default function Comment() {
   }, []);
   return (
     <div>
+      {isValid && <CommentRating setStarPoint={setStarPoint} />}
       <div className={styles['comment-write']}>
         {isValid ? (
           <>

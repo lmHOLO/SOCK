@@ -3,7 +3,7 @@ import styles from '@/styles/comment.module.css';
 import StarIcon from '@mui/icons-material/Star';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
 interface Props {
-  star: string;
+  star: number;
 }
 export default function StarRating({ star }: Props) {
   let starRatingState: Array<string> = [];
@@ -29,9 +29,9 @@ export default function StarRating({ star }: Props) {
     setStarRatingOff(starRatingState);
   }, []);
   return (
-    <div className={styles['snack-grade']}>
+    <div className={styles['star']}>
       {[...Array(5)].map((n, index) => {
-        if (n > star) {
+        if (index > star) {
           return <StarOutlineIcon fontSize='small' />;
         } else {
           return <StarIcon fontSize='small' />;

@@ -3,38 +3,34 @@ import styles from '@/styles/comment.module.css';
 import StarIcon from '@mui/icons-material/Star';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
 interface Props {
-  star: string;
+  setStarPoint: React.Dispatch<React.SetStateAction<number>>;
 }
-export default function CommentRating() {
-  let starRatingState: Array<string> = [];
+export default function CommentRating({ setStarPoint }: Props) {
+  let starRatingState: Array<boolean> = new Array(5).fill(false);
 
   const [starRatingOnOff, setStarRatingOff] = useState(starRatingState);
 
   function mouseOverStarRating(inx: number) {
-    let tempStarRating: Array<string> = [];
+    let tempStarRating: Array<boolean> = [];
     for (let i = 0; i < 5; i++) {
-      if (i < inx) {
-        tempStarRating.push('item-rating pointer filled');
+      if (i <= inx) {
+        tempStarRating[i] = true;
       } else {
-        tempStarRating.push('item-rating pointer unfilled');
+        tempStarRating[i] = false;
       }
     }
+    setStarPoint(inx);
     setStarRatingOff(tempStarRating);
   }
-
-  useEffect(() => {
-    for (let i = 0; i < 5; i++) {
-      starRatingState.push('item-rating pointer unfilled');
-    }
-    setStarRatingOff(starRatingState);
-  }, []);
   return (
-    <div>
-      <StarIcon className={starRatingOnOff[0]} onMouseOver={() => mouseOverStarRating(0)} />
-      <StarIcon className={starRatingOnOff[1]} onMouseOver={() => mouseOverStarRating(1)} />
-      <StarIcon className={starRatingOnOff[2]} onMouseOver={() => mouseOverStarRating(2)} />
-      <StarIcon className={starRatingOnOff[3]} onMouseOver={() => mouseOverStarRating(3)} />
-      <StarIcon className={starRatingOnOff[4]} onMouseOver={() => mouseOverStarRating(4)} />
+    <div className={styles['star']}>
+      {starRatingOnOff.map((n, index) => {
+        if (starRatingOnOff[index]) {
+          return <StarIcon fontSize='small' onMouseOver={() => mouseOverStarRating(index)} />;
+        } else {
+          return <StarOutlineIcon fontSize='small' onMouseOver={() => mouseOverStarRating(index)} />;
+        }
+      })}
     </div>
   );
 }
