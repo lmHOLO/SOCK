@@ -16,4 +16,5 @@ public interface SnackRepository extends JpaRepository<Snack, Long>, SnackReposi
     Optional<Snack> findSnackByIdWithTypeAndFlavor(@Param("snackId") Long snackId);
 
     List<Snack> findByIdIn(List<Long> id);
+
 }
