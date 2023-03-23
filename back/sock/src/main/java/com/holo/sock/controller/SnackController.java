@@ -10,6 +10,7 @@ import com.holo.sock.dto.review.response.ReviewResponseDto;
 import com.holo.sock.dto.snack.request.RegisterSnackRequestDto;
 import com.holo.sock.dto.snack.request.SearchSnackListRequestDto;
 import com.holo.sock.dto.snack.response.SnackDetailResponseDto;
+import com.holo.sock.dto.snack.response.SnackPreferenceResponseDto;
 import com.holo.sock.dto.snack.response.SnackResponseDto;
 import com.holo.sock.entity.member.Member;
 import com.holo.sock.service.snack.ReviewService;
@@ -107,7 +108,8 @@ public class SnackController {
     }
 
     @GetMapping("/preference")
-    public void preferenceSnackList(){
-        snackService.preferenceSnackList();
+    public ListResult<SnackPreferenceResponseDto> preferenceSnackList(){
+        List<SnackPreferenceResponseDto> responseDto = snackService.preferenceSnackList();
+        return responseService.getListResult(responseDto);
     }
 }
