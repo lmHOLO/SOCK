@@ -72,4 +72,8 @@ public class Member extends BaseEntity {
     public void upgradeGrade(Grade grade){
         this.grade = grade;
     }
+
+    public void changeSBTI(SBTI sbti){
+        this.sbti = sbti;
+    }
 }

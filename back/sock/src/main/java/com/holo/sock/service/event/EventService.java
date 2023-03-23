@@ -1,8 +1,10 @@
 package com.holo.sock.service.event;
 
 import com.holo.sock.dto.event.response.SBTIQuestionResponseDto;
+import com.holo.sock.entity.member.Member;
 import com.holo.sock.entity.member.badge.SBTI;
 import com.holo.sock.repository.event.SBTIQuestionRepository;
+import com.holo.sock.service.member.GradeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,13 +21,16 @@ public class EventService {
 
     private final SBTIQuestionRepository sbtiQuestionRepository;
 
+    private final GradeService gradeService;
+
     public List<SBTIQuestionResponseDto> sbtiQuestionList(){
          return sbtiQuestionRepository.findAll().stream()
                 .map(SBTIQuestionResponseDto::create)
                 .collect(Collectors.toList());
     }
 
-    public String sbtiAnswer(List<Integer> answers){
+    @Transactional
+    public String sbtiAnswer(Member loginMember, List<Integer> answers){
         int score = 0;
 
         for(int i = 0; i < 4; i++){
@@ -33,9 +38,13 @@ public class EventService {
             score += (ans << i);
         }
 
-        log.info("score = {}", score);
         SBTI[] sbtis = SBTI.values();
-        return sbtis[score].toString();
+        SBTI sbti = sbtis[score];
+
+        loginMember.changeSBTI(sbti);
+        gradeService.addExp(loginMember, gradeService.PARTICIPATE_CHALLENGE);
+
+        return sbti.toString();
     }
 
 
