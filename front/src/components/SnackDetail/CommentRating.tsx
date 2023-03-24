@@ -26,9 +26,17 @@ export default function CommentRating({ setStarPoint }: Props) {
     <div className={styles['star']}>
       {starRatingOnOff.map((n, index) => {
         if (starRatingOnOff[index]) {
-          return <StarIcon fontSize='small' onMouseOver={() => mouseOverStarRating(index)} />;
+          return (
+            <div key={index}>
+              <StarIcon fontSize='small' onMouseOver={() => mouseOverStarRating(index)} />
+            </div>
+          );
         } else {
-          return <StarOutlineIcon fontSize='small' onMouseOver={() => mouseOverStarRating(index)} />;
+          return (
+            <div key={index}>
+              <StarOutlineIcon fontSize='small' onMouseOver={() => mouseOverStarRating(index)} />
+            </div>
+          );
         }
       })}
     </div>

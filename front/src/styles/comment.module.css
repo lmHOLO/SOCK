@@ -2,6 +2,10 @@
 .comment-container {
   margin: 10px 0px;
 }
+
+.comment-item {
+  margin: 10px 0px;
+}
 .member-date {
   display: flex;
   align-items: center;
@@ -30,7 +34,6 @@
 .member-data {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
 }
 
 .member-data > img {
@@ -43,9 +46,13 @@
 
 .comment-data {
   display: flex;
+  justify-content: space-between;
 }
 
 /* 별점 관련 */
-.star > svg {
+.star {
+  display: flex;
+}
+.star > div > svg {
   color: sock-yellow;
 }
