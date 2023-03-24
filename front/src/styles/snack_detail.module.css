@@ -63,3 +63,7 @@
   border-radius: 100px;
   margin-right: 5px;
 }
+
+.grade-flavors-like > svg {
+  color: rgb(255, 119, 119);
+}

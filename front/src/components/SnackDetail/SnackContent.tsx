@@ -4,7 +4,8 @@ import { SnackDetailType } from '@/types/snack';
 import StarIcon from '@mui/icons-material/Star';
 import styles from '@/styles/snack_detail.module.css';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { getSnackDetailApi } from '@/apis/api/snackDetail';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { deleteSnackLikeAPI, getSnackDetailApi, postSnackLikeAPI } from '@/apis/api/snackDetail';
 import { getSnackDetail } from '@/apis/services/snackDetail';
 import { ErrorType } from '@/types/error';
 import FlavorList from './FlavorList';
@@ -30,6 +31,24 @@ export default function SnackContent() {
     like: false,
     totalLikes: '',
   });
+
+  const handleClick = () => {
+    if (id) {
+      if (!snack.like) {
+        postSnackLikeAPI(id).then(console.log);
+        setSnack((prevState) => ({
+          ...prevState,
+          like: true,
+        }));
+        return;
+      }
+      deleteSnackLikeAPI(id).then(console.log);
+      setSnack((prevState) => ({
+        ...prevState,
+        like: false,
+      }));
+    }
+  };
 
   useEffect(() => {
     // TODO: 없는 과자일 때 error 처리하기
@@ -60,7 +79,7 @@ export default function SnackContent() {
           </div>
           <FlavorList flavors={snack.flavors} />
         </div>
-        <FavoriteBorderIcon />
+        {snack.like ? <FavoriteIcon onClick={handleClick} /> : <FavoriteBorderIcon onClick={handleClick} />}
       </div>
     </div>
   );
