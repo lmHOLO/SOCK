@@ -2,8 +2,8 @@ export type SnackDetailType = {
   snackId: string;
   image: string;
   name: string;
-  sumOfStars: string;
-  numberOfParticipants: string;
+  sumOfStars: number;
+  numberOfParticipants: number;
   type: SnackTypeType;
   flavors: FlavorType[];
   like: boolean;

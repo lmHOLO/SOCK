@@ -64,13 +64,14 @@ export default function SnackDetail() {
         </div>
         <SnackList snackList={similarSnackList} />
       </div>
-      <div className={styles['recipe-container']}>
-        <div className={`${styles.title}`}>
-          <p>레시피 추천</p>
+      {containRecipeList.length !== 0 && (
+        <div className={styles['recipe-container']}>
+          <div className={`${styles.title}`}>
+            <p>레시피 추천</p>
+          </div>
+          {containRecipeList && <RecipeList recipeList={containRecipeList} />}
         </div>
-        {containRecipeList && <RecipeList recipeList={containRecipeList} />}
-        {!containRecipeList && <p>레시피업따</p>}
-      </div>
+      )}
       <div>
         <div>
           <p>댓글</p>

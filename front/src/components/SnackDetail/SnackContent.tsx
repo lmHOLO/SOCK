@@ -10,12 +10,13 @@ import { ErrorType } from '@/types/error';
 import FlavorList from './FlavorList';
 export default function SnackContent() {
   const { id } = useParams();
+  const [starAvg, setStarAvg] = useState<number>(0);
   const [snack, setSnack] = useState<SnackDetailType>({
     snackId: '0',
     image: '',
     name: '',
-    sumOfStars: '0',
-    numberOfParticipants: '0',
+    sumOfStars: 0,
+    numberOfParticipants: 0,
     type: {
       id: '',
       name: '',
@@ -33,9 +34,16 @@ export default function SnackContent() {
   useEffect(() => {
     // TODO: 없는 과자일 때 error 처리하기
     if (id) {
-      getSnackDetailApi(id).then(getSnackDetail).then(setSnack);
+      getSnackDetailApi(id)
+        .then(getSnackDetail)
+        .then((data) => {
+          setSnack(data);
+        });
     }
   }, [id]);
+  useEffect(() => {
+    setStarAvg(snack.sumOfStars / snack.numberOfParticipants);
+  }, [snack]);
 
   return (
     <div>
@@ -48,7 +56,7 @@ export default function SnackContent() {
         <div className={styles['grade-flavors']}>
           <div className={styles['snack-grade']}>
             <StarIcon />
-            <p>{snack.sumOfStars}</p>
+            {snack.numberOfParticipants === 0 ? <p>0</p> : <p>{starAvg.toFixed(1)}</p>}
           </div>
           <FlavorList flavors={snack.flavors} />
         </div>

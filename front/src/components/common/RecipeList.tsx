@@ -13,7 +13,11 @@ export default function RecommendList({ recipeList }: Props) {
       {recipeList.map((recipe) => (
         <RecipeListItem key={recipe.recipeId} recipe={recipe} />
       ))}
-      <AddCircleOutlineIcon className={styles['more-btn']} />
+      {recipeList.length !== 0 ? (
+        <AddCircleOutlineIcon className={styles['more-btn']} />
+      ) : (
+        <p className={styles['no-list']}>등록된 레시피가 없습니다</p>
+      )}
     </ul>
   );
 }
