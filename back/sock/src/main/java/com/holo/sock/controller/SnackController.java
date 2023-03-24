@@ -101,8 +101,8 @@ public class SnackController {
 
     @GetMapping("/similar")
     public ListResult<SnackResponseDto> similarSnackList(@LoginMember Member member,
-                                                           @RequestParam(value="snack-id", required = false) Long snackId,
-                                                           @RequestParam(value="recipe-id", required = false) Long recipeId){
+                                                         @RequestParam(value="snack-id", required = false) Long snackId,
+                                                         @RequestParam(value="recipe-id", required = false) Long recipeId){
         List<SnackResponseDto> responseDto = snackService.similarSnackList(member, snackId, recipeId);
         return responseService.getListResult(responseDto);
     }
