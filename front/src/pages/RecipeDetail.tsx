@@ -2,7 +2,7 @@ import BottomNav from '@/components/Navbar/BottomNav';
 import TopNav from '@/components/Navbar/TopNav';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { RecipeListItemType } from '@/types';
+import { RecipeListItemType } from '@/types/recipe';
 import { SnackListItemType } from '@/types/snack';
 import RecipeContent from '@/components/RecipeDetail/RecipeContent';
 import SnackList from '@/components/common/SnackList';
@@ -41,27 +41,27 @@ export default function RecipeDetail() {
   ]);
   const [recommendRecipeList, setRecommendRecipeList] = useState<RecipeListItemType[]>([
     {
-      id: 1,
+      recipeId: '1',
       image: 'https://i.postimg.cc/VL6npV0x/recipe.jpg',
       title: '첫번째 레시피',
     },
     {
-      id: 2,
+      recipeId: '2',
       image: 'https://i.postimg.cc/VL6npV0x/recipe.jpg',
       title: '두번째 레시피',
     },
     {
-      id: 3,
+      recipeId: '3',
       image: 'https://i.postimg.cc/VL6npV0x/recipe.jpg',
       title: '세번째 레시피',
     },
     {
-      id: 4,
+      recipeId: '4',
       image: 'https://i.postimg.cc/VL6npV0x/recipe.jpg',
       title: '네번째 레시피',
     },
     {
-      id: 5,
+      recipeId: '5',
       image: 'https://i.postimg.cc/VL6npV0x/recipe.jpg',
       title: '다섯번째 레시피',
     },

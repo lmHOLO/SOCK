@@ -7,7 +7,7 @@ interface Props {
 }
 export default function CommentListItem({ comment }: Props) {
   return (
-    <div>
+    <li className={styles['comment-item']}>
       <div className={styles['member-data']}>
         <img src={comment.writer.image} alt={comment.writer.image} />
         <p>{comment.writer.nickname}</p>
@@ -17,6 +17,6 @@ export default function CommentListItem({ comment }: Props) {
         <p>{comment.createdDate}</p>
       </div>
       <p>{comment.content}</p>
-    </div>
+    </li>
   );
 }
