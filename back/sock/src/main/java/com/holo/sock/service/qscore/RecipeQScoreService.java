@@ -6,6 +6,7 @@ import com.holo.sock.exception.recipeqscore.RecipeQScoreNotFoundException;
 import com.holo.sock.repository.qscore.RecipeQScoreRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,7 +31,13 @@ public class RecipeQScoreService {
                     .recipe(recipe)
                     .score(1L)
                     .build();
-            recipeQScoreRepository.save(recipeQScore);
+
+            try {
+                recipeQScoreRepository.save(recipeQScore);
+            } catch (DataIntegrityViolationException e){
+                RecipeQScore duplicationRecipeQScore = recipeQScoreRepository.findByRecipe(recipe).get();
+                duplicationRecipeQScore.addScore();
+            }
         }
     }
 
