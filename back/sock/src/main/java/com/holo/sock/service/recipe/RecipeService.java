@@ -5,6 +5,7 @@ import com.holo.sock.dto.recipe.request.UpdateRecipeRequestDto;
 import com.holo.sock.dto.recipe.response.LikeRecipeResponseDto;
 import com.holo.sock.dto.recipe.response.RecipeByContainsSnackResponseDto;
 import com.holo.sock.dto.recipe.response.RecipeDetailResponseDto;
+import com.holo.sock.dto.recipe.response.RecipeSearchListResponseDto;
 import com.holo.sock.dto.recipeImage.RecipeImageDto;
 import com.holo.sock.dto.tag.TagDto;
 import com.holo.sock.entity.member.Member;
@@ -13,6 +14,7 @@ import com.holo.sock.entity.snack.Snack;
 import com.holo.sock.exception.likerecipe.LikeRecipeExistedException;
 import com.holo.sock.exception.likerecipe.LikeRecipeNotFoundException;
 import com.holo.sock.exception.member.MemberNotFoundException;
+import com.holo.sock.exception.recipe.RecipeListParamException;
 import com.holo.sock.exception.recipe.RecipeNotFoundException;
 import com.holo.sock.exception.recipe.UsedRecipeParamException;
 import com.holo.sock.repository.member.MemberRepository;
@@ -25,10 +27,13 @@ import com.holo.sock.service.member.GradeService;
 import com.holo.sock.service.qscore.RecipeQScoreService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -212,4 +217,15 @@ public class RecipeService {
 
     }
 
+    public Page<RecipeSearchListResponseDto> searchRecipeList(Member member,String keyword, String arrange, Long memberId, Pageable pageable) {
+        if (((keyword != null || arrange != null) && memberId != null)) {
+            throw new RecipeListParamException();
+        }
+        Page<Recipe> recipes = recipeRepository.findRecipesListByKeywordAndArrange(keyword, arrange, memberId, pageable);
+
+        List<Long> recipeIds = recipes.getContent().stream().map(Recipe::getId).collect(Collectors.toList());
+        HashSet<Long> recipeIdsWithLike = new HashSet<>(likeRecipeRepository.findRecipeIdsWithLike(recipeIds, member));
+
+        return recipes.map(recipe -> new RecipeSearchListResponseDto(recipe,recipeIdsWithLike));
+    }
 }

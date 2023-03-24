@@ -8,6 +8,7 @@ import com.holo.sock.exception.likerecipe.LikeRecipeNotFoundException;
 import com.holo.sock.exception.likesnack.LikeSnackExistedException;
 import com.holo.sock.exception.likesnack.LikeSnackNotFoundException;
 import com.holo.sock.exception.member.MemberNotFoundException;
+import com.holo.sock.exception.recipe.RecipeListParamException;
 import com.holo.sock.exception.recipe.RecipeNotFoundException;
 import com.holo.sock.exception.recipe.UsedRecipeParamException;
 import com.holo.sock.exception.recipeqscore.RecipeQScoreNotFoundException;
@@ -117,5 +118,10 @@ public class ExceptionAdvice {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public Result usedRecipeParamException(){
         return responseService.getFailureResult(-305, "해당 과자를 사용한 레시피 목록 시 파라미터가 올바르지 않습니다.");
+    }
+    @ExceptionHandler(RecipeListParamException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public Result recipeListParamException(){
+        return responseService.getFailureResult(-306,"레시피 목록시 파라미터가 올바르지 않습니다.");
     }
 }

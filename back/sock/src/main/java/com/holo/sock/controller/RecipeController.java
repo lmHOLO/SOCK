@@ -12,6 +12,7 @@ import com.holo.sock.dto.recipe.request.UpdateRecipeRequestDto;
 import com.holo.sock.dto.recipe.response.LikeRecipeResponseDto;
 import com.holo.sock.dto.recipe.response.RecipeByContainsSnackResponseDto;
 import com.holo.sock.dto.recipe.response.RecipeDetailResponseDto;
+import com.holo.sock.dto.recipe.response.RecipeSearchListResponseDto;
 import com.holo.sock.entity.member.Member;
 import com.holo.sock.entity.recipe.Recipe;
 import com.holo.sock.service.recipe.CommentService;
@@ -103,4 +104,15 @@ public class RecipeController {
         return responseService.getListResult(recipes);
     }
 
+    @GetMapping()
+    public SingleResult<Page<RecipeSearchListResponseDto>> searchRecipeList(
+            @LoginMember Member member,
+            @RequestParam(value = "keyword" ,required = false) String keyword
+            ,@RequestParam(value = "arrange",required = false) String arrange
+            ,@RequestParam(value = "member-id",required = false) Long memberId
+            ,@PageableDefault(size = 10) Pageable pageable
+    ){
+        Page<RecipeSearchListResponseDto> responseDto = recipeService.searchRecipeList(member,keyword, arrange, memberId,pageable);
+        return responseService.getSingleResult(responseDto);
+    }
 }
