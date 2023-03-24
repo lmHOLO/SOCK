@@ -2,6 +2,7 @@ package com.holo.sock.repository.jdbc;
 
 import com.holo.sock.dto.data.PurchaseDumpDto;
 import com.holo.sock.dto.data.ReviewDumpDto;
+import com.holo.sock.dto.data.SearchDumpDto;
 import com.holo.sock.dto.snack.response.SnackPreferenceResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -76,6 +77,21 @@ public class JdbcRepository {
         }
     }
 
+    public void saveSearch(List<SearchDumpDto> items){
+        int batchCount = 0;
+        List<SearchDumpDto> subItems = new ArrayList<>();
+
+        for(int i = 0; i < items.size(); i++){
+            subItems.add(items.get(i));
+            if((i+1) % batchSize == 0){
+                batchCount = batchInsertSearch(batchCount, subItems);
+            }
+        }
+        if(!subItems.isEmpty()){
+            batchCount = batchInsertSearch(batchCount, subItems);
+        }
+    }
+
     private int batchInsertPurchase(int batchCount, List<PurchaseDumpDto> subItems){
         jdbcTemplate.batchUpdate("insert into purchase (create_date, last_modified_date, count, member_id, snack_id) " +
                         "values (now(), now(), ?, ?, ?)"
@@ -107,6 +123,27 @@ public class JdbcRepository {
                         ps.setInt(2, subItems.get(i).getStar());
                         ps.setLong(3, subItems.get(i).getWriter_id());
                         ps.setLong(4, subItems.get(i).getSnack_id());
+                    }
+
+                    @Override
+                    public int getBatchSize() {
+                        return subItems.size();
+                    }
+                });
+        subItems.clear();
+        batchCount++;
+        return batchCount;
+    }
+
+    private int batchInsertSearch(int batchCount, List<SearchDumpDto> subItems){
+        jdbcTemplate.batchUpdate("insert into search (create_date, last_modified_date, count, member_id, snack_id) " +
+                        "values (now(), now(), ?, ?, ?)"
+                , new BatchPreparedStatementSetter() {
+                    @Override
+                    public void setValues(PreparedStatement ps, int i) throws SQLException {
+                        ps.setInt(1, subItems.get(i).getCount());
+                        ps.setLong(2, subItems.get(i).getMember_id());
+                        ps.setLong(3, subItems.get(i).getSnack_id());
                     }
 
                     @Override
