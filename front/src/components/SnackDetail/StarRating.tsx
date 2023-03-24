@@ -31,7 +31,7 @@ export default function StarRating({ star }: Props) {
   return (
     <div className={styles['star']}>
       {[...Array(5)].map((n, index) => {
-        if (index > star) {
+        if (index >= star) {
           return (
             <div key={index}>
               <StarOutlineIcon fontSize='small' />
