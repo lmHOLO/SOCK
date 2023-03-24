@@ -1,11 +1,16 @@
 package com.holo.sock.repository.jdbc;
 
+import com.holo.sock.dto.data.PurchaseDumpDto;
 import com.holo.sock.dto.snack.response.SnackPreferenceResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -14,6 +19,7 @@ import java.util.List;
 public class JdbcRepository {
 
     private final JdbcTemplate jdbcTemplate;
+    private int batchSize = 50;
 
     public List<String> preferenceSnacksGroup(){
         return jdbcTemplate.query("select GROUP_CONCAT(s.snack_id) as snackIds " +
@@ -38,4 +44,41 @@ public class JdbcRepository {
                                 .build()
                 , snacks);
     }
+
+    public void savePurchase(List<PurchaseDumpDto> items){
+        int batchCount = 0;
+        List<PurchaseDumpDto> subItems = new ArrayList<>();
+
+        for(int i = 0; i < items.size(); i++){
+            subItems.add(items.get(i));
+            if((i+1) % batchSize == 0){
+                batchCount = batchInsertPurchase(batchCount, subItems);
+            }
+        }
+        if(!subItems.isEmpty()){
+            batchCount = batchInsertPurchase(batchCount, subItems);
+        }
+    }
+
+    private int batchInsertPurchase(int batchCount, List<PurchaseDumpDto> subItems){
+        jdbcTemplate.batchUpdate("insert into purchase (create_date, last_modified_date, count, member_id, snack_id) " +
+                        "values (now(), now(), ?, ?, ?)"
+                , new BatchPreparedStatementSetter() {
+                    @Override
+                    public void setValues(PreparedStatement ps, int i) throws SQLException {
+                        ps.setInt(1, subItems.get(i).getPurchase());
+                        ps.setLong(2, subItems.get(i).getMember_id());
+                        ps.setLong(3, subItems.get(i).getSnack_id());
+                    }
+
+                    @Override
+                    public int getBatchSize() {
+                        return subItems.size();
+                    }
+                });
+        subItems.clear();
+        batchCount++;
+        return batchCount;
+    }
+
 }
