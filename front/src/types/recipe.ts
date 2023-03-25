@@ -3,3 +3,5 @@ export type RecipeListItemType = {
   image: string;
   title: string;
 };
+
+export type PostingTabType = 'SELECT_IMAGE' | 'CROP_IMAGE' | 'WRITE_CONTENT';

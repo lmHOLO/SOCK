@@ -15,16 +15,16 @@ const postingSlice = createSlice({
     contentWriteAction(state: PostingStateType, action: PayloadAction<string>) {
       state.content = action.payload;
     },
-    addPhotoAction(state: PostingStateType, action: PayloadAction<string[]>) {
+    addPhotoAction(state: PostingStateType, action: PayloadAction<File[]>) {
       let tempImageList = [...state.imageList];
       for (let i = 0; i < action.payload.length; i++) {
         tempImageList.push(action.payload[i]);
       }
       state.imageList = tempImageList;
     },
-    modifyPhotoAction(state: PostingStateType, action: PayloadAction<ModifyPhotoType>) {
-      state.imageList[action.payload.index] = action.payload.image;
-    },
+    // modifyPhotoAction(state: PostingStateType, action: PayloadAction<ModifyPhotoType>) {
+    //   state.imageList[action.payload.index] = action.payload.image;
+    // },
 
     deletePhotoAction(state: PostingStateType, action: PayloadAction<number>) {
       state.imageList.splice(action.payload, 1);
@@ -42,7 +42,7 @@ const { reducer, actions } = postingSlice;
 export const {
   contentWriteAction,
   addPhotoAction,
-  modifyPhotoAction,
+  // modifyPhotoAction,
   deletePhotoAction,
   addTagAction,
   deleteTagAction,
