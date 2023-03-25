@@ -98,7 +98,7 @@ public class JdbcRepository {
                 , new BatchPreparedStatementSetter() {
                     @Override
                     public void setValues(PreparedStatement ps, int i) throws SQLException {
-                        ps.setInt(1, subItems.get(i).getPurchase());
+                        ps.setInt(1, subItems.get(i).getCount());
                         ps.setLong(2, subItems.get(i).getMember_id());
                         ps.setLong(3, subItems.get(i).getSnack_id());
                     }
