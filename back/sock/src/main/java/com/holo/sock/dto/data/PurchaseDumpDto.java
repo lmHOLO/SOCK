@@ -10,5 +10,5 @@ public class PurchaseDumpDto {
 
     private Long member_id;
     private Long snack_id;
-    private int purchase;
+    private int count;
 }
