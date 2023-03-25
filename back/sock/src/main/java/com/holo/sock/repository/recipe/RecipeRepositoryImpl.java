@@ -1,19 +1,25 @@
 package com.holo.sock.repository.recipe;
 
 import com.holo.sock.common.jpqltemplates.MySqlJpaTemplates;
+import com.holo.sock.entity.qscore.QRecipeQScore;
 import com.holo.sock.entity.recipe.QRecipe;
 import com.holo.sock.entity.recipe.QTag;
 import com.holo.sock.entity.recipe.Recipe;
+import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.NumberExpression;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
+import static com.holo.sock.entity.qscore.QRecipeQScore.recipeQScore;
 import static com.holo.sock.entity.recipe.QRecipe.recipe;
 import static com.holo.sock.entity.recipe.QTag.tag;
 
@@ -26,14 +32,6 @@ public class RecipeRepositoryImpl implements RecipeRepositoryCustom{
         this.em = em;
         this.queryFactory = new JPAQueryFactory(this.em);
     }
-/**
- * select * from recipe r join tag t on r.recipe_id = t.recipe_id where t.snack_id =1;
- *
- *
- * -- (최종) 레시피 상세페이지에서 조회하는 경우
- * select * from recipe r join tag t on r.recipe_id = t.recipe_id where not r.recipe_id=3 and t.snack_id in (select t.snack_id from tag t where t.recipe_id =3);
- *
- * */
     @Override
     public List<Recipe> findRecipesByContainsSnack(Long snackId, Long recipeId) {
         JPAQuery<Recipe> query = new JPAQuery<>(em, MySqlJpaTemplates.DEFAULT);
@@ -49,6 +47,41 @@ public class RecipeRepositoryImpl implements RecipeRepositoryCustom{
                 .fetch();
 
     }
+
+    @Override
+    public Page<Recipe> findRecipesListByKeywordAndArrange(String keyword, String arrange, Long memberId, Pageable pageable) {
+        List<Recipe> recipes = queryFactory.selectFrom(recipe)
+                .leftJoin(recipeQScore).on(recipe.id.eq(recipeQScore.recipe.id))
+                .where(
+                        writerEq(memberId),
+                        titleContain(keyword)
+                )
+                .orderBy(orderCond(arrange))
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+        Long count = queryFactory.select(recipe.count())
+                .from(recipe)
+                .leftJoin(recipeQScore).on(recipe.id.eq(recipeQScore.recipe.id))
+                .where(
+                        writerEq(memberId),
+                        titleContain(keyword)
+                )
+                .fetchOne();
+        return new PageImpl<>(recipes,pageable,count);
+
+    }
+    private BooleanExpression writerEq(Long memberId){
+        return memberId != null ? recipe.writer.id.eq(memberId) : null;
+    }
+    private BooleanExpression titleContain(String keyword){
+        return keyword != null ? recipe.title.contains(keyword) : null;
+    }
+    private OrderSpecifier orderCond(String arrange){
+        if(arrange == null || arrange.equals("recent")) return recipe.createDate.desc();
+        else return recipeQScore.score.nullif(0L).desc();
+    }
+
     private BooleanExpression snackIdEq(Long snackId){
         return snackId != null ? tag.snack.id.eq(snackId) : null;
     }

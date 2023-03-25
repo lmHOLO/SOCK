@@ -50,6 +50,7 @@
   overflow-x: auto;
   white-space: nowrap;
   display: inline-flex;
+  width: 100%;
 }
 
 .tag-list::-webkit-scrollbar {

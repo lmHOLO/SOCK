@@ -6,6 +6,7 @@ import com.holo.sock.exception.snackqscore.SnackQScoreNotFoundException;
 import com.holo.sock.repository.qscore.SnackQScoreRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,7 +33,13 @@ public class SnackQScoreService {
                     .score(1L)
                     .build();
 
-            snackQScoreRepository.save(snackQScore);
+            try {
+                snackQScoreRepository.save(snackQScore);
+            } catch (DataIntegrityViolationException e){
+                SnackQScore duplicationSnackQScore = snackQScoreRepository.findBySnack(snack).get();
+                duplicationSnackQScore.addScore();
+            }
+
         }
     }
 

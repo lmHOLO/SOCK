@@ -6,9 +6,9 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
-public class PurchaseDumpDto {
+public class ReviewDumpDto {
 
-    private Long member_id;
+    private Long writer_id;
     private Long snack_id;
-    private int count;
+    private int star;
 }

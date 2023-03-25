@@ -5,3 +5,9 @@ export type RecipeListItemType = {
 };
 
 export type PostingTabType = 'SELECT_IMAGE' | 'CROP_IMAGE' | 'WRITE_CONTENT';
+export type RecipeWriteType = {
+  writerId: string;
+  images: string[];
+  snackIds: string[];
+  content: string;
+};
