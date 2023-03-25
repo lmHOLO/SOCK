@@ -26,6 +26,7 @@
     "react-dom": "^18.2.0",
     "react-drag-drop-files": "^2.3.9",
     "react-dropzone": "^14.2.3",
+    "react-easy-crop": "^4.7.4",
     "react-image-crop": "^10.0.9",
     "react-material-ui-carousel": "^3.4.2",
     "react-redux": "^8.0.5",

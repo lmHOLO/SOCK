@@ -3,7 +3,7 @@ import TopNavOnlyBack from '@/components/Navbar/TopNavOnlyBack';
 import styles from '@/styles/recipe_posting.module.css';
 import DragAndDrop from '@/components/RecipePosting/DragAndDrop';
 import UploadImage from '@/components/RecipePosting/UploadImage';
-import RecipeCropImage from './RecipeCropImage';
+import RecipeCropImage from '@/components/RecipePosting/RecipeCropImage';
 import { PostingTabType } from '@/types/recipe';
 import PostingCropTopNav from '@/components/Navbar/PostingCropTopNav';
 

@@ -19,7 +19,7 @@ export default function PhotoList({ setTab, originFiles, setOriginFiles }: Props
     for (let i = 0; i < files.length; i++) {
       tempImagelist.push(files[i]);
     }
-    console.log(tempImagelist);
+    // console.log(tempImagelist);
     // setImageList(tempImagelist);
 
     setOriginFiles(tempImagelist);
