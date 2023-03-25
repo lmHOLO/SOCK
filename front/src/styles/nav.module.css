@@ -40,6 +40,14 @@
   top: 50%;
   right: 20px;
 }
+
+/* 뒤로가기 */
+.back-btn {
+  position: absolute;
+  transform: translate(0, -50%);
+  top: 50%;
+  left: 20px;
+}
 /* sprinkle  */
 .sprinkle-container {
   width: 100%;

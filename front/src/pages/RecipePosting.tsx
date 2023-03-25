@@ -1,14 +1,14 @@
 import React from 'react';
-import BottomNav from '@/components/Navbar/BottomNav';
-import TopNav from '@/components/Navbar/TopNav';
+import TopNavOnlyBack from '@/components/Navbar/TopNavOnlyBack';
 import styles from '@/styles/recipe_posting.module.css';
+import DragAndDrop from '@/components/RecipePosting/DragAndDrop';
+import UploadImage from '@/components/RecipePosting/UploadImage';
 
 export default function RecipePosting() {
   return (
     <div className='side-margin'>
-      <TopNav />
-      {/* <button className={styles['posting-btn']}>자랑하기</button> */}
-      <BottomNav />
+      <TopNavOnlyBack />
+      <UploadImage />
     </div>
   );
 }
