@@ -25,11 +25,4 @@ public class SnackQScore extends BaseEntity {
     // 좋아요수 + 검색수 + 구매링크 클릭수
     private long score;
 
-    public void addScore(){
-        score++;
-    }
-
-    public void subScore(){
-        score--;
-    }
 }

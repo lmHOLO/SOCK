@@ -18,7 +18,7 @@ import java.util.List;
 @Slf4j
 @Repository
 @RequiredArgsConstructor
-public class JdbcRepository {
+public class JdbcDataRepository {
 
     private final JdbcTemplate jdbcTemplate;
     private int batchSize = 50;
@@ -91,6 +91,7 @@ public class JdbcRepository {
             batchCount = batchInsertSearch(batchCount, subItems);
         }
     }
+
 
     private int batchInsertPurchase(int batchCount, List<PurchaseDumpDto> subItems){
         jdbcTemplate.batchUpdate("insert into purchase (create_date, last_modified_date, count, member_id, snack_id) " +
