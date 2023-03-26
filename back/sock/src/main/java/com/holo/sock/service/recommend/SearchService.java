@@ -10,6 +10,7 @@ import com.holo.sock.repository.recommend.SearchRepository;
 import com.holo.sock.repository.redis.SearchRedisRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -50,6 +51,7 @@ public class SearchService {
         searchRedisRepository.save(search);
     }
 
+    @Scheduled(fixedDelay = 300000)
     @Transactional
     public void reflectRedisToDB(){
         List<SearchRedis> searchRedisList = searchRedisRepository.findAll();
