@@ -28,7 +28,4 @@ public class Purchase extends BaseEntity {
 
     private int count;
 
-    public void addCount(){
-        count++;
-    }
 }

@@ -1,4 +1,4 @@
-package com.holo.sock.dto.search;
+package com.holo.sock.dto.redis;
 
 import lombok.*;
 

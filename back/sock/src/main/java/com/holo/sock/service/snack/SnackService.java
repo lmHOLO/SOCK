@@ -14,7 +14,7 @@ import com.holo.sock.exception.member.MemberNotFoundException;
 import com.holo.sock.exception.snack.SimilarSnackParamException;
 import com.holo.sock.exception.snack.SnackNotFoundException;
 import com.holo.sock.exception.type.TypeNotFoundException;
-import com.holo.sock.repository.jdbc.JdbcRepository;
+import com.holo.sock.repository.jdbc.JdbcDataRepository;
 import com.holo.sock.repository.member.MemberRepository;
 import com.holo.sock.repository.recipe.TagRepository;
 import com.holo.sock.repository.snack.*;
@@ -44,7 +44,7 @@ public class SnackService {
     private final FlavorRepository flavorRepository;
     private final LikeSnackRepository likeSnackRepository;
     private final TagRepository tagRepository;
-    private final JdbcRepository jdbcRepository;
+    private final JdbcDataRepository jdbcDataRepository;
 
     private final SearchService searchService;
     private final PurchaseService purchaseService;
@@ -186,8 +186,7 @@ public class SnackService {
     }
 
     public List<SnackPreferenceResponseDto> preferenceSnackList(){
-        List<String> groupSnackList = jdbcRepository.preferenceSnacksGroup();
-        // SELECT * FROM sock.snack where snack_id in (2, 1, 199, 3) order by FIELD(snack_id, 2, 1, 199, 3);
+        List<String> groupSnackList = jdbcDataRepository.preferenceSnacksGroup();
 
         long[][] groupSnack = new long[groupSnackList.size()][];
         for(int i = 0; i < groupSnackList.size(); i++){
@@ -220,6 +219,6 @@ public class SnackService {
             }
         }
 
-        return jdbcRepository.preferenceSnackList(sb.toString());
+        return jdbcDataRepository.preferenceSnackList(sb.toString());
     }
 }

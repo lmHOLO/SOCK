@@ -1,11 +1,11 @@
 package com.holo.sock.service.recommend;
 
-import com.holo.sock.dto.search.SearchRedisDto;
+import com.holo.sock.dto.redis.SearchRedisDto;
 import com.holo.sock.entity.member.Member;
 import com.holo.sock.entity.recommend.Search;
 import com.holo.sock.entity.redis.SearchRedis;
 import com.holo.sock.entity.snack.Snack;
-import com.holo.sock.repository.jdbc.JdbcRepository;
+import com.holo.sock.repository.jdbc.JdbcSearchRepository;
 import com.holo.sock.repository.recommend.SearchRepository;
 import com.holo.sock.repository.redis.SearchRedisRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +27,7 @@ public class SearchService {
 
     private final SearchRedisRepository searchRedisRepository;
     private final SearchRepository searchRepository;
-    private final JdbcRepository jdbcRepository;
+    private final JdbcSearchRepository jdbcSearchRepository;
 
     @Transactional
     public void addCountByMember(Member member, Snack snack){
@@ -83,8 +83,8 @@ public class SearchService {
             }
         }
 
-        jdbcRepository.updateSearchFromRedis(updateList);
-        jdbcRepository.insertSearchFromRedis(insertList);
+        jdbcSearchRepository.updateSearchFromRedis(updateList);
+        jdbcSearchRepository.insertSearchFromRedis(insertList);
     }
 
 }
