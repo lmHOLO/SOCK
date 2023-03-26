@@ -13,7 +13,8 @@ import java.util.Optional;
 @Repository
 public interface SnackQScoreRepository extends JpaRepository<SnackQScore, Long> {
 
-    Optional<SnackQScore> findBySnack(Snack snack);
+    @Query("select sqs from SnackQScore sqs where sqs.snack.id = :snackId")
+    Optional<SnackQScore> findFromRedis(Long snackId);
 
     @Query("select sqs from SnackQScore sqs join fetch sqs.snack s order by sqs.score desc, s.id asc")
     List<SnackQScore> top10Snack(Pageable pageable);
