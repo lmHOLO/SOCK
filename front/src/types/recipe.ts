@@ -5,7 +5,7 @@ export type RecipeListItemType = {
 };
 
 export type RecipeWriteType = {
-  writerId: string;
+  title: string;
   images: string[];
   snackIds: string[];
   content: string;

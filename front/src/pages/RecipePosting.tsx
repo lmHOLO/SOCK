@@ -35,23 +35,34 @@ export default function RecipePosting() {
   // const [cropedFiles, setCropedFiles] = useState<File[]>([]);
   let imageUrlList: string[] = [];
   const navigate = useNavigate();
-  const handleUploadButton = () => {
+  const handleUploadButton = async () => {
     console.log('click!');
     console.log('originFiles: ', originFiles);
-    uploadFiles().then(() => {
+    /*     await uploadFiles();
+    await postRecipeAPI({
+      content: content,
+      images: imageUrlList,
+      title: title,
+      snackIds: tagList.map((tag) => tag.id),
+    }).then((result) => {
+      console.log(result);
+      navigate('/');
+    }); */
+    await uploadFiles().then(async (result) => {
       console.log('title: ', title);
       console.log('content: ', content);
       console.log('tagList: ', tagList);
       console.log('imageUrlList: ', imageUrlList);
-      postRecipeAPI({
-        writerId: memberData.id,
-        content: content,
-        images: imageUrlList,
-        snackIds: tagList.map((tag) => tag.id),
-      }).then((result) => {
-        console.log(result);
-        navigate('/');
-      });
+      result &&
+        (await postRecipeAPI({
+          content: content,
+          images: imageUrlList,
+          title: title,
+          snackIds: tagList.map((tag) => tag.id),
+        }).then((result) => {
+          console.log(result);
+          navigate('/');
+        }));
     });
     /* for (const file of originFiles) {
       handleUploadFile(file);
@@ -59,11 +70,11 @@ export default function RecipePosting() {
   };
 
   const uploadFiles = async () => {
-    return new Promise<void>(async (resolve) => {
-      for (const file of originFiles) {
+    return new Promise<boolean>(async (resolve) => {
+      for await (const file of originFiles) {
         await handleUploadFile(file);
       }
-      resolve();
+      resolve(true);
     });
   };
 
@@ -101,10 +112,10 @@ export default function RecipePosting() {
               console.log('File_Title: ', name);
               console.log('Create_Date: ', now);
               console.log(imageUrlList);
+              resolve();
             });
           },
         );
-        resolve();
       } else {
         console.error('File not found');
       }
