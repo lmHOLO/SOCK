@@ -20,3 +20,9 @@ export type Area = {
   x: number;
   y: number;
 };
+
+export type SnackTagType = {
+  id: string;
+  image: string;
+  name: string;
+};

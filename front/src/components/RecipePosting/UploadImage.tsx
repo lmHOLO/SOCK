@@ -23,7 +23,8 @@ export default function PhotoList({ setTab, originFiles, setOriginFiles }: Props
     // setImageList(tempImagelist);
 
     setOriginFiles(tempImagelist);
-    setTab('CROP_IMAGE');
+    // setTab('CROP_IMAGE');
+    setTab('WRITE_CONTENT');
   };
   return (
     <FileUploader
