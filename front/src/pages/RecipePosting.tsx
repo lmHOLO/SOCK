@@ -13,6 +13,12 @@ import TagList from '@/components/RecipePosting/TagList';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Tag from '@/components/RecipePosting/Tag';
 import PostingUploadTopNav from '@/components/Navbar/PostingUploadTopNav';
+
+// firebase 관련
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { storage } from '@/firebase';
+import { resolve } from 'path';
+
 export default function RecipePosting() {
   const [tab, setTab] = useState<PostingTabType>('SELECT_IMAGE');
   const [originFiles, setOriginFiles] = useState<File[]>([]);
@@ -23,13 +29,72 @@ export default function RecipePosting() {
   const [content, setContent] = useState<string>('');
   const [tagList, setTagList] = useState<SnackTagType[]>([]);
   // const [cropedFiles, setCropedFiles] = useState<File[]>([]);
-
+  let imageUrlList: string[] = [];
   const handleUploadButton = () => {
     console.log('click!');
     console.log('originFiles: ', originFiles);
-    console.log('tagList: ', tagList);
-    console.log('title: ', title);
-    console.log('content: ', content);
+    uploadFiles().then(() => {
+      console.log('title: ', title);
+      console.log('content: ', content);
+      console.log('tagList: ', tagList);
+      console.log('imageUrlList: ', imageUrlList);
+    });
+    /* for (const file of originFiles) {
+      handleUploadFile(file);
+    } */
+  };
+
+  const uploadFiles = async () => {
+    return new Promise<void>(async (resolve) => {
+      for (const file of originFiles) {
+        await handleUploadFile(file);
+      }
+      resolve();
+    });
+  };
+
+  // 파이어베이스 관련
+  const handleUploadFile = (imageFile: File) => {
+    return new Promise<void>((resolve) => {
+      if (imageFile) {
+        const name = imageFile.name;
+        const storageRef = ref(storage, `image/${name}`);
+        const uploadTask = uploadBytesResumable(storageRef, imageFile);
+        uploadTask.on(
+          'state_changed',
+          (snapshot) => {
+            // const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            // setProgressUpload(progress); // to show progress upload
+            switch (snapshot.state) {
+              case 'paused':
+                console.log('Upload is paused');
+                break;
+              case 'running':
+                console.log('Upload is running');
+                break;
+            }
+          },
+          (error) => {
+            console.error(error.message);
+          },
+          () => {
+            getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+              let now = new Date();
+              let File_id = name + ' + ' + now;
+              imageUrlList.push(url);
+              console.log('storage에 파일 업로드 성공 url: ', url);
+              console.log('File_id: ', File_id);
+              console.log('File_Title: ', name);
+              console.log('Create_Date: ', now);
+              console.log(imageUrlList);
+            });
+          },
+        );
+        resolve();
+      } else {
+        console.error('File not found');
+      }
+    });
   };
   return (
     <div className='side-margin'>
