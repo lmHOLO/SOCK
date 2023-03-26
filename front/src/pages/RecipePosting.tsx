@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import useMember from '@/hooks/memberHook';
 import TopNavOnlyBack from '@/components/Navbar/TopNavOnlyBack';
 import styles from '@/styles/recipe_posting.module.css';
 import UploadImage from '@/components/RecipePosting/UploadImage';
@@ -18,8 +19,10 @@ import PostingUploadTopNav from '@/components/Navbar/PostingUploadTopNav';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { storage } from '@/firebase';
 import { resolve } from 'path';
-
+import { postRecipeAPI } from '@/apis/api/recipeDetail';
+import { useNavigate } from 'react-router';
 export default function RecipePosting() {
+  const { memberData } = useMember();
   const [tab, setTab] = useState<PostingTabType>('SELECT_IMAGE');
   const [originFiles, setOriginFiles] = useState<File[]>([]);
   const [selectedFile, setSelectedFile] = useState<File>(originFiles[0]);
@@ -28,8 +31,10 @@ export default function RecipePosting() {
   const [title, setTitle] = useState<string>('');
   const [content, setContent] = useState<string>('');
   const [tagList, setTagList] = useState<SnackTagType[]>([]);
+
   // const [cropedFiles, setCropedFiles] = useState<File[]>([]);
   let imageUrlList: string[] = [];
+  const navigate = useNavigate();
   const handleUploadButton = () => {
     console.log('click!');
     console.log('originFiles: ', originFiles);
@@ -38,6 +43,15 @@ export default function RecipePosting() {
       console.log('content: ', content);
       console.log('tagList: ', tagList);
       console.log('imageUrlList: ', imageUrlList);
+      postRecipeAPI({
+        writerId: memberData.id,
+        content: content,
+        images: imageUrlList,
+        snackIds: tagList.map((tag) => tag.id),
+      }).then((result) => {
+        console.log(result);
+        navigate('/');
+      });
     });
     /* for (const file of originFiles) {
       handleUploadFile(file);
