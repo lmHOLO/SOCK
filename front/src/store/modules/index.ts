@@ -3,18 +3,19 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import member from './member';
+import recipePosting from './recipePosting';
 
 const persistConfig = {
   key: 'root',
   // localStorage에 저장합니다.
   storage,
   // member reducer만 localstorage에 저장합니다.
-  whitelist: ['member'],
+  whitelist: ['member', 'recipePosting'],
   // blacklist -> 그것만 제외합니다
 };
 
 // 루트 리듀서
-const rootReducer = combineReducers({ member });
+const rootReducer = combineReducers({ member, recipePosting });
 
 // export default rootReducer;
 export default persistReducer(persistConfig, rootReducer);

@@ -1,66 +1,55 @@
 import BottomNav from '@/components/Navbar/BottomNav';
 import TopNav from '@/components/Navbar/TopNav';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { SnackListItemType } from '@/components/types';
+import { RecipeListItemType } from '@/types/recipe';
+import { SnackListItemType } from '@/types/snack';
 import SnackContent from '@/components/SnackDetail/SnackContent';
 import SnackList from '@/components/common/SnackList';
 import RecipeList from '@/components/common/RecipeList';
 import styles from '@/styles/snack_detail.module.css';
 import Comment from '@/components/SnackDetail/Comment';
+import { getSimilarSnackAPI } from '@/apis/api/snackDetail';
+import { getContainRecipeAPI } from '@/apis/api/recipeDetail';
 export default function SnackDetail() {
   const { id } = useParams();
-  // TODO: 나중에 api로 추천 snack, 추천 recipe 받아오기
-  const [similarSnackList, setSimilarSnackList] = useState<SnackListItemType[]>([
+
+  // TODO: 추천 recipe 받아오기
+  useEffect(() => {
+    if (id) {
+      getSimilarSnackAPI('snack', id).then((data) => {
+        setSimilarSnackList(data);
+      });
+      getContainRecipeAPI('snack', id).then((data) => {
+        setContainRecipeList(data);
+      });
+    }
+  }, [id]);
+
+  const [similarSnackList, setSimilarSnackList] = useState<SnackListItemType[]>([]);
+  const [containRecipeList, setContainRecipeList] = useState<RecipeListItemType[]>([
     {
-      id: 1,
-      image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      title: '첫번째 과자',
-    },
-    {
-      id: 2,
-      image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      title: '두번째 과자',
-    },
-    {
-      id: 3,
-      image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      title: '세번째 과자',
-    },
-    {
-      id: 4,
-      image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      title: '네번째 과자',
-    },
-    {
-      id: 5,
-      image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      title: '다섯번째 과자',
-    },
-  ]);
-  const [recommendRecipeList, setRecommendRecipeList] = useState<SnackListItemType[]>([
-    {
-      id: 1,
+      recipeId: '1',
       image: 'https://i.postimg.cc/VL6npV0x/recipe.jpg',
       title: '첫번째 레시피',
     },
     {
-      id: 2,
+      recipeId: '2',
       image: 'https://i.postimg.cc/VL6npV0x/recipe.jpg',
       title: '두번째 레시피',
     },
     {
-      id: 3,
+      recipeId: '3',
       image: 'https://i.postimg.cc/VL6npV0x/recipe.jpg',
       title: '세번째 레시피',
     },
     {
-      id: 4,
+      recipeId: '4',
       image: 'https://i.postimg.cc/VL6npV0x/recipe.jpg',
       title: '네번째 레시피',
     },
     {
-      id: 5,
+      recipeId: '5',
       image: 'https://i.postimg.cc/VL6npV0x/recipe.jpg',
       title: '다섯번째 레시피',
     },
@@ -75,12 +64,14 @@ export default function SnackDetail() {
         </div>
         <SnackList snackList={similarSnackList} />
       </div>
-      <div className={styles['recipe-container']}>
-        <div className={`${styles.title}`}>
-          <p>레시피 추천</p>
+      {containRecipeList.length !== 0 && (
+        <div className={styles['recipe-container']}>
+          <div className={`${styles.title}`}>
+            <p>레시피 추천</p>
+          </div>
+          {containRecipeList && <RecipeList recipeList={containRecipeList} />}
         </div>
-        <RecipeList recipeList={recommendRecipeList} />
-      </div>
+      )}
       <div>
         <div>
           <p>댓글</p>

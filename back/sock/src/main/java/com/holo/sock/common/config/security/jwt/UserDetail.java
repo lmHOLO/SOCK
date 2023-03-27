@@ -87,6 +87,6 @@ public class UserDetail implements OAuth2User, UserDetails {
 
     @Override
     public String getName() {
-        return email;
+        return String.valueOf(id);
     }
 }

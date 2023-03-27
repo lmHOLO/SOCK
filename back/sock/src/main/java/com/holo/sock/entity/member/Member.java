@@ -1,5 +1,6 @@
 package com.holo.sock.entity.member;
 
+import com.holo.sock.dto.member.request.MemberModifyRequestDto;
 import com.holo.sock.entity.BaseEntity;
 import com.holo.sock.entity.member.badge.Grade;
 import com.holo.sock.entity.member.badge.SBTI;
@@ -54,4 +55,25 @@ public class Member extends BaseEntity {
 
     @Column @Enumerated(EnumType.STRING)
     private Role role; // USER, ADMIN
+
+    public void modifyMember(MemberModifyRequestDto dto) {
+        this.nickname = dto.getNickname().replaceAll(" ","");
+        this.profile = dto.getProfile();
+    }
+
+    public void addExp(int exp) {
+        this.exp += exp;
+    }
+
+    public void completePreference(){
+        this.checkPreference = true;
+    }
+
+    public void upgradeGrade(Grade grade){
+        this.grade = grade;
+    }
+
+    public void changeSBTI(SBTI sbti){
+        this.sbti = sbti;
+    }
 }

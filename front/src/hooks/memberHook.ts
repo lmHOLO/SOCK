@@ -1,3 +1,4 @@
+import { MemberLoginType } from '@/types/member';
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store/modules';
@@ -8,13 +9,14 @@ export default function useMember() {
   const dispatch = useDispatch();
 
   const login = useCallback(
-    (data: string) => {
-      dispatch(loginAction({ nickname: data }));
+    (data: MemberLoginType) => {
+      dispatch(loginAction(data));
     },
     [dispatch],
   );
   const logout = useCallback(() => {
     dispatch(logoutAction());
+    // localStorage.removeItem('token');
   }, [dispatch]);
   return { isLoggedIn, memberData, login, logout };
 }

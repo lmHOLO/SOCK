@@ -1,6 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
 const token = window.localStorage.getItem('token');
-
 export function apiInstance(): AxiosInstance {
   const instance = axios.create({
     baseURL: process.env.REACT_APP_API_BASE_URL,

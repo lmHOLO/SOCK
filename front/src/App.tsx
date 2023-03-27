@@ -6,7 +6,11 @@ import Home from '@/pages/Home';
 import Redirect from '@/pages/Redirect';
 import NotFound from '@/pages/NotFound';
 import useMember from '@/hooks/memberHook';
-import SnackDetail from './pages/SnackDetail';
+import SnackDetail from '@/pages/SnackDetail';
+import RecipeDetail from '@/pages/RecipeDetail';
+import RecipePosting from '@/pages/RecipePosting';
+import FirebaseUploadTest from './pages/FirebaseUploadTest';
+import EventResult from './pages/EventrResult';
 const router = createBrowserRouter([
   /*   {
     path: '/',
@@ -34,15 +38,27 @@ const router = createBrowserRouter([
     path: '/snacks/:id',
     element: <SnackDetail />,
   },
+  {
+    path: '/recipes/:id',
+    element: <RecipeDetail />,
+  },
+  {
+    path: '/recipe-posting',
+    element: <RecipePosting />,
+  },
+  {
+    path: '/firebasetest',
+    element: <FirebaseUploadTest />,
+  },
+  {
+    path:'/result/enfj',
+    element:<EventResult/>,
+  },
 ]);
 export default function App() {
   const { isLoggedIn } = useMember();
   return (
     <div>
-      {/* <div
-        style={isLoggedIn ? { width: '360px', margin: '52px auto' } : { margin: 0 }}
-        className={isLoggedIn ? 'page' : 'login'}
-      > */}
       <div className={isLoggedIn ? 'page' : 'login'}>
         <RouterProvider router={router} />
       </div>

@@ -17,10 +17,25 @@
   flex-grow: 1;
   padding: 2px 0px;
 }
+.menu-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+}
 
 .menu-content > p {
   font-size: 0.7rem;
   color: white;
+}
+
+.menu-content > img {
+  margin-top: 3px;
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+  object-fit: cover;
 }
 
 .top-nav-container {
@@ -39,6 +54,14 @@
   transform: translate(0, -50%);
   top: 50%;
   right: 20px;
+}
+
+/* 뒤로가기 */
+.back-btn {
+  position: absolute;
+  transform: translate(0, -50%);
+  top: 50%;
+  left: 20px;
 }
 /* sprinkle  */
 .sprinkle-container {

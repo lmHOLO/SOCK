@@ -12,7 +12,7 @@
   display: inline-block;
   width: 100px;
   height: 100px;
-  margin: 10px;
+  margin: 10px 3px;
 }
 .recipe-list-item {
   border-radius: 3px;
@@ -30,4 +30,9 @@
 
 .more-btn {
   color: sock-brown;
+}
+
+.no-list {
+  padding: 10px;
+  text-align: center;
 }
