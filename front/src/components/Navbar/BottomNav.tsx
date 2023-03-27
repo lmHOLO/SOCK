@@ -34,7 +34,7 @@ export default function BottomNav() {
           <p>HOME</p>
         </div>
       </button>
-      <button className={styles['menu-btn']} onClick={() => navigateTo('snack')}>
+      <button className={styles['menu-btn']} onClick={() => navigateTo('event')}>
         <div className={styles['menu-content']}>
           <CakeIcon fontSize='large' style={{ color: 'white' }} />
           <p>EVENT</p>
