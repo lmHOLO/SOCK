@@ -10,6 +10,8 @@ import SnackDetail from '@/pages/SnackDetail';
 import RecipeDetail from '@/pages/RecipeDetail';
 import RecipePosting from '@/pages/RecipePosting';
 import FirebaseUploadTest from './pages/FirebaseUploadTest';
+import EventList from '@/pages/EventList';
+
 const router = createBrowserRouter([
   /*   {
     path: '/',
@@ -48,6 +50,10 @@ const router = createBrowserRouter([
   {
     path: '/firebasetest',
     element: <FirebaseUploadTest />,
+  },
+  {
+    path: '/event',
+    element: <EventList />,
   },
 ]);
 export default function App() {
