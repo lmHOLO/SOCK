@@ -55,3 +55,14 @@ export type GetRecipeImageType = {
   imageId: string;
   recipeImage: string;
 };
+
+export type RecipeCommentType = {
+  commentId: string;
+  content: string;
+  createdDate: string;
+  grade: string;
+  memberId: string;
+  memberImage: string;
+  nickname: string;
+  sbti: string;
+};

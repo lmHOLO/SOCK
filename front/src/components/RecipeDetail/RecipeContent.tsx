@@ -12,7 +12,6 @@ import { getRecipeDetailApi } from '@/apis/api/recipeDetail';
 export default function RecipeContent() {
   const { id } = useParams();
 
-  // TODO: id에 맞춰서 레시피 상세 데이터가져오기
   const [recipe, setRecipe] = useState<RecipeDetailType>({
     recipeId: '',
     createdDate: '',
