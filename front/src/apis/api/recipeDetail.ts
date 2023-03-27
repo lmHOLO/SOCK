@@ -44,6 +44,20 @@ export const postRecipeAPI = async (data: RecipeWriteType) => {
   }
 };
 
+// 키워드로 과자 찾기
+export const getSnackKeywordSearch = async (keyword: string) => {
+  try {
+    const { data } = await authApi.get(`/snacks?keyword=${keyword}`);
+    console.log(data);
+    return data.data.content;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      console.log('에러: ', error.response);
+      return error.response?.data;
+    }
+  }
+};
+
 //  레시피 삭제
 export const deleteRecipeAPI = async (id: string) => {
   try {

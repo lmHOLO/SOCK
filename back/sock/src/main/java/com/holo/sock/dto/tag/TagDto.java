@@ -12,11 +12,13 @@ public class TagDto {
     private Long recipeId;
     private Long snackId;
     private String snackName;
+    private String image;
 
     public TagDto(Tag tag) {
         this.tagId = tag.getId();
         this.recipeId = tag.getRecipe().getId();
         this.snackId = tag.getSnack().getId();
         this.snackName = tag.getSnack().getName();
+        this.image = tag.getSnack().getImage();
     }
 }

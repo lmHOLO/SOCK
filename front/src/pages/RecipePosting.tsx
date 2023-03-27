@@ -14,15 +14,15 @@ import TagList from '@/components/RecipePosting/TagList';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Tag from '@/components/RecipePosting/Tag';
 import PostingUploadTopNav from '@/components/Navbar/PostingUploadTopNav';
-
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 // firebase 관련
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { storage } from '@/firebase';
 import { resolve } from 'path';
 import { postRecipeAPI } from '@/apis/api/recipeDetail';
 import { useNavigate } from 'react-router';
+import SnackModal from '@/components/RecipePosting/SnackModal';
 export default function RecipePosting() {
-  const { memberData } = useMember();
   const [tab, setTab] = useState<PostingTabType>('SELECT_IMAGE');
   const [originFiles, setOriginFiles] = useState<File[]>([]);
   const [selectedFile, setSelectedFile] = useState<File>(originFiles[0]);
@@ -31,6 +31,7 @@ export default function RecipePosting() {
   const [title, setTitle] = useState<string>('');
   const [content, setContent] = useState<string>('');
   const [tagList, setTagList] = useState<SnackTagType[]>([]);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   // const [cropedFiles, setCropedFiles] = useState<File[]>([]);
   let imageUrlList: string[] = [];
@@ -67,6 +68,15 @@ export default function RecipePosting() {
     /* for (const file of originFiles) {
       handleUploadFile(file);
     } */
+  };
+  const addTag = (snack: SnackTagType) => {
+    setTagList([...tagList, snack]);
+    console.log(snack);
+    console.log(tagList);
+  };
+
+  const deleteTag = (id: string) => {
+    setTagList(tagList.filter((tag) => tag.id !== id));
   };
 
   const uploadFiles = async () => {
@@ -146,13 +156,17 @@ export default function RecipePosting() {
           <Images originFiles={originFiles} />
           <WriteTitle setTitle={setTitle} />
           <div className={styles['tag-container']}>
-            {tagList.map((tag) => (
-              <Tag key={tag.id} tag={tag} />
+            {tagList.map((tag, index) => (
+              <div>
+                <Tag key={tag.id} tag={tag} />
+                <HighlightOffIcon onClick={() => deleteTag(tag.id)} />
+              </div>
             ))}
             {tagList.length === 0 && <p>태그를 추가해보세요!</p>}
-            <AddCircleIcon className={styles['color-brown']} />
+            <AddCircleIcon className={styles['color-brown']} onClick={() => setModalOpen(true)} />
           </div>
-
+          <SnackModal modalOpen={modalOpen} setModalOpen={setModalOpen} addTag={addTag} />
+          {/* <SnackModal modalOpen={modalOpen} setModalOpen={setModalOpen} addTag={addTag} /> */}
           <WriteContent setContent={setContent} />
         </>
       )}
