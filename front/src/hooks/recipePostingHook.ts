@@ -4,7 +4,7 @@ import { RootState } from '@/store/modules';
 import {
   contentWriteAction,
   addPhotoAction,
-  modifyPhotoAction,
+  // modifyPhotoAction,
   deletePhotoAction,
   addTagAction,
   deleteTagAction,
@@ -23,17 +23,17 @@ export default function useRecipePosting() {
     [dispatch],
   );
   const addPhoto = useCallback(
-    (data: string[]) => {
-      dispatch(addPhotoAction(Array(10)));
+    (data: File[]) => {
+      dispatch(addPhotoAction(data));
     },
     [dispatch],
   );
-  const modifyPhoto = useCallback(
-    (data: ModifyPhotoType) => {
-      dispatch(modifyPhotoAction(data));
-    },
-    [dispatch],
-  );
+  // const modifyPhoto = useCallback(
+  //   (data: ModifyPhotoType) => {
+  //     dispatch(modifyPhotoAction(data));
+  //   },
+  //   [dispatch],
+  // );
   const deletePhoto = useCallback(
     (data: number) => {
       dispatch(deletePhotoAction(data));
@@ -54,5 +54,5 @@ export default function useRecipePosting() {
     [dispatch],
   );
 
-  return { imageList, content, tagList, contentWrite, addPhoto, modifyPhoto, deletePhoto, addTag, deleteTag };
+  return { imageList, content, tagList, contentWrite, addPhoto, deletePhoto, addTag, deleteTag };
 }

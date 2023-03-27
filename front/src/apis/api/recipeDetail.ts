@@ -33,6 +33,7 @@ export const getRecipeDetailApi = async (id: string) => {
 //  레시피 등록
 export const postRecipeAPI = async (data: RecipeWriteType) => {
   try {
+    console.log(data);
     const result = await authApi.post(`/recipes`, data);
     return result;
   } catch (error) {
