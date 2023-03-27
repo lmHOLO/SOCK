@@ -11,7 +11,7 @@ import RecipeDetail from '@/pages/RecipeDetail';
 import RecipePosting from '@/pages/RecipePosting';
 import FirebaseUploadTest from './pages/FirebaseUploadTest';
 import EventList from '@/pages/EventList';
-
+import EventResult from './pages/EventrResult';
 const router = createBrowserRouter([
   /*   {
     path: '/',
@@ -54,6 +54,10 @@ const router = createBrowserRouter([
   {
     path: '/event',
     element: <EventList />,
+  },
+  {
+    path:'/result/enfj',
+    element:<EventResult/>,
   },
 ]);
 export default function App() {
