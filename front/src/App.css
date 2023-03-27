@@ -41,6 +41,15 @@
   margin-right: 16px;
 }
 
+.resultImage{
+  width: 100%;
+  height: 600px;
+  /* display: flex; */
+  margin: auto;
+  display: block;
+  justify-content: center;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
