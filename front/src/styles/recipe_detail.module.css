@@ -21,6 +21,10 @@
   justify-content: flex-end;
 }
 
+.recipe-like > svg {
+  color: rgb(255, 119, 119);
+}
+
 .recipe-paper {
   width: 100%;
   max-width: 350px;

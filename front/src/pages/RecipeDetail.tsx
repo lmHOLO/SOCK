@@ -23,7 +23,7 @@ export default function RecipeDetail() {
       });
     }
   }, [id]);
-  // TODO: 나중에 api로 추천 snack, 추천 recipe 받아오기
+
   const [similarSnackList, setSimilarSnackList] = useState<SnackListItemType[]>([]);
   const [containRecipeList, setContainRecipeList] = useState<RecipeListItemType[]>([]);
 
