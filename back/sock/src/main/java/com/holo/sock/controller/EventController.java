@@ -5,6 +5,7 @@ import com.holo.sock.common.response.ResponseService;
 import com.holo.sock.common.result.ListResult;
 import com.holo.sock.common.result.SingleResult;
 import com.holo.sock.dto.event.response.SBTIQuestionResponseDto;
+import com.holo.sock.dto.snack.response.SnackWorldcupResponseDto;
 import com.holo.sock.entity.member.Member;
 import com.holo.sock.service.event.EventService;
 import lombok.RequiredArgsConstructor;
@@ -32,5 +33,11 @@ public class EventController {
     public SingleResult<String> sbtiAnswer(@LoginMember Member member, @RequestBody List<Integer> answers){
         String sbti = eventService.sbtiAnswer(member, answers);
         return responseService.getSingleResult(sbti);
+    }
+
+    @GetMapping("/worldcup")
+    public ListResult<SnackWorldcupResponseDto> worldcupSnackList(){
+        List<SnackWorldcupResponseDto> responseDto = eventService.worldcupSnackList();
+        return responseService.getListResult(responseDto);
     }
 }

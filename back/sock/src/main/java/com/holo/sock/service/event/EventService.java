@@ -1,9 +1,12 @@
 package com.holo.sock.service.event;
 
 import com.holo.sock.dto.event.response.SBTIQuestionResponseDto;
+import com.holo.sock.dto.snack.response.SnackWorldcupResponseDto;
 import com.holo.sock.entity.member.Member;
 import com.holo.sock.entity.member.badge.SBTI;
+import com.holo.sock.entity.snack.Snack;
 import com.holo.sock.repository.event.SBTIQuestionRepository;
+import com.holo.sock.repository.snack.SnackRepository;
 import com.holo.sock.service.member.GradeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +23,7 @@ import java.util.stream.Collectors;
 public class EventService {
 
     private final SBTIQuestionRepository sbtiQuestionRepository;
+    private final SnackRepository snackRepository;
 
     private final GradeService gradeService;
 
@@ -47,5 +51,11 @@ public class EventService {
         return sbti.toString();
     }
 
+    public List<SnackWorldcupResponseDto> worldcupSnackList(){
+        List<Snack> snacks = snackRepository.worldcupRandomSnackList();
+        return snacks.stream()
+                .map(SnackWorldcupResponseDto::create)
+                .collect(Collectors.toList());
+    }
 
 }
