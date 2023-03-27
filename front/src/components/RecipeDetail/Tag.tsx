@@ -1,14 +1,14 @@
 import React from 'react';
-import { SnackTagType } from '@/types';
 import styles from '@/styles/recipe_detail.module.css';
+import { GetSnackTagType } from '@/types/recipe';
 interface Props {
-  tag: SnackTagType;
+  tag: GetSnackTagType;
 }
 export default function Tag({ tag }: Props) {
   return (
     <div className={styles['tag-container']}>
-      <img src={tag.image} alt={tag.name} />
-      <p>{tag.name}</p>
+      <img src={tag.image} alt={tag.snackName} />
+      <p>{tag.snackName}</p>
     </div>
   );
 }

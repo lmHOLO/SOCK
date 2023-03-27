@@ -21,8 +21,37 @@ export type Area = {
   y: number;
 };
 
-export type SnackTagType = {
+export type PostSnackTagType = {
   id: string;
   image: string;
   name: string;
+};
+
+// 레시피 디테일 관련
+export type RecipeDetailType = {
+  recipeId: string;
+  createdDate: string;
+  title: string;
+  writerId: string;
+  writerNickname: string;
+  writerImage: string;
+  sbti: string;
+  grade: string;
+  recipeImages: GetRecipeImageType[];
+  content: string;
+  tag: GetSnackTagType[];
+  like: boolean;
+  totalLikes: number;
+};
+
+export type GetSnackTagType = {
+  tagId: string;
+  image: string;
+  recipeId: string;
+  snackId: string;
+  snackName: string;
+};
+export type GetRecipeImageType = {
+  imageId: string;
+  recipeImage: string;
 };

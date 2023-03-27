@@ -4,18 +4,18 @@ import Fade from '@mui/material/Fade';
 import Backdrop from '@mui/material/Backdrop';
 import SearchSnack from './SearchSnack';
 import styles from '@/styles/snack_modal.module.css';
-import { SnackTagType } from '@/types/recipe';
+import { PostSnackTagType } from '@/types/recipe';
 import { getSnackKeywordSearch } from '@/apis/api/recipeDetail';
 import { getSnackForTag } from '@/apis/services/recipePosting';
 
 interface Props {
   modalOpen: boolean;
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  addTag: (snack: SnackTagType) => void;
+  addTag: (snack: PostSnackTagType) => void;
 }
 export default function SnackModal({ modalOpen, setModalOpen, addTag }: Props) {
   const [searchBar, setSearchBar] = useState<string>('');
-  const [snackList, setSnackList] = useState<SnackTagType[]>([]);
+  const [snackList, setSnackList] = useState<PostSnackTagType[]>([]);
   const handleClose = () => setModalOpen(false);
   const handleSearchBar = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchBar(e.target.value);
