@@ -26,3 +26,9 @@ export type SnackTagType = {
   image: string;
   name: string;
 };
+
+export type TagSearchType = {
+  snackId: string;
+  image: string;
+  name: string;
+};
