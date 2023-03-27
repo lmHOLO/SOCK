@@ -69,6 +69,11 @@ export default function RecipePosting() {
       handleUploadFile(file);
     } */
   };
+  const addTag = (snack: SnackTagType) => {
+    setTagList([...tagList, snack]);
+    console.log(snack);
+    console.log(tagList);
+  };
 
   const uploadFiles = async () => {
     return new Promise<boolean>(async (resolve) => {
@@ -153,7 +158,8 @@ export default function RecipePosting() {
             {tagList.length === 0 && <p>태그를 추가해보세요!</p>}
             <AddCircleIcon className={styles['color-brown']} onClick={() => setModalOpen(true)} />
           </div>
-          <SnackModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
+          <SnackModal modalOpen={modalOpen} setModalOpen={setModalOpen} addTag={addTag} />
+          {/* <SnackModal modalOpen={modalOpen} setModalOpen={setModalOpen} addTag={addTag} /> */}
           <WriteContent setContent={setContent} />
         </>
       )}

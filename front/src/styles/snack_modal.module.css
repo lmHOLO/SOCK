@@ -11,6 +11,13 @@
   border-radius: 10px;
 }
 
+.search-bar {
+  width: 250px;
+  margin: 10px;
+  margin-bottom: 0px;
+  border-radius: 10px;
+  padding: 3px 5px;
+}
 .tag-list {
   display: flex;
   flex-direction: column;
@@ -25,16 +32,25 @@
 .tag-container {
   display: inline-flex;
   align-items: center;
+  margin: 0px 10px;
   padding: 6px 8px;
   border-radius: 10px;
   margin-right: 4px;
-  width: 100%;
   border-bottom: 1px solid sock-line;
+  width: 100%;
 }
+
 .tag-container > img {
-  width: 21px;
-  height: 21px;
+  width: 30px;
+  height: 30px;
   border-radius: 3px;
   object-fit: cover;
   margin-right: 4px;
+}
+
+.tag-container > span {
+  width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
