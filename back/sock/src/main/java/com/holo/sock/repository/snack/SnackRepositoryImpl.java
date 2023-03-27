@@ -88,6 +88,16 @@ public class SnackRepositoryImpl implements SnackRepositoryCustom{
                 .fetch();
     }
 
+    @Override
+    public List<Snack> worldcupRandomSnackList() {
+        JPAQuery<Snack> query = new JPAQuery<>(em, MySqlJpaTemplates.DEFAULT);
+
+        return query.from(snack)
+                .orderBy(NumberExpression.random().asc())
+                .limit(8)
+                .fetch();
+    }
+
     private BooleanExpression nameContain(String snackName){
         return snackName != null ? snack.name.contains(snackName) : null;
     }
