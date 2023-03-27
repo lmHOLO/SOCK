@@ -54,3 +54,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+.tag-delete-btn {
+  color: white;
+}

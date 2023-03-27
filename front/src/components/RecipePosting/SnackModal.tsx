@@ -7,6 +7,7 @@ import styles from '@/styles/snack_modal.module.css';
 import { SnackTagType } from '@/types/recipe';
 import { getSnackKeywordSearch } from '@/apis/api/recipeDetail';
 import { getSnackForTag } from '@/apis/services/recipePosting';
+
 interface Props {
   modalOpen: boolean;
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
