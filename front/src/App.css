@@ -29,11 +29,16 @@
 }
 
 .page {
-  margin: 52px 5px;
+  margin: 52px 0px 65px 0px;
 }
 
 .login {
   margin: 0;
+}
+
+.side-margin {
+  margin-left: 16px;
+  margin-right: 16px;
 }
 
 @keyframes App-logo-spin {

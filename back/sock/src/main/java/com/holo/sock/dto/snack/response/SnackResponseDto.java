@@ -1,0 +1,53 @@
+package com.holo.sock.dto.snack.response;
+
+import com.holo.sock.entity.snack.Snack;
+import com.holo.sock.repository.snack.SnackQueryDto;
+import lombok.*;
+
+import java.util.HashSet;
+
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
+public class SnackResponseDto {
+    private Long snackId;
+    private String image;
+    private String name;
+    private int sumOfStars;
+    private int numberOfParticipants;
+    private boolean like;
+
+    public static SnackResponseDto create(SnackQueryDto dto, HashSet<Long> snackIdsWithLik){
+        return SnackResponseDto.builder()
+                .snackId(dto.getSnackId())
+                .image(dto.getImage())
+                .name(dto.getName())
+                .sumOfStars(dto.getSumOfStarts())
+                .numberOfParticipants(dto.getNumberOfParticipants())
+                .like(snackIdsWithLik.contains(dto.getSnackId()))
+                .build();
+    }
+
+    public static SnackResponseDto createFromLikeSnack(Snack snack){
+        return SnackResponseDto.builder()
+                .snackId(snack.getId())
+                .image(snack.getImage())
+                .name(snack.getName())
+                .sumOfStars(snack.getSumOfStars())
+                .numberOfParticipants(snack.getNumberOfParticipants())
+                .like(true)
+                .build();
+    }
+
+    public static SnackResponseDto createForSimilar(Snack snack, HashSet<Long> snackIdsWithLik){
+        return SnackResponseDto.builder()
+                .snackId(snack.getId())
+                .image(snack.getImage())
+                .name(snack.getName())
+                .sumOfStars(snack.getSumOfStars())
+                .numberOfParticipants(snack.getNumberOfParticipants())
+                .like(snackIdsWithLik.contains(snack.getId()))
+                .build();
+    }
+}

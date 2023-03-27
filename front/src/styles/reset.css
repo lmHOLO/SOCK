@@ -9,6 +9,7 @@
 }
 body {
   background-color: #fde8dc;
+  /* background-color: white; */
 }
 button {
   background-color: inherit;
@@ -139,4 +140,12 @@ q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+textarea {
+  border: none;
+}
+
+textarea:focus {
+  outline: none;
 }

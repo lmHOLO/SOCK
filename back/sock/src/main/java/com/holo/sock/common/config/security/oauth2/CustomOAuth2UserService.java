@@ -6,11 +6,14 @@ import com.holo.sock.common.config.security.oauth2.userinfo.AuthProvider;
 import com.holo.sock.common.config.security.oauth2.userinfo.OAuth2UserInfo;
 import com.holo.sock.common.config.security.oauth2.userinfo.OAuth2UserInfoFactory;
 import com.holo.sock.entity.member.Member;
+import com.holo.sock.entity.member.badge.Grade;
+import com.holo.sock.entity.member.badge.SBTI;
 import com.holo.sock.entity.member.profile.Profile;
 import com.holo.sock.repository.member.MemberRepository;
 import com.holo.sock.entity.member.Role;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -27,6 +30,7 @@ import java.util.Optional;
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     private final MemberRepository memberRepository;
+    private final static int RANDOM_STRING_SIZE = 10;
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
@@ -65,12 +69,14 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         Member member = Member.builder()
                 .email(userInfo.getEmail())
-                .nickname(userInfo.getName())
+                .nickname((userInfo.getName()+"_"+RandomStringUtils.randomAlphanumeric(RANDOM_STRING_SIZE)).replaceAll(" ",""))
                 .profile(profile)
                 .provider(authProvider)
                 .checkPreference(false)
                 .role(Role.USER)
                 .exp(0)
+                .grade(Grade.FIRST_FLOOR)
+                .sbti(SBTI.NONE)
                 .build();
 
         return memberRepository.save(member);

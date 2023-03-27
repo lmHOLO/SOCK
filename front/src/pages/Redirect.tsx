@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 // import { setMember } from '@/store/member';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import useMember from '@/hooks/memberHook';
+import { getMemberLoginInfo } from '@/apis/services/member';
+import { loginApi } from '@/apis/api/member';
 export default function Redirect() {
   let [searchParams, setSearchParams] = useSearchParams();
   const { login } = useMember();
@@ -14,21 +16,16 @@ export default function Redirect() {
     if (token) {
       console.log(token);
       localStorage.setItem('token', token);
-      login('토큰로그인닉네임');
+      // api로 가져오기
+      loginApi().then(getMemberLoginInfo).then(login);
       navigate('/');
       return;
     }
     if (error) {
       console.log(error);
-      login('에러로그인닉네임');
       navigate('/login');
       return;
     }
-    // dispatch(setMember('SOCK'));
-    login('임시테스트닉네임');
-    localStorage.setItem('token', 'tokentest');
-    navigate('/');
-    return;
   });
 
   return (

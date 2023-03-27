@@ -1,0 +1,69 @@
+@value sock-brown, sock-yellow, white-color  from './common/colors.css';
+
+.title {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px;
+  font-size: 14px;
+  background-color: sock-brown;
+  color: white-color;
+  margin-top: 10px;
+}
+
+.purchase-btn {
+  float: right;
+  margin-bottom: 10px;
+}
+/* snack content */
+.grade-flavors-like {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+.grade-flavors {
+  display: inline-flex;
+  align-items: center;
+}
+.snack-grade {
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+}
+
+.snack-grade > svg {
+  color: sock-yellow;
+}
+
+.snack-img-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 215px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.snack-img-container > img {
+  height: 100%;
+  border-radius: 10px;
+}
+
+/* 과자맛 */
+
+.flavor-list-container {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.flavor-list-item-container {
+  display: inline-block;
+  background-color: sock-yellow;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 100px;
+  margin-right: 5px;
+}
+
+.grade-flavors-like > svg {
+  color: rgb(255, 119, 119);
+}

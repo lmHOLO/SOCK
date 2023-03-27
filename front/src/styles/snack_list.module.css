@@ -1,4 +1,4 @@
-@value sock-brown, kakao-color, naver-color, google-color, white-color  from './common/colors.css';
+@value sock-brown, white-color  from './common/colors.css';
 
 .snack-list {
   overflow-x: auto;
@@ -10,9 +10,9 @@
 
 .snack-list-item-container {
   display: inline-block;
-  width: calc(100px+1vw);
-  height: calc(100px + 1vh);
-  margin: 10px;
+  width: 100px;
+  height: 100px;
+  margin: 10px 3px;
 }
 .snack-list-item {
   border-radius: 3px;

@@ -1,0 +1,58 @@
+@value sock-brown, sock-yellow, white-color  from './common/colors.css';
+.comment-container {
+  margin: 10px 0px;
+}
+
+.comment-item {
+  margin: 10px 0px;
+}
+.member-date {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.comment-write {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.comment-write > textarea {
+  border-radius: 5px;
+  padding: 3px;
+  width: 80%;
+}
+
+.comment-write > button {
+  background-color: sock-brown;
+  height: 24px;
+  width: 15%;
+  color: white-color;
+  border-radius: 4px;
+}
+
+.member-data {
+  display: flex;
+  align-items: center;
+}
+
+.member-data > img {
+  width: 28px;
+  height: 28px;
+  border-radius: 100px;
+  object-fit: cover;
+  margin-right: 5px;
+}
+
+.comment-data {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* 별점 관련 */
+.star {
+  display: flex;
+}
+.star > div > svg {
+  color: sock-yellow;
+}

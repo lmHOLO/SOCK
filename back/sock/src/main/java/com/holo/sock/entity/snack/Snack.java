@@ -6,7 +6,6 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Entity
 @AllArgsConstructor
@@ -34,4 +33,13 @@ public class Snack extends BaseEntity {
     @OneToMany(mappedBy = "snack", cascade = CascadeType.ALL)
     private List<SnackFlavor> flavors = new ArrayList<>();
 
+    public void registerReview(int star){
+        this.sumOfStars += star;
+        this.numberOfParticipants++;
+    }
+
+    public void deleteReview(int star){
+        this.sumOfStars -= star;
+        this.numberOfParticipants--;
+    }
 }

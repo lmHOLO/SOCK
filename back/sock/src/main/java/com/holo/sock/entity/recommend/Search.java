@@ -27,4 +27,5 @@ public class Search extends BaseEntity {
     private Snack snack;
 
     private int count;
+
 }
