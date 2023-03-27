@@ -14,7 +14,6 @@ import { getContainRecipeAPI } from '@/apis/api/recipeDetail';
 export default function SnackDetail() {
   const { id } = useParams();
 
-  // TODO: 추천 recipe 받아오기
   useEffect(() => {
     if (id) {
       getSimilarSnackAPI('snack', id).then((data) => {
@@ -27,33 +26,7 @@ export default function SnackDetail() {
   }, [id]);
 
   const [similarSnackList, setSimilarSnackList] = useState<SnackListItemType[]>([]);
-  const [containRecipeList, setContainRecipeList] = useState<RecipeListItemType[]>([
-    {
-      recipeId: '1',
-      image: 'https://i.postimg.cc/VL6npV0x/recipe.jpg',
-      title: '첫번째 레시피',
-    },
-    {
-      recipeId: '2',
-      image: 'https://i.postimg.cc/VL6npV0x/recipe.jpg',
-      title: '두번째 레시피',
-    },
-    {
-      recipeId: '3',
-      image: 'https://i.postimg.cc/VL6npV0x/recipe.jpg',
-      title: '세번째 레시피',
-    },
-    {
-      recipeId: '4',
-      image: 'https://i.postimg.cc/VL6npV0x/recipe.jpg',
-      title: '네번째 레시피',
-    },
-    {
-      recipeId: '5',
-      image: 'https://i.postimg.cc/VL6npV0x/recipe.jpg',
-      title: '다섯번째 레시피',
-    },
-  ]);
+  const [containRecipeList, setContainRecipeList] = useState<RecipeListItemType[]>([]);
   return (
     <div className='side-margin'>
       <TopNav />
@@ -77,8 +50,6 @@ export default function SnackDetail() {
           <p>댓글</p>
         </div>
         <Comment />
-        {/* 댓글 input */}
-        {/* 댓글리스트 */}
       </div>
       <BottomNav />
     </div>
