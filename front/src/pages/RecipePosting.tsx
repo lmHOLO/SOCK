@@ -21,8 +21,8 @@ import { storage } from '@/firebase';
 import { resolve } from 'path';
 import { postRecipeAPI } from '@/apis/api/recipeDetail';
 import { useNavigate } from 'react-router';
+import SnackModal from '@/components/RecipePosting/SnackModal';
 export default function RecipePosting() {
-  const { memberData } = useMember();
   const [tab, setTab] = useState<PostingTabType>('SELECT_IMAGE');
   const [originFiles, setOriginFiles] = useState<File[]>([]);
   const [selectedFile, setSelectedFile] = useState<File>(originFiles[0]);
@@ -31,6 +31,7 @@ export default function RecipePosting() {
   const [title, setTitle] = useState<string>('');
   const [content, setContent] = useState<string>('');
   const [tagList, setTagList] = useState<SnackTagType[]>([]);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   // const [cropedFiles, setCropedFiles] = useState<File[]>([]);
   let imageUrlList: string[] = [];
@@ -150,9 +151,9 @@ export default function RecipePosting() {
               <Tag key={tag.id} tag={tag} />
             ))}
             {tagList.length === 0 && <p>태그를 추가해보세요!</p>}
-            <AddCircleIcon className={styles['color-brown']} />
+            <AddCircleIcon className={styles['color-brown']} onClick={() => setModalOpen(true)} />
           </div>
-
+          <SnackModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
           <WriteContent setContent={setContent} />
         </>
       )}

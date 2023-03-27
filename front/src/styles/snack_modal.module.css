@@ -1,0 +1,40 @@
+@value sock-background, sock-line, sock-brown, white-color  from './common/colors.css';
+.snack-modal-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 270px;
+  height: 70vh;
+  background-color: sock-background;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+.tag-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0px;
+  overflow-y: auto;
+  white-space: nowrap;
+  display: inline-flex;
+  width: 100%;
+}
+
+.tag-container {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 8px;
+  border-radius: 10px;
+  margin-right: 4px;
+  width: 100%;
+  border-bottom: 1px solid sock-line;
+}
+.tag-container > img {
+  width: 21px;
+  height: 21px;
+  border-radius: 3px;
+  object-fit: cover;
+  margin-right: 4px;
+}
