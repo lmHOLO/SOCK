@@ -16,4 +16,7 @@ public interface RecipeQScoreRepository extends JpaRepository<RecipeQScore,Long>
 
     @Query("select rqs from RecipeQScore rqs join fetch rqs.recipe r order by rqs.score desc, r.id asc")
     List<RecipeQScore> top10Recipe(Pageable pageable);
+
+    @Query("select rqs from RecipeQScore rqs where rqs.recipe.id = :recipeId")
+    Optional<RecipeQScore> findFromRedis(Long recipeId);
 }
