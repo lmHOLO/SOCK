@@ -70,7 +70,8 @@ def send_data():
                                 cursorclass=pymysql.cursors.DictCursor)
 
     cursor = connection.cursor()
-    snack_db = pd.read_json('snack_test.json')
+    snack_db = pd.read_csv('snack_db_test.csv', encoding='cp949')
+    # snack_db = pd.read_json('snack_test.json')
     df = snack_db[['이름', '맛', '종류']]
     df['특성'] = df['맛'] + " " + df['종류']
     df = df[['이름', '특성']]
@@ -115,6 +116,7 @@ def send_data():
     # # result4 = df.to_csv('snack_db3.csv', index=False, encoding="utf-8-sig")
     # # print(result4)
     return result
+    # return snack_db
 
 
 @app.get("/recommend")
@@ -207,6 +209,7 @@ def recommend():
     model = SVD(n_epochs=20, n_factors=50, random_state=0)
     model.fit(trainset)
     snack_db = pd.read_csv('snack_db_test.csv', encoding='cp949')
+    # snack_db = pd.read_json('snack_test.json')
     def get_unseen_surprise(ratings, snack_db, member_id):
     #입력값으로 들어온 userId에 해당하는 사용자가 평점을 매긴 모든 과자를 리스트로 생성
         seen_snacks = ratings[ratings['member_id']== member_id]['snack_id'].tolist()
