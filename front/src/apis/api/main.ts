@@ -1,12 +1,9 @@
 import { authApiInstance } from '@/apis/axiosConfig';
 import { isAxiosError } from 'axios';
-
 const authApi = authApiInstance();
 
-export const getWorldcupSnackListAPI = async () => {
+export const getAdsAPI = async () => {
   try {
-    const { data } = await authApi.get(`/event/worldcup`);
-    return data.data;
   } catch (error) {
     if (isAxiosError(error)) {
       console.log('에러: ', error.response);

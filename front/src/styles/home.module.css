@@ -1,5 +1,8 @@
 @value sock-brown, white-color  from './common/colors.css';
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+}
 .ad-img {
   object-fit: cover;
   width: 100%;
@@ -55,4 +58,5 @@
   font-size: 10px;
   text-align: center;
   display: flex;
+  /* font-family: 'Noto Sans KR', sans-serif; */
 }

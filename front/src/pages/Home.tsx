@@ -12,6 +12,7 @@ export default function Home() {
   const { memberData } = useMember();
 
   // TODO: 나중에 api로 추천 snack 받아오기
+
   const [recommendSnackList, setRecommendSnackList] = useState<SnackListItemType[]>([
     {
       snackId: '1',
@@ -46,7 +47,7 @@ export default function Home() {
       <Ads />
       <div className='side-margin'>
         <div className={`${styles.title} ${styles.recommend}`}>
-          <p>{memberData.nickname}님을 위한 맞춤 추천</p>
+          {memberData.nickname && <p>{memberData.nickname}님을 위한 맞춤 추천</p>}
         </div>
         <SnackList snackList={recommendSnackList} />
       </div>

@@ -13,6 +13,7 @@ import FirebaseUploadTest from './pages/FirebaseUploadTest';
 import EventList from '@/pages/EventList';
 import EventResult from './pages/EventrResult';
 import WorldcupEvent from '@/pages/WorldcupEvent';
+
 const router = createBrowserRouter([
   /*   {
     path: '/',
@@ -57,8 +58,8 @@ const router = createBrowserRouter([
     element: <EventList />,
   },
   {
-    path:'/result/enfj',
-    element:<EventResult/>,
+    path: '/result/enfj',
+    element: <EventResult />,
   },
   {
     path: '/event/worldcup',
