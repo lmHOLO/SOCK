@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import BottomNav from "@/components/Navbar/BottomNav";
-import TopNav from "@/components/Navbar/TopNav";
-import { SbtiQuestionType } from "@/types/event";
-import { useNavigate } from "react-router";
+import React, { useEffect, useState } from 'react';
+import BottomNav from '@/components/Navbar/BottomNav';
+import TopNav from '@/components/Navbar/TopNav';
+import { SbtiQuestionType } from '@/types/event';
+import { useNavigate } from 'react-router';
 
-import styles from "@/styles/event_sbti.module.css";
+import styles from '@/styles/event_sbti.module.css';
 
-import { getSbtiQuestionListAPI, getSbtiResultAPI } from "@/apis/api/event";
+import { getSbtiQuestionListAPI, getSbtiResultAPI } from '@/apis/api/event';
 
 export default function SbtiEvent() {
   const navigate = useNavigate();
@@ -16,10 +16,10 @@ export default function SbtiEvent() {
 
   const [sbtiQuestionList, setSbtiQuestionList] = useState<SbtiQuestionType[]>([
     {
-      id: "0",
-      question: "",
-      answer1: "",
-      answer2: "",
+      id: '0',
+      question: '',
+      answer1: '',
+      answer2: '',
     },
   ]);
   const [idx, setIdx] = useState<number>();
@@ -58,12 +58,12 @@ export default function SbtiEvent() {
     <div className="side-margin">
       <TopNav />
 
-      <div className={styles["question"]}>{idx != undefined && sbtiQuestionList[idx].question}</div>
-      <div className={styles["answer"]}>
-        <div className={styles["answerItem"]} onClick={clickLeft}>
+      <div className={styles['question']}>{idx != undefined && sbtiQuestionList[idx].question}</div>
+      <div className={styles['answer']}>
+        <div className={styles['answerItem']} onClick={clickLeft}>
           {idx != undefined && sbtiQuestionList[idx].answer1}
         </div>
-        <div className={styles["answerItem"]} onClick={clickRight}>
+        <div className={styles['answerItem']} onClick={clickRight}>
           {idx != undefined && sbtiQuestionList[idx].answer2}
         </div>
       </div>
