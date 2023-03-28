@@ -1,0 +1,43 @@
+.mySwiper {
+  width: 300px;
+}
+
+.swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+}
+
+.theme-container {
+  padding: 80px 0px;
+  background-color: #fff;
+  height: 100vh;
+}
+
+.theme-container > h1 {
+  font-size: 36px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 53px;
+}
+
+.black {
+  background-color: black;
+}
+
+.font-white {
+  color: #fff;
+}

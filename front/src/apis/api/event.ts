@@ -1,5 +1,5 @@
-import { authApiInstance } from "@/apis/axiosConfig";
-import { isAxiosError } from "axios";
+import { authApiInstance } from '@/apis/axiosConfig';
+import { isAxiosError } from 'axios';
 
 const authApi = authApiInstance();
 
@@ -9,7 +9,7 @@ export const getWorldcupSnackListAPI = async () => {
     return data.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.log("에러: ", error.response);
+      console.log('에러: ', error.response);
       return error.response?.data;
     }
   }
