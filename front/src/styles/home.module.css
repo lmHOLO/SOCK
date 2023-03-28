@@ -69,6 +69,7 @@ body {
 .recommend-container {
   padding: 80px 0px;
   background-color: #fff;
+  height: 100vh;
 }
 
 .recommend-container > h1 {
@@ -99,4 +100,16 @@ body {
 
 .swiper-slide > p {
   margin-bottom: 50px;
+}
+
+.more-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: sock-brown;
+  margin-left: 2vw;
+  font-size: 12px;
+}
+.more-container svg {
+  margin-top: 3px;
 }

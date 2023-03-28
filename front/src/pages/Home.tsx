@@ -8,6 +8,8 @@ import styles from '@/styles/home.module.css';
 import { SnackListItemType } from '@/types/snack';
 import ThemeList from '@/components/Home/ThemeList';
 import Recommend from '@/components/Home/Recommend';
+import Theme from '@/components/Home/Theme';
+
 export default function Home() {
   // const nickname = useSelector((state: RootState) => state.member.nickname);
   const { memberData } = useMember();
@@ -38,7 +40,7 @@ export default function Home() {
     {
       snackId: '5',
       image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      title: '첫번째 과자',
+      title: '다섯번째 과자',
     },
   ]);
 
@@ -47,6 +49,7 @@ export default function Home() {
       <TopNav />
       {/* <Ads /> */}
       <Recommend recommendSnackList={recommendSnackList} />
+      <Theme recommendSnackList={recommendSnackList} />
       <div className={`${styles.title} ${styles.recommend}`}>
         {memberData.nickname && <p>{memberData.nickname}님을 위한 맞춤 추천</p>}
       </div>
