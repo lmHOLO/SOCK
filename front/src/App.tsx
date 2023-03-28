@@ -10,7 +10,9 @@ import SnackDetail from '@/pages/SnackDetail';
 import RecipeDetail from '@/pages/RecipeDetail';
 import RecipePosting from '@/pages/RecipePosting';
 import FirebaseUploadTest from './pages/FirebaseUploadTest';
+import EventList from '@/pages/EventList';
 import EventResult from './pages/EventrResult';
+import WorldcupEvent from '@/pages/WorldcupEvent';
 const router = createBrowserRouter([
   /*   {
     path: '/',
@@ -51,8 +53,16 @@ const router = createBrowserRouter([
     element: <FirebaseUploadTest />,
   },
   {
+    path: '/event',
+    element: <EventList />,
+  },
+  {
     path:'/result/enfj',
     element:<EventResult/>,
+  },
+  {
+    path: '/event/worldcup',
+    element: <WorldcupEvent />,
   },
 ]);
 export default function App() {

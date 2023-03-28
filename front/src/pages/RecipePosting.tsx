@@ -4,7 +4,7 @@ import TopNavOnlyBack from '@/components/Navbar/TopNavOnlyBack';
 import styles from '@/styles/recipe_posting.module.css';
 import UploadImage from '@/components/RecipePosting/UploadImage';
 import RecipeCropImage from '@/components/RecipePosting/RecipeCropImage';
-import { PostingTabType, SnackTagType } from '@/types/recipe';
+import { PostingTabType, PostSnackTagType } from '@/types/recipe';
 import PostingCropTopNav from '@/components/Navbar/PostingCropTopNav';
 import getCroppedImg from '@/utils/cropImage';
 import Images from '@/components/RecipePosting/Images';
@@ -30,7 +30,7 @@ export default function RecipePosting() {
   const [croppedImageList, setCroppedImageList] = useState<any>([]); // 프리뷰로 보여줄 거
   const [title, setTitle] = useState<string>('');
   const [content, setContent] = useState<string>('');
-  const [tagList, setTagList] = useState<SnackTagType[]>([]);
+  const [tagList, setTagList] = useState<PostSnackTagType[]>([]);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   // const [cropedFiles, setCropedFiles] = useState<File[]>([]);
@@ -69,7 +69,7 @@ export default function RecipePosting() {
       handleUploadFile(file);
     } */
   };
-  const addTag = (snack: SnackTagType) => {
+  const addTag = (snack: PostSnackTagType) => {
     setTagList([...tagList, snack]);
     console.log(snack);
     console.log(tagList);
@@ -157,7 +157,7 @@ export default function RecipePosting() {
           <WriteTitle setTitle={setTitle} />
           <div className={styles['tag-container']}>
             {tagList.map((tag, index) => (
-              <div>
+              <div key={index}>
                 <Tag key={tag.id} tag={tag} />
                 <HighlightOffIcon onClick={() => deleteTag(tag.id)} />
               </div>
