@@ -7,6 +7,7 @@ import useMember from '@/hooks/memberHook';
 import styles from '@/styles/home.module.css';
 import { SnackListItemType } from '@/types/snack';
 import ThemeList from '@/components/Home/ThemeList';
+import Recommend from '@/components/Home/Recommend';
 export default function Home() {
   // const nickname = useSelector((state: RootState) => state.member.nickname);
   const { memberData } = useMember();
@@ -27,12 +28,12 @@ export default function Home() {
     {
       snackId: '3',
       image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      title: '첫번째 과자',
+      title: '세번째 과자',
     },
     {
       snackId: '4',
       image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      title: '두번째 과자',
+      title: '네번째 과자',
     },
     {
       snackId: '5',
@@ -44,13 +45,12 @@ export default function Home() {
   return (
     <div>
       <TopNav />
-      <Ads />
-      <div className='side-margin'>
-        <div className={`${styles.title} ${styles.recommend}`}>
-          {memberData.nickname && <p>{memberData.nickname}님을 위한 맞춤 추천</p>}
-        </div>
-        <SnackList snackList={recommendSnackList} />
+      {/* <Ads /> */}
+      <Recommend recommendSnackList={recommendSnackList} />
+      <div className={`${styles.title} ${styles.recommend}`}>
+        {memberData.nickname && <p>{memberData.nickname}님을 위한 맞춤 추천</p>}
       </div>
+      <SnackList snackList={recommendSnackList} />
       <div className='side-margin'>
         <div className={`${styles.title} ${styles.theme}`}>
           <p>테마별 추천</p>
