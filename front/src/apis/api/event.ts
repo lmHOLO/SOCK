@@ -26,3 +26,15 @@ export const getSbtiQuestionListAPI = async () => {
     }
   }
 };
+
+export const getSbtiResultAPI = async (list: number[]) => {
+  try {
+    const { data } = await authApi.post("/event/sbti", list);
+    return data.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      console.log("에러: ", error.response);
+      return error.response?.data;
+    }
+  }
+};

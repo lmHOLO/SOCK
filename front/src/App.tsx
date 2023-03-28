@@ -58,7 +58,7 @@ const router = createBrowserRouter([
     element: <EventList />,
   },
   {
-    path: "/result/enfj",
+    path: "/event/sbti/:result",
     element: <EventResult />,
   },
   {
