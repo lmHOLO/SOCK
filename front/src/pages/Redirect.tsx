@@ -17,6 +17,7 @@ export default function Redirect() {
       console.log(token);
       localStorage.setItem('token', token);
       // api로 가져오기
+      // loginApi를 통해 get 요청을 보내 내 로그인 정보를 확인할 수 있음.
       loginApi().then(getMemberLoginInfo).then(login);
       navigate('/');
       return;

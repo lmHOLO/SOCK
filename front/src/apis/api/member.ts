@@ -6,7 +6,7 @@ const authApi = authApiInstance();
 export const loginApi = async () => {
   try {
     const { data } = await authApi.get(`/member`);
-    console.log(data);
+    console.log(data, '초기선호도 조사를 위한 데이터 확인');
     return data.data;
   } catch (error) {
     if (isAxiosError(error)) {
