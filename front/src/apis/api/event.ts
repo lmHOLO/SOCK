@@ -14,3 +14,15 @@ export const getWorldcupSnackListAPI = async () => {
     }
   }
 };
+
+export const getSbtiQuestionListAPI = async () => {
+  try {
+    const { data } = await authApi.get("/event/sbti");
+    return data.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      console.log("에러: ", error.response);
+      return error.response?.data;
+    }
+  }
+};
