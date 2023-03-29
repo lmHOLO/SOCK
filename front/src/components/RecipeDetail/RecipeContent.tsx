@@ -9,6 +9,8 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Images from '@/components/RecipeDetail/Images';
 import Tag from '@/components/RecipeDetail/Tag';
 import { getRecipeDetailApi, postRecipeLikeAPI, deleteRecipeLikeAPI } from '@/apis/api/recipeDetail';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import PositionedMenu from './PositionedMenu';
 
 export default function RecipeContent() {
   const { id } = useParams();
@@ -61,9 +63,15 @@ export default function RecipeContent() {
 
   return (
     <div>
-      <div className={styles['member-data']}>
-        <img src={recipe.writerImage} alt={recipe.writerImage} />
-        <p>{recipe.writerNickname}</p>
+      <div className={styles['top-bar']}>
+        <div className={styles['member-data']}>
+          <img src={recipe.writerImage} alt={recipe.writerImage} />
+          <p>{recipe.writerNickname}</p>
+        </div>
+        <div className={styles['more-btn']}>
+          <PositionedMenu />
+        </div>
+        {/* <MoreHorizIcon className={styles['more-btn']} /> */}
       </div>
       <div>
         <Swiper

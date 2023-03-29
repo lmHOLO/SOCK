@@ -1,4 +1,4 @@
-@value sock-brown, sock-yellow, white-color  from './common/colors.css';
+@value sock-brown, sock-nagative, sock-yellow, white-color  from './common/colors.css';
 .comment-container {
   margin: 10px 0px;
 }
@@ -47,6 +47,11 @@
 .comment-data {
   display: flex;
   justify-content: space-between;
+}
+
+.delete-btn {
+  color: sock-nagative;
+  float: right;
 }
 
 /* 별점 관련 */
