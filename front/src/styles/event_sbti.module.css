@@ -16,4 +16,8 @@
   padding: 10px;
   width: 200px;
   height: 150px;
+  margin-right: 10px;
+  border-radius: 15px;
+  white-space: pre-wrap;
+  text-align: center;
 }

@@ -8,6 +8,8 @@ import styles from '@/styles/event_sbti.module.css';
 
 import { getSbtiQuestionListAPI, getSbtiResultAPI } from '@/apis/api/event';
 
+import Paper from '@mui/material/Paper';
+
 export default function SbtiEvent() {
   const navigate = useNavigate();
   const navigateTo = (result: string) => {
