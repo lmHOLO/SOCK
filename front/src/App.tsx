@@ -14,6 +14,7 @@ import EventList from '@/pages/EventList';
 import EventResult from './pages/EventrResult';
 import WorldcupEvent from '@/pages/WorldcupEvent';
 import SbtiEvent from '@/pages/SbtiEvent';
+import Search from './pages/Search';
 const router = createBrowserRouter([
   /*   {
     path: '/',
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
   {
     path: '/event/sbti',
     element: <SbtiEvent />,
+  },
+  {
+    path: 'search',
+    element: <Search />,
   },
 ]);
 export default function App() {
