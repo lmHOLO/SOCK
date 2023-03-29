@@ -8,7 +8,6 @@ import styles from '@/styles/event_sbti.module.css';
 
 import { getSbtiQuestionListAPI, getSbtiResultAPI } from '@/apis/api/event';
 
-
 export default function SbtiEvent() {
   const navigate = useNavigate();
   const navigateTo = (result: string) => {
@@ -55,10 +54,8 @@ export default function SbtiEvent() {
     });
   };
 
-  
-
   return (
-    <div className="side-margin">
+    <div className='side-margin'>
       <TopNav />
       <div>
         <img className={styles['question_img']} src={idx != undefined && require(`@/assets/event/question/${idx}.png`)}></img>
