@@ -9,6 +9,7 @@
   height: 28px;
   border-radius: 100px;
   object-fit: cover;
+  margin-right: 5px;
 }
 .member-data > p {
   font-size: 15px;
@@ -17,7 +18,13 @@
 .recipe-like {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
 }
+
+.recipe-like > svg {
+  color: rgb(255, 119, 119);
+}
+
 .recipe-paper {
   width: 100%;
   max-width: 350px;
@@ -42,6 +49,11 @@
   font-size: 14px;
   background-color: sock-brown;
   color: white-color;
+}
+
+.recipe-title {
+  font-weight: 700;
+  font-size: 20px;
 }
 
 /* 태그 관련 */
@@ -80,4 +92,28 @@
 .recipe-content {
   padding: 5px 10px;
   margin-bottom: 10px;
+}
+
+/* 스와이프 */
+.mySwiper {
+  width: 300px;
+  height: 300px;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

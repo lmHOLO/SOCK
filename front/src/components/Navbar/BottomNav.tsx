@@ -22,7 +22,7 @@ export default function BottomNav() {
           <p>SNACK</p>
         </div>
       </button>
-      <button className={styles['menu-btn']} onClick={() => navigateTo('recipe')}>
+      <button className={styles['menu-btn']} onClick={() => navigateTo('recipes/1')}>
         <div className={styles['menu-content']}>
           <ReceiptLongIcon fontSize='large' style={{ color: 'white' }} />
           <p>RECIPE</p>

@@ -1,8 +1,8 @@
 import React from 'react';
-import { SnackTagType } from '@/types';
+import { PostSnackTagType } from '@/types/recipe';
 import styles from '@/styles/recipe_detail.module.css';
 interface Props {
-  tag: SnackTagType;
+  tag: PostSnackTagType;
 }
 export default function Tag({ tag }: Props) {
   return (

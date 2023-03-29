@@ -20,7 +20,7 @@ export const getContainRecipeAPI = async (page: string, id: string) => {
 export const getRecipeDetailApi = async (id: string) => {
   try {
     const { data } = await authApi.get(`/recipes/${id}`);
-    console.log('레시피 상세', data);
+    // console.log('레시피 상세', data);
     return data.data;
   } catch (error) {
     if (isAxiosError(error)) {
@@ -113,8 +113,8 @@ export const deleteRecipeLikeAPI = async (id: string) => {
 //  레시피 댓글 조회
 export const getRecipeCommentsAPI = async (id: string) => {
   try {
-    const result = await authApi.get(`/recipes/${id}/comments`);
-    return result;
+    const { data } = await authApi.get(`/recipes/${id}/comments`);
+    return data.data;
   } catch (error) {
     if (isAxiosError(error)) {
       console.log('에러: ', error.response);
@@ -124,9 +124,9 @@ export const getRecipeCommentsAPI = async (id: string) => {
 };
 
 // 레시피 댓글 작성
-export const postRecipeCommentAPI = async (id: string) => {
+export const postRecipeCommentAPI = async (id: string, data: { content: string }) => {
   try {
-    const result = await authApi.post(`/recipes/${id}/comments`);
+    const result = await authApi.post(`/recipes/${id}/comments`, data);
     return result;
   } catch (error) {
     if (isAxiosError(error)) {

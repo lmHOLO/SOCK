@@ -7,6 +7,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { deleteSnackLikeAPI, getSnackDetailApi, postSnackLikeAPI } from '@/apis/api/snackDetail';
 import { getSnackDetail } from '@/apis/services/snackDetail';
+import { purchaseSnackAPI } from '@/apis/api/snackDetail';
 import { ErrorType } from '@/types/error';
 import FlavorList from './FlavorList';
 export default function SnackContent() {
@@ -64,9 +65,17 @@ export default function SnackContent() {
     setStarAvg(snack.sumOfStars / snack.numberOfParticipants);
   }, [snack]);
 
+  const purchaseEvent = () => {
+    purchaseSnackAPI(snack.snackId);
+    const url = `https://www.coupang.com/np/search?component=&q=${snack.name}&channel=user`;
+    window.open(url, '_blank');
+  };
+
   return (
     <div>
-      <button className={styles['purchase-btn']}>구매하러 가기</button>
+      <button className={styles['purchase-btn']} onClick={purchaseEvent}>
+        구매하러 가기
+      </button>
       <div className={styles['snack-img-container']}>
         <img src={snack.image} alt={snack.name} />
       </div>
