@@ -74,7 +74,7 @@ export default function Comment() {
           </>
         )}
       </div>
-      <CommentList setIsValid={setIsValid} />
+      <CommentList isValid={isValid} setIsValid={setIsValid} />
     </div>
   );
 }
