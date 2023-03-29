@@ -35,7 +35,7 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
   },
   {
-    path: 'oauth2/redirect',
+    path: '/redirect',
     element: <Redirect />,
   },
   {
