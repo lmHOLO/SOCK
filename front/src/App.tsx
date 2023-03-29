@@ -28,6 +28,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
+    errorElement: <Login />,
   },
   {
     path: '/login',
@@ -71,7 +72,7 @@ const router = createBrowserRouter([
     element: <SbtiEvent />,
   },
   {
-    path: 'search',
+    path: '/search',
     element: <Search />,
   },
 ]);
