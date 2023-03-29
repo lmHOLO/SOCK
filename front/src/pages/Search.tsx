@@ -15,13 +15,11 @@ export default function Search() {
   useEffect(() => {
     getTopPopularListAPI().then((data) => {
       setPopularList(data);
-      console.log('data = ', data);
     });
   }, []);
 
   const handleSearchBar = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchBar(e.target.value);
-    console.log(searchBar);
   };
 
   return (

@@ -8,12 +8,18 @@ interface Props {
 export default function Popular({ popularList }: Props) {
   const navigate = useNavigate();
 
+  const moveDetail = (item: any) => {
+    {
+      item.snackCheck ? navigate(`/snacks/${item.id}`) : navigate(`/recipes/${item.id}`);
+    }
+  };
+
   return (
     <div className={styles['popular-container']}>
       <ol className={styles['popular-list']}>
         {popularList.map((item, index) => {
           return (
-            <li key={index} onClick={() => navigate(`/snacks/${item.id}`)}>
+            <li key={index} onClick={() => moveDetail(item)}>
               {index + 1}. {item.name}
             </li>
           );
