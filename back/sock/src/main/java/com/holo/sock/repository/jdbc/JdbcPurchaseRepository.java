@@ -70,7 +70,7 @@ public class JdbcPurchaseRepository {
     }
 
     private int batchUpdatePurchaseFromRedis(int batchCount, List<PurchaseRedisDto> subItems){
-        jdbcTemplate.batchUpdate("update purchase set count = ?, last_modified_date = now() where search_id = ?"
+        jdbcTemplate.batchUpdate("update purchase set count = ?, last_modified_date = now() where purchase_id = ?"
                 , new BatchPreparedStatementSetter() {
                     @Override
                     public void setValues(PreparedStatement ps, int i) throws SQLException {
