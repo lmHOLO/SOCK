@@ -66,7 +66,6 @@ export default function SnackContent() {
   }, [snack]);
 
   const purchaseEvent = () => {
-    console.log('snack name = ', snack.name);
     purchaseSnackAPI(snack.snackId);
     const url = `https://www.coupang.com/np/search?component=&q=${snack.name}&channel=user`;
     window.open(url, '_blank');
