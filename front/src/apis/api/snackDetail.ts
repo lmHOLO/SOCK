@@ -1,10 +1,10 @@
-import { authApiInstance } from "@/apis/axiosConfig";
-import { ReviewSubmitType } from "@/types/snack";
-import { isAxiosError } from "axios";
-const authApi = authApiInstance();
+import { authApiInstance } from '@/apis/axiosConfig';
+import { ReviewSubmitType } from '@/types/snack';
+import { isAxiosError } from 'axios';
+
 export const getSnackDetailApi = async (id: string) => {
   try {
-    const { data } = await authApi.get(`snacks/${id}`);
+    const { data } = await authApiInstance().get(`snacks/${id}`);
     // console.log('snack', data);
     return data.data;
   } catch (error) {
@@ -18,7 +18,7 @@ export const getSnackDetailApi = async (id: string) => {
 // 과자 리뷰 출력
 export const getSnackReviewsAPI = async (id: string) => {
   try {
-    const { data } = await authApi.get(`snacks/${id}/reviews`);
+    const { data } = await authApiInstance().get(`snacks/${id}/reviews`);
     return data.data;
   } catch (error) {
     if (isAxiosError(error)) {
@@ -30,7 +30,7 @@ export const getSnackReviewsAPI = async (id: string) => {
 
 export const getSimilarSnackAPI = async (page: string, id: string) => {
   try {
-    const { data } = await authApi.get(`snacks/similar?${page}-id=${id}`);
+    const { data } = await authApiInstance().get(`snacks/similar?${page}-id=${id}`);
     return data.data;
   } catch (error) {
     if (isAxiosError(error)) {
@@ -44,7 +44,7 @@ export const getSimilarSnackAPI = async (page: string, id: string) => {
 export const postSnackReviewAPI = async (id: string, data: ReviewSubmitType) => {
   try {
     // await authApi.post(`/snacks/${id}/reviews`, data);
-    const result = await authApi.post(`/snacks/${id}/reviews`, data);
+    const result = await authApiInstance().post(`/snacks/${id}/reviews`, data);
     return result;
   } catch (error) {
     if (isAxiosError(error)) {
@@ -57,7 +57,7 @@ export const postSnackReviewAPI = async (id: string, data: ReviewSubmitType) => 
 // 과자 좋아요 등록
 export const postSnackLikeAPI = async (id: string) => {
   try {
-    const result = await authApi.post(`/snacks/${id}/like`);
+    const result = await authApiInstance().post(`/snacks/${id}/like`);
     return result;
   } catch (error) {
     if (isAxiosError(error)) {
@@ -69,7 +69,7 @@ export const postSnackLikeAPI = async (id: string) => {
 // 과자 좋아요 취소
 export const deleteSnackLikeAPI = async (id: string) => {
   try {
-    const result = await authApi.delete(`/snacks/${id}/like`);
+    const result = await authApiInstance().delete(`/snacks/${id}/like`);
     return result;
   } catch (error) {
     if (isAxiosError(error)) {

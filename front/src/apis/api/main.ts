@@ -1,6 +1,6 @@
 import { authApiInstance } from '@/apis/axiosConfig';
 import { isAxiosError } from 'axios';
-const authApi = authApiInstance();
+// const authApi = authApiInstance();
 
 export const getAdsAPI = async () => {
   try {
