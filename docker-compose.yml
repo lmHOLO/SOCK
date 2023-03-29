@@ -1,4 +1,9 @@
 services:
+  redis:
+    container_name: redis
+    image: redis
+    ports:
+      - "6379:6379"
   backend: 
     container_name: backend
     build: 
@@ -8,6 +13,7 @@ services:
     restart: unless-stopped
     depends_on:
       - mysql
+      - redis
 
   frontend:
     container_name: frontend

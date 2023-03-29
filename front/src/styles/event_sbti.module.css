@@ -1,0 +1,19 @@
+@value sock-brown, sock-yellow, white-color  from './common/colors.css';
+
+.question {
+  display: flex;
+  padding: 10px;
+}
+
+.answer {
+  display: flex;
+}
+
+.answerItem {
+  border-width: 3px;
+  border-color: black;
+  border-style: solid;
+  padding: 10px;
+  width: 200px;
+  height: 150px;
+}
