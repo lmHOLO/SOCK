@@ -11,7 +11,7 @@ export default function BottomNav() {
   const navigate = useNavigate();
   const { memberData, isLoggedIn } = useMember();
   useEffect(() => {
-    !isLoggedIn && navigate(`/login`);
+    !isLoggedIn && !memberData.nickname && navigate(`/login`);
   });
   const navigateTo = (name: string) => {
     navigate(`/${name}`);
