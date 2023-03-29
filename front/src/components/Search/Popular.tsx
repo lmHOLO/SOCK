@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
 import styles from '@/styles/search.module.css';
 import { useNavigate } from 'react-router-dom';
-import { PopularType } from '@/types/search';
 
-export default function Popular() {
+interface Props {
+  popularList: { id: string; snackCheck: boolean; score: number; name: string }[];
+}
+
+export default function Popular({ popularList }: Props) {
   const navigate = useNavigate();
-
-  const [popularList, setPopularList] = useState<PopularType[]>([]);
 
   return (
     <div className={styles['popular-container']}>
       <ol className={styles['popular-list']}>
         {popularList.map((item, index) => {
           return (
-            <li onClick={() => navigate(`/snacks/${item.snackId}`)}>
-              {index + 1}. {item.snackTitle}
+            <li key={index} onClick={() => navigate(`/snacks/${item.id}`)}>
+              {index + 1}. {item.name}
             </li>
           );
         })}
