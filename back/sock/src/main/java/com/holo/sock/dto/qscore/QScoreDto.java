@@ -10,6 +10,7 @@ public class QScoreDto implements Comparable<QScoreDto>{
     private Long id;
     private boolean snackCheck;
     private long score;
+    private String name;
 
     @Override
     public int compareTo(QScoreDto o) {
