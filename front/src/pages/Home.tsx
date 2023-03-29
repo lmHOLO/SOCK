@@ -7,12 +7,12 @@ import styles from '@/styles/home.module.css';
 import { SnackListItemType } from '@/types/snack';
 import ThemeList from '@/components/Home/ThemeList';
 import Recommend from '@/components/Home/Recommend';
-import Memory from '@/components/Home/Memory';
+import Retro from '@/components/Home/Retro';
+import Movie from '@/components/Home/Movie';
 
 export default function Home() {
   // const nickname = useSelector((state: RootState) => state.member.nickname);
   const { memberData } = useMember();
-  const DIVIDER_HEIGHT = 5;
   // TODO: 나중에 api로 추천 snack 받아오기
   const outerDivRef = useRef<HTMLDivElement>(null);
   const [scrollIndex, setScrollIndex] = useState(1);
@@ -44,6 +44,7 @@ export default function Home() {
     },
   ]);
   useEffect(() => {
+    window.scrollTo(0, 0);
     const wheelHandler = (e: any) => {
       e.preventDefault();
       const { deltaY } = e;
@@ -55,7 +56,7 @@ export default function Home() {
           //현재 1페이지
           console.log('현재 1페이지, down');
           outerDivRef.current?.scrollTo({
-            top: pageHeight + DIVIDER_HEIGHT,
+            top: pageHeight,
             left: 0,
             behavior: 'smooth',
           });
@@ -64,7 +65,7 @@ export default function Home() {
           //현재 2페이지
           console.log('현재 2페이지, down');
           outerDivRef.current?.scrollTo({
-            top: pageHeight * 2 + DIVIDER_HEIGHT * 2,
+            top: pageHeight * 2,
             left: 0,
             behavior: 'smooth',
           });
@@ -73,7 +74,7 @@ export default function Home() {
           // 현재 3페이지
           console.log('현재 3페이지, down');
           outerDivRef.current?.scrollTo({
-            top: pageHeight * 2 + DIVIDER_HEIGHT * 2,
+            top: pageHeight * 2,
             left: 0,
             behavior: 'smooth',
           });
@@ -103,7 +104,7 @@ export default function Home() {
           // 현재 3페이지
           console.log('현재 3페이지, up');
           outerDivRef.current?.scrollTo({
-            top: pageHeight + DIVIDER_HEIGHT,
+            top: pageHeight,
             left: 0,
             behavior: 'smooth',
           });
@@ -123,10 +124,9 @@ export default function Home() {
       <TopNav />
       {/* <Ads /> */}
       <Recommend recommendSnackList={recommendSnackList} />
-      <div className={styles['divider']}></div>
       {/* <div className='divider'></div> */}
-      <Memory recommendSnackList={recommendSnackList} />
-      <div className={styles['divider']}></div>
+      <Movie recommendSnackList={recommendSnackList} />
+      <Retro recommendSnackList={recommendSnackList} />
       <div className={`${styles.title} ${styles.recommend}`}>
         {memberData.nickname && <p>{memberData.nickname}님을 위한 맞춤 추천</p>}
       </div>
