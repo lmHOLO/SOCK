@@ -127,17 +127,6 @@ export default function Home() {
       {/* <div className='divider'></div> */}
       <Movie recommendSnackList={recommendSnackList} />
       <Retro recommendSnackList={recommendSnackList} />
-      <div className={`${styles.title} ${styles.recommend}`}>
-        {memberData.nickname && <p>{memberData.nickname}님을 위한 맞춤 추천</p>}
-      </div>
-      <SnackList snackList={recommendSnackList} />
-      <div className='side-margin'>
-        <div className={`${styles.title} ${styles.theme}`}>
-          <p>테마별 추천</p>
-        </div>
-        <ThemeList />
-      </div>
-      <BottomNav />
     </div>
   );
 }
