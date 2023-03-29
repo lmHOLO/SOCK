@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import TopNav from '@/components/Navbar/TopNav';
 import BottomNav from '@/components/Navbar/BottomNav';
-import Ads from '@/components/Home/Ads';
 import SnackList from '@/components/common/SnackList';
 import useMember from '@/hooks/memberHook';
 import styles from '@/styles/home.module.css';

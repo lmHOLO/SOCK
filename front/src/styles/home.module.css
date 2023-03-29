@@ -113,3 +113,8 @@ body {
 .more-container svg {
   margin-top: 3px;
 }
+
+.opacity {
+  opacity: 0;
+  transition: all 1s;
+}
