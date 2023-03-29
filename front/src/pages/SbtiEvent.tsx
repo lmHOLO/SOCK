@@ -8,7 +8,6 @@ import styles from '@/styles/event_sbti.module.css';
 
 import { getSbtiQuestionListAPI, getSbtiResultAPI } from '@/apis/api/event';
 
-import Paper from '@mui/material/Paper';
 
 export default function SbtiEvent() {
   const navigate = useNavigate();
@@ -56,10 +55,16 @@ export default function SbtiEvent() {
     });
   };
 
+  
+
   return (
     <div className="side-margin">
       <TopNav />
 
+      {/* <div className={styles['question']}>{idx != undefined && sbtiQuestionList[idx].question}</div> */}
+      <div>
+        <img className={styles['question_img']} src={idx != undefined && require(`@/assets/event/question/${idx}.png`)}></img>
+      </div>
       <div className={styles['question']}>{idx != undefined && sbtiQuestionList[idx].question}</div>
       <div className={styles['answer']}>
         <div className={styles['answerItem']} onClick={clickLeft}>
