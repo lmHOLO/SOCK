@@ -20,7 +20,7 @@ export const getContainRecipeAPI = async (page: string, id: string) => {
 export const getRecipeDetailApi = async (id: string) => {
   try {
     const { data } = await authApi.get(`/recipes/${id}`);
-    console.log('레시피 상세', data);
+    // console.log('레시피 상세', data);
     return data.data;
   } catch (error) {
     if (isAxiosError(error)) {
