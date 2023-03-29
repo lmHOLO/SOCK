@@ -35,13 +35,13 @@ export default function PhotoList({ setTab, originFiles, setOriginFiles }: Props
   return (
     <FileUploader
       handleChange={imageRegistHandler}
-      name="file"
+      name='file'
       types={fileTypes}
       multiple={true}
-      hoverTitle="놓아주세요"
+      hoverTitle='놓아주세요'
       // onDraggingStateChange={(dragging: boolean) => setIsDrag(dragging)}
     >
-      <button type="button" className={styles['upload-container']}>
+      <button type='button' className={styles['upload-container']}>
         <AddPhotoAlternateIcon />
       </button>
     </FileUploader>
