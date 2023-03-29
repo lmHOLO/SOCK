@@ -9,7 +9,7 @@ export const getSnackDetailApi = async (id: string) => {
     return data.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.log("에러: ", error.response);
+      console.log('에러: ', error.response);
       return error.response?.data;
     }
   }
@@ -22,7 +22,7 @@ export const getSnackReviewsAPI = async (id: string) => {
     return data.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.log("에러: ", error.response);
+      console.log('에러: ', error.response);
       return error.response?.data;
     }
   }
@@ -34,7 +34,7 @@ export const getSimilarSnackAPI = async (page: string, id: string) => {
     return data.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.log("에러: ", error.response);
+      console.log('에러: ', error.response);
       return error.response?.data;
     }
   }
@@ -48,7 +48,7 @@ export const postSnackReviewAPI = async (id: string, data: ReviewSubmitType) => 
     return result;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.log("에러: ", error.response);
+      console.log('에러: ', error.response);
       return error.response?.data;
     }
   }
@@ -61,7 +61,7 @@ export const postSnackLikeAPI = async (id: string) => {
     return result;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.log("에러: ", error.response);
+      console.log('에러: ', error.response);
       return error.response?.data;
     }
   }
@@ -73,7 +73,7 @@ export const deleteSnackLikeAPI = async (id: string) => {
     return result;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.log("에러: ", error.response);
+      console.log('에러: ', error.response);
       return error.response?.data;
     }
   }
@@ -82,11 +82,11 @@ export const deleteSnackLikeAPI = async (id: string) => {
 // 과자 구매링크 클릭
 export const purchaseSnackAPI = async (id: string) => {
   try {
-    const result = await authApi.post(`/snacks/${id}/purchase`);
+    const result = await authApiInstance().post(`/snacks/${id}/purchase`);
     return result;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.log("에러: ", error.response);
+      console.log('에러: ', error.response);
       return error.response?.data;
     }
   }
