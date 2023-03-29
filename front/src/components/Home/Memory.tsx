@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import styles from '@/styles/theme.module.css';
+import React, { useState } from 'react';
+import styles from '@/styles/memory.module.css';
 // Import Swiper React components
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
