@@ -37,6 +37,7 @@ public class QScoreService {
                             .id(rqs.getId())
                             .snackCheck(false)
                             .score(rqs.getScore())
+                            .name(rqs.getRecipe().getTitle())
                             .build()
             );
         }
@@ -47,6 +48,7 @@ public class QScoreService {
                             .id(sqs.getId())
                             .snackCheck(true)
                             .score(sqs.getScore())
+                            .name(sqs.getSnack().getName())
                             .build()
             );
         }
