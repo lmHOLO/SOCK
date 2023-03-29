@@ -21,8 +21,14 @@ export default function Redirect() {
       new Promise<void>((resolve) => {
         localStorage.setItem('token', token);
         resolve();
-      }).then(() => loginApi().then(getMemberLoginInfo).then(login));
-      navigate('/');
+      }).then(() =>
+        loginApi()
+          .then(getMemberLoginInfo)
+          .then((data) => {
+            login(data);
+            navigate('/');
+          }),
+      );
       return;
     }
     if (error) {
