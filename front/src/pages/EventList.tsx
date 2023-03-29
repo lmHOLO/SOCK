@@ -19,12 +19,10 @@ export default function EventList() {
     <div className="side-margin">
       <TopNav />
       <div className={styles["event-list-img"]}>
-        <Card sx={{ maxWidth: 300 }}  onClick={() => navigateTo("sbti")}>
+        <Card sx={{ maxWidth: 350 }}  onClick={() => navigateTo("sbti")}>
           <CardActionArea >
             <CardMedia
               component="img"
-              // height="300"
-              // width="300"
               image={sbti_title}
               alt="SBTI"
             />
@@ -33,23 +31,16 @@ export default function EventList() {
       </div>
       
       <div className={styles["event-list-img"]}>
-        <Card sx={{ maxWidth: 300 }}  onClick={() => navigateTo("worldcup")}>
+        <Card sx={{ maxWidth: 350 }}  onClick={() => navigateTo("worldcup")}>
           <CardActionArea >
             <CardMedia
               component="img"
-              // height="300"
-              // width="300"
               image={worldcup_title}
               alt="SBTI"
             />
           </CardActionArea>
         </Card>
       </div>
-
-
-
-
-
 
       <BottomNav />
     </div>
