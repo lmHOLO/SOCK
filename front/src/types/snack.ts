@@ -83,3 +83,11 @@ export type ReviewSubmitType = {
   content: string;
   star: number;
 };
+
+
+// 초기 선호도 조사
+export type SnackPreferType = {
+  snackId: number;
+  name: string;
+  image: string;
+}

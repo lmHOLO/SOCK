@@ -13,6 +13,7 @@ import FirebaseUploadTest from './pages/FirebaseUploadTest';
 import EventList from '@/pages/EventList';
 import EventResult from './pages/EventrResult';
 import WorldcupEvent from '@/pages/WorldcupEvent';
+import FirstPrefer from '@/pages/FirstPrefer';
 const router = createBrowserRouter([
   /*   {
     path: '/',
@@ -64,6 +65,11 @@ const router = createBrowserRouter([
     path: '/event/worldcup',
     element: <WorldcupEvent />,
   },
+  {
+    path: '/firstprefer',
+    element: <FirstPrefer />,
+  },
+  
 ]);
 export default function App() {
   const { isLoggedIn } = useMember();
