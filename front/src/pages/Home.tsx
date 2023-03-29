@@ -127,6 +127,7 @@ export default function Home() {
       {/* <div className='divider'></div> */}
       <Movie recommendSnackList={recommendSnackList} />
       <Retro recommendSnackList={recommendSnackList} />
+      <BottomNav />
     </div>
   );
 }
