@@ -55,6 +55,7 @@ export default function SbtiEvent() {
   };
 
   return (
+    
     <div className='side-margin'>
       <TopNav />
       <div>

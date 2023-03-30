@@ -1,0 +1,103 @@
+@value sock-brown, sock-yellow, white-color  from './common/colors.css';
+.primary {
+  padding: 1rem;
+}
+
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, auto));
+  column-gap: 2%;
+}
+.card-item {
+  margin-bottom: 2rem;
+  background: inherit;
+  border-radius: 30px;
+}
+.card-image {
+  width: 100%;
+  margin-bottom: 5px;
+}
+.card-image > img {
+  width: 100%;
+  object-fit: cover;
+}
+
+/* 과자 */
+.snack-grade {
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+}
+
+.snack-grade > svg {
+  color: sock-yellow;
+}
+.snack-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sort {
+  display: flex;
+  justify-content: end;
+}
+
+.sort > button {
+  margin-left: 5px;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 5px;
+}
+
+.theme-container {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.theme-container > h1 {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+/* 레시피 */
+.recipe-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.member-data {
+  display: flex;
+  align-items: center;
+  padding: 10px 0px;
+}
+.member-data > img {
+  width: 28px;
+  height: 28px;
+  border-radius: 100px;
+  object-fit: cover;
+  margin-right: 5px;
+}
+.member-data > p {
+  font-size: 15px;
+}
+
+.recipe-info > svg {
+  color: rgb(255, 119, 119);
+}
+.snack-info > svg {
+  color: rgb(255, 119, 119);
+}

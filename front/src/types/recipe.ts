@@ -4,6 +4,15 @@ export type RecipeListItemType = {
   title: string;
 };
 
+export type GridRecipeListItemType = {
+  myLikeCheck: boolean;
+  writer: string;
+  writerImage: string;
+  recipeId: string;
+  recipeTitle: string;
+  recipeImage: string;
+};
+
 export type RecipeWriteType = {
   title: string;
   images: string[];
