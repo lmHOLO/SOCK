@@ -71,7 +71,7 @@ export default function RecipeContent() {
           <img src={recipe.writerImage} alt={recipe.writerImage} />
           <p>{recipe.writerNickname}</p>
         </div>
-        <div className={styles['more-btn']}>{memberData.id == recipe.writerId ? <PositionedMenu /> : <div />}</div>
+        <div className={styles['more-btn']}>{memberData.id === recipe.writerId && <PositionedMenu />}</div>
         {/* <MoreHorizIcon className={styles['more-btn']} /> */}
       </div>
       <div>
