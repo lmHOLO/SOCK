@@ -17,7 +17,7 @@ import java.util.Optional;
 public interface CommentRepository extends JpaRepository<Comment,Long> {
     Optional<Comment> findByWriterAndIdAndRecipe(Member member,Long id, Recipe recipe);
 
-    @Query(value = "select c from Comment c join fetch c.writer w where c.recipe.id = :recipeId",
+    @Query(value = "select c from Comment c join fetch c.writer w where c.recipe.id = :recipeId order by c.createDate desc",
     countQuery = "select count(c) from Comment c where c.recipe.id =:recipeId")
     Page<Comment> findByRecipeId(@Param("recipeId") Long recipeId , Pageable pageable);
 
