@@ -27,7 +27,7 @@ export default function Recommend({ recommendSnackList }: Props) {
     observer.observe(opacity[0]);
   }, []);
   return (
-    <div className={`${styles['recommend-container']} `}>
+    <div className={`${styles['recommend-container']} inner`}>
       <h1 className={`opacity`}>
         당신을 위한
         <br /> 맞춤추천

@@ -76,7 +76,6 @@ export default function SnackContentPage() {
         {theme === 'snacks' && <h1>과자</h1>}
         {theme === 'retro' && <h1>레트로</h1>}
         {theme === 'milk' && <h1>우유</h1>}
-        {theme === 'drink' && <h1>술</h1>}
       </div>
       <div className={styles['sort']}>
         {sort === 'popular' && (

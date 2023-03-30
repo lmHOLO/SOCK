@@ -34,18 +34,18 @@ public class QScoreService {
         for (RecipeQScore rqs : recipeQScores) {
             pq.offer(
                     QScoreDto.builder()
-                            .id(rqs.getId())
+                            .id(rqs.getRecipe().getId())
                             .snackCheck(false)
                             .score(rqs.getScore())
                             .name(rqs.getRecipe().getTitle())
                             .build()
             );
-        } 
+        }
 
         for (SnackQScore sqs : snackQScores) {
             pq.offer(
                     QScoreDto.builder()
-                            .id(sqs.getId())
+                            .id(sqs.getSnack().getId())
                             .snackCheck(true)
                             .score(sqs.getScore())
                             .name(sqs.getSnack().getName())

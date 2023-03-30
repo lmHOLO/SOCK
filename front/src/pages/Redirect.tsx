@@ -15,10 +15,20 @@ export default function Redirect() {
 
     if (token) {
       console.log(token);
-      localStorage.setItem('token', token);
+      /* localStorage.setItem('token', token);
       // api로 가져오기
-      loginApi().then(getMemberLoginInfo).then(login);
-      navigate('/');
+      loginApi().then(getMemberLoginInfo).then(login); */
+      new Promise<void>((resolve) => {
+        localStorage.setItem('token', token);
+        resolve();
+      }).then(() =>
+        loginApi()
+          .then(getMemberLoginInfo)
+          .then((data) => {
+            login(data);
+            navigate('/');
+          }),
+      );
       return;
     }
     if (error) {

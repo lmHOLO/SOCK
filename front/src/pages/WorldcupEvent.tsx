@@ -6,6 +6,7 @@ import { WorldcupSnackType } from "@/types/event";
 import styles from "@/styles/event_worldcup.module.css";
 
 import { getWorldcupSnackListAPI } from "@/apis/api/event";
+import winSnack from "@/assets/event/result/003.png";
 
 export default function WorldcupEvent() {
   const [worldcupSnackList, setWorldcupSnackList] = useState<WorldcupSnackType[]>([]);
