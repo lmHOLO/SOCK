@@ -19,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,6 +45,7 @@ public class SnackController {
     public SingleResult<Page<SnackResponseDto>> snackList(@LoginMember Member member,
                                                           SearchSnackListRequestDto requestDto,
                                                           @PageableDefault(size = 10) Pageable pageable){
+        log.info("requestDto={}",requestDto.getKeyword());
         Page<SnackResponseDto> responseDto = snackService.snackList(member, requestDto, pageable);
         return responseService.getSingleResult(responseDto);
     }

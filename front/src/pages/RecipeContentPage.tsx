@@ -1,54 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TopNav from '@/components/Navbar/TopNav';
 import BottomNav from '@/components/Navbar/BottomNav';
 import styles from '@/styles/grid.module.css';
 import { GridRecipeListItemType } from '@/types/recipe';
 import RecipeGridList from '@/components/common/RecipeGridList';
+import { useParams } from 'react-router-dom';
+import { getRecipeListAPI } from '@/apis/api/recipeList';
 
 export default function RecipeContentPage() {
   const [sort, setSort] = useState<string>('popular');
-  const [recipeList, setRecipeList] = useState<GridRecipeListItemType[]>([
-    {
-      myLikeCheck: false,
-      writer: '김수빈',
-      writerImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      recipeId: '1',
-      recipeTitle: '감자칩을 맛있게 해서 먹어봅시다?>?????',
-      recipeImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-    },
-    {
-      myLikeCheck: false,
-      writer: '김수빈',
-      writerImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      recipeId: '2',
-      recipeTitle: '감자칩을 맛있게 해서 먹어봅시다?>?????',
-      recipeImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-    },
-    {
-      myLikeCheck: false,
-      writer: '김수빈',
-      writerImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      recipeId: '3',
-      recipeTitle: '감자칩을 맛있게 해서 먹어봅시다?>?????',
-      recipeImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-    },
-    {
-      myLikeCheck: false,
-      writer: '김수빈',
-      writerImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      recipeId: '4',
-      recipeTitle: '감자칩을 맛있게 해서 먹어봅시다?>?????',
-      recipeImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-    },
-    {
-      myLikeCheck: false,
-      writer: '김수빈',
-      writerImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      recipeId: '5',
-      recipeTitle: '감자칩을 맛있게 해서 먹어봅시다?>?????',
-      recipeImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-    },
-  ]);
+  const [recipeList, setRecipeList] = useState<GridRecipeListItemType[]>([]);
+
+  const { keyword,arrange,memberId } = useParams();
+  const defaultArrange = 'recent';
+  // 냅따 뿌리기만 함 - 3/31 수정할 것
+  useEffect(()=>{
+    if(!keyword && !memberId){
+      getRecipeListAPI("",defaultArrange,"").then((data)=>{
+        console.log(data);
+        setRecipeList(data.content);
+    });
+  }else if(keyword){
+      getRecipeListAPI(keyword,defaultArrange,"").then((data)=>{
+        console.log(data);
+        setRecipeList(data.content);
+      });
+  }else if(arrange){
+    getRecipeListAPI("","popular","").then((data)=>{
+      console.log(data);
+      setRecipeList(data.content);
+      handleSort('latest');
+    });
+  }
+  },[keyword,arrange,memberId]);
+
+
   const handleSort = async (sort: string) => {
     setSort(sort);
   };
