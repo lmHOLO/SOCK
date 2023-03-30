@@ -28,7 +28,7 @@ export default function SnackDetail() {
   const [similarSnackList, setSimilarSnackList] = useState<SnackListItemType[]>([]);
   const [containRecipeList, setContainRecipeList] = useState<RecipeListItemType[]>([]);
   return (
-    <div className="side-margin">
+    <div className='side-margin'>
       <TopNav />
       <SnackContent />
       <div>

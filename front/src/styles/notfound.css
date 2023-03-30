@@ -1,0 +1,147 @@
+.notfound-container {
+  box-sizing: border-box;
+  background-color: #85c6ff;
+  height: 100vh;
+  padding: 24px 0;
+  color: #333333;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.error {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.error > img {
+  width: 100%;
+  object-fit: contain;
+}
+header {
+  width: 100%;
+}
+
+main {
+  height: 100%;
+}
+
+.error-txt {
+  display: flex;
+  flex-direction: column;
+}
+.error-txt > h2 {
+  text-align: center;
+  font-weight: 700;
+  font-size: 3rem;
+  line-height: 71.09px;
+  letter-spacing: -3.5%;
+  margin: 26px 0;
+}
+
+.error-txt > p {
+  padding: 0px 10px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  margin-bottom: 40px;
+}
+
+a .btn {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  margin-top: 45px;
+  width: 216px;
+  height: 68px;
+  border: none;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.035em;
+  text-decoration: none;
+  color: #333333;
+  background-color: #fcc660;
+  text-decoration: none;
+  margin: auto;
+  padding: 20px;
+}
+
+.footer-text,
+.footer-text a {
+  font-family: 'Montserrat', sans-serif;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  transition: color 0.3s ease;
+  text-align: center;
+}
+
+.footer-text a:hover,
+.footer-text a:focus {
+  color: #ff6d5b;
+}
+
+@media (min-width: 375px) {
+  header,
+  main,
+  footer {
+    width: 95%;
+  }
+
+  main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  @media (min-width: 768px) {
+    main {
+      justify-content: space-between;
+      flex-direction: row;
+    }
+
+    figure {
+      margin-right: 2em;
+    }
+
+    .error-txt p {
+      font-size: 32px;
+      line-height: 35px;
+      letter-spacing: -3.5%;
+      margin-bottom: 30px;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    justify-content: space-around;
+  }
+
+  header,
+  main,
+  footer {
+    max-width: 1200px;
+  }
+
+  .notfound-title,
+  .error__msg {
+    color: #333333;
+  }
+
+  .error-txt {
+    max-width: 586px;
+  }
+
+  .error-txt h2 {
+    font-size: 4rem;
+    line-height: 95px;
+  }
+
+  .error-txt p {
+    width: 381px;
+  }
+}
