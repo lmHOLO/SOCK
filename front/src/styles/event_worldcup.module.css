@@ -20,6 +20,7 @@
   overflow: hidden;
   /* background-color: black; */
   position: relative;
+  
 }
 .food-img {
   width: 70%;
@@ -63,4 +64,5 @@
   align-items: center;
   text-align: center;
   margin-bottom: 20px;
+  font-weight: 1000;
 }
