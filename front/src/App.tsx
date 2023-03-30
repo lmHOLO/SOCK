@@ -32,6 +32,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
+    errorElement: <NotFound />,
   },
   {
     path: '/login',
@@ -41,58 +42,71 @@ const router = createBrowserRouter([
   {
     path: '/redirect',
     element: <Redirect />,
+    errorElement: <NotFound />,
   },
   {
     path: '/snacks/:id',
     element: <SnackDetail />,
+    errorElement: <NotFound />,
   },
   {
     path: '/recipes/:id',
     element: <RecipeDetail />,
+    errorElement: <NotFound />,
   },
   {
     path: '/recipe-posting',
     element: <RecipePosting />,
+    errorElement: <NotFound />,
   },
   {
     path: '/firebasetest',
     element: <FirebaseUploadTest />,
+    errorElement: <NotFound />,
   },
   {
     path: '/event',
     element: <EventList />,
+    errorElement: <NotFound />,
   },
   {
     path: '/event/sbti/:result',
     element: <EventResult />,
+    errorElement: <NotFound />,
   },
   {
     path: '/event/worldcup',
     element: <WorldcupEvent />,
+    errorElement: <NotFound />,
   },
   {
     path: '/event/sbti',
     element: <SbtiEvent />,
+    errorElement: <NotFound />,
   },
   {
     path: '/search',
     element: <Search />,
+    errorElement: <NotFound />,
   },
   {
     path: '/snacks',
     element: <SnackContentPage />,
+    errorElement: <NotFound />,
   },
   {
     path: '/snack-content/:theme',
     element: <SnackContentPage />,
+    errorElement: <NotFound />,
   },
   {
     path: '/recipes',
     element: <RecipeContentPage />,
+    errorElement: <NotFound />,
   },
   {
     path: '/test',
-    element: <Alchol />,
+    element: <NotFound />,
   },
 ]);
 export default function App() {
