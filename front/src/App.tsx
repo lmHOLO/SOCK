@@ -15,6 +15,8 @@ import EventResult from './pages/EventrResult';
 import WorldcupEvent from '@/pages/WorldcupEvent';
 import SbtiEvent from '@/pages/SbtiEvent';
 import Search from './pages/Search';
+import ButtonDesign from './components/Home/Milk';
+
 const router = createBrowserRouter([
   /*   {
     path: '/',
@@ -74,6 +76,10 @@ const router = createBrowserRouter([
   {
     path: '/search',
     element: <Search />,
+  },
+  {
+    path: '/test',
+    element: <ButtonDesign />,
   },
 ]);
 export default function App() {

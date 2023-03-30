@@ -9,6 +9,7 @@ import ThemeList from '@/components/Home/ThemeList';
 import Recommend from '@/components/Home/Recommend';
 import Retro from '@/components/Home/Retro';
 import Movie from '@/components/Home/Movie';
+import Milk from '@/components/Home/Milk';
 
 export default function Home() {
   // const nickname = useSelector((state: RootState) => state.member.nickname);
@@ -43,7 +44,7 @@ export default function Home() {
       title: '다섯번째 과자',
     },
   ]);
-  useEffect(() => {
+  /*  useEffect(() => {
     window.scrollTo(0, 0);
     const wheelHandler = (e: any) => {
       e.preventDefault();
@@ -117,7 +118,7 @@ export default function Home() {
     return () => {
       outerDivRefCurrent && outerDivRefCurrent.removeEventListener('wheel', wheelHandler);
     };
-  }, []);
+  }, []); */
 
   return (
     <div ref={outerDivRef} className={styles['outer']}>
@@ -127,6 +128,7 @@ export default function Home() {
       {/* <div className='divider'></div> */}
       <Movie recommendSnackList={recommendSnackList} />
       <Retro recommendSnackList={recommendSnackList} />
+      <Milk />
       <BottomNav />
     </div>
   );
