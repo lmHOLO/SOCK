@@ -34,7 +34,7 @@ public class QScoreService {
         for (RecipeQScore rqs : recipeQScores) {
             pq.offer(
                     QScoreDto.builder()
-                            .id(rqs.getRecipe().getId())
+                            .id(rqs.getId())
                             .snackCheck(false)
                             .score(rqs.getScore())
                             .name(rqs.getRecipe().getTitle())
@@ -45,7 +45,7 @@ public class QScoreService {
         for (SnackQScore sqs : snackQScores) {
             pq.offer(
                     QScoreDto.builder()
-                            .id(sqs.getSnack().getId())
+                            .id(sqs.getId())
                             .snackCheck(true)
                             .score(sqs.getScore())
                             .name(sqs.getSnack().getName())

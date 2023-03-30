@@ -8,7 +8,6 @@ export default function Login() {
   const { logout } = useMember();
   useEffect(() => {
     logout();
-    // localStorage.removeItem('token');
   }, []);
   return (
     <div className={styles.page}>

@@ -41,35 +41,3 @@
 .font-white {
   color: #fff;
 }
-
-.inner {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 100px;
-}
-
-.movie-main {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
-}
-.movie-main > img {
-  width: 100%;
-  object-fit: contain;
-}
-
-.movie-lego {
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-  /* bottom: 0; */
-}
-.movie-lego > img {
-  margin-top: 100px;
-  object-fit: contain;
-  width: 200px;
-}
