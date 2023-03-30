@@ -14,8 +14,9 @@ import EventList from '@/pages/EventList';
 import EventResult from './pages/EventrResult';
 import WorldcupEvent from '@/pages/WorldcupEvent';
 import SbtiEvent from '@/pages/SbtiEvent';
-import Search from './pages/Search';
-import ButtonDesign from './components/Home/Milk';
+import Search from '@/pages/Search';
+import SnackContentPage from '@/pages/SnackContentPage';
+import RecipeContentPage from '@/pages/RecipeContentPage';
 import Alchol from './components/Home/Alchol';
 
 const router = createBrowserRouter([
@@ -77,6 +78,14 @@ const router = createBrowserRouter([
   {
     path: '/search',
     element: <Search />,
+  },
+  {
+    path: '/snack-content/:theme',
+    element: <SnackContentPage />,
+  },
+  {
+    path: '/recipe-content/:theme',
+    element: <RecipeContentPage />,
   },
   {
     path: '/test',
