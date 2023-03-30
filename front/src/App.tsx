@@ -14,7 +14,8 @@ import EventList from '@/pages/EventList';
 import EventResult from './pages/EventrResult';
 import WorldcupEvent from '@/pages/WorldcupEvent';
 import SbtiEvent from '@/pages/SbtiEvent';
-import Search from './pages/Search';
+import Search from '@/pages/Search';
+import Profile from '@/pages/Profile';
 const router = createBrowserRouter([
   /*   {
     path: '/',
@@ -28,11 +29,15 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
-    errorElement: <Login />,
   },
   {
     path: '/login',
     element: <Login />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: '/profile/:id',
+    element: <Profile />,
     errorElement: <NotFound />,
   },
   {
