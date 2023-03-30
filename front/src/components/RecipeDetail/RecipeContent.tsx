@@ -12,8 +12,11 @@ import { getRecipeDetailApi, postRecipeLikeAPI, deleteRecipeLikeAPI } from '@/ap
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import PositionedMenu from './PositionedMenu';
 
+import useMember from '@/hooks/memberHook';
+
 export default function RecipeContent() {
   const { id } = useParams();
+  const { memberData } = useMember();
 
   const [recipe, setRecipe] = useState<RecipeDetailType>({
     recipeId: '',
@@ -68,9 +71,7 @@ export default function RecipeContent() {
           <img src={recipe.writerImage} alt={recipe.writerImage} />
           <p>{recipe.writerNickname}</p>
         </div>
-        <div className={styles['more-btn']}>
-          <PositionedMenu />
-        </div>
+        <div className={styles['more-btn']}>{memberData.id === recipe.writerId && <PositionedMenu />}</div>
         {/* <MoreHorizIcon className={styles['more-btn']} /> */}
       </div>
       <div>
