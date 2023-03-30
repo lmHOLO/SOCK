@@ -6,6 +6,7 @@ import { WorldcupSnackType } from "@/types/event";
 import styles from "@/styles/event_worldcup.module.css";
 
 import { getWorldcupSnackListAPI } from "@/apis/api/event";
+import winSnack from "@/assets/event/result/003.png";
 
 export default function WorldcupEvent() {
   const [worldcupSnackList, setWorldcupSnackList] = useState<WorldcupSnackType[]>([]);
@@ -71,27 +72,46 @@ export default function WorldcupEvent() {
       </div>
     );
   };
+  const winnerResult =() =>{
+    return(
+      <div>
+        <p className={styles["vs-text-none"]}>VS</p>
+      </div>
+    )
+  }
 
   return (
     <div className="side-margin">
       <TopNav />
-
-      <div>
         <div>
-          {finish ? yesFinish() : noFinish()}
-        </div>
-        {displays.map((snack) => {
-          return (
-            <div className={styles["flex-1"]} key={snack.name} onClick={() => clickHandler(snack)}>
-              <img className={styles["food-img"]} src={snack.image} alt={snack.name} />
-              <div className={styles["name"]}>{snack.name}</div>
-            </div>
-          );
-        })}
-        <div>
-          {finish ? <p className={styles["vs-text-none"]}>VS</p> : <p className={styles["vs-text"]}>VS</p> }
+          <div>
+            {finish ? yesFinish() : noFinish()}
           </div>
-      </div>
+          {displays.map((snack) => {
+            return (
+              <div className={styles["flex-1"]} key={snack.name} onClick={() => clickHandler(snack)}>
+                <img className={styles["food-img"]} src={snack.image} alt={snack.name} />
+                <div className={styles["name"]}>{snack.name}</div>
+              </div>
+            );
+          })}
+          <div>
+            {finish ? <p className={styles["vs-text-none"]}>VS</p> : <p className={styles["vs-text"]}>VS</p> }
+          </div>
+          
+          <div className="waveDiv animation-wave">
+              <div className="wave-content-wrapper first-wave">
+                <div className="wave-image first-image"></div>
+                <div className="wave-content-wrapper second-wave">
+                  <div className="wave-image second-image"></div>
+                </div>
+                <div className="wave-content-wrapper third-wave">
+                  <div className="wave-image third-image"></div>
+                </div>
+              </div>
+          </div>
+        </div>
+        
       <BottomNav />
     </div>
   );
