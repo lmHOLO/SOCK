@@ -1,7 +1,8 @@
 import BottomNav from "@/components/Navbar/BottomNav";
 import TopNav from "@/components/Navbar/TopNav";
 import { useNavigate } from "react-router";
-import sbti_title2 from "@/assets/event/sbti_title.png";
+import sbti_title from "@/assets/event/sbti_title.png";
+import worldcup_title from "@/assets/event/worldcup_title.png";
 import styles from "@/styles/event_list.module.css";
 
 import Card from '@mui/material/Card';
@@ -22,19 +23,31 @@ export default function EventList() {
           <CardActionArea >
             <CardMedia
               component="img"
-              height="300"
-              width="300"
-              image={sbti_title2}
+              // height="300"
+              // width="300"
+              image={sbti_title}
               alt="SBTI"
             />
           </CardActionArea>
         </Card>
       </div>
-        
       
-      <div>
-        <button onClick={() => navigateTo("worldcup")}>이상형 월드컵</button>
+      <div className={styles["event-list-img"]}>
+        <Card sx={{ maxWidth: 300 }}  onClick={() => navigateTo("worldcup")}>
+          <CardActionArea >
+            <CardMedia
+              component="img"
+              // height="300"
+              // width="300"
+              image={worldcup_title}
+              alt="SBTI"
+            />
+          </CardActionArea>
+        </Card>
       </div>
+
+
+
 
 
 
