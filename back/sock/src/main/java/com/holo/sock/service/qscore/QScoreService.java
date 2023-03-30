@@ -40,7 +40,7 @@ public class QScoreService {
                             .name(rqs.getRecipe().getTitle())
                             .build()
             );
-        } 
+        }
 
         for (SnackQScore sqs : snackQScores) {
             pq.offer(

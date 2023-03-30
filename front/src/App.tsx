@@ -17,6 +17,7 @@ import SbtiEvent from '@/pages/SbtiEvent';
 import Search from '@/pages/Search';
 import SnackContentPage from '@/pages/SnackContentPage';
 import RecipeContentPage from '@/pages/RecipeContentPage';
+import Alchol from './components/Home/Alchol';
 
 const router = createBrowserRouter([
   /*   {
@@ -78,16 +79,16 @@ const router = createBrowserRouter([
     element: <Search />,
   },
   {
-    path: '/snacks',
-    element: <SnackContentPage />,
-  },
-  {
     path: '/snack-content/:theme',
     element: <SnackContentPage />,
   },
   {
-    path: '/recipes',
+    path: '/recipe-content/:theme',
     element: <RecipeContentPage />,
+  },
+  {
+    path: '/test',
+    element: <Alchol />,
   },
 ]);
 export default function App() {
