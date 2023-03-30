@@ -2,116 +2,94 @@ import React, { useEffect, useState } from "react";
 import { authApiInstance } from '@/apis/axiosConfig';
 import { firstPreferApi } from '@/apis/api/firstprefer';
 import { SnackPreferType } from '@/types/snack';
-import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectFade, Navigation, Pagination } from "swiper";
-import "swiper/css";
-import "swiper/css/effect-fade";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+import TinderCard from 'react-tinder-card'
+import '@react-spring/web';
 
-import "swiper/swiper.min.css";
-
-// const getRandomNumber = (min: number, max: number, exclude: number[]): number => {
-//   const range = max - min + 1;
-//   let random = Math.floor(Math.random() * range) + min;
-
-//   while (exclude.includes(random)) {
-//     random = Math.floor(Math.random() * range) + min;
-//   }
-
-//   return random;
-// };
-
-interface SwipeCountsType {
+interface SwipeCounts {
   left: number;
   right: number;
-  up: number;
-  down: number;
 }
 
+
 export default function FirstPrefer() {
-  const [usedNumbers, setUsedNumbers] = useState<number[]>([]);
-  const [swipeCounts, setSwipeCounts] = useState<SwipeCountsType>({
-    left: 0,
-    right: 0,
-    up: 0,
-    down: 0,
-  });
 
-  const [likeList, setLikeList] = useState<SnackPreferType[]>([]);
-  const [dislikeList, setDislikeList] = useState<SnackPreferType[]>([]);  
-  const handleSwipe = (direction: keyof SwipeCountsType, activeIndex: number) => {
-    setSwipeCounts((prevCounts) => ({
-      ...prevCounts,
-      [direction]: prevCounts[direction] + 1,
-    }));
-        if (direction === "left") {
-      setDislikeList((prevList) => [...prevList, firstPreferList[activeIndex]]);
-    } else if (direction === "right") {
-      setLikeList((prevList) => [...prevList, firstPreferList[activeIndex]]);
+  const [swipeCounts, setSwipeCounts] = useState<SwipeCounts>({ left: 0, right: 0 });
+  const [likeList, setLikeList] = useState<number[]>([]);
+  const [dislikeList, setDislikeList] = useState<number[]>([]);
+  const [currentIndex, setCurrentIndex] = useState<number>(0); // new state to keep track of current index
+
+  const handleSwipe = (direction: string, snackId: number) => {
+    if (direction === 'left') {
+      setSwipeCounts({ ...swipeCounts, left: swipeCounts.left + 1 });
+      setDislikeList([...dislikeList, snackId])
+    } else if (direction === 'right') {
+      setSwipeCounts({ ...swipeCounts, right: swipeCounts.right + 1 });
+      setLikeList([...likeList, snackId])
     }
+    // update current index
+    setCurrentIndex(currentIndex + 1);
   };
-
-
-  useEffect(() => {
-    console.log("likeList:", likeList);
-  }, [likeList]);
-  useEffect(() => {
-    console.log("dislikeList:", dislikeList);
-  }, [dislikeList]);
-
-  useEffect(() => {
-    console.log("Swipe counts:", swipeCounts);
-  }, [swipeCounts]);
-
-  useEffect(() => {
-    console.log("usedList:", usedNumbers);
-  }, [usedNumbers]);
-
-  useEffect(() => {
-    // fetch data and update state when component mounts
-    firstPreferApi().then((response) => {
-      console.log(response, "list of initial preference surveys");
-      setFirstPreferList(response);
-      console.log(firstPreferList, 'one of preferlist')
-    });
-  }, []
-  )
 
   const [firstPreferList, setFirstPreferList] = useState<SnackPreferType[]>([]);
   
+  // 초기선호도 리스트가 비어있을 때만 최초로 1회 30개의 무작위 과자 리스트를 가져옴.
+  useEffect(() => {
+    if (firstPreferList.length === 0){
+      // fetch data and update state when component mounts
+      firstPreferApi().then((response) => {
+        console.log(response, "list of initial preference surveys");
+        setFirstPreferList(response);
+        console.log(firstPreferList, 'one of preferlist')
+      });
+    }
+    }, [firstPreferList]
+  )
 
-  const handleSlideChange = (swiper: any) => {
+  useEffect(() => {
+    console.log('this is likeList', likeList)
+  }, [likeList])
+  useEffect(() => {
+    console.log('this is currentImdex', currentIndex)
+  }, [currentIndex])
 
-
-    // const randomNum = getRandomNumber(1, 30, usedNumbers);
-    // setUsedNumbers([...usedNumbers, randomNum]);
-    // swiper.slides[swiper.activeIndex].innerHTML = String(randomNum);
-    const currentSlideIndex = swiper.activeIndex;
-    const previousSlideIndex = swiper.previousIndex;
-    const direction = currentSlideIndex > previousSlideIndex ? "right" : "left";
-    // const randomIndex = getRandomNumber(0, firstPreferList.length - 1, usedNumbers);
-    // const item = firstPreferList[randomIndex];
-    
-    
-    
-    // // 사용한 항목을 추가합니다.
-    // setUsedNumbers((prevState) => [...prevState, firstPreferList[previousSlideIndex].snackId]);
-
-    // // 항목을 swipe 합니다.
-    // handleSwipe(direction, previousSlideIndex);
-
-
-
-
-    setUsedNumbers((prevState) => [...prevState, firstPreferList[previousSlideIndex].snackId]);
-    handleSwipe(direction, previousSlideIndex);
-
-    
-  };
+  // map firstPreferList outside of return statement
+  // const currentSnack = firstPreferList[currentIndex] || null;
+  // const card = currentSnack ? (
+  //   <TinderCard onSwipe={(direction) => handleSwipe(direction, currentSnack.snackId)}>
+  //     <div className="card">
+  //       <div>
+  //         {currentSnack.snackId}
+  //       </div>
+  //     </div>
+  //   </TinderCard>
+  // ) : null;
 
 
   return (<>
+  <div>
+    <h2>Left Swipes: {swipeCounts.left}</h2>
+    <h2>Right Swipes: {swipeCounts.right}</h2>
+    <div className="cardContainer">
+      {firstPreferList.map((snack, index) => {
+        if (index === currentIndex) {
+          return (
+            <TinderCard onSwipe={(direction) => handleSwipe(direction, snack.snackId)} key={snack.snackId}>
+              <div className="card">
+                <div>
+                  {snack.name}
+                </div>
+              </div>
+            </TinderCard>
+          )
+        } else {
+          return null;
+        }
+      })}
+    </div>
+  </div>
+    {/* <div>
+      {firstPreferList[2].snackId}
+    </div> */}
         {/* <div>
       <p>Initial preference survey page</p>
       {firstPreferList.length === 0 ? (
@@ -124,24 +102,7 @@ export default function FirstPrefer() {
         </ul>
       )}
     </div> */}
-    <Swiper
-    rewind={true}
-    spaceBetween={30}
-    navigation={true}
-    modules={[Navigation]}
-    pagination={{
-      clickable: true,
-    }}
-    onSlideChange={handleSlideChange}>
-      {firstPreferList
-      .filter((item) => !usedNumbers.includes(item.snackId))
-      .map((item) => (
-        <SwiperSlide key={item.snackId}>{item.name}</SwiperSlide>
-        ))}
-      {/* {[...Array(30)].map((_, index) => (
-        <SwiperSlide key={index}>{index + 1}</SwiperSlide>
-        ))} */}
-    </Swiper>
+
         </>
   );
 };
