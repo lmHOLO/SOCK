@@ -2,11 +2,27 @@ import React from 'react';
 import { RecipeCommentType } from '@/types/recipe';
 import styles from '@/styles/comment.module.css';
 import useMember from '@/hooks/memberHook';
+
+import { deleteRecipeCommentAPI, getRecipeCommentsAPI } from '@/apis/api/recipeDetail';
+
 interface Props {
   comment: RecipeCommentType;
+  recipeId: string;
+  setCommentList: React.Dispatch<React.SetStateAction<RecipeCommentType[]>>;
 }
-export default function CommentListItem({ comment }: Props) {
+export default function CommentListItem({ comment, recipeId, setCommentList }: Props) {
   const { memberData } = useMember();
+
+  const commentDeleteEvent = () => {
+    if (comment) {
+      deleteRecipeCommentAPI(recipeId, comment.commentId).then(() => {
+        getRecipeCommentsAPI(recipeId).then((data) => {
+          setCommentList(data.content);
+        });
+      });
+    }
+  };
+
   return (
     <div className={styles['comment-container']}>
       <div className={styles['member-date']}>
@@ -18,7 +34,11 @@ export default function CommentListItem({ comment }: Props) {
           <p>{comment.createdDate}</p>
         </div>
       </div>
-      {memberData.id === comment.memberId && <button className={styles['delete-btn']}>삭제</button>}
+      {memberData.id === comment.memberId && (
+        <button className={styles['delete-btn']} onClick={commentDeleteEvent}>
+          삭제
+        </button>
+      )}
       <p>{comment.content}</p>
     </div>
   );

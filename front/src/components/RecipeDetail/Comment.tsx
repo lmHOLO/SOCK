@@ -3,7 +3,12 @@ import { useParams } from 'react-router-dom';
 import styles from '@/styles/comment.module.css';
 import CommentList from './CommentList';
 import { postRecipeCommentAPI } from '@/apis/api/recipeDetail';
-export default function Comment() {
+
+interface Props {
+  recipeId: string;
+}
+
+export default function Comment({ recipeId }: Props) {
   const { id } = useParams();
   const textRef = useRef<HTMLTextAreaElement>(null);
   let [comment, setComment] = useState('');
@@ -47,7 +52,7 @@ export default function Comment() {
         />
         <button onClick={handleSubmit}>작성</button>
       </div>
-      <CommentList />
+      <CommentList recipeId={recipeId} />
     </div>
   );
 }
