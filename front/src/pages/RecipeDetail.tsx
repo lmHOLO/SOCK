@@ -11,6 +11,7 @@ import styles from '@/styles/recipe_detail.module.css';
 import Comment from '@/components/RecipeDetail/Comment';
 import { getSimilarSnackAPI } from '@/apis/api/snackDetail';
 import { getContainRecipeAPI } from '@/apis/api/recipeDetail';
+
 export default function RecipeDetail() {
   const { id } = useParams();
   useEffect(() => {
@@ -49,7 +50,7 @@ export default function RecipeDetail() {
         <div>
           <p>댓글</p>
         </div>
-        <Comment />
+        {id && <Comment recipeId={id} />}
       </div>
       <BottomNav />
     </div>
