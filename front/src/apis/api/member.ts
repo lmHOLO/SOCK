@@ -1,11 +1,12 @@
 import { apiInstance, authApiInstance } from '@/apis/axiosConfig';
 import { isAxiosError } from 'axios';
-const api = apiInstance();
-const authApi = authApiInstance();
+// const api = apiInstance();
+// const authApi = authApiInstance();
 
 export const loginApi = async () => {
   try {
-    const { data } = await authApi.get(`/member`);
+    // const authApi = authApiInstance();
+    const { data } = await authApiInstance().get(`/member`);
     console.log(data);
     return data.data;
   } catch (error) {

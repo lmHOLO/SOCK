@@ -9,8 +9,10 @@ import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import { useNavigate } from 'react-router';
 export default function BottomNav() {
   const navigate = useNavigate();
-  const { memberData } = useMember();
-  useEffect(() => {});
+  const { memberData, isLoggedIn } = useMember();
+  useEffect(() => {
+    !isLoggedIn && !memberData.nickname && navigate(`/login`);
+  });
   const navigateTo = (name: string) => {
     navigate(`/${name}`);
   };
