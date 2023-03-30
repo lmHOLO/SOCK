@@ -15,9 +15,6 @@ import EventResult from './pages/EventrResult';
 import WorldcupEvent from '@/pages/WorldcupEvent';
 import SbtiEvent from '@/pages/SbtiEvent';
 import Search from './pages/Search';
-import ButtonDesign from './components/Home/Milk';
-import Alchol from './components/Home/Alchol';
-
 const router = createBrowserRouter([
   /*   {
     path: '/',
@@ -31,7 +28,6 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
-    errorElement: <Login />,
   },
   {
     path: '/login',
@@ -75,12 +71,8 @@ const router = createBrowserRouter([
     element: <SbtiEvent />,
   },
   {
-    path: '/search',
+    path: 'search',
     element: <Search />,
-  },
-  {
-    path: '/test',
-    element: <Alchol />,
   },
 ]);
 export default function App() {

@@ -3,7 +3,7 @@ import styles from '@/styles/login.module.css';
 
 export default function LoginBtn() {
   const socialLogin = (name: String) => {
-    window.location.replace(
+    window.open(
       `${process.env.REACT_APP_API_BASE_URL}/oauth2/authorize/${name}?redirect_uri=${process.env.REACT_APP_OAUTH2_REDIRECT_URI}`,
     );
   };
