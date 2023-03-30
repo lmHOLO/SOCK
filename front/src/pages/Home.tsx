@@ -10,6 +10,7 @@ import Recommend from '@/components/Home/Recommend';
 import Retro from '@/components/Home/Retro';
 import Movie from '@/components/Home/Movie';
 import Milk from '@/components/Home/Milk';
+import Alchol from '@/components/Home/Alchol';
 
 export default function Home() {
   // const nickname = useSelector((state: RootState) => state.member.nickname);
@@ -129,6 +130,7 @@ export default function Home() {
       <Movie recommendSnackList={recommendSnackList} />
       <Retro recommendSnackList={recommendSnackList} />
       <Milk />
+      <Alchol />
       <BottomNav />
     </div>
   );

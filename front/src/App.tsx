@@ -16,6 +16,7 @@ import WorldcupEvent from '@/pages/WorldcupEvent';
 import SbtiEvent from '@/pages/SbtiEvent';
 import Search from './pages/Search';
 import ButtonDesign from './components/Home/Milk';
+import Alchol from './components/Home/Alchol';
 
 const router = createBrowserRouter([
   /*   {
@@ -79,7 +80,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/test',
-    element: <ButtonDesign />,
+    element: <Alchol />,
   },
 ]);
 export default function App() {

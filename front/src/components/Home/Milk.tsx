@@ -1,5 +1,5 @@
 import React from 'react';
-import '@/styles/button.css';
+import '@/styles/milk.css';
 export default function Milk() {
   /* const myButton = document.getElementById('myButton');
   myButton &&
@@ -18,7 +18,7 @@ export default function Milk() {
         <button className='more-button'>더 알아보기</button>
       </div>
       <div className='milk-main'>
-        <img src={require(`@/assets/home/milk_main.jpeg`)} alt='milk' />
+        <img src={require(`@/assets/home/milk_main.png`)} alt='milk' />
       </div>
     </div>
   );
