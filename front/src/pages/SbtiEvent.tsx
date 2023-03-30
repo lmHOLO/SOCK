@@ -50,14 +50,17 @@ export default function SbtiEvent() {
 
   const requestResult = () => {
     getSbtiResultAPI(list).then((data) => {
-      navigate(data);
+      navigateTo(data);
     });
   };
 
   return (
-    <div className="side-margin">
+    
+    <div className='side-margin'>
       <TopNav />
-
+      <div>
+        <img className={styles['question_img']} src={idx != undefined && require(`@/assets/event/question/${idx}.png`)}></img>
+      </div>
       <div className={styles['question']}>{idx != undefined && sbtiQuestionList[idx].question}</div>
       <div className={styles['answer']}>
         <div className={styles['answerItem']} onClick={clickLeft}>

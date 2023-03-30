@@ -137,9 +137,9 @@ export const postRecipeCommentAPI = async (id: string, data: { content: string }
 };
 
 // 레시피 댓글 삭제
-export const deleteRecipeCommentAPI = async (id: string) => {
+export const deleteRecipeCommentAPI = async (recipeId: string, commentId: string) => {
   try {
-    const result = await authApi.delete(`/recipes/${id}/comments`);
+    const result = await authApiInstance().delete(`/recipes/${recipeId}/comments/${commentId}`);
     return result;
   } catch (error) {
     if (isAxiosError(error)) {
