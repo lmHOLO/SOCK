@@ -59,7 +59,6 @@ export default function RecipeContentPage() {
   return (
     <div className='side-margin'>
       <TopNav />
-      <div className={styles['theme-container']}>{theme === 'recipes' && <h1>레시피</h1>}</div>
       <div className={styles['sort']}>
         {sort === 'popular' && (
           <>
