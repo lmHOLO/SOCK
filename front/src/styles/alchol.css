@@ -27,7 +27,7 @@
   object-fit: contain;
 }
 
-a {
+.alchol-button > a {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -42,7 +42,7 @@ a {
   letter-spacing: 2px;
   background: #ccc;
 }
-a:before {
+.alchol-button > a:before {
   content: attr(data-text);
   position: absolute;
   top: 0;
@@ -56,11 +56,11 @@ a:before {
   transform-origin: bottom;
   transform: translatey(-100%) rotatex(90deg);
 }
-a:hover:before {
+.alchol-button > a:hover:before {
   transform: translatey(0) rotatex(0deg);
 }
 
-a:after {
+.alchol-button > a:after {
   content: attr(data-text-after);
   position: absolute;
   top: 0;
@@ -74,7 +74,7 @@ a:after {
   transform-origin: top;
   transform: translatey(0) rotatex(0deg);
 }
-a:hover:after {
+.alchol-button > a:hover:after {
   transform: translatey(100%) rotatex(90deg);
 }
 
