@@ -3,6 +3,7 @@ import { authApiInstance } from '@/apis/axiosConfig';
 import { firstPreferApi } from '@/apis/api/firstprefer';
 import { SnackPreferType } from '@/types/snack';
 import TinderCard from 'react-tinder-card'
+import { LinearProgress } from "@mui/material";
 import '@react-spring/web';
 
 interface SwipeCounts {
@@ -10,14 +11,13 @@ interface SwipeCounts {
   right: number;
 }
 
-
 export default function FirstPrefer() {
-
+  
   const [swipeCounts, setSwipeCounts] = useState<SwipeCounts>({ left: 0, right: 0 });
   const [likeList, setLikeList] = useState<number[]>([]);
   const [dislikeList, setDislikeList] = useState<number[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0); // new state to keep track of current index
-
+  
   const handleSwipe = (direction: string, snackId: number) => {
     if (direction === 'left') {
       setSwipeCounts({ ...swipeCounts, left: swipeCounts.left + 1 });
@@ -29,8 +29,10 @@ export default function FirstPrefer() {
     // update current index
     setCurrentIndex(currentIndex + 1);
   };
-
+  
   const [firstPreferList, setFirstPreferList] = useState<SnackPreferType[]>([]);
+  // const normalise = (firstPreferList.length) => (firstPreferList.length/5 * 100);
+  const [normalise, setNormalise] = useState<number>(10)
   
   // 초기선호도 리스트가 비어있을 때만 최초로 1회 30개의 무작위 과자 리스트를 가져옴.
   useEffect(() => {
@@ -66,18 +68,25 @@ export default function FirstPrefer() {
 
 
   return (<>
+
   <div>
+  <React.Fragment>
+      <LinearProgress variant="determinate" value={((likeList.length)*20)} />
+    </React.Fragment>
     <h2>Left Swipes: {swipeCounts.left}</h2>
     <h2>Right Swipes: {swipeCounts.right}</h2>
+
     <div className="cardContainer">
       {firstPreferList.map((snack, index) => {
         if (index === currentIndex) {
           return (
             <TinderCard onSwipe={(direction) => handleSwipe(direction, snack.snackId)} key={snack.snackId}>
               <div className="card">
+                <img src={snack.image} alt="" />
                 <div>
                   {snack.name}
                 </div>
+
               </div>
             </TinderCard>
           )
@@ -86,6 +95,9 @@ export default function FirstPrefer() {
         }
       })}
     </div>
+    {likeList.length === 5 && (
+        <button onClick={() => console.log("Done button clicked!")}>Done</button>
+      )}
   </div>
     {/* <div>
       {firstPreferList[2].snackId}
@@ -106,3 +118,6 @@ export default function FirstPrefer() {
         </>
   );
 };
+
+
+
