@@ -7,9 +7,8 @@ export const getRecipeListAPI =async (keyword:string, arrange:string,memberId:st
         let url = `/recipes?arrange=${arrange}`;
         if(`${keyword}`) url = url+`?keyword=${keyword}`;
         if(`${memberId}`) url = url+`?member-id=${memberId}`;
-
+        // & 연산으로 바꿔야함
         const { data } = await authApiInstance().get(url);
-        console.log(data);
         return data.data;
     }catch(error){
         if (isAxiosError(error)) {
