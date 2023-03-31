@@ -1,6 +1,6 @@
 .redirect-container {
-  background-color: white;
-  margin-top: 30%;
+  background-color: #6ab5eb;
+  padding-top: 10%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,16 +8,15 @@
 }
 
 .main-loading-animation {
-  width: 100%;
+  width: 80%;
   object-fit: contain;
 }
 
 .sub-loading-animation {
-  width: 50%;
+  height: 200px;
 }
 
-.redirect-container > p {
-  margin-top: 20%;
+.loading-text {
   text-align: center;
   font-weight: 700;
   font-size: 3rem;

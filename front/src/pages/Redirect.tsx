@@ -9,16 +9,12 @@ export default function Redirect() {
   let [searchParams, setSearchParams] = useSearchParams();
   const { login } = useMember();
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
   useEffect(() => {
     const token = searchParams.get('token');
     const error = searchParams.get('error');
 
     if (token) {
       console.log(token);
-      /* localStorage.setItem('token', token);
-      // api로 가져오기
-      loginApi().then(getMemberLoginInfo).then(login); */
       new Promise<void>((resolve) => {
         localStorage.setItem('token', token);
         resolve();
@@ -41,12 +37,19 @@ export default function Redirect() {
 
   return (
     <div className='redirect-container'>
-      <img src={require(`@/assets/home/loading.gif`)} alt='loading-animation' className='main-loading-animation' />
+      <img
+        src={require(`@/assets/home/loading_main.gif`)}
+        alt=',main-loading-animation'
+        className='main-loading-animation'
+      />
 
-      <img src={require(`@/assets/home/cookie.gif`)} alt='loading-animation' className='sub-loading-animation' />
-      <p className='loading-text'>
-        간식찾는중<span className='loading-dots'></span>
-      </p>
+      <img
+        src={require(`@/assets/home/loading_sub.gif`)}
+        alt='sub-loading-animation'
+        className='sub-loading-animation'
+      />
+
+      <h1 className='loading-text'>로딩중</h1>
     </div>
   );
 }
