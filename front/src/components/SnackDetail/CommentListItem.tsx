@@ -4,7 +4,7 @@ import styles from '@/styles/comment.module.css';
 import StarRating from './StarRating';
 import useMember from '@/hooks/memberHook';
 
-import { deleteSnackReviewAPI, getSnackReviewsAPI } from '@/apis/api/snackDetail';
+import { deleteSnackReviewAPI, getSnackReviewsAPI, getSnackDetailApi } from '@/apis/api/snackDetail';
 import { getMyReview, getOtherReviewList } from '@/apis/services/snackDetail';
 
 interface Props {
@@ -13,9 +13,11 @@ interface Props {
   snackId: string;
   setCommentList: React.Dispatch<React.SetStateAction<ReviewType[]>>;
   setIsValid: React.Dispatch<React.SetStateAction<boolean>>;
+  starAvg: number;
+  setStarAvg: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function CommentListItem({ isValid, comment, snackId, setCommentList, setIsValid }: Props) {
+export default function CommentListItem({ isValid, comment, snackId, setCommentList, setIsValid, setStarAvg, starAvg }: Props) {
   const { memberData } = useMember();
 
   const reviewDeleteEvent = () => {
@@ -35,6 +37,11 @@ export default function CommentListItem({ isValid, comment, snackId, setCommentL
           }
 
           setIsValid(true);
+        });
+
+        getSnackDetailApi(snackId).then((data) => {
+          if (data.numberOfParticipants == 0) setStarAvg(0);
+          else setStarAvg(data.sumOfStars / data.numberOfParticipants);
         });
       });
     }

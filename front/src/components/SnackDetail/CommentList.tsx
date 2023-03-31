@@ -8,8 +8,10 @@ interface Props {
   isValid: boolean;
   setIsValid: React.Dispatch<React.SetStateAction<boolean>>;
   snackId: string;
+  starAvg: number;
+  setStarAvg: React.Dispatch<React.SetStateAction<number>>;
 }
-export default function CommentList({ isValid, setIsValid, snackId }: Props) {
+export default function CommentList({ isValid, setIsValid, snackId, setStarAvg, starAvg }: Props) {
   const [commentList, setCommentList] = useState<ReviewType[]>([]);
   let first = true; // 첫페이지인가
   let last = true; // 마지막페이지
@@ -43,7 +45,16 @@ export default function CommentList({ isValid, setIsValid, snackId }: Props) {
     <div>
       <ul>
         {commentList?.map((comment, index) => (
-          <CommentListItem isValid={isValid} key={index} comment={comment} snackId={snackId} setCommentList={setCommentList} setIsValid={setIsValid} />
+          <CommentListItem
+            isValid={isValid}
+            key={index}
+            comment={comment}
+            snackId={snackId}
+            setCommentList={setCommentList}
+            setIsValid={setIsValid}
+            setStarAvg={setStarAvg}
+            starAvg={starAvg}
+          />
         ))}
       </ul>
     </div>

@@ -5,7 +5,12 @@ import CommentList from './CommentList';
 import CommentRating from './CommentRating';
 import { postSnackReviewAPI } from '@/apis/api/snackDetail';
 
-export default function Comment() {
+interface Props {
+  starAvg: number;
+  setStarAvg: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export default function Comment({ setStarAvg, starAvg }: Props) {
   const { id } = useParams();
   const textRef = useRef<HTMLTextAreaElement>(null);
   let [comment, setComment] = useState('');
@@ -69,7 +74,7 @@ export default function Comment() {
           </>
         )}
       </div>
-      {id && <CommentList isValid={isValid} setIsValid={setIsValid} snackId={id} />}
+      {id && <CommentList isValid={isValid} setIsValid={setIsValid} snackId={id} setStarAvg={setStarAvg} starAvg={starAvg} />}
     </div>
   );
 }
