@@ -9,7 +9,7 @@
 .search-bar {
   width: 250px;
   margin-bottom: 0px;
-  border-radius: 10px;
+  height: 30px;
 }
 
 .search-btn {
@@ -17,6 +17,7 @@
   border-radius: 3px;
   padding: 3px 10px;
   color: white-color;
+  margin-bottom: 4px;
 }
 
 .theme-select-btn {
@@ -24,9 +25,18 @@
   color: white-color;
 }
 
+/* 필터 아이콘 */
+.filter-container {
+  display: flex;
+  justify-content: end;
+  padding: 10px;
+}
+.filter-btn {
+  color: sock-brown;
+}
+
 /* 인기검색 */
 .popular-container {
-  width: 90%;
   background-color: sock-brown;
   border-radius: 10px;
   margin: 0 auto;
