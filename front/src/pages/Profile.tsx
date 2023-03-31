@@ -16,7 +16,7 @@ export default function Profile() {
   const [member, setMember] = useState<MemberProfileType>();
   const [menu, setMenu] = useState<MenuType>('POST_RECIPE');
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const [sort, setSort] = useState<string>('latest');
+
   const { memberData } = useMember();
 
   const { id } = useParams();
@@ -49,10 +49,12 @@ export default function Profile() {
         setMember(data);
       });
     }
-    // getRecipeListAPI('', sort, memberData.id).then((recipeData) => {
-    //   setRecipeList(recipeData);
-    // });
-    console.log('memberId=', id);
+    // 마이페이지에서 내가 작성한 레시피 뿌리기 - 수정필요
+    // if (id) {
+    //   getRecipeListAPI('', '', id).then((recipeData) => {
+    //     setRecipeList(recipeData);
+    //   });
+    // }
   }, []);
 
   return (
