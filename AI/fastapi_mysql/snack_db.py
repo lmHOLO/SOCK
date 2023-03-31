@@ -122,6 +122,7 @@ def send_data():
 @app.get("/recommend")
 def recommend():
     import pymysql.cursors
+    
     connection = pymysql.connect(host='localhost', port=3306, user='ssafy',
                             password='ssafy', db='sock',
                             charset='utf8', autocommit=True,
