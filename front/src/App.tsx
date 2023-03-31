@@ -15,9 +15,9 @@ import EventResult from './pages/EventrResult';
 import WorldcupEvent from '@/pages/WorldcupEvent';
 import SbtiEvent from '@/pages/SbtiEvent';
 import Search from '@/pages/Search';
+import Profile from '@/pages/Profile';
 import SnackContentPage from '@/pages/SnackContentPage';
 import RecipeContentPage from '@/pages/RecipeContentPage';
-import Alchol from './components/Home/Alchol';
 
 const router = createBrowserRouter([
   /*   {
@@ -37,6 +37,11 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <Login />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: '/profile/:id',
+    element: <Profile />,
     errorElement: <NotFound />,
   },
   {
@@ -103,10 +108,6 @@ const router = createBrowserRouter([
     path: '/recipes',
     element: <RecipeContentPage />,
     errorElement: <NotFound />,
-  },
-  {
-    path: '/test',
-    element: <NotFound />,
   },
 ]);
 export default function App() {

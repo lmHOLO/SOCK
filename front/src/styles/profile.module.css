@@ -1,0 +1,61 @@
+@value sock-brown, sock-nagative, sock-yellow, white-color  from './common/colors.css';
+.header-container {
+  width: 100%;
+  height: 150px;
+  background-color: sock-brown;
+  border-radius: 0px 0px 30px 30px;
+  padding: 10px 30px;
+}
+.member-info {
+  display: flex;
+}
+.member-info > img {
+  border-radius: 100px;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.member-detail {
+  color: white-color;
+  margin-top: 15px;
+}
+
+.nickname {
+  margin-bottom: 3px;
+}
+
+.email {
+  font-size: 8px;
+  color: sock-nagative;
+  margin-bottom: 5px;
+}
+.nickname > h1 {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.menu {
+  width: 100%;
+  display: flex;
+}
+
+.menu > button {
+  flex-grow: 1;
+  padding: 10px 5px;
+}
+
+/* 그리드 */
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, auto));
+  column-gap: 2%;
+  row-gap: 4%;
+}
+.card-item {
+  width: 100%;
+  background: inherit;
+  border-radius: 3px;
+  object-fit: cover;
+}
