@@ -33,3 +33,8 @@ export type MemberProfileType = {
 
 // 프로필
 export type MenuType = 'POST_RECIPE' | 'LIKE_SNACK' | 'LIKE_RECIPE';
+
+export type UpdateProfileType = {
+  nickname: string;
+  profile: ProfileType;
+};

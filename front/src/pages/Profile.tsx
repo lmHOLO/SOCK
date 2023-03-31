@@ -13,7 +13,15 @@ import { loginApi, otherMemberProfileApi } from '@/apis/api/member';
 import { getRecipeListAPI } from '@/apis/api/recipeList';
 
 export default function Profile() {
-  const [member, setMember] = useState<MemberProfileType>();
+  const [member, setMember] = useState<MemberProfileType>({
+    id: '',
+    email: '',
+    nickname: '',
+    profile: { image: '', content: '' },
+    sbti: '',
+    grade: '',
+    exp: 0,
+  });
   const [menu, setMenu] = useState<MenuType>('POST_RECIPE');
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
@@ -62,7 +70,7 @@ export default function Profile() {
       <TopNav />
       {member && <Header member={member} setModalOpen={setModalOpen} />}
       {member && <Menu member={member} menu={menu} setMenu={setMenu} />}
-      {member && <ModifyModal member={member} modalOpen={modalOpen} setModalOpen={setModalOpen} />}
+      {member && id && setMember && <ModifyModal member={member} modalOpen={modalOpen} setModalOpen={setModalOpen} id={id} setMember={setMember} />}
       <RecipeGrid recipeList={recipeList} />
       <BottomNav />
     </div>
