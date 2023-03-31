@@ -45,7 +45,6 @@ public class SnackController {
     public SingleResult<Page<SnackResponseDto>> snackList(@LoginMember Member member,
                                                           SearchSnackListRequestDto requestDto,
                                                           @PageableDefault(size = 10) Pageable pageable){
-        log.info("requestDto={}",requestDto.getKeyword());
         Page<SnackResponseDto> responseDto = snackService.snackList(member, requestDto, pageable);
         return responseService.getSingleResult(responseDto);
     }
