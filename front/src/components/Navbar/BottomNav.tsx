@@ -20,31 +20,35 @@ export default function BottomNav() {
     <div className={styles['bottom-nav-container']}>
       <button className={styles['menu-btn']} onClick={() => navigateTo('snacks')}>
         <div className={styles['menu-content']}>
-          <CookieIcon fontSize='large' style={{ color: 'white' }} />
+          {/* <CookieIcon fontSize='large' style={{ color: 'white' }} /> */}
+          <img src={require(`@/assets/home/icon_snack.png`)} alt='event' />
           <p>SNACK</p>
         </div>
       </button>
       <button className={styles['menu-btn']} onClick={() => navigateTo('recipes')}>
         <div className={styles['menu-content']}>
-          <ReceiptLongIcon fontSize='large' style={{ color: 'white' }} />
+          {/* <ReceiptLongIcon fontSize='large' style={{ color: 'white' }} /> */}
+          <img src={require(`@/assets/home/icon_recipe.png`)} alt='event' />
           <p>RECIPE</p>
         </div>
       </button>
       <button className={styles['menu-btn']} onClick={() => navigateTo('')}>
         <div className={styles['menu-content']}>
-          <HomeIcon fontSize='large' style={{ color: 'white' }} />
+          {/* <HomeIcon fontSize='large' style={{ color: 'white' }} /> */}
+          <img src={require(`@/assets/home/icon_home.png`)} alt='event' />
           <p>HOME</p>
         </div>
       </button>
       <button className={styles['menu-btn']} onClick={() => navigateTo('event')}>
         <div className={styles['menu-content']}>
-          <CakeIcon fontSize='large' style={{ color: 'white' }} />
+          <img src={require(`@/assets/home/icon_event.png`)} alt='event' />
+          {/* <CakeIcon fontSize='large' style={{ color: 'white' }} /> */}
           <p>EVENT</p>
         </div>
       </button>
       <button className={styles['menu-btn']} onClick={() => navigateTo(`profile/${memberData.id}`)}>
         <div className={styles['menu-content']}>
-          <img src={memberData.profile.image} alt={memberData.nickname} />
+          <img className={styles['bottom-nav-profile']} src={memberData.profile.image} alt={memberData.nickname} />
           <p>MY</p>
         </div>
       </button>

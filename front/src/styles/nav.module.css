@@ -34,6 +34,13 @@
   margin-top: 3px;
   width: 30px;
   height: 30px;
+  /* border-radius: 100px; */
+  object-fit: cover;
+}
+.menu-content > .bottom-nav-profile {
+  margin-top: 3px;
+  width: 30px;
+  height: 30px;
   border-radius: 100px;
   object-fit: cover;
 }
