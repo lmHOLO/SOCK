@@ -55,14 +55,25 @@
   z-index: 1000;
 }
 
-.search-btn {
+.btn-search {
   position: absolute;
   transform: translate(0, -50%);
   top: 50%;
   right: 20px;
 }
 
-.search-btn > .search-btn-icon {
+.btn-search > .search-btn-icon {
+  width: 30px;
+  height: 30px;
+}
+.back-btn {
+  position: absolute;
+  transform: translate(0, -50%);
+  top: 50%;
+  left: 20px;
+}
+
+.back-btn > .back-btn-icon {
   width: 30px;
   height: 30px;
 }
