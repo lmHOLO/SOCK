@@ -7,13 +7,19 @@ import RecipeGrid from '@/components/Profile/RecipeGrid';
 import { MemberProfileType, MenuType } from '@/types/member';
 import { ProfileRecipeType } from '@/types/recipe';
 import React, { useEffect, useState } from 'react';
-
-import { loginApi } from '@/apis/api/member';
+import useMember from '@/hooks/memberHook';
+import { useParams } from 'react-router-dom';
+import { loginApi, otherMemberProfileApi } from '@/apis/api/member';
+import { getRecipeListAPI } from '@/apis/api/recipeList';
 
 export default function Profile() {
   const [member, setMember] = useState<MemberProfileType>();
   const [menu, setMenu] = useState<MenuType>('POST_RECIPE');
   const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [sort, setSort] = useState<string>('latest');
+  const { memberData } = useMember();
+
+  const { id } = useParams();
   const [recipeList, setRecipeList] = useState<ProfileRecipeType[]>([
     {
       recipeId: '1',
@@ -34,9 +40,19 @@ export default function Profile() {
   ]);
 
   useEffect(() => {
-    loginApi().then((data) => {
-      setMember(data);
-    });
+    if (id == memberData.id) {
+      loginApi().then((data) => {
+        setMember(data);
+      });
+    } else if (id) {
+      otherMemberProfileApi(id).then((data) => {
+        setMember(data);
+      });
+    }
+    // getRecipeListAPI('', sort, memberData.id).then((recipeData) => {
+    //   setRecipeList(recipeData);
+    // });
+    console.log('memberId=', id);
   }, []);
 
   return (
