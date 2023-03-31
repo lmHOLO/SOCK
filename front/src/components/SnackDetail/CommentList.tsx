@@ -10,9 +10,10 @@ interface Props {
   snackId: string;
   starAvg: number;
   setStarAvg: React.Dispatch<React.SetStateAction<number>>;
+  setCommentList: React.Dispatch<React.SetStateAction<ReviewType[]>>;
+  commentList: ReviewType[];
 }
-export default function CommentList({ isValid, setIsValid, snackId, setStarAvg, starAvg }: Props) {
-  const [commentList, setCommentList] = useState<ReviewType[]>([]);
+export default function CommentList({ isValid, setIsValid, snackId, setStarAvg, starAvg, setCommentList, commentList }: Props) {
   let first = true; // 첫페이지인가
   let last = true; // 마지막페이지
   let number = 0; // 현재 페이지

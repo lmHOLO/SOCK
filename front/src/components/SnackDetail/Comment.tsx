@@ -3,7 +3,10 @@ import { useParams } from 'react-router-dom';
 import styles from '@/styles/comment.module.css';
 import CommentList from './CommentList';
 import CommentRating from './CommentRating';
-import { postSnackReviewAPI } from '@/apis/api/snackDetail';
+
+import { ReviewType } from '@/types/snack';
+import { postSnackReviewAPI, getSnackReviewsAPI, getSnackDetailApi } from '@/apis/api/snackDetail';
+import { getMyReview, getOtherReviewList } from '@/apis/services/snackDetail';
 
 interface Props {
   starAvg: number;
@@ -16,6 +19,9 @@ export default function Comment({ setStarAvg, starAvg }: Props) {
   let [comment, setComment] = useState('');
   let [isValid, setIsValid] = useState(false);
   let [starPoint, setStarPoint] = useState(-1);
+
+  const [commentList, setCommentList] = useState<ReviewType[]>([]);
+
   const handleResizeHeight = useCallback(() => {
     if (textRef && textRef.current) {
       textRef.current.style.height = 'auto';
@@ -44,8 +50,27 @@ export default function Comment({ setStarAvg, starAvg }: Props) {
     }
     // 리뷰 등록하기
     if (id && newStarPoint > 0) {
-      postSnackReviewAPI(id, { content: comment, star: newStarPoint });
-      window.history.go(0); // 임시로
+      postSnackReviewAPI(id, { content: comment, star: newStarPoint }).then((data) => {
+        getSnackReviewsAPI(id).then((data) => {
+          const myReviewList = getMyReview(data);
+          const otherReviewList = getOtherReviewList(data);
+
+          if (myReviewList != null && otherReviewList != null) {
+            const newList: ReviewType[] = [...[myReviewList], ...otherReviewList];
+            setCommentList(newList);
+            setIsValid(false);
+          } else {
+            setIsValid(true);
+            const newList: ReviewType[] = [...otherReviewList];
+            setCommentList(newList);
+          }
+        });
+
+        getSnackDetailApi(id).then((data) => {
+          if (data.numberOfParticipants == 0) setStarAvg(0);
+          else setStarAvg(data.sumOfStars / data.numberOfParticipants);
+        });
+      });
     }
 
     console.log(newComment);
@@ -74,7 +99,17 @@ export default function Comment({ setStarAvg, starAvg }: Props) {
           </>
         )}
       </div>
-      {id && <CommentList isValid={isValid} setIsValid={setIsValid} snackId={id} setStarAvg={setStarAvg} starAvg={starAvg} />}
+      {id && (
+        <CommentList
+          isValid={isValid}
+          setIsValid={setIsValid}
+          snackId={id}
+          setStarAvg={setStarAvg}
+          starAvg={starAvg}
+          setCommentList={setCommentList}
+          commentList={commentList}
+        />
+      )}
     </div>
   );
 }
