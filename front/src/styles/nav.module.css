@@ -34,7 +34,6 @@
   margin-top: 3px;
   width: 30px;
   height: 30px;
-  /* border-radius: 100px; */
   object-fit: cover;
 }
 .menu-content > .bottom-nav-profile {
@@ -56,11 +55,27 @@
   z-index: 1000;
 }
 
-.search-btn {
+.btn-search {
   position: absolute;
   transform: translate(0, -50%);
   top: 50%;
   right: 20px;
+}
+
+.btn-search > .search-btn-icon {
+  width: 30px;
+  height: 30px;
+}
+.back-btn {
+  position: absolute;
+  transform: translate(0, -50%);
+  top: 50%;
+  left: 20px;
+}
+
+.back-btn > .back-btn-icon {
+  width: 30px;
+  height: 30px;
 }
 
 /* 뒤로가기 */

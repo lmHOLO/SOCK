@@ -55,6 +55,7 @@ export default function Search() {
       </div>
       <FilterModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
       <Popular popularList={popularList} />
+      <BottomNav />
     </div>
   );
 }

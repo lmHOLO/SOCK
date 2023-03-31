@@ -6,20 +6,28 @@ import ModifyModal from '@/components/Profile/ModifyModal';
 import RecipeGrid from '@/components/Profile/RecipeGrid';
 import { MemberProfileType, MenuType } from '@/types/member';
 import { ProfileRecipeType } from '@/types/recipe';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import useMember from '@/hooks/memberHook';
+import { useParams } from 'react-router-dom';
+import { loginApi, otherMemberProfileApi } from '@/apis/api/member';
+import { getRecipeListAPI } from '@/apis/api/recipeList';
 
 export default function Profile() {
   const [member, setMember] = useState<MemberProfileType>({
-    id: '1',
-    email: 'geon@gmail.com',
-    nickname: '건빵',
-    profile: { image: 'https://i.postimg.cc/x8VV5MyD/image.jpg', content: '이건소개글안녕나여나연' },
-    sbti: 'sbti',
-    grade: 'SECOND',
+    id: '',
+    email: '',
+    nickname: '',
+    profile: { image: '', content: '' },
+    sbti: '',
+    grade: '',
     exp: 0,
   });
   const [menu, setMenu] = useState<MenuType>('POST_RECIPE');
   const [modalOpen, setModalOpen] = useState<boolean>(false);
+
+  const { memberData } = useMember();
+
+  const { id } = useParams();
   const [recipeList, setRecipeList] = useState<ProfileRecipeType[]>([
     {
       recipeId: '1',
@@ -38,12 +46,31 @@ export default function Profile() {
       image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
     },
   ]);
+
+  useEffect(() => {
+    if (id == memberData.id) {
+      loginApi().then((data) => {
+        setMember(data);
+      });
+    } else if (id) {
+      otherMemberProfileApi(id).then((data) => {
+        setMember(data);
+      });
+    }
+    // 마이페이지에서 내가 작성한 레시피 뿌리기 - 수정필요
+    // if (id) {
+    //   getRecipeListAPI('', '', id).then((recipeData) => {
+    //     setRecipeList(recipeData);
+    //   });
+    // }
+  }, []);
+
   return (
     <div>
       <TopNav />
-      <Header member={member} setModalOpen={setModalOpen} />
-      <Menu member={member} menu={menu} setMenu={setMenu} />
-      <ModifyModal member={member} modalOpen={modalOpen} setModalOpen={setModalOpen} />
+      {member && <Header member={member} setModalOpen={setModalOpen} />}
+      {member && <Menu member={member} menu={menu} setMenu={setMenu} />}
+      {member && id && setMember && <ModifyModal member={member} modalOpen={modalOpen} setModalOpen={setModalOpen} id={id} setMember={setMember} />}
       <RecipeGrid recipeList={recipeList} />
       <BottomNav />
     </div>

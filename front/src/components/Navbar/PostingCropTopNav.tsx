@@ -8,8 +8,8 @@ export default function PostingCropTopNav() {
   const navigate = useNavigate();
   return (
     <div className={styles['top-nav-container']}>
-      <button className={styles['back-btn']} onClick={() => navigate('/search')}>
-        <ArrowBackIcon fontSize='large' style={{ color: 'white' }} />
+      <button className={styles['back-btn']} onClick={() => navigate(-1)}>
+        <img src={require(`@/assets/home/icon_back.png`)} alt='back' className={styles['back-btn-icon']} />
       </button>
       <div className={styles['search-btn']} onClick={() => navigate('/search')}>
         <Button variant='text'>NEXT</Button>
