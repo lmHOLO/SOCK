@@ -7,11 +7,14 @@ import Popular from '@/components/Search/Popular';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { getTopPopularListAPI } from '@/apis/api/search';
+import BottomNav from '@/components/Navbar/BottomNav';
 
 export default function Search() {
   const [theme, setTheme] = useState<SearchThemeType>('snack'); // 찾는 주제
   const [searchBar, setSearchBar] = useState<string>('');
-  const [popularList, setPopularList] = useState<{ id: string; snackCheck: boolean; score: number; name: string }[]>([]);
+  const [popularList, setPopularList] = useState<{ id: string; snackCheck: boolean; score: number; name: string }[]>(
+    [],
+  );
 
   // const { keyword, arrange, memberId } = useParams();
 
@@ -47,6 +50,7 @@ export default function Search() {
         </button>
       </div>
       <Popular popularList={popularList} />
+      <BottomNav />
     </div>
   );
 }
