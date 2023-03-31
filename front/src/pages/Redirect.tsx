@@ -31,6 +31,25 @@ export default function Redirect() {
         
         // getMemberLoginInfo).then(login);
       // navigate('/');
+      // loginApi().then(getMemberLoginInfo).then(login);
+      
+      
+      
+      // upstream 부분
+      // new Promise<void>((resolve) => {
+      //   localStorage.setItem('token', token);
+      //   resolve();
+      // }).then(() =>
+      //   loginApi()
+      //     .then(getMemberLoginInfo)
+      //     .then((data) => {
+      //       login(data);
+      //       navigate('/');
+      //     }),
+      // );
+
+
+
       return;
     }
     if (error) {

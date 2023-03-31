@@ -15,10 +15,21 @@ export type ProfileType = {
   content: string;
 };
 
-// Member 리듀서 관련
-
 // 초기 상태 타입
 export type MemberStateType = {
   isLoggedIn: boolean;
   memberData: MemberLoginType;
 };
+
+export type MemberProfileType = {
+  id: string;
+  email: string;
+  nickname: string;
+  profile: ProfileType;
+  sbti: string;
+  grade: string;
+  exp: number;
+};
+
+// 프로필
+export type MenuType = 'POST_RECIPE' | 'LIKE_SNACK' | 'LIKE_RECIPE';

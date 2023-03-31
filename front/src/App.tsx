@@ -14,6 +14,12 @@ import EventList from '@/pages/EventList';
 import EventResult from './pages/EventrResult';
 import WorldcupEvent from '@/pages/WorldcupEvent';
 import FirstPrefer from '@/pages/FirstPrefer';
+import SbtiEvent from '@/pages/SbtiEvent';
+import Search from '@/pages/Search';
+import Profile from '@/pages/Profile';
+import SnackContentPage from '@/pages/SnackContentPage';
+import RecipeContentPage from '@/pages/RecipeContentPage';
+
 const router = createBrowserRouter([
   /*   {
     path: '/',
@@ -27,6 +33,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
+    errorElement: <NotFound />,
   },
   {
     path: '/login',
@@ -34,36 +41,74 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
   },
   {
-    path: 'oauth2/redirect',
+    path: '/profile/:id',
+    element: <Profile />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: '/redirect',
     element: <Redirect />,
+    errorElement: <NotFound />,
   },
   {
     path: '/snacks/:id',
     element: <SnackDetail />,
+    errorElement: <NotFound />,
   },
   {
     path: '/recipes/:id',
     element: <RecipeDetail />,
+    errorElement: <NotFound />,
   },
   {
     path: '/recipe-posting',
     element: <RecipePosting />,
+    errorElement: <NotFound />,
   },
   {
     path: '/firebasetest',
     element: <FirebaseUploadTest />,
+    errorElement: <NotFound />,
   },
   {
     path: '/event',
     element: <EventList />,
+    errorElement: <NotFound />,
   },
   {
-    path:'/result/enfj',
-    element:<EventResult/>,
+    path: '/event/sbti/:result',
+    element: <EventResult />,
+    errorElement: <NotFound />,
   },
   {
     path: '/event/worldcup',
     element: <WorldcupEvent />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: '/event/sbti',
+    element: <SbtiEvent />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: '/search',
+    element: <Search />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: '/snacks',
+    element: <SnackContentPage />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: '/snack-content/:theme',
+    element: <SnackContentPage />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: '/recipes',
+    element: <RecipeContentPage />,
+    errorElement: <NotFound />,
   },
   {
     path: '/firstprefer',

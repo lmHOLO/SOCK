@@ -58,10 +58,7 @@ export default function WorldcupEvent() {
   const noFinish = () => {
     return (
       <div>
-        <p>{total}</p>
-        <p>
-          {now}/{round}
-        </p>
+      <div className={styles["title"]}>과자 이상형 월드컵 {total} {now}/{round} </div>
       </div>
     );
   };
@@ -69,30 +66,39 @@ export default function WorldcupEvent() {
   const yesFinish = () => {
     return (
       <div>
-        <p>당신의 선택은? </p>
+        <div className={styles["title"]}>과자 이상형 월드컵 </div>
+        <p className={styles["your-pick"]}>당신의 선택은? </p>
       </div>
     );
   };
+  const winnerResult =() =>{
+    return(
+      <div>
+        <p className={styles["vs-text-none"]}>VS</p>
+      </div>
+    )
+  }
 
   return (
     <div className="side-margin">
       <TopNav />
-
-      <div>
         <div>
-          <div className={styles["title"]}>과자 이상형 월드컵</div>
-          {finish ? yesFinish() : noFinish()}
+          <div>
+            {finish ? yesFinish() : noFinish()}
+          </div>
+          {displays.map((snack) => {
+            return (
+              <div className={styles["flex-1"]} key={snack.name} onClick={() => clickHandler(snack)}>
+                <img className={styles["food-img"]} src={snack.image} alt={snack.name} />
+                <div className={styles["name"]}>{snack.name}</div>
+              </div>
+            );
+          })}
+          <div>
+            {finish ? <p className={styles["vs-text-none"]}>VS</p> : <p className={styles["vs-text"]}>VS</p> }
+          </div>
         </div>
-        {displays.map((snack) => {
-          return (
-            <div className={styles["flex-1"]} key={snack.name} onClick={() => clickHandler(snack)}>
-              <img className={styles["food-img"]} src={snack.image} alt={snack.name} />
-              <div className={styles["name"]}>{snack.name}</div>
-            </div>
-          );
-        })}
-      </div>
-
+        
       <BottomNav />
     </div>
   );

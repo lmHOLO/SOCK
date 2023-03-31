@@ -4,6 +4,15 @@ export type RecipeListItemType = {
   title: string;
 };
 
+export type GridRecipeListItemType = {
+  myLikeCheck: boolean;
+  writer: string;
+  writerImage: string;
+  recipeId: string;
+  recipeTitle: string;
+  recipeImage: string;
+};
+
 export type RecipeWriteType = {
   title: string;
   images: string[];
@@ -51,6 +60,7 @@ export type GetSnackTagType = {
   snackId: string;
   snackName: string;
 };
+
 export type GetRecipeImageType = {
   imageId: string;
   recipeImage: string;
@@ -65,4 +75,10 @@ export type RecipeCommentType = {
   memberImage: string;
   nickname: string;
   sbti: string;
+};
+
+// 마이페이지 레시피
+export type ProfileRecipeType = {
+  recipeId: string;
+  image: string;
 };

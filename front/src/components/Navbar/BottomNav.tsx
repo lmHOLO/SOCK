@@ -9,20 +9,22 @@ import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import { useNavigate } from 'react-router';
 export default function BottomNav() {
   const navigate = useNavigate();
-  const { memberData } = useMember();
-  useEffect(() => {});
+  const { memberData, isLoggedIn } = useMember();
+  useEffect(() => {
+    !isLoggedIn && !memberData.nickname && navigate(`/login`);
+  });
   const navigateTo = (name: string) => {
     navigate(`/${name}`);
   };
   return (
     <div className={styles['bottom-nav-container']}>
-      <button className={styles['menu-btn']} onClick={() => navigateTo('snacks/1')}>
+      <button className={styles['menu-btn']} onClick={() => navigateTo('snacks')}>
         <div className={styles['menu-content']}>
           <CookieIcon fontSize='large' style={{ color: 'white' }} />
           <p>SNACK</p>
         </div>
       </button>
-      <button className={styles['menu-btn']} onClick={() => navigateTo('recipes/1')}>
+      <button className={styles['menu-btn']} onClick={() => navigateTo('recipes')}>
         <div className={styles['menu-content']}>
           <ReceiptLongIcon fontSize='large' style={{ color: 'white' }} />
           <p>RECIPE</p>
@@ -40,7 +42,7 @@ export default function BottomNav() {
           <p>EVENT</p>
         </div>
       </button>
-      <button className={styles['menu-btn']} onClick={() => navigateTo('my')}>
+      <button className={styles['menu-btn']} onClick={() => navigateTo(`profile/${memberData.id}`)}>
         <div className={styles['menu-content']}>
           <img src={memberData.profile.image} alt={memberData.nickname} />
           <p>MY</p>

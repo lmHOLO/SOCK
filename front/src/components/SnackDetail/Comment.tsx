@@ -4,6 +4,7 @@ import styles from '@/styles/comment.module.css';
 import CommentList from './CommentList';
 import CommentRating from './CommentRating';
 import { postSnackReviewAPI } from '@/apis/api/snackDetail';
+
 export default function Comment() {
   const { id } = useParams();
   const textRef = useRef<HTMLTextAreaElement>(null);
@@ -63,18 +64,12 @@ export default function Comment() {
           </>
         ) : (
           <>
-            <textarea
-              rows={1}
-              ref={textRef}
-              className={styles.content_text}
-              placeholder='이미 등록하셨습니다'
-              disabled
-            />
+            <textarea rows={1} ref={textRef} className={styles.content_text} placeholder='이미 등록하셨습니다' disabled />
             <button disabled>작성</button>
           </>
         )}
       </div>
-      <CommentList setIsValid={setIsValid} />
+      {id && <CommentList isValid={isValid} setIsValid={setIsValid} snackId={id} />}
     </div>
   );
 }

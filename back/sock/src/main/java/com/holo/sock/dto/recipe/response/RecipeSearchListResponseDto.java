@@ -13,6 +13,7 @@ public class RecipeSearchListResponseDto {
 
     private boolean myLikeCheck;
     private String writer;
+    private String writerImage;
     private Long recipeId;
     private String recipeTitle;
     private String recipeImage;
@@ -20,6 +21,7 @@ public class RecipeSearchListResponseDto {
     public RecipeSearchListResponseDto(Recipe recipe, HashSet<Long> recipeIdsWithLike) {
         this.myLikeCheck = recipeIdsWithLike.contains(recipe.getId());
         this.writer = recipe.getWriter().getNickname();
+        this.writerImage =recipe.getWriter().getProfile().getImage();
         this.recipeId = recipe.getId();
         this.recipeTitle = recipe.getTitle();
         this.recipeImage = recipe.getImages().get(0).getName();

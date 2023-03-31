@@ -28,7 +28,6 @@
 FROM gradle:7.4-jdk11-alpine as builder
 WORKDIR /app
 COPY . .
-RUN gradle build -x test --parallel --continue  > /dev/null 2>&1 || true
 RUN gradle clean build -x test --parallel
 
 # APP

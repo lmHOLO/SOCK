@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { authApiInstance } from '@/apis/axiosConfig';
+import { apiInstance } from '@/apis/axiosConfig'
 import { firstPreferApi } from '@/apis/api/firstprefer';
 import { SnackPreferType } from '@/types/snack';
 import TinderCard from 'react-tinder-card'
@@ -32,7 +33,6 @@ export default function FirstPrefer() {
   
   const [firstPreferList, setFirstPreferList] = useState<SnackPreferType[]>([]);
   // const normalise = (firstPreferList.length) => (firstPreferList.length/5 * 100);
-  const [normalise, setNormalise] = useState<number>(10)
   
   // 초기선호도 리스트가 비어있을 때만 최초로 1회 30개의 무작위 과자 리스트를 가져옴.
   useEffect(() => {
