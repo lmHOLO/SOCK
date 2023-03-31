@@ -2,6 +2,7 @@ import BottomNav from '@/components/Navbar/BottomNav';
 import TopNav from '@/components/Navbar/TopNav';
 import Header from '@/components/Profile/Header';
 import Menu from '@/components/Profile/Menu';
+import ModifyModal from '@/components/Profile/ModifyModal';
 import RecipeGrid from '@/components/Profile/RecipeGrid';
 import { MemberProfileType, MenuType } from '@/types/member';
 import { ProfileRecipeType } from '@/types/recipe';
@@ -18,6 +19,7 @@ export default function Profile() {
     exp: 0,
   });
   const [menu, setMenu] = useState<MenuType>('POST_RECIPE');
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [recipeList, setRecipeList] = useState<ProfileRecipeType[]>([
     {
       recipeId: '1',
@@ -39,8 +41,9 @@ export default function Profile() {
   return (
     <div>
       <TopNav />
-      <Header member={member} />
-      <Menu member={member} setMenu={setMenu} />
+      <Header member={member} setModalOpen={setModalOpen} />
+      <Menu member={member} menu={menu} setMenu={setMenu} />
+      <ModifyModal member={member} modalOpen={modalOpen} setModalOpen={setModalOpen} />
       <RecipeGrid recipeList={recipeList} />
       <BottomNav />
     </div>

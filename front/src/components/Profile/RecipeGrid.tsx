@@ -9,7 +9,7 @@ interface Props {
 export default function RecipeGrid({ recipeList }: Props) {
   const navigate = useNavigate();
   return (
-    <section className={`${styles['primary']} side-margin`}>
+    <section className={`${styles['primary']}`}>
       <ul className={styles['card-list']}>
         {recipeList &&
           recipeList.map((recipe, index) => {
