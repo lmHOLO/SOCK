@@ -1,57 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TopNav from '@/components/Navbar/TopNav';
 import BottomNav from '@/components/Navbar/BottomNav';
 import styles from '@/styles/grid.module.css';
 import { GridRecipeListItemType } from '@/types/recipe';
 import RecipeGridList from '@/components/common/RecipeGridList';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getRecipeListAPI } from '@/apis/api/recipeList';
 
 export default function RecipeContentPage() {
-  const [sort, setSort] = useState<string>('popular');
-  const [recipeList, setRecipeList] = useState<GridRecipeListItemType[]>([
-    {
-      myLikeCheck: false,
-      writer: '김수빈',
-      writerImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      recipeId: '1',
-      recipeTitle: '감자칩을 맛있게 해서 먹어봅시다?>?????',
-      recipeImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-    },
-    {
-      myLikeCheck: false,
-      writer: '김수빈',
-      writerImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      recipeId: '2',
-      recipeTitle: '감자칩을 맛있게 해서 먹어봅시다?>?????',
-      recipeImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-    },
-    {
-      myLikeCheck: false,
-      writer: '김수빈',
-      writerImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      recipeId: '3',
-      recipeTitle: '감자칩을 맛있게 해서 먹어봅시다?>?????',
-      recipeImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-    },
-    {
-      myLikeCheck: false,
-      writer: '김수빈',
-      writerImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      recipeId: '4',
-      recipeTitle: '감자칩을 맛있게 해서 먹어봅시다?>?????',
-      recipeImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-    },
-    {
-      myLikeCheck: false,
-      writer: '김수빈',
-      writerImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      recipeId: '5',
-      recipeTitle: '감자칩을 맛있게 해서 먹어봅시다?>?????',
-      recipeImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-    },
-  ]);
+  const [sort, setSort] = useState<string>('latest');
+  const [recipeList, setRecipeList] = useState<GridRecipeListItemType[]>([]);
+
+  const { keyword,arrange,memberId } = useParams();
+
+  useEffect(()=>{
+    if(!keyword && !memberId){
+      getRecipeListAPI("",sort,"").then((data)=>{
+        setRecipeList(data.content);
+    });
+  }
+},[keyword,arrange,memberId]);
+
+
   const handleSort = async (sort: string) => {
     setSort(sort);
+    getRecipeListAPI("",sort,"").then((data)=>{
+      setRecipeList(data.content);
+    });
+    
   };
+
   return (
     <div className='side-margin'>
       <TopNav />
