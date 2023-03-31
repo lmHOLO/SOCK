@@ -6,18 +6,12 @@ import ModifyModal from '@/components/Profile/ModifyModal';
 import RecipeGrid from '@/components/Profile/RecipeGrid';
 import { MemberProfileType, MenuType } from '@/types/member';
 import { ProfileRecipeType } from '@/types/recipe';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
+import { loginApi } from '@/apis/api/member';
 
 export default function Profile() {
-  const [member, setMember] = useState<MemberProfileType>({
-    id: '1',
-    email: 'geon@gmail.com',
-    nickname: '건빵',
-    profile: { image: 'https://i.postimg.cc/x8VV5MyD/image.jpg', content: '이건소개글안녕나여나연' },
-    sbti: 'sbti',
-    grade: 'SECOND',
-    exp: 0,
-  });
+  const [member, setMember] = useState<MemberProfileType>();
   const [menu, setMenu] = useState<MenuType>('POST_RECIPE');
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [recipeList, setRecipeList] = useState<ProfileRecipeType[]>([
@@ -38,12 +32,19 @@ export default function Profile() {
       image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
     },
   ]);
+
+  useEffect(() => {
+    loginApi().then((data) => {
+      setMember(data);
+    });
+  }, []);
+
   return (
     <div>
       <TopNav />
-      <Header member={member} setModalOpen={setModalOpen} />
-      <Menu member={member} menu={menu} setMenu={setMenu} />
-      <ModifyModal member={member} modalOpen={modalOpen} setModalOpen={setModalOpen} />
+      {member && <Header member={member} setModalOpen={setModalOpen} />}
+      {member && <Menu member={member} menu={menu} setMenu={setMenu} />}
+      {member && <ModifyModal member={member} modalOpen={modalOpen} setModalOpen={setModalOpen} />}
       <RecipeGrid recipeList={recipeList} />
       <BottomNav />
     </div>

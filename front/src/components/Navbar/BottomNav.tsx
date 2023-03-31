@@ -46,7 +46,7 @@ export default function BottomNav() {
           <p>EVENT</p>
         </div>
       </button>
-      <button className={styles['menu-btn']} onClick={() => navigateTo(`profile/${memberData.id}`)}>
+      <button className={styles['menu-btn']} onClick={() => navigateTo(`profile`)}>
         <div className={styles['menu-content']}>
           <img className={styles['bottom-nav-profile']} src={memberData.profile.image} alt={memberData.nickname} />
           <p>MY</p>
