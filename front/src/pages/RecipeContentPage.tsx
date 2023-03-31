@@ -4,30 +4,33 @@ import BottomNav from '@/components/Navbar/BottomNav';
 import styles from '@/styles/grid.module.css';
 import { GridRecipeListItemType } from '@/types/recipe';
 import RecipeGridList from '@/components/common/RecipeGridList';
-import { useNavigate, useParams } from 'react-router-dom';
+// import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router';
 import { getRecipeListAPI } from '@/apis/api/recipeList';
 
 export default function RecipeContentPage() {
   const [sort, setSort] = useState<string>('latest');
   const [recipeList, setRecipeList] = useState<GridRecipeListItemType[]>([]);
 
-  const { keyword,arrange,memberId } = useParams();
+  const { state } = useLocation();
 
-  useEffect(()=>{
-    if(!keyword && !memberId){
-      getRecipeListAPI("",sort,"").then((data)=>{
+  useEffect(() => {
+    if (!state) {
+      getRecipeListAPI('', sort, '').then((data) => {
         setRecipeList(data.content);
-    });
-  }
-},[keyword,arrange,memberId]);
-
+      });
+    } else {
+      getRecipeListAPI(state, sort, '').then((data) => {
+        setRecipeList(data.content);
+      });
+    }
+  }, [state]);
 
   const handleSort = async (sort: string) => {
     setSort(sort);
-    getRecipeListAPI("",sort,"").then((data)=>{
+    getRecipeListAPI('', sort, '').then((data) => {
       setRecipeList(data.content);
     });
-    
   };
 
   return (
