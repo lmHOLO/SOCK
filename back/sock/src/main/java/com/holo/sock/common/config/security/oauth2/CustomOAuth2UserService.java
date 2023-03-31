@@ -31,6 +31,8 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     private final MemberRepository memberRepository;
     private final static int RANDOM_STRING_SIZE = 10;
+    private final static String DEAFULT_PROFILE_IMAGE
+            = "https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/profile%2Fdeafult_profile_image.jpeg?alt=media";
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
@@ -64,7 +66,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     @Transactional
     Member createUser(OAuth2UserInfo userInfo, AuthProvider authProvider) {
         Profile profile = Profile.builder()
-                .image(userInfo.getImageUrl())
+                .image(DEAFULT_PROFILE_IMAGE)
                 .build();
 
         Member member = Member.builder()
