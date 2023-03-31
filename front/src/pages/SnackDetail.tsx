@@ -14,6 +14,8 @@ import { getContainRecipeAPI } from '@/apis/api/recipeDetail';
 export default function SnackDetail() {
   const { id } = useParams();
 
+  const [starAvg, setStarAvg] = useState<number>(0);
+
   useEffect(() => {
     if (id) {
       getSimilarSnackAPI('snack', id).then((data) => {
@@ -30,7 +32,7 @@ export default function SnackDetail() {
   return (
     <div className='side-margin'>
       <TopNav />
-      <SnackContent />
+      <SnackContent setStarAvg={setStarAvg} starAvg={starAvg} />
       <div>
         <div className={`${styles.title}`}>
           <p>유사한 상품</p>
@@ -49,7 +51,7 @@ export default function SnackDetail() {
         <div>
           <p>댓글</p>
         </div>
-        <Comment />
+        <Comment setStarAvg={setStarAvg} starAvg={starAvg} />
       </div>
       <BottomNav />
     </div>
