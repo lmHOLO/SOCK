@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 // import { setMember } from '@/store/member';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import useMember from '@/hooks/memberHook';
 import { getMemberLoginInfo } from '@/apis/services/member';
 import { loginApi } from '@/apis/api/member';
+import '@/styles/redirect.css';
 export default function Redirect() {
   let [searchParams, setSearchParams] = useSearchParams();
   const { login } = useMember();
@@ -39,8 +40,13 @@ export default function Redirect() {
   });
 
   return (
-    <>
-      <p>리다이렉트 페이지</p>
-    </>
+    <div className='redirect-container'>
+      <img src={require(`@/assets/home/loading.gif`)} alt='loading-animation' className='main-loading-animation' />
+
+      <img src={require(`@/assets/home/cookie.gif`)} alt='loading-animation' className='sub-loading-animation' />
+      <p className='loading-text'>
+        간식찾는중<span className='loading-dots'></span>
+      </p>
+    </div>
   );
 }
