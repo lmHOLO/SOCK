@@ -7,7 +7,8 @@ export default function TopNav() {
   return (
     <div className={styles['top-nav-container']}>
       <button className={styles['search-btn']} onClick={() => navigate('/search')}>
-        <SearchIcon fontSize='large' style={{ color: 'white' }} />
+        {/* <SearchIcon fontSize='large' style={{ color: 'white' }} /> */}
+        <img src={require(`@/assets/home/icon_search.png`)} alt='search' className={styles['search-btn-icon']} />
       </button>
     </div>
   );
