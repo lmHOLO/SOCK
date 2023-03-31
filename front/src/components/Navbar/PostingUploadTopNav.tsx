@@ -13,6 +13,7 @@ export default function PostingUploadTopNav({ handleUploadButton }: Props) {
       <button className={styles['back-btn']} onClick={() => navigate('/search')}>
         <ArrowBackIcon fontSize='large' style={{ color: 'white' }} />
       </button>
+      <img className={styles['sock-logo']} src={require(`@/assets/sock-logo-color.png`)} alt='logo' />
       <div className={styles['search-btn']} onClick={handleUploadButton}>
         <Button variant='text'>Post</Button>
       </div>

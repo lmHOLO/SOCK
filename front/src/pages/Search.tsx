@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { getTopPopularListAPI } from '@/apis/api/search';
 import FilterModal from '@/components/Search/FilterModal';
+import BottomNav from '@/components/Navbar/BottomNav';
 
 export default function Search() {
   const [theme, setTheme] = useState<SearchThemeType>('snack'); // 찾는 주제
