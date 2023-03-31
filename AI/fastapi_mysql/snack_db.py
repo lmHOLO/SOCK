@@ -3,8 +3,11 @@
 # pip install surprise
 # uvicorn snack_db:app --reload
 
+# 7000번 포트번호로 실행
+# uvicorn snack_db:app --reload --port 7000
 from typing import Optional, List
 import pandas as pd
+import uvicorn
 import numpy as np
 import json
 from fastapi import FastAPI
@@ -13,6 +16,7 @@ from sqlalchemy import create_engine
 from random import randint
 from surprise import SVD, Reader
 from surprise.dataset import DatasetAutoFolds
+from starlette.middleware.cors import CORSMiddleware
 
 class Item(BaseModel):
     member_id: int
@@ -50,6 +54,26 @@ def sigmoid_transform_search(x):
 
 
 app = FastAPI()
+origins = [
+    "*"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
+
+if __name__ == "__main__":
+    uvicorn.run("snack_db:app", host="localhost", port=7000)
+
 
 # @app.post("/data/{member_id}")
 # def send_data(member_id: int, list: Item):
@@ -155,11 +179,20 @@ def recommend():
     review_cursor = cursor.fetchall()
     review_df = pd.DataFrame(review_cursor)
 
+    total_user = "SELECT COUNT(*) FROM sock.member;"
+    cursor.execute(total_user)
+    user_cursor = cursor.fetchall()
+
+    total_snack = "SELECT COUNT(*) FROM sock.snack;"
+    cursor.execute(total_snack)
+    snack_cursor = cursor.fetchall()
+
+
     # 유저-아이템 종합 평점 테이블
-    member_snack_arr = [[0]*729 for _ in range(9)]
+    member_snack_arr = [[0]*snack_cursor for _ in range(user_cursor)]
 
     # 이것을 나눌 분모 테이블
-    demoni = [[6]*729 for _ in range(9)]
+    demoni = [[6]*snack_cursor for _ in range(user_cursor)]
 
 
     # 검색에 관련된 평점
@@ -251,7 +284,7 @@ def recommend():
     top_snack_preds_list = []
     for i in range(1, int(user_num)+1):
         unseen_snacks = get_unseen_surprise(total_rating, snack_db, i+1)
-        top_snack_preds = recomm_snack_by_surprise(model, i, unseen_snacks, top_n=10)
+        top_snack_preds = recomm_snack_by_surprise(model, i, unseen_snacks, top_n=729)
         top_snack_preds_list.append(top_snack_preds)
         
     # unseen_snacks = get_unseen_surprise(total_rating, snack_db, 1)
