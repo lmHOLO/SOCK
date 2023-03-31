@@ -125,7 +125,7 @@ public class SnackRepositoryImpl implements SnackRepositoryCustom{
     }
 
     private OrderSpecifier orderCond(String arrange){
-        if(arrange == null || arrange.equals("recent")) return snack.lastModifiedDate.desc();
+        if(arrange == null || arrange.equals("latest")) return snack.lastModifiedDate.desc();
         else return snackQScore.score.nullif(0L).desc();
     }
 

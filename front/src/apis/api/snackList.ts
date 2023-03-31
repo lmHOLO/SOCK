@@ -1,0 +1,21 @@
+import { authApiInstance } from '@/apis/axiosConfig';
+import { isAxiosError } from 'axios';
+
+// keyword,flavors,types,arrange
+export const getSnackListAPI =async (keyword:string,flavors:string[],types:string[],arrange:string) => {
+    try{
+        console.log("API.arrange=",arrange);
+        let url = `/snacks?arrange=${arrange}`;
+        if(`${keyword}`) url = url+`&keyword=${keyword}`;
+        if(`${flavors}`) url = url +`&flavors=${flavors}`;
+        if(`${types}`) url = url + `&types=${types}`;
+
+        const { data } = await authApiInstance().get(url);
+        return data.data;
+    }catch(error){
+        if (isAxiosError(error)) {
+            console.log('에러: ', error.response);
+            return error.response?.data;
+        }
+    }
+}

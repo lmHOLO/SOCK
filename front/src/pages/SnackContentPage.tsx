@@ -1,73 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect,useState } from 'react';
 import SnackGridList from '@/components/common/SnackGridList';
 import { SnackDetailType } from '@/types/snack';
 import TopNav from '@/components/Navbar/TopNav';
 import BottomNav from '@/components/Navbar/BottomNav';
 import styles from '@/styles/grid.module.css';
 import { useParams } from 'react-router-dom';
+import{getSnackListAPI} from '@/apis/api/snackList';
 
 export default function SnackContentPage() {
-  const [sort, setSort] = useState<string>('popular');
-  const [snackList, setSnackList] = useState<SnackDetailType[]>([
-    {
-      snackId: '1',
-      image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      name: '포카칩 오리지널',
-      sumOfStars: 10,
-      numberOfParticipants: 3,
-      type: { id: '1', name: '안녕' },
-      flavors: [{ id: '1', name: '단맛' }],
-      like: false,
-      totalLikes: '1',
-    },
-    {
-      snackId: '2',
-      image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      name: '포카칩 오리지널',
-      sumOfStars: 10,
-      numberOfParticipants: 3,
-      type: { id: '1', name: '안녕' },
-      flavors: [{ id: '1', name: '단맛' }],
-      like: false,
-      totalLikes: '1',
-    },
-    {
-      snackId: '3',
-      image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      name: '포카칩 오리지널',
-      sumOfStars: 10,
-      numberOfParticipants: 3,
-      type: { id: '1', name: '안녕' },
-      flavors: [{ id: '1', name: '단맛' }],
-      like: false,
-      totalLikes: '1',
-    },
-    {
-      snackId: '4',
-      image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      name: '포카칩 오리지널',
-      sumOfStars: 10,
-      numberOfParticipants: 3,
-      type: { id: '1', name: '안녕' },
-      flavors: [{ id: '1', name: '단맛' }],
-      like: false,
-      totalLikes: '1',
-    },
-    {
-      snackId: '5',
-      image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      name: '포카칩 오리지널',
-      sumOfStars: 10,
-      numberOfParticipants: 3,
-      type: { id: '1', name: '안녕' },
-      flavors: [{ id: '1', name: '단맛' }],
-      like: false,
-      totalLikes: '1',
-    },
-  ]);
+  const [sort, setSort] = useState<string>('latest');
+  const [snackList, setSnackList] = useState<SnackDetailType[]>([]);
   const { theme } = useParams(); // 주제
+
+  const {keyword,flavors,types,arrange} = useParams();
+  const undefindValue=[""];
+  useEffect(()=>{
+    if(!keyword && !flavors && !types){
+      getSnackListAPI("",undefindValue,undefindValue,sort).then((data)=>{
+        setSnackList(data.content);
+      })
+    }
+  },[keyword,flavors,types,arrange]);
+
   const handleSort = async (sort: string) => {
     setSort(sort);
+    getSnackListAPI("",undefindValue,undefindValue,sort).then((data)=>{
+      setSnackList(data.content);
+    });
   };
   return (
     <div className='side-margin'>
