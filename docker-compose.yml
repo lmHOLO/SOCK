@@ -72,3 +72,7 @@ services:
       - fastApi-volume:/code
     depends_on:
       - mysql
+
+volumes:
+  fastApi-volume:
+    external: true
