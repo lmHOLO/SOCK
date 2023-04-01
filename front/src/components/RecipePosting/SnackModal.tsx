@@ -23,7 +23,7 @@ export default function SnackModal({ modalOpen, setModalOpen, addTag }: Props) {
       console.log(result);
       setSnackList(result);
     }); */
-    await getSnackKeywordSearch(searchBar).then((result) => {
+    await getSnackKeywordSearch(e.target.value).then((result) => {
       setSnackList(getSnackForTag(result));
     });
   };
