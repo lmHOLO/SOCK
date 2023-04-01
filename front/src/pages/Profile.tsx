@@ -11,6 +11,8 @@ import useMember from '@/hooks/memberHook';
 import { useParams } from 'react-router-dom';
 import { loginApi, otherMemberProfileApi } from '@/apis/api/member';
 import { getRecipeListAPI } from '@/apis/api/recipeList';
+import { getMyRecipeList } from '@/apis/services/profile';
+import { getLikedRecipeListAPI, getMyRecipeListAPI } from '@/apis/api/profile';
 
 export default function Profile() {
   const [member, setMember] = useState<MemberProfileType>({
@@ -28,24 +30,20 @@ export default function Profile() {
   const { memberData } = useMember();
 
   const { id } = useParams();
-  const [recipeList, setRecipeList] = useState<ProfileRecipeType[]>([
-    {
-      recipeId: '1',
-      image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-    },
-    {
-      recipeId: '2',
-      image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-    },
-    {
-      recipeId: '3',
-      image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-    },
-    {
-      recipeId: '4',
-      image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-    },
-  ]);
+  const [recipeList, setRecipeList] = useState<ProfileRecipeType[]>([]);
+  useEffect(() => {
+    handleMenuClick('POST_RECIPE');
+  }, []);
+
+  const handleMenuClick = (menu: MenuType) => {
+    if (menu === 'LIKE_RECIPE') {
+      getLikedRecipeListAPI(memberData.id).then(setRecipeList);
+    } else if (menu === 'POST_RECIPE') {
+      getMyRecipeListAPI(memberData.id).then(getMyRecipeList).then(setRecipeList);
+    } else if (menu === 'LIKE_SNACK') {
+    }
+    setMenu(menu);
+  };
 
   useEffect(() => {
     if (id == memberData.id) {
@@ -69,8 +67,10 @@ export default function Profile() {
     <div>
       <TopNav />
       {member && <Header member={member} setModalOpen={setModalOpen} />}
-      {member && <Menu member={member} menu={menu} setMenu={setMenu} />}
-      {member && id && setMember && <ModifyModal member={member} modalOpen={modalOpen} setModalOpen={setModalOpen} id={id} setMember={setMember} />}
+      {member && <Menu member={member} menu={menu} handleMenuClick={handleMenuClick} />}
+      {member && id && (
+        <ModifyModal member={member} modalOpen={modalOpen} setModalOpen={setModalOpen} id={id} setMember={setMember} />
+      )}
       <RecipeGrid recipeList={recipeList} />
       <BottomNav />
     </div>
