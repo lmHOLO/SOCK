@@ -23,10 +23,6 @@ export default function SnackDetail() {
       });
       getContainRecipeAPI('snack', id).then((data) => {
         setContainRecipeList(data);
-        console.log('data = ', data);
-        console.log('containRecipeList = ', containRecipeList[0].recipeImage);
-        console.log('containRecipeList = ', containRecipeList[0].recipeId);
-        console.log('containRecipeList = ', containRecipeList[0].recipeTitle);
       });
     }
   }, [id]);
