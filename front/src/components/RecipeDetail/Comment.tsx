@@ -44,6 +44,9 @@ export default function Comment({ recipeId }: Props) {
           setCommentList(data.content);
         });
         setComment('');
+        if (textRef && textRef.current) {
+          textRef.current.style.height = 'auto';
+        }
       });
     // window.history.go(0); // 임시로
   };
