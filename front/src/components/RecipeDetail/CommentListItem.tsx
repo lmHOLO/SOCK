@@ -40,7 +40,7 @@ export default function CommentListItem({ comment, recipeId, commentList, setCom
           삭제
         </button>
       )}
-      <p>{comment.content}</p>
+      <pre>{comment.content}</pre>
     </div>
   );
 }
