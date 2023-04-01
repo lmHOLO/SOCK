@@ -64,7 +64,7 @@ services:
   fastapi:
     container_name: fastapi
     build:
-      context: ./AI/fastapi
+      context: ./AI
     ports:
       - "9000:9000"
     restart: unless-stopped
