@@ -11,9 +11,21 @@
 }
 
 .purchase-btn {
+  padding: 3px 10px;
   float: right;
+  display: flex;
+  align-items: center;
   margin-bottom: 10px;
+  font-size: 15px;
+  background-color: #669966;
+  color: azure;
+  border-radius: 50px;
 }
+.purchase-btn > img {
+  width: 20px;
+  height: 20px;
+}
+
 /* snack content */
 .grade-flavors-like {
   display: flex;
@@ -64,6 +76,7 @@
   margin-right: 5px;
 }
 
-.grade-flavors-like > svg {
+.snack-img-container > svg {
   color: rgb(255, 119, 119);
+  align-self: flex-end;
 }
