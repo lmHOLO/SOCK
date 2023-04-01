@@ -91,3 +91,15 @@ export const purchaseSnackAPI = async (id: string) => {
     }
   }
 };
+
+export const deleteSnackReviewAPI = async (snackId: string) => {
+  try {
+    const result = await authApiInstance().delete(`/snacks/${snackId}/reviews`);
+    return result;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      console.log('에러: ', error.response);
+      return error.response?.data;
+    }
+  }
+};

@@ -78,7 +78,7 @@ public class RecipeRepositoryImpl implements RecipeRepositoryCustom{
         return keyword != null ? recipe.title.contains(keyword) : null;
     }
     private OrderSpecifier orderCond(String arrange){
-        if(arrange == null || arrange.equals("recent")) return recipe.createDate.desc();
+        if(arrange == null || arrange.equals("latest")) return recipe.createDate.desc();
         else return recipeQScore.score.nullif(0L).desc();
     }
 

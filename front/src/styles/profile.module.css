@@ -1,0 +1,82 @@
+@value sock-brown, sock-nagative, sock-yellow, white-color  from './common/colors.css';
+.header-container {
+  width: 100%;
+  height: 150px;
+  background-color: sock-brown;
+  border-radius: 0px 0px 30px 30px;
+  padding: 10px 30px;
+}
+.member-info {
+  display: flex;
+  max-width: 380px;
+  margin: 0 auto;
+}
+.member-info > img {
+  border-radius: 100px;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.member-detail {
+  width: 100%;
+  color: white-color;
+  margin-top: 15px;
+}
+
+.nickname {
+  margin-bottom: 3px;
+}
+
+.email {
+  font-size: 8px;
+  color: sock-nagative;
+  margin-bottom: 5px;
+}
+.nickname > h1 {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.menu {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex: 1 1 0px;
+}
+
+.menu > button {
+  flex-grow: 1;
+  padding: 10px 5px;
+  translate: ;
+}
+
+.menu-active {
+  border-bottom: 2px solid sock-brown;
+  font-weight: 700;
+}
+/* 그리드 */
+
+.primary {
+  max-width: 380px;
+  margin: 20px auto;
+}
+
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, auto));
+  column-gap: 2%;
+  row-gap: 4%;
+}
+.card-item {
+  width: 100%;
+  background: inherit;
+  border-radius: 3px;
+  object-fit: cover;
+}
+
+.edit {
+  color: white-color;
+}

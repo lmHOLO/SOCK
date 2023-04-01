@@ -6,7 +6,6 @@ import { WorldcupSnackType } from "@/types/event";
 import styles from "@/styles/event_worldcup.module.css";
 
 import { getWorldcupSnackListAPI } from "@/apis/api/event";
-import winSnack from "@/assets/event/result/003.png";
 
 export default function WorldcupEvent() {
   const [worldcupSnackList, setWorldcupSnackList] = useState<WorldcupSnackType[]>([]);
@@ -97,18 +96,6 @@ export default function WorldcupEvent() {
           })}
           <div>
             {finish ? <p className={styles["vs-text-none"]}>VS</p> : <p className={styles["vs-text"]}>VS</p> }
-          </div>
-          
-          <div className="waveDiv animation-wave">
-              <div className="wave-content-wrapper first-wave">
-                <div className="wave-image first-image"></div>
-                <div className="wave-content-wrapper second-wave">
-                  <div className="wave-image second-image"></div>
-                </div>
-                <div className="wave-content-wrapper third-wave">
-                  <div className="wave-image third-image"></div>
-                </div>
-              </div>
           </div>
         </div>
         
