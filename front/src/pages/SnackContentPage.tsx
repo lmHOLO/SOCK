@@ -17,14 +17,11 @@ export default function SnackContentPage() {
   const undefindValue = [''];
   useEffect(() => {
     if (!theme && !keyword && !flavors && !types) {
-      console.log('aaa');
-      console.log('theme = ', theme);
       getSnackListAPI('', undefindValue, undefindValue, sort).then((data) => {
         setSnackList(data.content);
       });
     }
     if (theme) {
-      console.log('theme = ', theme);
       getThemeSnackListAPI(theme).then((data) => {
         setSnackList(data.content);
       });
