@@ -8,9 +8,10 @@ import { deleteRecipeCommentAPI, getRecipeCommentsAPI } from '@/apis/api/recipeD
 interface Props {
   comment: RecipeCommentType;
   recipeId: string;
+  commentList: RecipeCommentType[];
   setCommentList: React.Dispatch<React.SetStateAction<RecipeCommentType[]>>;
 }
-export default function CommentListItem({ comment, recipeId, setCommentList }: Props) {
+export default function CommentListItem({ comment, recipeId, commentList, setCommentList }: Props) {
   const { memberData } = useMember();
 
   const commentDeleteEvent = () => {
