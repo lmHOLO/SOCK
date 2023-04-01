@@ -43,6 +43,7 @@ export default function Comment({ recipeId }: Props) {
         getRecipeCommentsAPI(id).then((data) => {
           setCommentList(data.content);
         });
+        setComment('');
       });
     // window.history.go(0); // 임시로
   };
