@@ -36,7 +36,7 @@ public class RecipeRepositoryImpl implements RecipeRepositoryCustom{
     public List<Recipe> findRecipesByContainsSnack(Long snackId, Long recipeId) {
         JPAQuery<Recipe> query = new JPAQuery<>(em, MySqlJpaTemplates.DEFAULT);
 
-        return query.from(recipe)
+        return query.from(recipe).distinct()
                 .join(tag).on(tag.recipe.eq(recipe))
                 .where(
                         snackIdEq(snackId),
