@@ -43,3 +43,9 @@ export type UpdateProfileType = {
   nickname: string;
   profile: ProfileType;
 };
+
+// 마이페이지 그리드
+export type ProfileGridItemType = {
+  id: string;
+  image: string;
+};

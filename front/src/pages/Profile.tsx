@@ -3,16 +3,16 @@ import TopNav from '@/components/Navbar/TopNav';
 import Header from '@/components/Profile/Header';
 import Menu from '@/components/Profile/Menu';
 import ModifyModal from '@/components/Profile/ModifyModal';
-import RecipeGrid from '@/components/Profile/RecipeGrid';
-import { MemberProfileType, MenuType } from '@/types/member';
+import RecipeGrid from '@/components/Profile/GridItem';
+import { MemberProfileType, MenuType, ProfileGridItemType } from '@/types/member';
 import { ProfileRecipeType } from '@/types/recipe';
 import React, { useEffect, useState } from 'react';
 import useMember from '@/hooks/memberHook';
 import { useParams } from 'react-router-dom';
 import { loginApi, otherMemberProfileApi } from '@/apis/api/member';
 import { getRecipeListAPI } from '@/apis/api/recipeList';
-import { getMyRecipeList } from '@/apis/services/profile';
-import { getLikedRecipeListAPI, getMyRecipeListAPI } from '@/apis/api/profile';
+import { getLikedSnackList, getMyRecipeList } from '@/apis/services/profile';
+import { getLikedRecipeListAPI, getLikedSnackListAPI, getMyRecipeListAPI } from '@/apis/api/profile';
 
 export default function Profile() {
   const [member, setMember] = useState<MemberProfileType>({
@@ -30,17 +30,18 @@ export default function Profile() {
   const { memberData } = useMember();
 
   const { id } = useParams();
-  const [recipeList, setRecipeList] = useState<ProfileRecipeType[]>([]);
+  const [itemList, setItemList] = useState<ProfileGridItemType[]>([]);
   useEffect(() => {
     handleMenuClick('POST_RECIPE');
   }, []);
 
   const handleMenuClick = (menu: MenuType) => {
     if (menu === 'LIKE_RECIPE') {
-      getLikedRecipeListAPI(memberData.id).then(setRecipeList);
+      getLikedRecipeListAPI(memberData.id).then(setItemList);
     } else if (menu === 'POST_RECIPE') {
-      getMyRecipeListAPI(memberData.id).then(getMyRecipeList).then(setRecipeList);
+      getMyRecipeListAPI(memberData.id).then(getMyRecipeList).then(setItemList);
     } else if (menu === 'LIKE_SNACK') {
+      getLikedSnackListAPI(memberData.id).then(getLikedSnackList).then(setItemList);
     }
     setMenu(menu);
   };
@@ -71,7 +72,7 @@ export default function Profile() {
       {member && id && (
         <ModifyModal member={member} modalOpen={modalOpen} setModalOpen={setModalOpen} id={id} setMember={setMember} />
       )}
-      <RecipeGrid recipeList={recipeList} />
+      <RecipeGrid menu={menu} itemList={itemList} />
       <BottomNav />
     </div>
   );
