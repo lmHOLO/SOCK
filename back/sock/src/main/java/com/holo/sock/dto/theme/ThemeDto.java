@@ -15,6 +15,8 @@ public class ThemeDto {
     private String name;
     private String image;
     private boolean like;
+    private int sumOfStars;
+    private int numberOfParticipants;
 
     public static ThemeDto create(Theme theme, HashSet<Long> snackIdsWithLik){
         return ThemeDto.builder()
@@ -23,6 +25,8 @@ public class ThemeDto {
                 .name(theme.getSnack().getName())
                 .image(theme.getSnack().getImage())
                 .like(snackIdsWithLik.contains(theme.getSnack().getId()))
+                .sumOfStars((theme.getSnack().getSumOfStars()))
+                .numberOfParticipants(theme.getSnack().getNumberOfParticipants())
                 .build();
     }
 }
