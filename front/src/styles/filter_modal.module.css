@@ -47,3 +47,6 @@
   background-color: inherit;
   color: black;
 }
+.bold {
+  font-weight: 700;
+}
