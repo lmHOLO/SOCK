@@ -16,6 +16,9 @@ import { SnackDetailType } from '@/types/snack';
 import { GridRecipeListItemType } from '@/types/recipe';
 import { getRecipeListAPI } from '@/apis/api/recipeList';
 import { getSnackListAPI } from '@/apis/api/snackList';
+import { SearchMemberType } from '@/types/member';
+import MemeberList from '@/components/common/MemeberList';
+import { getMemberListAPI } from '@/apis/api/member';
 
 export default function Search() {
   const navigate = useNavigate();
@@ -34,7 +37,18 @@ export default function Search() {
   const [sort, setSort] = useState<string>('latest');
   const [snackList, setSnackList] = useState<SnackDetailType[]>([]);
   const [recipeList, setRecipeList] = useState<GridRecipeListItemType[]>([]);
-
+  const [memberList, setMemberList] = useState<SearchMemberType[]>([
+    {
+      id: '1',
+      nickname: '민우',
+      image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
+    },
+    {
+      id: '2',
+      nickname: '민우',
+      image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
+    },
+  ]);
   const applyFilter = async (newFilter: FilterType) => {
     setFilter(newFilter);
     setModalOpen(false);
@@ -57,6 +71,7 @@ export default function Search() {
       getSnackListAPI(searchBar, filter.flavors, filter.types, sort).then((data) => {
         setSnackList(data.content);
       });
+      return;
     }
   };
 
@@ -83,19 +98,17 @@ export default function Search() {
       getSnackListAPI(searchBar, filter.flavors, filter.types, sort).then((data) => {
         setSnackList(data.content);
       });
-      console.log('snack: ', filter);
-      console.log('searchbar: ', searchBar);
       setSearchClicked(true);
     } else if (theme === 'recipe') {
-      console.log('recipe');
-      console.log('searchbar: ', searchBar);
       getRecipeListAPI(searchBar, sort, '').then((data) => {
         setRecipeList(data.content);
       });
       setSearchClicked(true);
     } else if (theme === 'member') {
-      console.log('member');
-      console.log('searchbar: ', searchBar);
+      getMemberListAPI(searchBar).then((data) => {
+        setMemberList(data.content);
+      });
+      setSearchClicked(true);
     }
   };
 
@@ -158,7 +171,9 @@ export default function Search() {
       {searchClicked &&
         theme === 'recipe' &&
         (recipeList.length ? <RecipeGridList recipeList={recipeList} /> : <p>레시피가 없습니다ㅠ</p>)}
-
+      {searchClicked &&
+        theme === 'member' &&
+        (memberList.length ? <MemeberList memberList={memberList} /> : <p>사용자가 없습니다ㅠ</p>)}
       <BottomNav />
     </div>
   );

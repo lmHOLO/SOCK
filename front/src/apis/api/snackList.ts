@@ -4,10 +4,10 @@ import { isAxiosError } from 'axios';
 // keyword,flavors,types,arrange
 export const getSnackListAPI = async (keyword: string, flavors: string[], types: string[], arrange: string) => {
   try {
-    console.log('API.keyword=', keyword);
-    console.log('API.flavors=', flavors);
-    console.log('API.types=', types);
-    console.log('API.arrange=', arrange);
+    // console.log('API.keyword=', keyword);
+    // console.log('API.flavors=', flavors);
+    // console.log('API.types=', types);
+    // console.log('API.arrange=', arrange);
     let url = `/snacks?arrange=${arrange}`;
     if (`${keyword}`) url = url + `&keyword=${keyword}`;
     if (`${flavors}`) url = url + `&flavors=${flavors}`;

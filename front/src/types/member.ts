@@ -15,6 +15,11 @@ export type ProfileType = {
   content: string;
 };
 
+export type SearchMemberType = {
+  id: string;
+  nickname: string;
+  image: string;
+};
 // 초기 상태 타입
 export type MemberStateType = {
   isLoggedIn: boolean;

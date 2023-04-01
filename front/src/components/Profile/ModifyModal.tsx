@@ -46,7 +46,7 @@ export default function ModifyModal({ modalOpen, setModalOpen, member, id, setMe
   }, []);
 
   const handleModifyBtnClick = () => {
-    console.log('수정하기');
+    // console.log('수정하기');
     // TODO: 수정하기 API
     let newProfile = {
       image: member.profile.image,
@@ -98,7 +98,13 @@ export default function ModifyModal({ modalOpen, setModalOpen, member, id, setMe
               </div>
               <div className={styles['textarea-container']}>
                 <p>소개 </p>
-                <textarea rows={1} ref={textRef} onInput={handleResizeHeight} onChange={handleContentInput} value={content} />
+                <textarea
+                  rows={1}
+                  ref={textRef}
+                  onInput={handleResizeHeight}
+                  onChange={handleContentInput}
+                  value={content}
+                />
               </div>
             </div>
             <button className={styles['modify-button']} onClick={() => handleModifyBtnClick()}>
