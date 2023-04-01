@@ -13,6 +13,8 @@ export default function GridItem({ menu, itemList }: Props) {
   const navigateTo = (id: string) => {
     if (menu === 'LIKE_RECIPE' || menu === 'POST_RECIPE') {
       navigate(`/recipes/${id}`);
+    } else {
+      navigate(`/snacks/${id}`);
     }
   };
   return (
