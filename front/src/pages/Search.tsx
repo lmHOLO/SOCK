@@ -65,7 +65,7 @@ export default function Search() {
       getRecipeListAPI(searchBar, sort, '').then((data) => {
         setRecipeList(data.content);
       });
-      return;
+      // return;
     }
     if (theme === 'snack') {
       getSnackListAPI(searchBar, filter.flavors, filter.types, sort).then((data) => {

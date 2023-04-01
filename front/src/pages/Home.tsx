@@ -127,8 +127,8 @@ export default function Home() {
       <TopNav />
       <FirstMain />
       <Recommend recommendSnackList={recommendSnackList} />
-      <Movie recommendSnackList={recommendSnackList} />
-      <Retro recommendSnackList={recommendSnackList} />
+      <Movie />
+      <Retro />
       <Milk />
       <Alchol />
       <BottomNav />
