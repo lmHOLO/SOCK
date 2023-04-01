@@ -18,12 +18,13 @@ export default function SnackModal({ modalOpen, setModalOpen, addTag }: Props) {
   const [snackList, setSnackList] = useState<PostSnackTagType[]>([]);
   const handleClose = () => setModalOpen(false);
   const handleSearchBar = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("e.target.value =",e.target.value);
     setSearchBar(e.target.value);
     /* await getSnackKeywordSearch(searchBar).then((result) => {
       console.log(result);
       setSnackList(result);
     }); */
-    await getSnackKeywordSearch(searchBar).then((result) => {
+     getSnackKeywordSearch(e.target.value).then((result) => {
       setSnackList(getSnackForTag(result));
     });
   };
