@@ -7,9 +7,10 @@
 }
 
 .search-bar {
-  width: 250px;
+  width: 65%;
   margin-bottom: 0px;
   height: 30px;
+  margin-right: 10px;
 }
 
 .search-btn {
@@ -17,7 +18,7 @@
   border-radius: 3px;
   padding: 3px 10px;
   color: white-color;
-  margin-bottom: 4px;
+  height: 30px;
 }
 
 .theme-select-btn {

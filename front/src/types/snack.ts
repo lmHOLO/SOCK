@@ -83,3 +83,9 @@ export type ReviewSubmitType = {
   content: string;
   star: number;
 };
+
+// 필터
+export type FilterType = {
+  types: string[];
+  flavors: string[];
+};

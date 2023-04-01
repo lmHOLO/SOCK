@@ -9,8 +9,10 @@ import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { getTopPopularListAPI } from '@/apis/api/search';
 import FilterModal from '@/components/Search/FilterModal';
 import BottomNav from '@/components/Navbar/BottomNav';
+import { FilterType } from '@/types/snack';
 
 export default function Search() {
+  const navigate = useNavigate();
   const [theme, setTheme] = useState<SearchThemeType>('snack'); // 찾는 주제
   const [searchBar, setSearchBar] = useState<string>('');
   const [popularList, setPopularList] = useState<{ id: string; snackCheck: boolean; score: number; name: string }[]>(
@@ -19,9 +21,14 @@ export default function Search() {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   // const { keyword, arrange, memberId } = useParams();
-
-  const navigate = useNavigate();
-
+  const [filter, setFilter] = useState<FilterType>({
+    flavors: [],
+    types: [],
+  });
+  const applyFilter = async (newFilter: FilterType) => {
+    setFilter(newFilter);
+    setModalOpen(false);
+  };
   useEffect(() => {
     getTopPopularListAPI().then((data) => {
       setPopularList(data);
@@ -51,10 +58,10 @@ export default function Search() {
           <p>검색</p>
         </button>
       </div>
-      <div className={styles['filter-container']}>
+      <div className={styles['filter-container']} onClick={() => setModalOpen(true)}>
         <FilterAltIcon className={styles['filter-btn']} />
       </div>
-      <FilterModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
+      <FilterModal modalOpen={modalOpen} setModalOpen={setModalOpen} filter={filter} applyFilter={applyFilter} />
       <Popular popularList={popularList} />
       <BottomNav />
     </div>
