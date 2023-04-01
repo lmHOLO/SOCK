@@ -21,7 +21,6 @@ import MemeberList from '@/components/common/MemeberList';
 import { getMemberListAPI } from '@/apis/api/member';
 
 export default function Search() {
-  const navigate = useNavigate();
   const [theme, setTheme] = useState<SearchThemeType>('snack'); // 찾는 주제
   const [searchBar, setSearchBar] = useState<string>('');
   const [popularList, setPopularList] = useState<{ id: string; snackCheck: boolean; score: number; name: string }[]>(
@@ -37,18 +36,7 @@ export default function Search() {
   const [sort, setSort] = useState<string>('latest');
   const [snackList, setSnackList] = useState<SnackDetailType[]>([]);
   const [recipeList, setRecipeList] = useState<GridRecipeListItemType[]>([]);
-  const [memberList, setMemberList] = useState<SearchMemberType[]>([
-    {
-      id: '1',
-      nickname: '민우',
-      image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-    },
-    {
-      id: '2',
-      nickname: '민우',
-      image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-    },
-  ]);
+  const [memberList, setMemberList] = useState<SearchMemberType[]>([]);
   const applyFilter = async (newFilter: FilterType) => {
     setFilter(newFilter);
     setModalOpen(false);
