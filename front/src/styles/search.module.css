@@ -1,4 +1,4 @@
-@value sock-brown, white-color  from './common/colors.css';
+@value sock-brown, sock-yellow, white-color  from './common/colors.css';
 
 .search-bar-conatiner {
   display: flex;
@@ -7,9 +7,10 @@
 }
 
 .search-bar {
-  width: 250px;
+  width: 65%;
   margin-bottom: 0px;
   height: 30px;
+  margin-right: 10px;
 }
 
 .search-btn {
@@ -17,7 +18,7 @@
   border-radius: 3px;
   padding: 3px 10px;
   color: white-color;
-  margin-bottom: 4px;
+  height: 30px;
 }
 
 .theme-select-btn {
@@ -46,4 +47,28 @@
 .popular-list > li {
   color: white;
   padding: 10px;
+}
+
+.filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.selected {
+  background-color: sock-brown;
+  padding: 5px 10px;
+  color: white-color;
+  border-radius: 100px;
+  background-color: sock-yellow;
+  color: sock-brown;
+  font-size: 13px;
+  margin-left: 4px;
+}
+
+.sort > button {
+  margin-left: 4px;
+}
+.bold {
+  font-weight: 700;
 }
