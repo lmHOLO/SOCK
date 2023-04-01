@@ -49,26 +49,39 @@ export default function RecipePosting() {
       console.log(result);
       navigate('/');
     }); */
-    await uploadFiles().then(async (result) => {
-      console.log('title: ', title);
-      console.log('content: ', content);
-      console.log('tagList: ', tagList);
-      console.log('imageUrlList: ', imageUrlList);
-      result &&
-        (await postRecipeAPI({
-          content: content,
-          images: imageUrlList,
-          title: title,
-          snackIds: tagList.map((tag) => tag.id),
-        }).then((result) => {
-          console.log(result);
-          navigate('/');
-        }));
-    });
+
+    if(title && content.length>=10 && tagList.length>0){
+      await uploadFiles().then(async (result) => {
+        console.log('title: ', title);
+        console.log('content: ', content);
+        console.log('tagList: ', tagList);
+        console.log('imageUrlList: ', imageUrlList);
+        result &&
+          (await postRecipeAPI({
+            content: content,
+            images: imageUrlList,
+            title: title,
+            snackIds: tagList.map((tag) => tag.id),
+          }).then((result) => {
+            console.log(result);
+            navigate('/');
+          }));
+      });
+    }else if(!title){
+      alert("제목을 입력해주세요.");
+    }else if(!tagList || tagList.length<=0){
+      alert("1개 이상의 태그를 포함해주셔야 게시가 가능합니다.");
+    }else if(content.length <10){
+      alert("게시물은 10자 이상 작성해주셔야 게시가 가능합니다.");
+    }else{
+      alert("게시물을 작성할 수 없습니다. 제목, 태그, 내용을 확인 후 재작성 부탁드립니다.");
+    }
+    
     /* for (const file of originFiles) {
       handleUploadFile(file);
     } */
   };
+
   const addTag = (snack: PostSnackTagType) => {
     setTagList([...tagList, snack]);
     console.log(snack);

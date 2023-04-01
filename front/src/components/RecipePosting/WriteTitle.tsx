@@ -3,7 +3,7 @@ import styles from '@/styles/recipe_posting.module.css';
 interface Props {
   setTitle: React.Dispatch<React.SetStateAction<string>>;
 }
-export default function WriteTitle({ setTitle }: Props) {
+export default function WriteTitle({ setTitle}: Props ) {
   const textRef = useRef<HTMLTextAreaElement>(null);
   const handleResizeHeight = useCallback(() => {
     if (textRef && textRef.current) {
@@ -16,7 +16,8 @@ export default function WriteTitle({ setTitle }: Props) {
       rows={1}
       ref={textRef}
       className={styles['write-title']}
-      placeholder=''
+      placeholder='제목을 입력해주세요'
+      minLength={1}
       onInput={handleResizeHeight}
       onChange={(e) => setTitle(e.target.value)}
     />
