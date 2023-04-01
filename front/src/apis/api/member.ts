@@ -41,3 +41,14 @@ export const updateProfileAPI = async (updateProfile: UpdateProfileType) => {
     }
   }
 };
+
+export const getMemberListAPI = async (nickname: string) => {
+  try {
+    const { data } = await authApiInstance().get(`/member/search?nickname=${nickname}`);
+    return data.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      console.log('에러: ', error.response);
+    }
+  }
+};
