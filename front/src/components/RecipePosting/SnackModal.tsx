@@ -23,8 +23,12 @@ export default function SnackModal({ modalOpen, setModalOpen, addTag }: Props) {
       console.log(result);
       setSnackList(result);
     }); */
+
     await getSnackKeywordSearch(e.target.value).then((result) => {
+      console.log('e.target.value = ', e.target.value);
+      console.log('result = ', result);
       setSnackList(getSnackForTag(result));
+      console.log('snackList = ', snackList);
     });
   };
 
