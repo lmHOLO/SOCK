@@ -79,11 +79,9 @@ export default function SnackContent({ setStarAvg, starAvg }: Props) {
 
   return (
     <div>
-      <button className={styles['purchase-btn']} onClick={purchaseEvent}>
-        구매하러 가기
-      </button>
       <div className={styles['snack-img-container']}>
         <img src={snack.image} alt={snack.name} />
+        {snack.like ? <FavoriteIcon onClick={handleClick} /> : <FavoriteBorderIcon onClick={handleClick} />}
       </div>
       <h2>{snack.name}</h2>
       <div className={styles['grade-flavors-like']}>
@@ -94,7 +92,10 @@ export default function SnackContent({ setStarAvg, starAvg }: Props) {
           </div>
           <FlavorList flavors={snack.flavors} />
         </div>
-        {snack.like ? <FavoriteIcon onClick={handleClick} /> : <FavoriteBorderIcon onClick={handleClick} />}
+        <button className={styles['purchase-btn']} onClick={purchaseEvent}>
+          구매
+          <img src={require(`@/assets/home/icon_buy.png`)} alt='buy-button-alt' />
+        </button>
       </div>
     </div>
   );
