@@ -51,7 +51,7 @@ export default function Search() {
       getRecipeListAPI(searchBar, sort, '').then((data) => {
         setRecipeList(data.content);
       });
-      return;
+      // return;
     }
     if (theme === 'snack') {
       getSnackListAPI(searchBar, filter.flavors, filter.types, sort).then((data) => {
@@ -89,7 +89,7 @@ export default function Search() {
     } else if (theme === 'recipe') {
       console.log('recipe');
       console.log('searchbar: ', searchBar);
-      getRecipeListAPI('', sort, '').then((data) => {
+      getRecipeListAPI(searchBar, sort, '').then((data) => {
         setRecipeList(data.content);
       });
       setSearchClicked(true);
