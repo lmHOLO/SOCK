@@ -52,3 +52,15 @@ export const getMemberListAPI = async (nickname: string) => {
     }
   }
 };
+
+export const checkNicknameDuplicationAPI = async (nickname: string) => {
+  try {
+    const { data } = await authApiInstance().get(`/member/nickname?nickname=${nickname}`);
+    console.log('checkNicknameDuplicationAPI = ', data.data);
+    return data.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      console.log('에러: ', error.response);
+    }
+  }
+};
