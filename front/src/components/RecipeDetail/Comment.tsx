@@ -29,9 +29,6 @@ export default function Comment({ recipeId }: Props) {
   const delSpace = (data: string) => {
     return data.replace(/\s/g, '');
   };
-  const enter = (data: string) => {
-    return data.replace(/(?:\r\n|\r|\n)/g, '\n');
-  };
 
   const handleSubmit = () => {
     let newComment = comment;

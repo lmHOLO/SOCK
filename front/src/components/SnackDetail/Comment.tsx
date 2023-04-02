@@ -50,7 +50,7 @@ export default function Comment({ setStarAvg, starAvg }: Props) {
     }
     // 리뷰 등록하기
     if (id && newStarPoint > 0) {
-      postSnackReviewAPI(id, { content: comment, star: newStarPoint }).then((data) => {
+      postSnackReviewAPI(id, { content: comment.replace(/(?:\r\n|\r|\n)/g, '\n'), star: newStarPoint }).then(() => {
         getSnackReviewsAPI(id).then((data) => {
           const myReviewList = getMyReview(data);
           const otherReviewList = getOtherReviewList(data);
@@ -70,10 +70,13 @@ export default function Comment({ setStarAvg, starAvg }: Props) {
           if (data.numberOfParticipants == 0) setStarAvg(0);
           else setStarAvg(data.sumOfStars / data.numberOfParticipants);
         });
+
+        setComment('');
+        if (textRef && textRef.current) {
+          textRef.current.style.height = 'auto';
+        }
       });
     }
-
-    console.log(newComment);
   };
   return (
     <div>
