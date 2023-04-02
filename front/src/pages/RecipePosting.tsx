@@ -64,7 +64,7 @@ export default function RecipePosting() {
             snackIds: tagList.map((tag) => tag.id),
           }).then((result) => {
             console.log(result);
-            navigate('/');
+            navigate(`/recipes`);
           }));
       });
     } else if (!title) {

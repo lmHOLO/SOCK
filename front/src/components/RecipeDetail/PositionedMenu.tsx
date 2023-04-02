@@ -25,7 +25,7 @@ export default function PositionedMenu() {
     setAnchorEl(null);
     if (id) {
       deleteRecipeAPI(id).then(() => {
-        navigate('/');
+        navigate('/recipes');
       });
     }
   };
