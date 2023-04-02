@@ -5,14 +5,14 @@ import Menu from '@/components/Profile/Menu';
 import ModifyModal from '@/components/Profile/ModifyModal';
 import RecipeGrid from '@/components/Profile/GridItem';
 import { MemberProfileType, MenuType, ProfileGridItemType } from '@/types/member';
-import { ProfileRecipeType } from '@/types/recipe';
 import React, { useEffect, useState } from 'react';
 import useMember from '@/hooks/memberHook';
 import { useParams } from 'react-router-dom';
 import { loginApi, otherMemberProfileApi } from '@/apis/api/member';
-import { getRecipeListAPI } from '@/apis/api/recipeList';
+
 import { getLikedSnackList, getMyRecipeList } from '@/apis/services/profile';
 import { getLikedRecipeListAPI, getLikedSnackListAPI, getMyRecipeListAPI } from '@/apis/api/profile';
+import PositionedMenu from '@/components/Profile/PositionedMenu';
 
 export default function Profile() {
   const [member, setMember] = useState<MemberProfileType>({
@@ -67,6 +67,7 @@ export default function Profile() {
   return (
     <div>
       <TopNav />
+      {memberData.id === member.id && <PositionedMenu setModalOpen={setModalOpen} />}
       {member && <Header member={member} setModalOpen={setModalOpen} />}
       {member && <Menu member={member} menu={menu} handleMenuClick={handleMenuClick} />}
       {member && id && (

@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from '@/styles/profile.module.css';
 import { MemberProfileType } from '@/types/member';
-import EditIcon from '@mui/icons-material/Edit';
 interface Props {
   member: MemberProfileType;
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,7 +19,8 @@ export default function Header({ member, setModalOpen }: Props) {
           <p className={styles['email']}>{member.email}</p>
           <p>{member.profile.content}</p>
         </div>
-        <EditIcon className={styles['edit']} onClick={() => setModalOpen(true)} />
+
+        {/* <EditIcon className={styles['edit']} onClick={() => setModalOpen(true)} /> */}
       </div>
     </header>
   );

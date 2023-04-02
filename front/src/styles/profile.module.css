@@ -30,7 +30,7 @@
 
 .nickname {
   margin-bottom: 3px;
-  width: 30vw;
+  width: 53vw;
 }
 
 .nickname > h1 {
@@ -87,4 +87,17 @@
 
 .edit {
   color: white-color;
+}
+
+.more-btn-container {
+  display: flex;
+  justify-content: end;
+  background-color: sock-brown;
+}
+
+.more-btn-container > button {
+  width: 20px;
+  height: 20px;
+  margin-top: 10px;
+  margin-right: 20px;
 }
