@@ -58,7 +58,7 @@
   margin-bottom: 40px;
 }
 
-a .btn {
+.btn {
   display: flex;
   justify-content: center;
   cursor: pointer;
@@ -79,6 +79,7 @@ a .btn {
 
 .footer {
   margin-top: 10px;
+  margin-bottom: 50px;
 }
 
 .footer-text,

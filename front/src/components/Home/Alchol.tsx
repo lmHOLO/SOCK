@@ -13,7 +13,7 @@ export default function Alchol() {
   const clickEvent = () => {
     setTimeout(() => {
       navigate('/snack-content/ALCHOL');
-    }, 1000);
+    }, 600);
   };
 
   return (
