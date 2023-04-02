@@ -58,7 +58,7 @@ export default function RecipePosting() {
         console.log('imageUrlList: ', imageUrlList);
         result &&
           (await postRecipeAPI({
-            content: content,
+            content: content.replace(/(?:\r\n|\r|\n)/g, '\n'),
             images: imageUrlList,
             title: title,
             snackIds: tagList.map((tag) => tag.id),

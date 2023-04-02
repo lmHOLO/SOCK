@@ -101,7 +101,7 @@ export default function RecipeContent() {
           <Tag key={item.tagId} tag={item} />
         ))}
       </ul>
-      <div className={styles['recipe-content']}>{recipe.content}</div>
+      <pre className={styles['recipe-content']}>{recipe.content}</pre>
     </div>
   );
 }
