@@ -67,3 +67,13 @@
   color: white-color;
   border-radius: 3px;
 }
+
+.p-CheckNickTrue {
+  font-size: 13px;
+  color: blue;
+}
+
+.p-CheckNickFalse {
+  font-size: 13px;
+  color: red;
+}
