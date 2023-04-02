@@ -8,7 +8,7 @@ export const getSnackListAPI = async (keyword: string, flavors: string[], types:
     // console.log('API.flavors=', flavors);
     // console.log('API.types=', types);
     // console.log('API.arrange=', arrange);
-    let url = `/snacks?arrange=${arrange}`;
+    let url = `/snacks?size=30&arrange=${arrange}`;
     if (`${keyword}`) url = url + `&keyword=${keyword}`;
     if (`${flavors}`) url = url + `&flavors=${flavors}`;
     if (`${types}`) url = url + `&types=${types}`;
