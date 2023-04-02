@@ -53,7 +53,7 @@ public class RecipeService {
     private final GradeService gradeService;
 
     @Transactional
-    public void registerRecipe(Member writer,RegisterRecipeRequestDto requestDto){
+    public Long registerRecipe(Member writer,RegisterRecipeRequestDto requestDto){
         Recipe recipe = Recipe.builder()
                 .writer(writer)
                 .title(requestDto.getTitle())
@@ -83,8 +83,9 @@ public class RecipeService {
 
             tagRepository.save(saveTag);
         }
-        gradeService.addExp(writer, gradeService.REGISTER_RECIPE);
 
+        gradeService.addExp(writer, gradeService.REGISTER_RECIPE);
+        return saveRecipe.getId();
     }
     @Transactional
     public void likeRecipe(Member loginMember,Long recipeId){
@@ -132,7 +133,6 @@ public class RecipeService {
         tagRepository.deleteAllInBatch(tagList);
         
         recipeRepository.delete(recipe);
-
     }
 
     @Transactional
@@ -156,7 +156,6 @@ public class RecipeService {
         recipeQScoreService.addQScore(recipe);
 
         return new RecipeDetailResponseDto(recipe,tagDtoList,recipeImageDtoList,existsLike,totalLikes);
-
     }
     @Transactional
     public void updateRecipeDetail(Member loginMember,Long recipeId, UpdateRecipeRequestDto updateDto){
