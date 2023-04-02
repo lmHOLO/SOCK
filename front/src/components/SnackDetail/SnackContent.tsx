@@ -68,7 +68,8 @@ export default function SnackContent({ setStarAvg, starAvg }: Props) {
     }
   }, [id]);
   useEffect(() => {
-    setStarAvg(snack.sumOfStars / snack.numberOfParticipants);
+    if (snack.numberOfParticipants == 0) setStarAvg(0);
+    else setStarAvg(snack.sumOfStars / snack.numberOfParticipants);
   }, [snack]);
 
   const purchaseEvent = () => {
@@ -88,7 +89,7 @@ export default function SnackContent({ setStarAvg, starAvg }: Props) {
         <div className={styles['grade-flavors']}>
           <div className={styles['snack-grade']}>
             <StarIcon />
-            {snack.numberOfParticipants === 0 || starAvg == 0 ? <p>0</p> : <p>{starAvg.toFixed(1)}</p>}
+            {starAvg == 0 ? <p>{starAvg}</p> : <p>{starAvg.toFixed(1)}</p>}
           </div>
           <FlavorList flavors={snack.flavors} />
         </div>
