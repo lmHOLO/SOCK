@@ -33,7 +33,7 @@ export const postRecipeAPI = async (data: RecipeWriteType) => {
   try {
     console.log(data);
     const result = await authApiInstance().post(`/recipes`, data);
-    return result;
+    return result.data;
   } catch (error) {
     if (isAxiosError(error)) {
       console.log('에러: ', error.response);
