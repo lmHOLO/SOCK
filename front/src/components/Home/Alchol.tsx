@@ -11,7 +11,9 @@ export default function Alchol() {
 
   const navigate = useNavigate();
   const clickEvent = () => {
-    navigate('/snack-content/ALCHOL');
+    setTimeout(() => {
+      navigate('/snack-content/ALCHOL');
+    }, 1000);
   };
 
   return (
@@ -23,7 +25,7 @@ export default function Alchol() {
         <img src={require(`@/assets/home/alchol.png`)} alt='알코올' />
       </div>
       <div className='alchol-button'>
-        <a id='myButton' data-text='더 알아보기' data-text-after="LET's Go" onClick={clickEvent}></a>
+        <button id='myButton' data-text='더 알아보기' data-text-after="LET's Go" onClick={clickEvent}></button>
       </div>
     </div>
   );

@@ -38,10 +38,14 @@ export default function SnackContentPage() {
     <div className='side-margin'>
       <TopNav />
       <div className={styles['theme-container']}>
-        {theme === 'retro' && <h1>레트로</h1>}
-        {theme === 'movie' && <h1>영화</h1>}
-        {theme === 'milk' && <h1>우유</h1>}
-        {theme === 'drink' && <h1>술</h1>}
+        {theme === 'RETRO' && (
+          <header>
+            <h1 className=''>레트로</h1>
+          </header>
+        )}
+        {theme === 'MOVIE' && <h1>영화</h1>}
+        {theme === 'MILK' && <h1>우유</h1>}
+        {theme === 'ALCHOL' && <h1>술</h1>}
       </div>
 
       {!theme && (
