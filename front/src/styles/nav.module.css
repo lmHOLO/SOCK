@@ -1,4 +1,4 @@
-@value sock-brown, sprinkle-blue, sprinkle-yellow , sprinkle-pink from './common/colors.css';
+@value sock-brown, sock-yellow, sprinkle-blue, sprinkle-yellow , sprinkle-pink from './common/colors.css';
 
 .bottom-nav-container {
   position: fixed;
@@ -112,4 +112,11 @@
   top: 50%;
   left: 50%;
   width: 100px;
+}
+
+.btn-post {
+  padding: 5px 8px;
+  background-color: sock-yellow;
+  border-radius: 3px;
+  font-weight: 700;
 }
