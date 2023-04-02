@@ -3,17 +3,10 @@ import { isAxiosError } from 'axios';
 
 export const getRecipeListAPI = async (keyword: string, arrange: string, memberId: string) => {
   try {
-    let url = `/recipes`;
-
-    if (`${arrange}`) url = url + `?arrange=${arrange}`;
-
-    if (`${keyword}`) {
-      if (`${arrange}`) url = url + `&keyword=${keyword}`;
-      else url = url + `?keyword=${keyword}`;
-    }
-    if (`${memberId}`) {
-      url = url + `?member-id=${memberId}`;
-    }
+    let url = `/recipes?size=30`;
+    if (`${arrange}`) url = url + `&arrange=${arrange}`;
+    if (`${keyword}`) url = url + `&keyword=${keyword}`;
+    if (`${memberId}`) url = url + `&member-id=${memberId}`;
 
     const { data } = await authApiInstance().get(url);
     return data.data;
