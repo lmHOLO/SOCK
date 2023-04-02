@@ -7,8 +7,11 @@ import RecipeGridList from '@/components/common/RecipeGridList';
 // import { useNavigate, useParams } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import { getRecipeListAPI } from '@/apis/api/recipeList';
+import { useNavigate } from 'react-router-dom';
+import AddIcon from '@mui/icons-material/Add';
 
 export default function RecipeContentPage() {
+  const navigate = useNavigate();
   const [sort, setSort] = useState<string>('latest');
   const [recipeList, setRecipeList] = useState<GridRecipeListItemType[]>([]);
 
@@ -52,6 +55,9 @@ export default function RecipeContentPage() {
         )}
       </div>
       <RecipeGridList recipeList={recipeList} />
+      <button className={styles['write-btn']} onClick={() => navigate('/recipe-posting')}>
+        <AddIcon />
+      </button>
       <BottomNav />
     </div>
   );
