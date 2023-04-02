@@ -10,7 +10,9 @@ export default function Header({ member, setModalOpen }: Props) {
   return (
     <header className={styles['header-container']}>
       <div className={styles['member-info']}>
-        <img src={member.profile.image} alt={member.nickname} />
+        <div className={styles['member-img']}>
+          <img src={member.profile.image} alt={member.nickname} />
+        </div>
         <div className={styles['member-detail']}>
           <div className={styles['nickname']}>
             <h1>{member.nickname}</h1>
