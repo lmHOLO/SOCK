@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { authApiInstance } from '@/apis/axiosConfig';
 import { apiInstance } from '@/apis/axiosConfig'
-import { firstPreferApi } from '@/apis/api/firstprefer';
+import { fastApiInstance } from "@/apis/axiosConfig";
+import { firstPreferApi, CbfApi } from '@/apis/api/firstprefer';
 import { SnackPreferType } from '@/types/snack';
 import TinderCard from 'react-tinder-card'
 import { LinearProgress } from "@mui/material";
+import axios, { AxiosResponse } from 'axios';
+
 import '@react-spring/web';
 
 interface SwipeCounts {
@@ -46,6 +49,31 @@ export default function FirstPrefer() {
     }
     }, [firstPreferList]
   )
+  // useEffect(() => {
+  //   if (likeList.length === 5){
+  //     // fetch data and update state when component mounts
+  //     CbfApi2()
+  //       // setFirstPreferList(response);
+  //       // console.log(firstPreferList, 'one of preferlist')
+      
+  //   }
+  //   }, [likeList]
+  // )
+
+
+
+
+  useEffect(() => {
+    if (likeList.length === 5){
+      // fetch data and update state when component mounts
+      CbfApi({id: 5, favor_list : likeList}).then((response) => {
+        console.log(response, "컨텐츠기반 선호도조사의 결과");
+        // setFirstPreferList(response);
+        // console.log(firstPreferList, 'one of preferlist')
+      });
+    }
+    }, [likeList]
+  )
 
   useEffect(() => {
     console.log('this is likeList', likeList)
@@ -54,6 +82,27 @@ export default function FirstPrefer() {
     console.log('this is currentImdex', currentIndex)
   }, [currentIndex])
 
+  // const CbfApi2 = () => {
+  //   axios({
+  //     method: 'get',
+  //      url: `http://localhost:8000/data` ,
+  //   })
+  //   .then((res)=>{
+  //     console.log(res, 'recoomend data')
+  //     })
+  //   .catch((err)=>{
+  //     console.log(err)
+  //   })
+  // }
+
+
+
+
+  async function CbfApi2(): Promise<any> {
+    const response: AxiosResponse<any> = await axios.get<any>('http://localhost:8000/data', { withCredentials: false });
+    console.log(response)
+    return response.data;
+  }
   // map firstPreferList outside of return statement
   // const currentSnack = firstPreferList[currentIndex] || null;
   // const card = currentSnack ? (
