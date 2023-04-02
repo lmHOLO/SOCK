@@ -11,7 +11,7 @@ export default function FirstMain() {
             슬로건 슬로건 슬로건 <br /> 슬로건 슬로건 슬로건 슬로건
           </h1>
         </div>
-        <img src={require(`@/assets/home/notfound.gif`)} alt='pageNotFound' />
+        <img src={require(`@/assets/home/notfound-transparent.gif`)} alt='pageNotFound' />
       </main>
     </div>
   );
