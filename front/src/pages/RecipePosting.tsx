@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import useMember from '@/hooks/memberHook';
+import React, { useState } from 'react';
+
 import TopNavOnlyBack from '@/components/Navbar/TopNavOnlyBack';
 import styles from '@/styles/recipe_posting.module.css';
 import UploadImage from '@/components/RecipePosting/UploadImage';
 import RecipeCropImage from '@/components/RecipePosting/RecipeCropImage';
 import { PostingTabType, PostSnackTagType } from '@/types/recipe';
 import PostingCropTopNav from '@/components/Navbar/PostingCropTopNav';
-import getCroppedImg from '@/utils/cropImage';
 import Images from '@/components/RecipePosting/Images';
 import WriteContent from '@/components/RecipePosting/WriteContent';
 import WriteTitle from '@/components/RecipePosting/WriteTitle';
-import TagList from '@/components/RecipePosting/TagList';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Tag from '@/components/RecipePosting/Tag';
 import PostingUploadTopNav from '@/components/Navbar/PostingUploadTopNav';
@@ -18,20 +16,19 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 // firebase 관련
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { storage } from '@/firebase';
-import { resolve } from 'path';
 import { postRecipeAPI } from '@/apis/api/recipeDetail';
 import { useNavigate } from 'react-router';
 import SnackModal from '@/components/RecipePosting/SnackModal';
+import LoadingModal from '@/components/common/LoadingModal';
+
 export default function RecipePosting() {
   const [tab, setTab] = useState<PostingTabType>('SELECT_IMAGE');
   const [originFiles, setOriginFiles] = useState<File[]>([]);
-  const [selectedFile, setSelectedFile] = useState<File>(originFiles[0]);
-  const [croppedFiles, setCroppedFiles] = useState<File[]>([]);
-  const [croppedImageList, setCroppedImageList] = useState<any>([]); // 프리뷰로 보여줄 거
   const [title, setTitle] = useState<string>('');
   const [content, setContent] = useState<string>('');
   const [tagList, setTagList] = useState<PostSnackTagType[]>([]);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   // const [cropedFiles, setCropedFiles] = useState<File[]>([]);
   let imageUrlList: string[] = [];
@@ -39,18 +36,8 @@ export default function RecipePosting() {
   const handleUploadButton = async () => {
     console.log('click!');
     console.log('originFiles: ', originFiles);
-    /*     await uploadFiles();
-    await postRecipeAPI({
-      content: content,
-      images: imageUrlList,
-      title: title,
-      snackIds: tagList.map((tag) => tag.id),
-    }).then((result) => {
-      console.log(result);
-      navigate('/');
-    }); */
-
     if (title && content.length >= 10 && tagList.length > 0) {
+      setLoading(true);
       await uploadFiles().then(async (result) => {
         console.log('title: ', title);
         console.log('content: ', content);
@@ -67,6 +54,7 @@ export default function RecipePosting() {
             navigate(`/recipes/${result.data}`);
           }));
       });
+      setLoading(false);
     } else if (!title) {
       alert('제목을 입력해주세요.');
     } else if (!tagList || tagList.length <= 0) {
@@ -76,10 +64,6 @@ export default function RecipePosting() {
     } else {
       alert('게시물을 작성할 수 없습니다. 제목, 태그, 내용을 확인 후 재작성 부탁드립니다.');
     }
-
-    /* for (const file of originFiles) {
-      handleUploadFile(file);
-    } */
   };
 
   const addTag = (snack: PostSnackTagType) => {
@@ -111,8 +95,6 @@ export default function RecipePosting() {
         uploadTask.on(
           'state_changed',
           (snapshot) => {
-            // const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            // setProgressUpload(progress); // to show progress upload
             switch (snapshot.state) {
               case 'paused':
                 console.log('Upload is paused');
@@ -137,7 +119,7 @@ export default function RecipePosting() {
               console.log(imageUrlList);
               resolve();
             });
-          }
+          },
         );
       } else {
         console.error('File not found');
@@ -150,12 +132,6 @@ export default function RecipePosting() {
         <>
           <TopNavOnlyBack />
           <UploadImage setTab={setTab} originFiles={originFiles} setOriginFiles={setOriginFiles} />
-        </>
-      )}
-      {tab === 'CROP_IMAGE' && (
-        <>
-          <PostingCropTopNav />
-          <RecipeCropImage setTab={setTab} originFiles={originFiles} setCroppedFiles={setCroppedFiles} setCroppedImageList={setCroppedImageList} />
         </>
       )}
       {tab === 'WRITE_CONTENT' && (
@@ -174,10 +150,10 @@ export default function RecipePosting() {
             <AddCircleIcon className={styles['color-brown']} onClick={() => setModalOpen(true)} />
           </div>
           <SnackModal modalOpen={modalOpen} setModalOpen={setModalOpen} addTag={addTag} />
-          {/* <SnackModal modalOpen={modalOpen} setModalOpen={setModalOpen} addTag={addTag} /> */}
           <WriteContent setContent={setContent} />
         </>
       )}
+      {loading && <LoadingModal />}
     </div>
   );
 }
