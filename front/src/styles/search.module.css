@@ -38,15 +38,18 @@
 
 /* 인기검색 */
 .popular-container {
-  background-color: sock-brown;
+  background-color: #008bcf;
   border-radius: 10px;
   margin: 0 auto;
   padding: 10px;
 }
 
 .popular-list > li {
-  color: white;
+  border-radius: 10px;
+  background-color: sock-brown;
+  color: whitesmoke;
   padding: 10px;
+  margin: 10px;
 }
 
 .filter-bar {
