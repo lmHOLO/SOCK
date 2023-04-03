@@ -11,14 +11,27 @@
   border-radius: 10px;
 }
 
+.bar-btn-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .search-bar {
-  width: 250px;
+  width: 80%;
   margin: 10px;
   margin-bottom: 0px;
   border-radius: 10px;
   padding: 3px 10px;
   background-color: lightcyan;
 }
+.close-btn {
+  width: 20px;
+  height: 20px;
+  margin-top: 10px;
+}
+
 .tag-list {
   display: flex;
   flex-direction: column;
