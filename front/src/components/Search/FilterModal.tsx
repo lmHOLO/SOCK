@@ -3,15 +3,18 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Backdrop from '@mui/material/Backdrop';
 import styles from '@/styles/filter_modal.module.css';
-import { FilterType } from '@/types/snack';
+import { Filter2Type, FilterType } from '@/types/snack';
 interface Props {
   modalOpen: boolean;
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  applyFilter: (newFilter: FilterType) => Promise<void>;
+  setFilter2: React.Dispatch<React.SetStateAction<Filter2Type>>;
+  applyFilter: (newFilter: FilterType, newFilter2: Filter2Type) => Promise<void>;
   filter: FilterType;
+  filter2: Filter2Type;
 }
-export default function FilterModal({ modalOpen, setModalOpen, filter, applyFilter }: Props) {
+export default function FilterModal({ modalOpen, setModalOpen, filter, applyFilter, filter2, setFilter2 }: Props) {
   const [newFilter, setNewFilter] = useState<FilterType>(filter);
+  const [newFilter2, setNewFilter2] = useState<Filter2Type>(filter2);
   const handleClose = () => {
     setModalOpen(false);
   };
@@ -23,17 +26,32 @@ export default function FilterModal({ modalOpen, setModalOpen, filter, applyFilt
       setNewFilter((prevState) => {
         return { ...prevState, types: newTypes };
       });
+      snackList.map((item) => {
+        if (item.name === value) {
+          const newTypes2 = newFilter2.types.filter((item) => item.name !== value);
+          setNewFilter2((prevState) => {
+            return { ...prevState, types: newTypes2 };
+          });
+        }
+      });
     } else {
       const newTypes = [...newFilter.types, value];
       setNewFilter((prevState) => {
         return { ...prevState, types: newTypes };
+      });
+      snackList.map((item, index) => {
+        if (item.name === value) {
+          const newTypes2 = [...newFilter2.types, snackList[index]];
+          setNewFilter2((prevState) => {
+            return { ...prevState, types: newTypes2 };
+          });
+        }
       });
     }
     console.log(newFilter);
   };
   const handleFlavorBtnClick = (e: React.MouseEvent<HTMLElement>) => {
     const value = (e.target as HTMLButtonElement).value;
-
     if (newFilter.flavors.includes(value)) {
       const newFlavors = newFilter.flavors.filter((name) => name !== value);
       setNewFilter((prevState) => {
@@ -220,7 +238,7 @@ export default function FilterModal({ modalOpen, setModalOpen, filter, applyFilt
                 </div>
               </div>
             </div>
-            <button className={styles['apply-button']} onClick={() => applyFilter(newFilter)}>
+            <button className={styles['apply-button']} onClick={() => applyFilter(newFilter, newFilter2)}>
               적용
             </button>
           </div>

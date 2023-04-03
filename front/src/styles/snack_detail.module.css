@@ -68,12 +68,18 @@
   white-space: nowrap;
 }
 .flavor-list-item-container {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background-color: sock-yellow;
   font-size: 12px;
   padding: 5px 10px;
   border-radius: 100px;
   margin-right: 5px;
+  height: 30px;
+}
+.flavor-list-item-container > img {
+  height: 100%;
 }
 
 .snack-img-container > svg {
