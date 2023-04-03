@@ -5,21 +5,21 @@ export const getGradeImage = (grade: GradeType) => {
     case 'NONE':
       return '';
     case 'FIRST_FLOOR':
-      return '';
+      return '@/assets/grade/FIRST_FLOOR.png';
     case 'SECOND_FLOOR':
-      return '';
+      return '@/assets/grade/SECOND_FLOOR.png';
     case 'THIRD_FLOOR':
-      return '';
+      return '@/assets/grade/THIRD_FLOOR.png';
     case 'TF_SWEET':
-      return '';
+      return '@/assets/grade/TF_SWEET.png';
     case 'TF_SALT':
-      return '';
+      return '@/assets/grade/TF_SALT.png';
     case 'TF_MILD':
-      return '';
+      return '@/assets/grade/TF_MILD.png';
     case 'TF_SPICY':
-      return '';
+      return '@/assets/grade/TF_SPICY.png';
     case 'TF_SOUR':
-      return '@/assets/sbti/';
+      return '@/assets/grade/TF_SOUR.png';
   }
 };
 
@@ -28,36 +28,36 @@ export const getSbtiImage = (sbti: SbtiType) => {
     case 'NONE':
       return '';
     case 'INTJ':
-      return '';
+      return '@/assets/sbti/INTJ.png';
     case 'INTP':
-      return '';
+      return '@/assets/sbti/INTP.png';
     case 'ENTJ':
-      return '';
+      return '@/assets/sbti/ENTJ.png';
     case 'ENTP':
-      return '';
+      return '@/assets/sbti/ENTP.png';
     case 'INFJ':
-      return '';
+      return '@/assets/sbti/INFJ.png';
     case 'INFP':
-      return '';
+      return '@/assets/sbti/INFP.png';
     case 'ENFJ':
-      return '';
+      return '@/assets/sbti/ENFJ.png';
     case 'ENFP':
-      return '';
+      return '@/assets/sbti/ENFP.png';
     case 'ISTJ':
-      return '';
+      return '@/assets/sbti/ISTJ.png';
     case 'ISFJ':
-      return '';
+      return '@/assets/sbti/ISFJ.png';
     case 'ESTJ':
-      return '';
+      return '@/assets/sbti/ESTJ.png';
     case 'ESFJ':
-      return '';
+      return '@/assets/sbti/ESFJ.png';
     case 'ISTP':
-      return '';
+      return '@/assets/sbti/ISTP.png';
     case 'ISFP':
-      return '';
+      return '@/assets/sbti/ISFP.png';
     case 'ESTP':
-      return '';
+      return '@/assets/sbti/ESTP.png';
     case 'ESFP':
-      return '';
+      return '@/assets/sbti/ESFP.png';
   }
 };
