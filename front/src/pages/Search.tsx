@@ -23,7 +23,9 @@ import { getMemberListAPI } from '@/apis/api/member';
 export default function Search() {
   const [theme, setTheme] = useState<SearchThemeType>('snack'); // 찾는 주제
   const [searchBar, setSearchBar] = useState<string>('');
-  const [popularList, setPopularList] = useState<{ id: string; snackCheck: boolean; score: number; name: string }[]>([]);
+  const [popularList, setPopularList] = useState<{ id: string; snackCheck: boolean; score: number; name: string }[]>(
+    [],
+  );
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [searchClicked, setSearchClicked] = useState<boolean>(false);
   const [filter, setFilter] = useState<FilterType>({
@@ -129,8 +131,15 @@ export default function Search() {
             )}
           </div>
         )}
-        <div className={styles['filter-container']} onClick={() => setModalOpen(true)}>
-          {theme === 'snack' && <FilterAltIcon className={styles['filter-btn']} />}
+        <div className={styles['filter-container']}>
+          {theme === 'snack' && (
+            <img
+              src={require(`@/assets/search/icon_filter.png`)}
+              alt='icon_filter'
+              className={styles['filter-btn']}
+              onClick={() => setModalOpen(true)}
+            />
+          )}
         </div>
       </div>
       <div>
@@ -151,9 +160,15 @@ export default function Search() {
       </div>
       <FilterModal modalOpen={modalOpen} setModalOpen={setModalOpen} filter={filter} applyFilter={applyFilter} />
       {!searchClicked && <Popular popularList={popularList} />}
-      {searchClicked && theme === 'snack' && (snackList.length ? <SnackGridList snackList={snackList} /> : <p>과자가 없습니다ㅠ</p>)}
-      {searchClicked && theme === 'recipe' && (recipeList.length ? <RecipeGridList recipeList={recipeList} /> : <p>레시피가 없습니다ㅠ</p>)}
-      {searchClicked && theme === 'member' && (memberList.length ? <MemeberList memberList={memberList} /> : <p>사용자가 없습니다ㅠ</p>)}
+      {searchClicked &&
+        theme === 'snack' &&
+        (snackList.length ? <SnackGridList snackList={snackList} /> : <p>과자가 없습니다ㅠ</p>)}
+      {searchClicked &&
+        theme === 'recipe' &&
+        (recipeList.length ? <RecipeGridList recipeList={recipeList} /> : <p>레시피가 없습니다ㅠ</p>)}
+      {searchClicked &&
+        theme === 'member' &&
+        (memberList.length ? <MemeberList memberList={memberList} /> : <p>사용자가 없습니다ㅠ</p>)}
       <BottomNav />
     </div>
   );
