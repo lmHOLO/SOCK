@@ -7,9 +7,8 @@ export default function FirstMain() {
       <main className='error'>
         <div className='error-txt'>
           <img className='sock-logo' src={require(`@/assets/sock-logo-color-crop.png`)} alt='logo' />
-          <h1>
-            슬로건 슬로건 슬로건 <br /> 슬로건 슬로건 슬로건 슬로건
-          </h1>
+          <h1>내 맘에 쏙, 내 입에 쏙</h1>
+          <h2>당신만을 위한 과자 추천 도우미</h2>
         </div>
         <img src={require(`@/assets/home/notfound-transparent.gif`)} alt='pageNotFound' />
       </main>
