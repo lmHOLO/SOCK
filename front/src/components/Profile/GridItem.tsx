@@ -22,15 +22,7 @@ export default function GridItem({ menu, itemList }: Props) {
       <ul className={styles['card-list']}>
         {itemList &&
           itemList.map((item, index) => {
-            return (
-              <img
-                key={index}
-                src={item.image}
-                alt={item.id}
-                onClick={() => navigateTo(item.id)}
-                className={styles['card-item']}
-              />
-            );
+            return <img key={index} src={item.image} alt={item.id} onClick={() => navigateTo(item.id)} className={styles['card-item']} />;
           })}
       </ul>
     </section>
