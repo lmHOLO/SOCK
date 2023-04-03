@@ -5,6 +5,10 @@
 
 .comment-item {
   margin: 10px 0px;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  background-color: rgba(211, 211, 211, 0.5);
 }
 .member-date {
   display: flex;
@@ -15,12 +19,14 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .comment-write > textarea {
   border-radius: 5px;
   padding: 3px;
   width: 80%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
 .comment-write > button {
@@ -50,14 +56,30 @@
 }
 
 .delete-btn {
-  color: sock-nagative;
+  /* color: sock-nagative; */
+  color: rgb(255, 0, 0);
+  background-color: rgba(211, 211, 211, 0.3);
+  border-radius: 10px;
   float: right;
 }
 
 /* 별점 관련 */
 .star {
   display: flex;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 .star > div > svg {
   color: sock-yellow;
+}
+
+/* 댓글 관련 */
+.comment-content {
+  margin-top: 6px;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+.p-createDate {
+  margin-left: 140px;
 }

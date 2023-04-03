@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from '@/styles/comment.module.css';
 import CommentList from './CommentList';
@@ -14,6 +14,13 @@ export default function Comment({ recipeId }: Props) {
   const { id } = useParams();
   const textRef = useRef<HTMLTextAreaElement>(null);
   let [comment, setComment] = useState('');
+
+  useEffect(() => {
+    setComment('');
+    if (textRef && textRef.current) {
+      textRef.current.style.height = 'auto';
+    }
+  }, [id]);
 
   const [commentList, setCommentList] = useState<RecipeCommentType[]>([]);
 
@@ -57,7 +64,7 @@ export default function Comment({ recipeId }: Props) {
           rows={1}
           ref={textRef}
           className={styles.content_text}
-          placeholder='댓글 입력하기'
+          placeholder='댓글을 작성해주세요.'
           onInput={handleResizeHeight}
           onChange={handleChange}
           value={comment}
