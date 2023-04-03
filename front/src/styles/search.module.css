@@ -1,6 +1,7 @@
 @value sock-brown, sock-yellow, white-color  from './common/colors.css';
 
 .search-bar-conatiner {
+  margin-top: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
