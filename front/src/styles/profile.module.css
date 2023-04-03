@@ -58,7 +58,6 @@
 .menu > button {
   flex-grow: 1;
   padding: 10px 5px;
-  translate: ;
 }
 
 .menu-active {
@@ -68,7 +67,6 @@
 /* 그리드 */
 
 .primary {
-  max-width: 380px;
   margin: 20px auto;
 }
 
@@ -78,13 +76,7 @@
   column-gap: 2%;
   row-gap: 4%;
 }
-/*
-.card-item {
-  width: 100%;
-  background: inherit;
-  border-radius: 3px;
-  object-fit: cover;
-} */
+
 .card-image {
   position: relative;
   width: 100%;
@@ -95,7 +87,7 @@
   content: '';
   padding-bottom: 100%;
 }
-.card-item {
+.card-image > img {
   position: absolute;
   top: 0;
   left: 0;
@@ -103,7 +95,6 @@
   height: 100%;
   object-fit: cover;
 }
-
 .edit {
   color: white-color;
 }
