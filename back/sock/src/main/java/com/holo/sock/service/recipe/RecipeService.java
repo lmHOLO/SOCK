@@ -33,6 +33,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -196,7 +197,7 @@ public class RecipeService {
     public List<LikeRecipeResponseDto> likeRecipeList(Long memberId){
         Member member = memberRepository.findById(memberId).orElseThrow(MemberNotFoundException::new);
 
-        return member.getLikeRecipes().stream()
+        return member.getLikeRecipes().stream().sorted(Comparator.comparing(LikeRecipe::getCreateDate).reversed())
                 .map(likeRecipe -> LikeRecipeResponseDto.createFromLikeRecipe(likeRecipe.getRecipe()))
                 .collect(Collectors.toList());
 
