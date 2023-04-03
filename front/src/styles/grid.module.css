@@ -31,19 +31,6 @@
   height: 100%;
   object-fit: cover;
 }
-/* .card-item {
-  margin-bottom: 2rem;
-  background: inherit;
-  border-radius: 30px;
-}
-.card-image {
-  width: 100%;
-  margin-bottom: 5px;
-}
-.card-image > img {
-  width: 100%;
-  object-fit: cover;
-} */
 
 /* 과자 */
 .snack-grade {
@@ -79,6 +66,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   margin-bottom: 5px;
+  font-size: 1.3rem;
 }
 
 .theme-container {
@@ -97,25 +85,30 @@
 
 /* 레시피 */
 .recipe-info {
-  display: flex;
+  width: 100%;
+  display: inline-flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .member-data {
-  display: flex;
+  width: 80%;
+  display: inline-flex;
   align-items: center;
-  padding: 10px 0px;
+  margin: 10px 0px;
 }
 .member-data > img {
-  width: 28px;
-  height: 28px;
+  width: 15%;
   border-radius: 100px;
   object-fit: cover;
   margin-right: 5px;
 }
 .member-data > p {
   font-size: 15px;
+  width: 50%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .recipe-info > svg {
