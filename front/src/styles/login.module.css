@@ -1,6 +1,9 @@
 @value sock-brown, kakao-color, naver-color, google-color, white-color  from './common/colors.css';
 
 .page {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   position: relative;
   overflow: hidden;
   height: 100vh;
@@ -14,7 +17,7 @@
   z-index: -1;
   background-image: url('/src/assets/login/golden_ticket.jpg');
   background-repeat: no-repeat;
-  background-position: 50% 30%;
+  background-position: 80% 20%;
   background-size: calc(50px + 80vw) auto;
   transform: translate(10px) rotate(-5deg) scale(115%);
 }
@@ -46,6 +49,7 @@
 }
 .google-btn {
   background-color: google-color;
+  border: 1px solid;
 }
 
 .login-btn-img {
@@ -75,4 +79,38 @@
   color: white-color;
   border-radius: 12px;
   padding: 0.5rem 1rem;
+}
+
+/* 로고 */
+.sock-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.logo-img-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.logo-img {
+  padding: 0px 30px;
+  max-width: 80%;
+}
+.slogan {
+  margin-top: 10px;
+}
+
+.main-slogan {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+.sub-slogan {
+  margin-top: 10px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 1rem;
 }
