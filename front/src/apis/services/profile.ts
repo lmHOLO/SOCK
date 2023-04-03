@@ -1,4 +1,4 @@
-import { GridRecipeListItemType } from '@/types/recipe';
+import { GridRecipeListItemType, ProfileRecipeType } from '@/types/recipe';
 import { LikedSnackType } from '@/types/snack';
 
 export const getMyRecipeList = (rawRecipeList: GridRecipeListItemType[]) => {
@@ -14,6 +14,15 @@ export const getLikedSnackList = (rawRecipeList: LikedSnackType[]) => {
   return rawRecipeList.map(({ snackId, image }) => {
     return {
       id: snackId,
+      image: image,
+    };
+  });
+};
+
+export const getLikedRecipeList = (rawRecipeList: ProfileRecipeType[]) => {
+  return rawRecipeList.map(({ recipeId, image }) => {
+    return {
+      id: recipeId,
       image: image,
     };
   });

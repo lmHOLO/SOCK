@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import styles from '@/styles/comment.module.css';
 import StarIcon from '@mui/icons-material/Star';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
@@ -6,9 +7,15 @@ interface Props {
   setStarPoint: React.Dispatch<React.SetStateAction<number>>;
 }
 export default function CommentRating({ setStarPoint }: Props) {
+  const { id } = useParams();
   let starRatingState: Array<boolean> = new Array(5).fill(false);
 
   const [starRatingOnOff, setStarRatingOff] = useState(starRatingState);
+
+  useEffect(() => {
+    setStarPoint(-1);
+    setStarRatingOff(starRatingState);
+  }, [id]);
 
   function mouseOverStarRating(inx: number) {
     let tempStarRating: Array<boolean> = [];

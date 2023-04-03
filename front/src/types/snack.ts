@@ -89,6 +89,16 @@ export type FilterType = {
   types: string[];
   flavors: string[];
 };
+export type Filter2Type = {
+  types: ImgFilterType[];
+  flavors: ImgFilterType[];
+};
+
+export type ImgFilterType = {
+  image: string;
+  id: string;
+  name: string;
+};
 
 // 좋아하는 과자
 export type LikedSnackType = {

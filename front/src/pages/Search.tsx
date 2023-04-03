@@ -9,7 +9,7 @@ import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { getTopPopularListAPI } from '@/apis/api/search';
 import FilterModal from '@/components/Search/FilterModal';
 import BottomNav from '@/components/Navbar/BottomNav';
-import { FilterType } from '@/types/snack';
+import { Filter2Type, FilterType } from '@/types/snack';
 import SnackGridList from '@/components/common/SnackGridList';
 import RecipeGridList from '@/components/common/RecipeGridList';
 import { SnackDetailType } from '@/types/snack';
@@ -33,12 +33,17 @@ export default function Search() {
     types: [],
   });
 
+  const [filter2, setFilter2] = useState<Filter2Type>({
+    flavors: [],
+    types: [],
+  });
   const [sort, setSort] = useState<string>('latest');
   const [snackList, setSnackList] = useState<SnackDetailType[]>([]);
   const [recipeList, setRecipeList] = useState<GridRecipeListItemType[]>([]);
   const [memberList, setMemberList] = useState<SearchMemberType[]>([]);
-  const applyFilter = async (newFilter: FilterType) => {
+  const applyFilter = async (newFilter: FilterType, newFilter2: Filter2Type) => {
     setFilter(newFilter);
+    setFilter2(newFilter2);
     setModalOpen(false);
   };
   useEffect(() => {
@@ -111,7 +116,7 @@ export default function Search() {
         <PositionedMenu theme={theme} setTheme={setTheme} handleSetTheme={handleSetTheme} />
         <input className={styles['search-bar']} type='text' onChange={(e) => handleSearchBar(e)} />
         <button className={styles['search-btn']} onClick={handleSearchBtnClick}>
-          <p>검색</p>
+          <p className={styles['search-word']}>검색</p>
         </button>
       </div>
       <div className={styles['filter-bar']}>
@@ -131,27 +136,43 @@ export default function Search() {
             )}
           </div>
         )}
-        <div className={styles['filter-container']} onClick={() => setModalOpen(true)}>
-          {theme === 'snack' && <FilterAltIcon className={styles['filter-btn']} />}
+        <div className={styles['filter-container']}>
+          {theme === 'snack' && (
+            <img
+              src={require(`@/assets/search/icon_filter.png`)}
+              alt='icon_filter'
+              className={styles['filter-btn']}
+              onClick={() => setModalOpen(true)}
+            />
+          )}
         </div>
       </div>
-      <div>
-        {filter.flavors.map((item, index) => {
+      <div className={`${styles['selected-icon-container']}`}>
+        {filter2.flavors.map((item, index) => {
           return (
-            <span key={index} className={`${styles['selected']}`}>
-              {item}
-            </span>
+            <button key={index} className={`${styles['selected']}`}>
+              <img src={item.image} alt={item.name} />
+              <span>{item.name}</span>
+            </button>
           );
         })}
-        {filter.types.map((item, index) => {
+        {filter2.types.map((item, index) => {
           return (
-            <span key={index} className={`${styles['selected']}`}>
-              {item}
-            </span>
+            <button key={index} className={`${styles['selected']}`}>
+              <img src={item.image} alt={item.name} />
+              <span key={index}>{item.name}</span>
+            </button>
           );
         })}
       </div>
-      <FilterModal modalOpen={modalOpen} setModalOpen={setModalOpen} filter={filter} applyFilter={applyFilter} />
+      <FilterModal
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
+        filter={filter}
+        applyFilter={applyFilter}
+        filter2={filter2}
+        setFilter2={setFilter2}
+      />
       {!searchClicked && <Popular popularList={popularList} />}
       {searchClicked &&
         theme === 'snack' &&
