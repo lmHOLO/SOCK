@@ -5,6 +5,10 @@
 
 .comment-item {
   margin: 10px 0px;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  background-color: rgba(211, 211, 211, 0.5);
 }
 .member-date {
   display: flex;
@@ -52,14 +56,18 @@
 }
 
 .delete-btn {
-  color: sock-nagative;
+  /* color: sock-nagative; */
+  color: rgb(255, 0, 0);
+  background-color: rgba(211, 211, 211, 0.3);
+  border-radius: 10px;
   float: right;
 }
 
 /* 별점 관련 */
 .star {
   display: flex;
-  margin-top: 4px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 .star > div > svg {
   color: sock-yellow;
@@ -71,4 +79,7 @@
   word-break: break-all;
   word-wrap: break-word;
   white-space: pre-wrap;
+}
+.p-createDate {
+  margin-left: 140px;
 }

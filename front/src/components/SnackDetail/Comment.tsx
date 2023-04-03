@@ -88,7 +88,7 @@ export default function Comment({ setStarAvg, starAvg }: Props) {
               rows={1}
               ref={textRef}
               className={styles.content_text}
-              placeholder='댓글 남기기'
+              placeholder='댓글을 작성해주세요.'
               onInput={handleResizeHeight}
               onChange={handleChange}
               value={comment}
