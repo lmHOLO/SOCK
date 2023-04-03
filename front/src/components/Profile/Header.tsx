@@ -21,8 +21,8 @@ export default function Header({ member }: Props) {
           <p className={styles['email']}>{member.email}</p>
           <p>{member.profile.content}</p>
           <div className={styles['grade-sbti']}>
-            {/* {gradeImage && <img src={require(`${gradeImage}`)} alt='' />}
-            {sbtiImage && <img src={require(`${sbtiImage}`)} alt='' />} */}
+            {gradeImage && <img src={`${gradeImage}`} alt={member.grade} />}
+            {sbtiImage && <img src={`${sbtiImage}`} alt={member.sbti} />}
             {/* {gradeImage && <img src={require(`@/assets/member/grade/FIRST_FLOOR.png`)} alt='' />}
             {sbtiImage && <img src={require(`@/assets/member/grade/FIRST_FLOOR.png`)} alt='' />} */}
           </div>
