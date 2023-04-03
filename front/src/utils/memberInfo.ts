@@ -1,63 +1,63 @@
 import { GradeType, SbtiType } from '@/types/member';
 
-export const getGradeImage = (grade: GradeType) => {
+export const getGradeImage = (grade: string) => {
   switch (grade) {
     case 'NONE':
       return '';
     case 'FIRST_FLOOR':
-      return '@/assets/grade/FIRST_FLOOR.png';
+      return '@/assets/member/grade/FIRST_FLOOR.png';
     case 'SECOND_FLOOR':
-      return '@/assets/grade/SECOND_FLOOR.png';
+      return '@/assets/member/grade/SECOND_FLOOR.png';
     case 'THIRD_FLOOR':
-      return '@/assets/grade/THIRD_FLOOR.png';
+      return '@/assets/member/grade/THIRD_FLOOR.png';
     case 'TF_SWEET':
-      return '@/assets/grade/TF_SWEET.png';
+      return '@/assets/member/grade/TF_SWEET.png';
     case 'TF_SALT':
-      return '@/assets/grade/TF_SALT.png';
+      return '@/assets/member/grade/TF_SALT.png';
     case 'TF_MILD':
-      return '@/assets/grade/TF_MILD.png';
+      return '@/assets/member/grade/TF_MILD.png';
     case 'TF_SPICY':
-      return '@/assets/grade/TF_SPICY.png';
+      return '@/assets/member/grade/TF_SPICY.png';
     case 'TF_SOUR':
-      return '@/assets/grade/TF_SOUR.png';
+      return '@/assets/member/grade/TF_SOUR.png';
   }
 };
 
-export const getSbtiImage = (sbti: SbtiType) => {
+export const getSbtiImage = (sbti: string) => {
   switch (sbti) {
     case 'NONE':
       return '';
     case 'INTJ':
-      return '@/assets/sbti/INTJ.png';
+      return '@/assets/member/sbti/INTJ.png';
     case 'INTP':
-      return '@/assets/sbti/INTP.png';
+      return '@/assets/member/sbti/INTP.png';
     case 'ENTJ':
-      return '@/assets/sbti/ENTJ.png';
+      return '@/assets/member/sbti/ENTJ.png';
     case 'ENTP':
-      return '@/assets/sbti/ENTP.png';
+      return '@/assets/member/sbti/ENTP.png';
     case 'INFJ':
-      return '@/assets/sbti/INFJ.png';
+      return '@/assets/member/sbti/INFJ.png';
     case 'INFP':
-      return '@/assets/sbti/INFP.png';
+      return '@/assets/member/sbti/INFP.png';
     case 'ENFJ':
-      return '@/assets/sbti/ENFJ.png';
+      return '@/assets/member/sbti/ENFJ.png';
     case 'ENFP':
-      return '@/assets/sbti/ENFP.png';
+      return '@/assets/member/sbti/ENFP.png';
     case 'ISTJ':
-      return '@/assets/sbti/ISTJ.png';
+      return '@/assets/member/sbti/ISTJ.png';
     case 'ISFJ':
-      return '@/assets/sbti/ISFJ.png';
+      return '@/assets/member/sbti/ISFJ.png';
     case 'ESTJ':
-      return '@/assets/sbti/ESTJ.png';
+      return '@/assets/member/sbti/ESTJ.png';
     case 'ESFJ':
-      return '@/assets/sbti/ESFJ.png';
+      return '@/assets/member/sbti/ESFJ.png';
     case 'ISTP':
-      return '@/assets/sbti/ISTP.png';
+      return '@/assets/member/sbti/ISTP.png';
     case 'ISFP':
-      return '@/assets/sbti/ISFP.png';
+      return '@/assets/member/sbti/ISFP.png';
     case 'ESTP':
-      return '@/assets/sbti/ESTP.png';
+      return '@/assets/member/sbti/ESTP.png';
     case 'ESFP':
-      return '@/assets/sbti/ESFP.png';
+      return '@/assets/member/sbti/ESFP.png';
   }
 };
