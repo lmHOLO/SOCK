@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from '@/styles/comment.module.css';
 import CommentList from './CommentList';
@@ -21,6 +21,12 @@ export default function Comment({ setStarAvg, starAvg }: Props) {
   let [starPoint, setStarPoint] = useState(-1);
 
   const [commentList, setCommentList] = useState<ReviewType[]>([]);
+  useEffect(() => {
+    setComment('');
+    if (textRef && textRef.current) {
+      textRef.current.style.height = 'auto';
+    }
+  }, [id]);
 
   const handleResizeHeight = useCallback(() => {
     if (textRef && textRef.current) {
@@ -88,7 +94,7 @@ export default function Comment({ setStarAvg, starAvg }: Props) {
               rows={1}
               ref={textRef}
               className={styles.content_text}
-              placeholder='댓글 남기기'
+              placeholder='댓글을 작성해주세요.'
               onInput={handleResizeHeight}
               onChange={handleChange}
               value={comment}

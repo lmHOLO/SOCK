@@ -25,7 +25,7 @@ export default function CommentListItem({ comment, recipeId, commentList, setCom
   };
 
   return (
-    <div className={styles['comment-container']}>
+    <div className={styles['comment-item']}>
       <div className={styles['member-date']}>
         <div className={styles['member-data']}>
           <img src={comment.memberImage} alt={comment.nickname} />
@@ -35,12 +35,14 @@ export default function CommentListItem({ comment, recipeId, commentList, setCom
           <p>{comment.createdDate}</p>
         </div>
       </div>
-      {memberData.id === comment.memberId && (
-        <button className={styles['delete-btn']} onClick={commentDeleteEvent}>
-          삭제
-        </button>
-      )}
-      <pre>{comment.content}</pre>
+      <div className={styles['delete-btn-margin']}>
+        {memberData.id === comment.memberId && (
+          <button className={styles['delete-btn']} onClick={commentDeleteEvent}>
+            삭제
+          </button>
+        )}
+      </div>
+      <pre className={styles['comment-content']}>{comment.content}</pre>
     </div>
   );
 }
