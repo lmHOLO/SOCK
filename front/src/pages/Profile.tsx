@@ -10,7 +10,7 @@ import useMember from '@/hooks/memberHook';
 import { useParams } from 'react-router-dom';
 import { loginApi, otherMemberProfileApi } from '@/apis/api/member';
 
-import { getLikedSnackList, getMyRecipeList } from '@/apis/services/profile';
+import { getLikedSnackList, getMyRecipeList, getLikedRecipeList } from '@/apis/services/profile';
 import { getLikedRecipeListAPI, getLikedSnackListAPI, getMyRecipeListAPI } from '@/apis/api/profile';
 import PositionedMenu from '@/components/Profile/PositionedMenu';
 
@@ -37,7 +37,7 @@ export default function Profile() {
 
   const handleMenuClick = (menu: MenuType) => {
     if (menu === 'LIKE_RECIPE') {
-      getLikedRecipeListAPI(memberData.id).then(setItemList);
+      getLikedRecipeListAPI(memberData.id).then(getLikedRecipeList).then(setItemList);
     } else if (menu === 'POST_RECIPE') {
       getMyRecipeListAPI(memberData.id).then(getMyRecipeList).then(setItemList);
     } else if (menu === 'LIKE_SNACK') {
@@ -70,9 +70,7 @@ export default function Profile() {
       {memberData.id === member.id && <PositionedMenu setModalOpen={setModalOpen} />}
       {member && <Header member={member} setModalOpen={setModalOpen} />}
       {member && <Menu member={member} menu={menu} handleMenuClick={handleMenuClick} />}
-      {member && id && (
-        <ModifyModal member={member} modalOpen={modalOpen} setModalOpen={setModalOpen} id={id} setMember={setMember} />
-      )}
+      {member && id && <ModifyModal member={member} modalOpen={modalOpen} setModalOpen={setModalOpen} id={id} setMember={setMember} />}
       <RecipeGrid menu={menu} itemList={itemList} />
       <BottomNav />
     </div>
