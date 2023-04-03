@@ -30,7 +30,7 @@
   word-break: break-all;
   white-space: pre-wrap;
   text-overflow: ellipsis;
-  overflow: auto;
+  /* overflow: auto; */
   width: 30px;
 }
 

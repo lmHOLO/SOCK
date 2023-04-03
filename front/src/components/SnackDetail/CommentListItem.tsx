@@ -52,9 +52,9 @@ export default function CommentListItem({ isValid, comment, snackId, setCommentL
       <div className={styles['member-data']}>
         <img src={comment.writer.image} alt={comment.writer.image} />
         <p>{comment.writer.nickname}</p>
-        {/* <div className={styles['p-createDate']}> */}
-        <p className={styles['p-createDate']}>{comment.createdDate}</p>
-        {/* </div> */}
+        <div className={styles['comment-data']}>
+          <p>{comment.createdDate}</p>
+        </div>
       </div>
       {!isValid && memberData.id === comment.writer.writerId && (
         <button className={styles['delete-btn']} onClick={reviewDeleteEvent}>
