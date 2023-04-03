@@ -41,9 +41,9 @@
   margin-right: 16px;
 }
 
-.resultImage{
-  width: 500px;
-  height: 800px;
+.resultImage {
+  width: 100%;
+  height: 100%;
   display: flex;
   margin: auto;
   justify-content: center;
