@@ -12,7 +12,7 @@ export default function RecommendListItem({ recipe }: Props) {
   };
   return (
     <li className={styles['recipe-list-item-container']} onClick={() => recipeNavigate(recipe.recipeId)}>
-      <img src={recipe.image} alt={recipe.title} className={styles['recipe-list-item']} />
+      <img src={recipe.recipeImage} alt={recipe.recipeTitle} className={styles['recipe-list-item']} />
     </li>
   );
 }

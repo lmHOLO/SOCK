@@ -2,7 +2,9 @@ import React, { useCallback, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from '@/styles/comment.module.css';
 import CommentList from './CommentList';
-import { postRecipeCommentAPI } from '@/apis/api/recipeDetail';
+import { postRecipeCommentAPI, getRecipeCommentsAPI } from '@/apis/api/recipeDetail';
+
+import { RecipeCommentType } from '@/types/recipe';
 
 interface Props {
   recipeId: string;
@@ -12,6 +14,8 @@ export default function Comment({ recipeId }: Props) {
   const { id } = useParams();
   const textRef = useRef<HTMLTextAreaElement>(null);
   let [comment, setComment] = useState('');
+
+  const [commentList, setCommentList] = useState<RecipeCommentType[]>([]);
 
   const handleResizeHeight = useCallback(() => {
     if (textRef && textRef.current) {
@@ -34,9 +38,17 @@ export default function Comment({ recipeId }: Props) {
       return;
     }
 
-    id && postRecipeCommentAPI(id, { content: comment });
-    window.history.go(0); // 임시로
-    console.log(newComment);
+    id &&
+      postRecipeCommentAPI(id, { content: comment.replace(/(?:\r\n|\r|\n)/g, '\n') }).then(() => {
+        getRecipeCommentsAPI(id).then((data) => {
+          setCommentList(data.content);
+        });
+        setComment('');
+        if (textRef && textRef.current) {
+          textRef.current.style.height = 'auto';
+        }
+      });
+    // window.history.go(0); // 임시로
   };
   return (
     <div>
@@ -52,7 +64,7 @@ export default function Comment({ recipeId }: Props) {
         />
         <button onClick={handleSubmit}>작성</button>
       </div>
-      <CommentList recipeId={recipeId} />
+      <CommentList recipeId={recipeId} commentList={commentList} setCommentList={setCommentList} />
     </div>
   );
 }

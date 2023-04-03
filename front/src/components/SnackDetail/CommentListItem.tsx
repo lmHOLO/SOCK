@@ -62,7 +62,7 @@ export default function CommentListItem({ isValid, comment, snackId, setCommentL
           삭제
         </button>
       )}
-      <p>{comment.content}</p>
+      <pre>{comment.content}</pre>
     </li>
   );
 }

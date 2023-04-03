@@ -15,6 +15,11 @@ export type ProfileType = {
   content: string;
 };
 
+export type SearchMemberType = {
+  id: string;
+  nickname: string;
+  image: string;
+};
 // 초기 상태 타입
 export type MemberStateType = {
   isLoggedIn: boolean;
@@ -37,4 +42,10 @@ export type MenuType = 'POST_RECIPE' | 'LIKE_SNACK' | 'LIKE_RECIPE';
 export type UpdateProfileType = {
   nickname: string;
   profile: ProfileType;
+};
+
+// 마이페이지 그리드
+export type ProfileGridItemType = {
+  id: string;
+  image: string;
 };

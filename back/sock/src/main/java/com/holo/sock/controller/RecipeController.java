@@ -36,9 +36,9 @@ public class RecipeController {
     private final CommentService commentService;
 
     @PostMapping
-    public Result registerRecipe(@LoginMember Member member, @RequestBody RegisterRecipeRequestDto requestDto){
-        recipeService.registerRecipe(member,requestDto);
-        return responseService.getSuccessResult();
+    public SingleResult<Long> registerRecipe(@LoginMember Member member, @RequestBody RegisterRecipeRequestDto requestDto){
+        Long saveRecipeId = recipeService.registerRecipe(member, requestDto);
+        return responseService.getSingleResult(saveRecipeId);
     }
 
     @PostMapping("/{recipe-id}/comments")

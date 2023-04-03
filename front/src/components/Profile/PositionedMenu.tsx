@@ -4,11 +4,11 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { IconButton } from '@mui/material';
-
-import { deleteRecipeAPI } from '@/apis/api/recipeDetail';
-
-export default function PositionedMenu() {
-  const { id } = useParams();
+import styles from '@/styles/profile.module.css';
+interface Props {
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+export default function PositionedMenu({ setModalOpen }: Props) {
   const navigate = useNavigate();
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -17,24 +17,19 @@ export default function PositionedMenu() {
     setAnchorEl(event.currentTarget);
   };
   const handleModify = () => {
-    // console.log('수정');
+    setModalOpen(true);
     setAnchorEl(null);
   };
-  const handleDelete = () => {
-    // console.log('삭제');
+  const handleLogout = () => {
     setAnchorEl(null);
-    if (id) {
-      deleteRecipeAPI(id).then(() => {
-        navigate('/recipes');
-      });
-    }
+    navigate('/login');
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
 
   return (
-    <div>
+    <div className={styles['more-btn-container']}>
       <IconButton
         aria-label='more'
         id='long-button'
@@ -61,7 +56,7 @@ export default function PositionedMenu() {
         }}
       >
         <MenuItem onClick={() => handleModify()}>수정하기</MenuItem>
-        <MenuItem onClick={() => handleDelete()}>삭제하기</MenuItem>
+        <MenuItem onClick={() => handleLogout()}>로그아웃</MenuItem>
       </Menu>
     </div>
   );

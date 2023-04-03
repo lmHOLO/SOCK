@@ -11,12 +11,15 @@
   max-width: 380px;
   margin: 0 auto;
 }
-.member-info > img {
-  border-radius: 100px;
+
+.member-img {
+  margin-right: 20px;
+}
+.member-img > img {
   width: 100px;
   height: 100px;
+  border-radius: 100px;
   object-fit: cover;
-  margin-right: 20px;
 }
 
 .member-detail {
@@ -27,16 +30,21 @@
 
 .nickname {
   margin-bottom: 3px;
+  width: 53vw;
+}
+
+.nickname > h1 {
+  font-weight: 700;
+  font-size: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .email {
   font-size: 8px;
   color: sock-nagative;
   margin-bottom: 5px;
-}
-.nickname > h1 {
-  font-weight: 700;
-  font-size: 20px;
 }
 
 .menu {
@@ -79,4 +87,17 @@
 
 .edit {
   color: white-color;
+}
+
+.more-btn-container {
+  display: flex;
+  justify-content: end;
+  background-color: sock-brown;
+}
+
+.more-btn-container > button {
+  width: 20px;
+  height: 20px;
+  margin-top: 10px;
+  margin-right: 20px;
 }

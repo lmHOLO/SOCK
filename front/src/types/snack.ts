@@ -89,3 +89,12 @@ export type FilterType = {
   types: string[];
   flavors: string[];
 };
+
+// 좋아하는 과자
+export type LikedSnackType = {
+  snackId: string;
+  image: string;
+  sumOfStarts: string;
+  numberOfParticipants: string;
+  like: boolean;
+};
