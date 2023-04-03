@@ -30,15 +30,18 @@
 
 .nickname {
   margin-bottom: 3px;
-  width: 53vw;
+  display: flex;
+  align-items: center;
 }
 
 .nickname > h1 {
+  width: 35vw;
   font-weight: 700;
   font-size: 20px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  margin-right: 10px;
 }
 
 .email {
@@ -118,15 +121,12 @@
   align-items: center;
 }
 .grade-sbti > img:first-child {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 100px;
-  transform: translate(50%, 50%) scale(3.5);
-  margin-right: 15px;
 }
 .grade-sbti > img:last-child {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 100px;
-  transform: translate(50%, 50%) scale(1.2);
 }

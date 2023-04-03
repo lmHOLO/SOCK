@@ -5,21 +5,21 @@ export const getGradeImage = (grade: string) => {
     case 'NONE':
       return '';
     case 'FIRST_FLOOR':
-      return 'https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/grade%2FFIRST_FLOOR.png?alt=media&token=c3a03770-3b76-44e2-ab11-d2fb481d527d';
+      return 'https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/grade%2FFIRST_FLOOR.png?alt=media&token=6873cf30-3d91-4d7c-90dd-42b749322f97';
     case 'SECOND_FLOOR':
-      return 'https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/grade%2FSECOND_FLOOR.png?alt=media&token=b4835848-b72f-475f-9f54-5a69c01f567c';
+      return 'https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/grade%2FSECOND_FLOOR.png?alt=media&token=8233d65f-7926-46d9-81f2-13a21bd17a9d';
     case 'THIRD_FLOOR':
-      return 'https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/grade%2FTHIRD_FLOOR.png?alt=media&token=4467d247-5aea-4365-a578-20fc9a931772';
+      return 'https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/grade%2FTHIRD_FLOOR.png?alt=media&token=8d9a41e9-aef9-40d2-915a-d2a90255d8d6';
     case 'TF_SWEET':
-      return 'https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/grade%2FTF_SWEET.png?alt=media&token=a1b6a6f9-12e7-4ad8-be1e-c7d384ba9d8c';
+      return 'https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/grade%2FTF_SWEET.png?alt=media&token=6485f33e-c661-4c17-8b0c-f5372d39d5ff';
     case 'TF_SALT':
-      return 'https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/grade%2FTF_SALT.png?alt=media&token=66d588e1-29a2-4ed9-9fad-5bd93040b5a9';
+      return 'https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/grade%2FTF_SALT.png?alt=media&token=a0a503fc-bbff-45a9-bb99-be6e46d20809';
     case 'TF_MILD':
-      return 'https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/grade%2FTF_MILD.png?alt=media&token=3b452098-b178-4309-9b91-08a7a056ef2d';
+      return 'https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/grade%2FTF_MILD.png?alt=media&token=7c7928a2-9665-402d-8903-928fabe13f23';
     case 'TF_SPICY':
-      return 'https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/grade%2FTF_SPICY.png?alt=media&token=f9f82a83-e59d-4ca1-90db-b05a29ba76da';
+      return 'https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/grade%2FTF_SPICY.png?alt=media&token=0b67a624-d836-4bbc-9bc5-9ac32919f251';
     case 'TF_SOUR':
-      return 'https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/grade%2FTF_SOUR.png?alt=media&token=26ab7d7a-e0d5-4aee-9a89-61cfef6ae1c8';
+      return 'https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/grade%2FTF_SOUR.png?alt=media&token=82987fbc-87e0-4286-b8a4-b00772c22d25';
   }
 };
 
