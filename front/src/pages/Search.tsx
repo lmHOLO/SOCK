@@ -136,8 +136,15 @@ export default function Search() {
             )}
           </div>
         )}
-        <div className={styles['filter-container']} onClick={() => setModalOpen(true)}>
-          {theme === 'snack' && <FilterAltIcon className={styles['filter-btn']} />}
+        <div className={styles['filter-container']}>
+          {theme === 'snack' && (
+            <img
+              src={require(`@/assets/search/icon_filter.png`)}
+              alt='icon_filter'
+              className={styles['filter-btn']}
+              onClick={() => setModalOpen(true)}
+            />
+          )}
         </div>
       </div>
       <div className={`${styles['selected-icon-container']}`}>

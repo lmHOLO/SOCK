@@ -13,10 +13,14 @@
   margin-bottom: 0px;
   height: 30px;
   margin-right: 10px;
+  background-color: ligh;
+  border-radius: 100px;
+  padding-left: 15px;
+  background-color: lightcyan;
 }
 
 .search-btn {
-  background-color: sock-brown;
+  background-color: lightseagreen;
   border-radius: 3px;
   padding: 3px 10px;
   color: white-color;
@@ -24,6 +28,7 @@
   /* overflow: hidden; */
   word-break: break-all;
   white-space: pre-wrap;
+  border-radius: 100px;
 }
 
 .search-word {
@@ -47,24 +52,33 @@
   padding: 10px;
 }
 .filter-btn {
-  color: sock-brown;
+  width: 40px;
+  height: 40px;
 }
 
 /* 인기검색 */
 .popular-container {
-  background-color: #008bcf;
+  /* background-color: g; */
+
+  /* background-color: rgb(180, 215, 254); */
+  box-shadow: rgba(99, 99, 99, 0.5) 0px 2px 8px 0px;
+
   border-radius: 10px;
   margin: 0 auto;
-  padding: 10px;
+  padding: 10px 3px;
   margin-top: 20px;
 }
 
 .popular-list > li {
-  border-radius: 10px;
-  background-color: sock-brown;
-  color: whitesmoke;
+  border-radius: 15px;
+  box-shadow: rgba(99, 99, 99, 0.5) 0px 2px 3px 0px;
+
+  /* background-color: rgba(213, 241, 254); */
+  background-color: #8aaae5;
+
+  color: #fff;
   padding: 10px;
-  margin: 10px;
+  margin: 5px 3px;
 }
 
 .filter-bar {
