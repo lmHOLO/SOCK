@@ -4,6 +4,7 @@ import styles from '@/styles/comment.module.css';
 import useMember from '@/hooks/memberHook';
 
 import { deleteRecipeCommentAPI, getRecipeCommentsAPI } from '@/apis/api/recipeDetail';
+import { getGradeImage, getSbtiImage } from '@/utils/memberInfo';
 
 interface Props {
   comment: RecipeCommentType;
@@ -13,7 +14,8 @@ interface Props {
 }
 export default function CommentListItem({ comment, recipeId, commentList, setCommentList }: Props) {
   const { memberData } = useMember();
-
+  const gradeImage = getGradeImage(comment.grade);
+  const sbtiImage = getSbtiImage(comment.sbti);
   const commentDeleteEvent = () => {
     if (comment) {
       deleteRecipeCommentAPI(recipeId, comment.commentId).then(() => {
@@ -28,8 +30,14 @@ export default function CommentListItem({ comment, recipeId, commentList, setCom
     <div className={styles['comment-item']}>
       <div className={styles['member-date']}>
         <div className={styles['member-data']}>
-          <img src={comment.memberImage} alt={comment.nickname} />
+          <div className={styles['member-image']}>
+            <img src={comment.memberImage} alt={comment.nickname} />
+          </div>
           <p>{comment.nickname}</p>
+          <div className={styles['grade-sbti']}>
+            {gradeImage && <img src={`${gradeImage}`} alt={comment.grade} />}
+            {sbtiImage && <img src={`${sbtiImage}`} alt={comment.sbti} />}
+          </div>
         </div>
         <div className={styles['comment-data']}>
           <p>{comment.createdDate}</p>

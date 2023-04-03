@@ -6,6 +6,7 @@ import useMember from '@/hooks/memberHook';
 
 import { deleteSnackReviewAPI, getSnackReviewsAPI, getSnackDetailApi } from '@/apis/api/snackDetail';
 import { getMyReview, getOtherReviewList } from '@/apis/services/snackDetail';
+import { getGradeImage, getSbtiImage } from '@/utils/memberInfo';
 
 interface Props {
   isValid: boolean;
@@ -17,9 +18,18 @@ interface Props {
   setStarAvg: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function CommentListItem({ isValid, comment, snackId, setCommentList, setIsValid, setStarAvg, starAvg }: Props) {
+export default function CommentListItem({
+  isValid,
+  comment,
+  snackId,
+  setCommentList,
+  setIsValid,
+  setStarAvg,
+  starAvg,
+}: Props) {
   const { memberData } = useMember();
-
+  const gradeImage = getGradeImage(comment.writer.grade);
+  const sbtiImage = getSbtiImage(comment.writer.sbti);
   const reviewDeleteEvent = () => {
     if (comment) {
       deleteSnackReviewAPI(snackId).then(() => {
@@ -50,8 +60,14 @@ export default function CommentListItem({ isValid, comment, snackId, setCommentL
   return (
     <li className={styles['comment-item']}>
       <div className={styles['member-data']}>
-        <img src={comment.writer.image} alt={comment.writer.image} />
+        <div className={styles['member-image']}>
+          <img src={comment.writer.image} alt={comment.writer.image} />
+        </div>
         <p>{comment.writer.nickname}</p>
+        <div className={styles['grade-sbti']}>
+          {gradeImage && <img src={`${gradeImage}`} alt={comment.writer.grade} />}
+          {sbtiImage && <img src={`${sbtiImage}`} alt={comment.writer.sbti} />}
+        </div>
         <div className={styles['comment-data']}>
           <p>{comment.createdDate}</p>
         </div>
