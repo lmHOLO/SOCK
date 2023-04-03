@@ -57,7 +57,7 @@ export default function Comment({ recipeId }: Props) {
           rows={1}
           ref={textRef}
           className={styles.content_text}
-          placeholder='댓글 입력하기'
+          placeholder='댓글을 입력해주세요.'
           onInput={handleResizeHeight}
           onChange={handleChange}
           value={comment}
