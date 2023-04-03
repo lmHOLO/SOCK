@@ -92,6 +92,7 @@ public class SnackService {
         Member member = memberRepository.findById(memberId).orElseThrow(MemberNotFoundException::new);
         return member.getLikeSnacks()
                 .stream()
+                .sorted(Comparator.comparing(LikeSnack::getCreateDate).reversed())
                 .map(likeSnack -> SnackResponseDto.createFromLikeSnack(likeSnack.getSnack()))
                 .collect(Collectors.toList());
     }
