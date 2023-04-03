@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from '@/styles/comment.module.css';
 import CommentList from './CommentList';
@@ -14,6 +14,13 @@ export default function Comment({ recipeId }: Props) {
   const { id } = useParams();
   const textRef = useRef<HTMLTextAreaElement>(null);
   let [comment, setComment] = useState('');
+
+  useEffect(() => {
+    setComment('');
+    if (textRef && textRef.current) {
+      textRef.current.style.height = 'auto';
+    }
+  }, [id]);
 
   const [commentList, setCommentList] = useState<RecipeCommentType[]>([]);
 
