@@ -3,7 +3,7 @@ import TopNav from '@/components/Navbar/TopNav';
 import Header from '@/components/Profile/Header';
 import Menu from '@/components/Profile/Menu';
 import ModifyModal from '@/components/Profile/ModifyModal';
-import RecipeGrid from '@/components/Profile/GridItem';
+import GridItem from '@/components/Profile/GridItem';
 import { MemberProfileType, MenuType, ProfileGridItemType } from '@/types/member';
 import React, { useEffect, useState } from 'react';
 import useMember from '@/hooks/memberHook';
@@ -68,10 +68,12 @@ export default function Profile() {
     <div>
       <TopNav />
       {memberData.id === member.id && <PositionedMenu setModalOpen={setModalOpen} />}
-      {member && <Header member={member} setModalOpen={setModalOpen} />}
+      {member && <Header member={member} />}
       {member && <Menu member={member} menu={menu} handleMenuClick={handleMenuClick} />}
-      {member && id && <ModifyModal member={member} modalOpen={modalOpen} setModalOpen={setModalOpen} id={id} setMember={setMember} />}
-      <RecipeGrid menu={menu} itemList={itemList} />
+      {member && id && (
+        <ModifyModal member={member} modalOpen={modalOpen} setModalOpen={setModalOpen} id={id} setMember={setMember} />
+      )}
+      <GridItem menu={menu} itemList={itemList} />
       <BottomNav />
     </div>
   );
