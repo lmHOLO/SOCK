@@ -25,6 +25,8 @@
   padding: 80px 0px;
   background-color: #fff;
   height: 100vh;
+  background-image: url('/src/assets/home/movie_side.png');
+  background-size: cover;
 }
 
 .theme-container > h1 {
