@@ -14,13 +14,36 @@
   border-radius: 30px;
 }
 .card-image {
+  position: relative;
+  width: 100%;
+  margin-bottom: 5px;
+}
+.card-image::after {
+  display: block;
+  content: '';
+  padding-bottom: 100%;
+}
+.card-image > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* .card-item {
+  margin-bottom: 2rem;
+  background: inherit;
+  border-radius: 30px;
+}
+.card-image {
   width: 100%;
   margin-bottom: 5px;
 }
 .card-image > img {
   width: 100%;
   object-fit: cover;
-}
+} */
 
 /* 과자 */
 .snack-grade {
