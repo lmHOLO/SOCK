@@ -23,21 +23,31 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
-
     private final MemberRepository memberRepository;
     private final static int RANDOM_STRING_SIZE = 10;
-    private final static String DEAFULT_PROFILE_IMAGE
-            = "https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/profile%2Fdeafult_profile_image.jpeg?alt=media";
+    private final static String[] DEAFULT_PROFILE_IMAGES = {
+            "https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/profile%2Fdeafult_profile_image.jpeg?alt=media",
+            "https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/profile%2Fprofile2.png?alt=media",
+            "https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/profile%2Fprofile3.png?alt=media",
+            "https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/profile%2Fprofile4.png?alt=media",
+            "https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/profile%2Fprofile5.png?alt=media",
+            "https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/profile%2Fprofile6.png?alt=media",
+            "https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/profile%2Fprofile7.png?alt=media",
+            "https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/profile%2Fprofile8.png?alt=media",
+            "https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/profile%2Fprofile9.png?alt=media",
+            "https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/profile%2Fprofile10.png?alt=media",
+            "https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/profile%2Fprofile11.png?alt=media"
+    };
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         OAuth2User user = super.loadUser(userRequest);
-
         try {
             return this.process(userRequest, user);
         } catch (Exception ex) {
@@ -65,8 +75,11 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     @Transactional
     Member createUser(OAuth2UserInfo userInfo, AuthProvider authProvider) {
+        Random randomIntegerGenerator = new Random();
+        int randomIndex = randomIntegerGenerator.nextInt(11);
+        log.info("random index => {}",randomIndex);
         Profile profile = Profile.builder()
-                .image(DEAFULT_PROFILE_IMAGE)
+                .image(DEAFULT_PROFILE_IMAGES[randomIndex])
                 .build();
 
         Member member = Member.builder()
