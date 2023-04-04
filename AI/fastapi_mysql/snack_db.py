@@ -10,9 +10,7 @@ import random
 import os
 from typing import Optional, List
 import pandas as pd
-import uvicorn
 import numpy as np
-import json
 from fastapi import FastAPI
 from pydantic import BaseModel
 from sqlalchemy import create_engine
@@ -69,12 +67,12 @@ app.add_middleware(
 )
 
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
+# @app.get("/")
+# async def root():
+#     return {"message": "Hello World"}
 
-if __name__ == "__main__":
-    uvicorn.run("snack_db:app", host="localhost", port=9000)
+# if __name__ == "__main__":
+#     uvicorn.run("snack_db:app", host="localhost", port=9000)
 
 
 @app.post("/prefer")
