@@ -81,6 +81,7 @@
 .close-btn {
   display: block;
   margin: 0px 15px 0px auto;
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
+  transform: rotate(45deg);
 }
