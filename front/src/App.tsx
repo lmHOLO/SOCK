@@ -13,6 +13,7 @@ import FirebaseUploadTest from './pages/FirebaseUploadTest';
 import EventList from '@/pages/EventList';
 import EventResult from './pages/EventrResult';
 import WorldcupEvent from '@/pages/WorldcupEvent';
+import FirstPrefer from '@/pages/FirstPrefer';
 import SbtiEvent from '@/pages/SbtiEvent';
 import Search from '@/pages/Search';
 import Profile from '@/pages/Profile';
@@ -109,6 +110,11 @@ const router = createBrowserRouter([
     element: <RecipeContentPage />,
     errorElement: <NotFound />,
   },
+  {
+    path: '/firstprefer',
+    element: <FirstPrefer />,
+  },
+  
 ]);
 export default function App() {
   const { isLoggedIn } = useMember();

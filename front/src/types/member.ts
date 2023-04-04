@@ -36,6 +36,11 @@ export type MemberProfileType = {
   exp: number;
 };
 
+export type MemberPreferType = {
+  id: number,
+  favor_list: number[],
+}
+
 // 프로필
 export type MenuType = 'POST_RECIPE' | 'LIKE_SNACK' | 'LIKE_RECIPE';
 
