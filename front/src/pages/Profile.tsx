@@ -67,12 +67,13 @@ export default function Profile() {
   return (
     <div>
       <TopNav />
+      <audio autoPlay>
+        <source src={require('@/assets/eating_cracker.mp3')} type='audio/mpeg'></source>
+      </audio>
       {memberData.id === member.id && <PositionedMenu setModalOpen={setModalOpen} />}
       {member && <Header member={member} />}
       {member && <Menu member={member} menu={menu} handleMenuClick={handleMenuClick} />}
-      {member && id && (
-        <ModifyModal member={member} modalOpen={modalOpen} setModalOpen={setModalOpen} id={id} setMember={setMember} />
-      )}
+      {member && id && <ModifyModal member={member} modalOpen={modalOpen} setModalOpen={setModalOpen} id={id} setMember={setMember} />}
       <GridItem menu={menu} itemList={itemList} />
       <BottomNav />
     </div>
