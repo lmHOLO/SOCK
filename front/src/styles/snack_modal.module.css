@@ -27,8 +27,9 @@
   background-color: lightcyan;
 }
 .close-btn {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
+  transform: rotate(45deg);
   margin-top: 10px;
 }
 
