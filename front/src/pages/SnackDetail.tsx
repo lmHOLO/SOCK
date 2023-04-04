@@ -48,7 +48,7 @@ export default function SnackDetail() {
         </div>
       )}
       <div>
-        <div>
+        <div className={styles[`snack-comment`]}>
           <p>댓글</p>
         </div>
         <Comment setStarAvg={setStarAvg} starAvg={starAvg} />

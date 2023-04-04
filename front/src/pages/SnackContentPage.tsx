@@ -35,7 +35,7 @@ export default function SnackContentPage() {
     });
   };
   return (
-    <div>
+    <div className='side-margin'>
       <TopNav />
       <div className={styles['theme-container']}>
         {theme === 'RETRO' && (

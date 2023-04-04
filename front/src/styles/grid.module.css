@@ -51,6 +51,8 @@
 .sort {
   display: flex;
   justify-content: end;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .sort > button {
