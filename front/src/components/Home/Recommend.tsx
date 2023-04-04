@@ -36,7 +36,6 @@ export default function Recommend({ recommendSnackList }: Props) {
           dynamicBullets: true,
         }}
         loop={true}
-        navigation={true}
         modules={[Pagination, Navigation]}
         className={`${styles['mySwiper']}`}
       >
