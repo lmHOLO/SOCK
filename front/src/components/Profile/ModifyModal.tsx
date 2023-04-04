@@ -113,11 +113,21 @@ export default function ModifyModal({ modalOpen, setModalOpen, member, id, setMe
       >
         <Fade in={modalOpen}>
           <div className={styles['profile-modal-container']}>
+            <img
+              src={require(`@/assets/home/btn_close.png`)}
+              alt='close-button'
+              className={styles['close-btn']}
+              onClick={() => handleClose()}
+            />
             <div className={styles['content']}>
               <img src={member.profile.image} alt={member.nickname} />
               <div className={styles['input-container']}>
                 <p>닉네임 </p>
-                <input type='text' onChange={handleNicknameInput} defaultValue={nickname ? nickname : member.nickname} />
+                <input
+                  type='text'
+                  onChange={handleNicknameInput}
+                  defaultValue={nickname ? nickname : member.nickname}
+                />
               </div>
               <div className={check ? styles['p-CheckNickTrue'] : styles['p-CheckNickFalse']}>
                 <p>{checkNickname}</p>
