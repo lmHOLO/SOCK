@@ -91,3 +91,10 @@ export type SnackPreferType = {
   name: string;
   image: string;
 }
+
+// 선호도 조사 여부 갱신을 위한 선호 리스트
+
+export type checkPreferType = {
+  snackId: number;
+  likes:number;
+}

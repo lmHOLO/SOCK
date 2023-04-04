@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
+import useMember from '@/hooks/memberHook';
+import { useNavigate } from 'react-router-dom';
 import { authApiInstance } from '@/apis/axiosConfig';
 import { apiInstance } from '@/apis/axiosConfig'
 import { fastApiInstance } from "@/apis/axiosConfig";
-import { firstPreferApi, CbfApi } from '@/apis/api/firstprefer';
+import { firstPreferApi, CbfApi, checkPreferenceAPI } from '@/apis/api/firstprefer';
 import { SnackPreferType } from '@/types/snack';
 import TinderCard from 'react-tinder-card'
 import { LinearProgress } from "@mui/material";
+import { checkPreferType } from "@/types/snack";
 import axios, { AxiosResponse } from 'axios';
-
+import styles from '@/styles/firstprefer.module.css';
 import '@react-spring/web';
 
 interface SwipeCounts {
@@ -15,8 +18,12 @@ interface SwipeCounts {
   right: number;
 }
 
+
 export default function FirstPrefer() {
-  
+  const [token, setToken] = useState('');
+  const { memberData } = useMember();
+  const navigate = useNavigate();
+  const [myPreference,  setMyPreference] = useState<checkPreferType[]>([])
   const [swipeCounts, setSwipeCounts] = useState<SwipeCounts>({ left: 0, right: 0 });
   const [likeList, setLikeList] = useState<number[]>([]);
   const [dislikeList, setDislikeList] = useState<number[]>([]);
@@ -37,6 +44,15 @@ export default function FirstPrefer() {
   const [firstPreferList, setFirstPreferList] = useState<SnackPreferType[]>([]);
   // const normalise = (firstPreferList.length) => (firstPreferList.length/5 * 100);
   
+
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
+    }
+  }, []);
+
   // 초기선호도 리스트가 비어있을 때만 최초로 1회 30개의 무작위 과자 리스트를 가져옴.
   useEffect(() => {
     if (firstPreferList.length === 0){
@@ -62,18 +78,51 @@ export default function FirstPrefer() {
 
 
 
+  // const updateMyPreference = myPreference.map((obj, idx) => {
+  //   return {...obj, snackId: likeList[idx], likes: 1}
+  // });
+  
+
 
   useEffect(() => {
     if (likeList.length === 5){
       // fetch data and update state when component mounts
-      CbfApi({id: 5, favor_list : likeList}).then((response) => {
+      CbfApi({id: Number(memberData.id), favor_list : likeList}).then((response) => {
         console.log(response, "컨텐츠기반 선호도조사의 결과");
         // setFirstPreferList(response);
         // console.log(firstPreferList, 'one of preferlist')
-      });
+      })
+
+      likeList.forEach(snackId => {
+        const newPreference: checkPreferType = {
+          snackId: snackId,
+          likes: 1
+        };
+        console.log(newPreference, 'newPreference')
+        setMyPreference(prevPreferences => [...prevPreferences, newPreference])
+        // setMyPreference([...myPreference, newPreference])
+      })
+      console.log(localStorage.getItem('token'), '04/04 token check');
+      checkPreferenceAPI(myPreference).then((response) => {
+        console.log(response, "check_preference를 1로 변경")
+        })
+        if (token){
+          navigate('/');
+
+        }
+        
+
     }
     }, [likeList]
   )
+
+  // useEffect(() => {
+  //   if (myPreference){
+  //     console.log(myPreference, 'this is mypreference')
+  //   }
+  //   }, [myPreference]
+  // )
+
 
   useEffect(() => {
     console.log('this is likeList', likeList)
@@ -82,38 +131,10 @@ export default function FirstPrefer() {
     console.log('this is currentImdex', currentIndex)
   }, [currentIndex])
 
-  // const CbfApi2 = () => {
-  //   axios({
-  //     method: 'get',
-  //      url: `http://localhost:8000/data` ,
-  //   })
-  //   .then((res)=>{
-  //     console.log(res, 'recoomend data')
-  //     })
-  //   .catch((err)=>{
-  //     console.log(err)
-  //   })
-  // }
 
 
 
 
-  async function CbfApi2(): Promise<any> {
-    const response: AxiosResponse<any> = await axios.get<any>('http://localhost:8000/data', { withCredentials: false });
-    console.log(response)
-    return response.data;
-  }
-  // map firstPreferList outside of return statement
-  // const currentSnack = firstPreferList[currentIndex] || null;
-  // const card = currentSnack ? (
-  //   <TinderCard onSwipe={(direction) => handleSwipe(direction, currentSnack.snackId)}>
-  //     <div className="card">
-  //       <div>
-  //         {currentSnack.snackId}
-  //       </div>
-  //     </div>
-  //   </TinderCard>
-  // ) : null;
 
 
   return (<>
@@ -124,13 +145,12 @@ export default function FirstPrefer() {
     </React.Fragment>
     <h2>Left Swipes: {swipeCounts.left}</h2>
     <h2>Right Swipes: {swipeCounts.right}</h2>
-
-    <div className="cardContainer">
+    <div>
       {firstPreferList.map((snack, index) => {
         if (index === currentIndex) {
           return (
             <TinderCard onSwipe={(direction) => handleSwipe(direction, snack.snackId)} key={snack.snackId}>
-              <div className="card">
+              <div>
                 <img src={snack.image} alt="" />
                 <div>
                   {snack.name}
@@ -143,6 +163,9 @@ export default function FirstPrefer() {
           return null;
         }
       })}
+    </div>
+    <div>
+      {token}
     </div>
     {likeList.length === 5 && (
         <button onClick={() => console.log("Done button clicked!")}>Done</button>
