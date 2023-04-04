@@ -67,7 +67,7 @@ app.add_middleware(
 )
 
 
-@app.post("/prefer")
+@app.post("/fastapi/prefer")
 def prefer_list(items: Item):
     from sklearn.feature_extraction.text import TfidfVectorizer
     from sklearn.metrics.pairwise import cosine_similarity
@@ -118,7 +118,7 @@ def prefer_list(items: Item):
 
     return {"message": "json_update success"}
 
-@app.get("/recommend/cbf/{member_id}")
+@app.get("/fastapi/recommend/cbf/{member_id}")
 def recommend_by_cbf(member_id: int, grade: str):
     import pymysql.cursors
     connection = pymysql.connect(host='j8c103.p.ssafy.io', port=3306, user='root',
@@ -282,7 +282,7 @@ def recommend_by_cbf(member_id: int, grade: str):
 
 
 
-@app.get("/data")
+@app.get("/fastapi/data")
 def send_data():
     import pymysql.cursors
     # from surprise import SVD
@@ -358,7 +358,7 @@ def send_data():
     # return snack_db
 
 
-@app.get("/recommend")
+@app.get("/fastapi/recommend")
 def recommend():
     import pymysql.cursors
     connection = pymysql.connect(host='j8c103.p.ssafy.io', port=3306, user='root',
