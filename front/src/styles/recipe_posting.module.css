@@ -108,6 +108,11 @@
   margin-right: 4px;
 }
 
+.tag-container > p {
+  font-size: 20px;
+  margin-right: 4px;
+}
+
 .tag-list {
   margin: 10px 0px;
   overflow-x: auto;
@@ -122,4 +127,9 @@
 
 .color-brown {
   color: sock-brown;
+}
+
+.add-btn {
+  width: 20px;
+  height: 20px;
 }
