@@ -100,9 +100,7 @@
   align-items: center;
   padding: 6px 8px;
   border-radius: 10px;
-  /* background-color: sock-brown; */
   margin-right: 4px;
-  /* border-color: sock-brown; */
   border: 2px solid sock-brown;
 }
 .tag-container > img {
@@ -113,7 +111,6 @@
   margin-right: 4px;
 }
 .tag-container > p {
-  /* color: white-color; */
   color: sock-brown;
 }
 
