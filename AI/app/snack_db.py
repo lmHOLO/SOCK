@@ -30,7 +30,7 @@ class Item(BaseModel):
 # DATABASE = "sock"
 
 def sigmoid_transform_purchase(x):
-    # 입력값을 -5로 이동
+    # 입력값을 -5로 이동하기
     x = x - 5
     # 이동된 입력값을 10으로 스케일링
     x = 10 * x
