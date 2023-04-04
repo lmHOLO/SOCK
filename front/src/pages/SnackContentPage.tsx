@@ -35,17 +35,40 @@ export default function SnackContentPage() {
     });
   };
   return (
-    <div className='side-margin'>
+    <div>
       <TopNav />
       <div className={styles['theme-container']}>
         {theme === 'RETRO' && (
-          <header>
-            <h1 className=''>레트로</h1>
+          <header className={`${styles['retro-header']}`}>
+            <div className={styles['retro-logo']}>
+              {/* <img src={require(`@/assets/home/retro_green_main.png`)} alt='retro' /> */}
+              <img src={require(`@/assets/home/retro_red_letter.png`)} alt='retro' />
+              <img src={require(`@/assets/home/retro_red_main.png`)} alt='retro' />
+            </div>
           </header>
         )}
-        {theme === 'MOVIE' && <h1>영화</h1>}
-        {theme === 'MILK' && <h1>우유</h1>}
-        {theme === 'ALCHOL' && <h1>술</h1>}
+        {theme === 'MOVIE' && (
+          <header className={`${styles['movie-header']}`}>
+            <div className={styles['movie-logo']}>
+              <img src={require(`@/assets/home/movie_main.png`)} alt='movie_main' />
+              <img src={require(`@/assets/home/movie_side.png`)} alt='movie_side' />
+            </div>
+          </header>
+        )}
+        {theme === 'MILK' && (
+          <header className={`${styles['milk-header']}`}>
+            <div className={styles['milk-logo']}>
+              <img src={require(`@/assets/home/milk_main.png`)} alt='milk' />
+            </div>
+          </header>
+        )}
+        {theme === 'ALCHOL' && (
+          <header className={`${styles['alchol-header']}`}>
+            <div className={styles['milk-logo']}>
+              <img src={require(`@/assets/home/alchol.png`)} alt='알코올' />
+            </div>
+          </header>
+        )}
       </div>
 
       {!theme && (
