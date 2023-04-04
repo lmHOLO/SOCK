@@ -6,7 +6,6 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { Pagination, Navigation } from 'swiper';
 import { useNavigate } from 'react-router';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 interface Props {
   recommendSnackList: SnackListItemType[];
 }
@@ -46,12 +45,6 @@ export default function Recommend({ recommendSnackList }: Props) {
           <SwiperSlide key={index} className={styles['swiper-slide']}>
             <img src={item.image} alt={item.title} onClick={() => navigate(`/snacks/${item.snackId}`)} />
             <p>{item.title}</p>
-            {index === recommendSnackList.length - 1 && (
-              <div className={styles['more-container']}>
-                <p>더 추천받기</p>
-                <NavigateNextIcon />
-              </div>
-            )}
           </SwiperSlide>
         ))}
       </Swiper>
