@@ -22,9 +22,8 @@ export default function Home() {
   const [token, setToken] = useState('');
   const outerDivRef = useRef<HTMLDivElement>(null);
   const [scrollIndex, setScrollIndex] = useState(1);
-  const [recommendIdList, setRecommendIdList] = useState<number[]>([]);;
+  const [recommendIdList, setRecommendIdList] = useState<number[]>([]);
   const [recommendSnackList, setRecommendSnackList] = useState<SnackListItemType[]>([
-  
     // {
     //   snackId: '1',
     //   image: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
@@ -59,43 +58,34 @@ export default function Home() {
     }
   }, []);
 
-
   useEffect(() => {
-    if (recommendIdList.length === 0){
-    console.log(memberData.grade, 'this is grade')
-    recommendIdAPI(Number(memberData.id), memberData.grade).then((result) => {
-      setRecommendIdList(result);
-      console.log(recommendIdList, 'this is myResult')
-    })
-  }
-    // console.log(recommendIdAPI(Number(memberData.id), memberData.grade), typeof(recommendIdAPI(Number(memberData.id), memberData.grade)), 'this is home recommend list')
-
-
-  }, [recommendIdList])
-
-
-
-
-  
-  useEffect(() => {
-    if (token && recommendIdList.length === 5){
-      getRecommend()
+    if (recommendIdList.length === 0) {
+      console.log(memberData.grade, 'this is grade');
+      recommendIdAPI(Number(memberData.id), memberData.grade).then((result) => {
+        setRecommendIdList(result);
+        console.log(recommendIdList, 'this is myResult');
+      });
     }
-  },[recommendIdList])
+    // console.log(recommendIdAPI(Number(memberData.id), memberData.grade), typeof(recommendIdAPI(Number(memberData.id), memberData.grade)), 'this is home recommend list')
+  }, [recommendIdList]);
+
+  useEffect(() => {
+    if (token && recommendIdList.length === 5) {
+      getRecommend();
+    }
+  }, [recommendIdList]);
 
   const getRecommend = () => {
-    const newdatas: SnackListItemType[] = []; 
-    for (let i =0; i<5; i++){
-      snackDetailAPI(recommendIdList[i]).then((result)=> {
-        let newdata: SnackListItemType = {snackId: result.data.snackId, image: result.data.image, title: result.data.title}
-        newdatas.push(newdata)
+    const newdatas: SnackListItemType[] = [];
+    for (let i = 0; i < 5; i++) {
+      snackDetailAPI(recommendIdList[i]).then((result) => {
+        let newdata: SnackListItemType = { snackId: result.data.snackId, image: result.data.image, title: result.data.title };
+        newdatas.push(newdata);
         // setRecommendSnackList([...recommendSnackList, newdata])
-        setRecommendSnackList([...recommendSnackList, ...newdatas])
-      }
-      )
+        setRecommendSnackList([...recommendSnackList, ...newdatas]);
+      });
     }
-  
-  }
+  };
   /*  useEffect(() => {
     window.scrollTo(0, 0);
     const wheelHandler = (e: any) => {
@@ -175,6 +165,9 @@ export default function Home() {
   return (
     <div ref={outerDivRef} className={styles['outer']}>
       <TopNav />
+      {/* <audio autoPlay>
+        <source src={require('@/assets/eating_cracker.mp3')} type='audio/mpeg'></source>
+      </audio> */}
       <FirstMain />
       <Recommend recommendSnackList={recommendSnackList} />
       <Movie />
