@@ -11,3 +11,62 @@ justify-content: center;
 align-items: center;
 font-size: 100px;
 }
+
+.prefer-container {
+  display: flex;
+  height: 80vh;
+  align-items: center;
+  justify-content: center;
+} 
+
+@keyframes leftUpdown {
+  from {transform: translate(50%, 0px) scale(2)}
+  to {transform: translate(50%, 15px) scale(2)}
+}
+
+@keyframes rightUpdown {
+  from {transform: translate(-50%, 0px) scale(2)}
+  to {transform: translate(-50%, 15px) scale(2)}
+}
+
+.left-arrow-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+.left-arrow-container > img{
+  width: 40px;
+  animation: leftUpdown 1.8s infinite alternate;
+}
+
+.right-arrow-container {
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  animation: updown 1.8s infinite alternate;
+}
+
+
+.right-arrow-container > img{
+  width: 40px;
+  animation: rightUpdown 1.8s infinite alternate;
+}
+
+
+.prefer-card > img {
+  margin-bottom: 20px;
+}
+
+.prefer-card {
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+  padding: 20px
+}
+
