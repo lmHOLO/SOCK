@@ -1,8 +1,11 @@
 # pip install pymysql
 # pip install sqlalchemy
 # pip install surprise
-# uvicorn snack_db:app --reload
+# uvicorn snack_db:app --reload --port 9000
 
+
+
+import random
 from typing import Optional, List
 import pandas as pd
 import numpy as np
@@ -14,7 +17,6 @@ from random import randint
 from surprise import SVD, Reader
 from surprise.dataset import DatasetAutoFolds
 from starlette.middleware.cors import CORSMiddleware
-
 import os
 
 class Item(BaseModel):
@@ -28,7 +30,7 @@ class Item(BaseModel):
 # DATABASE = "sock"
 
 def sigmoid_transform_purchase(x):
-    # 입력값을 -5로 이동
+    # 입력값을 -5로 이동하기
     x = x - 5
     # 이동된 입력값을 10으로 스케일링
     x = 10 * x
@@ -226,13 +228,13 @@ def recommend_by_cbf(member_id: int, grade: str):
             'rating': np.around(result[non_zero_indices], decimals = 2)
         })
 
-        total_rating.to_csv('./app/first_prefer.json', index=False, header=False)
+        total_rating.to_csv('./app/total_rating_noh.csv', index=False, header=False)
 
         # total_rating_json = total_rating.to_json(orient="records")
 
         # surprise 를 활용한 협업 필터링 구현 부분
         reader = Reader(line_format='user item rating', sep=',', rating_scale=(0, 5))
-        data_folds = DatasetAutoFolds('./app/first_prefer.json', reader=reader)
+        data_folds = DatasetAutoFolds('./app/total_rating_noh.csv', reader=reader)
         trainset = data_folds.build_full_trainset()
 
         model = SVD(n_epochs=20, n_factors=50, random_state=0)
