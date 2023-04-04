@@ -26,7 +26,7 @@ import java.util.List;
 @Transactional
 public class DataService {
 
-    private final JdbcDataRepository jdbcDataRepository;
+//    private final JdbcDataRepository jdbcDataRepository;
     private final MemberRepository memberRepository;
     private final SnackService snackService;
     private final ReviewService reviewService;
@@ -44,7 +44,6 @@ public class DataService {
                 snackService.purchaseSnack(member, snackId);
             }
         }
-
     }
 
     public void registerReview(List<ReviewDumpDto> request){
@@ -63,6 +62,17 @@ public class DataService {
     }
 
     public void registerSearch(List<SearchDumpDto> request){
-        jdbcDataRepository.saveSearch(request);
+//        jdbcDataRepository.saveSearch(request);
+        for (SearchDumpDto searchDumpDto : request) {
+            Long memberId = searchDumpDto.getMember_id();
+            Long snackId = searchDumpDto.getSnack_id();
+            int count = searchDumpDto.getCount();
+
+            Member member = memberRepository.findById(memberId).orElseThrow(MemberNotFoundException::new);
+
+            for(int i = 0; i < count; i++){
+                snackService.searchSnackDetail(member, snackId);
+            }
+        }
     }
 }
