@@ -196,6 +196,12 @@ export default function FilterModal({ modalOpen, setModalOpen, filter, applyFilt
       >
         <Fade in={modalOpen}>
           <div className={styles['filter-modal-container']}>
+            <img
+              src={require(`@/assets/home/btn_close.png`)}
+              alt='close-button'
+              className={styles['close-btn']}
+              onClick={() => handleClose()}
+            />
             <div className={styles['content']}>
               <div>
                 <h1>과자류</h1>

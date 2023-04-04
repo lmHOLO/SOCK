@@ -36,6 +36,11 @@ export type MemberProfileType = {
   exp: number;
 };
 
+export type MemberPreferType = {
+  id: number,
+  favor_list: number[],
+}
+
 // 프로필
 export type MenuType = 'POST_RECIPE' | 'LIKE_SNACK' | 'LIKE_RECIPE';
 
@@ -49,3 +54,34 @@ export type ProfileGridItemType = {
   id: string;
   image: string;
 };
+
+// 등급
+export type GradeType =
+  | 'NONE'
+  | 'FIRST_FLOOR'
+  | 'SECOND_FLOOR'
+  | 'THIRD_FLOOR'
+  | 'TF_SWEET'
+  | 'TF_SALT'
+  | 'TF_MILD'
+  | 'TF_SPICY'
+  | 'TF_SOUR';
+
+export type SbtiType =
+  | 'NONE'
+  | 'INTJ'
+  | 'INTP'
+  | 'ENTJ'
+  | 'ENTP'
+  | 'INFJ'
+  | 'INFP'
+  | 'ENFJ'
+  | 'ENFP'
+  | 'ISTJ'
+  | 'ISFJ'
+  | 'ESTJ'
+  | 'ESFJ'
+  | 'ISTP'
+  | 'ISFP'
+  | 'ESTP'
+  | 'ESFP';

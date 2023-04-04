@@ -20,7 +20,9 @@ export default function RecipeGridListItem({ recipe }: Props) {
       </figure>
       <div className={styles['recipe-info']}>
         <div className={styles['member-data']}>
-          <img src={recipe.writerImage} alt={recipe.writer} />
+          <div className={styles['member-image']}>
+            <img src={recipe.writerImage} alt={recipe.writer} />
+          </div>
           <p>{recipe.writer}</p>
         </div>
         {recipe.myLikeCheck ? <FavoriteIcon /> : <FavoriteBorderIcon />}

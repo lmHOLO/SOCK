@@ -51,6 +51,8 @@
 .sort {
   display: flex;
   justify-content: end;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .sort > button {
@@ -66,12 +68,11 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   margin-bottom: 5px;
-  font-size: 1.3rem;
+  font-size: 1.15rem;
 }
 
 .theme-container {
   width: 100%;
-  height: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -95,13 +96,29 @@
   width: 80%;
   display: inline-flex;
   align-items: center;
-  margin: 10px 0px;
+  margin: 8px 0px;
 }
-.member-data > img {
-  width: 15%;
-  border-radius: 100px;
+
+.member-image {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  margin-right: 4px;
+}
+
+.member-image::after {
+  display: block;
+  content: '';
+  padding-bottom: 100%;
+}
+.member-image > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  margin-right: 5px;
+  border-radius: 50%;
 }
 .member-data > p {
   font-size: 15px;
@@ -132,4 +149,83 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* 영화테마 */
+.movie-header {
+  width: 100%;
+  background-color: #000;
+  color: white-color;
+  text-align: center;
+}
+
+.movie-logo {
+  height: 200px;
+  position: relative;
+}
+.movie-logo > img:first-child {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  transform: translate(-50%, 0);
+}
+.movie-logo > img:last-child {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 250%;
+  transform: translate(-50%, -12%);
+}
+
+/* 우유 테마 */
+.milk-header {
+  width: 100%;
+  background-color: #284d82;
+  color: white-color;
+  text-align: center;
+}
+
+.milk-logo {
+  height: 200px;
+  position: relative;
+}
+.milk-logo > img:first-child {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  transform: translate(-50%, 0);
+}
+
+/* 알코올 */
+.alchol-header {
+  width: 100%;
+  color: white-color;
+  background-color: #ffd84b;
+}
+/* 레트로 */
+.retro-header {
+  width: 100%;
+  color: white-color;
+  background-color: #223527;
+}
+
+.retro-logo {
+  height: 200px;
+  position: relative;
+}
+.retro-logo > img:first-child {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 50%;
+  transform: translate(-50%, -10%) scale(0.6);
+}
+.retro-logo > img:last-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 70%;
+  transform: translate(-50%, -30%);
 }

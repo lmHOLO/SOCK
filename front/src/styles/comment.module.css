@@ -27,6 +27,7 @@
   padding: 3px;
   width: 80%;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  margin-bottom: 5px;
 }
 
 .comment-write > button {
@@ -41,13 +42,31 @@
   display: flex;
   align-items: center;
 }
-
-.member-data > img {
+.member-image {
+  position: relative;
   width: 28px;
   height: 28px;
-  border-radius: 100px;
+  margin-right: 4px;
+}
+.member-image::after {
+  display: block;
+  content: '';
+  padding-bottom: 100%;
+}
+.member-image > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  margin-right: 5px;
+  border-radius: 50%;
+}
+.member-data > p {
+  max-width: 30vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .comment-data {
@@ -87,4 +106,21 @@
 }
 .delete-btn-margin {
   margin: 10px;
+}
+
+/* 등급 */
+/* grade */
+.grade-sbti {
+  display: flex;
+  align-items: center;
+}
+.grade-sbti > img:first-child {
+  width: 25px;
+  height: 25px;
+  border-radius: 100px;
+}
+.grade-sbti > img:last-child {
+  width: 25px;
+  height: 25px;
+  border-radius: 100px;
 }

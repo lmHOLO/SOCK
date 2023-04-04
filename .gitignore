@@ -1,3 +1,4 @@
 .DS_Store
 application.yml
 node_modules
+venv

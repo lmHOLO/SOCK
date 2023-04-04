@@ -1,13 +1,14 @@
 .notfound-container {
+  padding-top: 100px;
   box-sizing: border-box;
   background-color: #fde8dc;
-  height: 100vh;
+  height: 90vh;
   color: #333333;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
 }
 .error {
   display: flex;
@@ -34,19 +35,26 @@
   margin: 0 auto;
   margin-bottom: 30px;
 }
-.error-txt > h2 {
+/* .error-txt > h2 {
   text-align: center;
   font-weight: 700;
   font-size: 3rem;
   line-height: 71.09px;
   letter-spacing: -3.5%;
   margin: 26px 0;
-}
+} */
 
 .error-txt > h1 {
   text-align: center;
   font-weight: 700;
   font-size: 2rem;
+}
+
+.error-txt > h2 {
+  margin-top: 10px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 1rem;
 }
 
 .error-txt > p {

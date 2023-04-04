@@ -119,7 +119,7 @@ export default function RecipePosting() {
               console.log(imageUrlList);
               resolve();
             });
-          },
+          }
         );
       } else {
         console.error('File not found');
@@ -147,7 +147,8 @@ export default function RecipePosting() {
               </div>
             ))}
             {tagList.length === 0 && <p>태그를 추가해보세요!</p>}
-            <AddCircleIcon className={styles['color-brown']} onClick={() => setModalOpen(true)} />
+            <img src={require(`@/assets/home/btn_close.png`)} alt='close-button' className={styles['add-btn']} onClick={() => setModalOpen(true)} />
+            {/* <AddCircleIcon className={styles['color-brown']} onClick={() => setModalOpen(true)} /> */}
           </div>
           <SnackModal modalOpen={modalOpen} setModalOpen={setModalOpen} addTag={addTag} />
           <WriteContent setContent={setContent} />

@@ -84,6 +84,20 @@ export type ReviewSubmitType = {
   star: number;
 };
 
+
+// 초기 선호도 조사
+export type SnackPreferType = {
+  snackId: number;
+  name: string;
+  image: string;
+}
+
+// 선호도 조사 여부 갱신을 위한 선호 리스트
+
+export type checkPreferType = {
+  snackId: number;
+  likes:number;
+}
 // 필터
 export type FilterType = {
   types: string[];

@@ -60,3 +60,11 @@
   width: 20px;
   height: 20px;
 }
+
+.close-btn {
+  display: block;
+  margin: 10px 15px 0px auto;
+  width: 30px;
+  height: 30px;
+  transform: rotate(45deg);
+}

@@ -53,7 +53,16 @@ export default function SnackModal({ modalOpen, setModalOpen, addTag }: Props) {
       >
         <Fade in={modalOpen}>
           <div className={styles['snack-modal-container']}>
-            <input className={styles['search-bar']} type='text' onChange={(e) => handleSearchBar(e)} />
+            <div className={styles['bar-btn-container']}>
+              <input className={styles['search-bar']} type='text' onChange={(e) => handleSearchBar(e)} />
+              <img
+                src={require(`@/assets/home/btn_close.png`)}
+                alt='close-button'
+                className={styles['close-btn']}
+                onClick={() => handleClose()}
+              />
+            </div>
+
             <div className={styles['tag-list']}>
               {snackList.map((snack, index) => {
                 return (
