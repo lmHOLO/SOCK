@@ -76,6 +76,13 @@
   white-space: pre-wrap;
   text-overflow: ellipsis;
 }
+.time-data {
+  display: flex;
+  justify-content: flex-end;
+  float: right;
+  margin-left: auto;
+  justify-content: space-between;
+}
 
 .delete-btn {
   color: rgb(255, 0, 0);

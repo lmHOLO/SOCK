@@ -18,15 +18,7 @@ interface Props {
   setStarAvg: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function CommentListItem({
-  isValid,
-  comment,
-  snackId,
-  setCommentList,
-  setIsValid,
-  setStarAvg,
-  starAvg,
-}: Props) {
+export default function CommentListItem({ isValid, comment, snackId, setCommentList, setIsValid, setStarAvg, starAvg }: Props) {
   const { memberData } = useMember();
   const gradeImage = getGradeImage(comment.writer.grade);
   const sbtiImage = getSbtiImage(comment.writer.sbti);
@@ -57,6 +49,11 @@ export default function CommentListItem({
     }
   };
 
+  const timeStr = comment.createdDate; // 예제 시간 문자열
+  // 정규식 사용하여 T와 ss 제거
+  const newTimeStr = timeStr.replace(/T(\d{2}:\d{2}):\d{2}/, ' $1');
+  console.log(newTimeStr); // 출력: "2023-04-04 12:30"
+
   return (
     <li className={styles['comment-item']}>
       <div className={styles['member-data']}>
@@ -68,8 +65,9 @@ export default function CommentListItem({
           {gradeImage && <img src={`${gradeImage}`} alt={comment.writer.grade} />}
           {sbtiImage && <img src={`${sbtiImage}`} alt={comment.writer.sbti} />}
         </div>
-        <div className={styles['comment-data']}>
-          <p>{comment.createdDate}</p>
+        <div className={styles['time-data']}>
+          {/* <p>{comment.createdDate}</p> */}
+          <p>{newTimeStr}</p>
         </div>
       </div>
       {!isValid && memberData.id === comment.writer.writerId && (
