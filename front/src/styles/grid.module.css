@@ -71,7 +71,6 @@
 
 .theme-container {
   width: 100%;
-  height: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -148,4 +147,31 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* 영화테마 */
+.movie-header {
+  width: 100%;
+  background-color: #000;
+  color: white-color;
+  text-align: center;
+}
+
+.movie-logo {
+  height: 200px;
+  position: relative;
+}
+.movie-logo > img:first-child {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  transform: translate(-50%, 0);
+}
+.movie-logo > img:last-child {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 250%;
+  transform: translate(-50%, -12%);
 }
