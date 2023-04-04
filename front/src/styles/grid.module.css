@@ -175,3 +175,23 @@
   height: 250%;
   transform: translate(-50%, -12%);
 }
+
+/* 우유 테마 */
+.milk-header {
+  width: 100%;
+  background-color: #284d82;
+  color: white-color;
+  text-align: center;
+}
+
+.milk-logo {
+  height: 200px;
+  position: relative;
+}
+.milk-logo > img:first-child {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  transform: translate(-50%, 0);
+}

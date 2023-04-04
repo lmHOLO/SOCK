@@ -51,7 +51,13 @@ export default function SnackContentPage() {
             </div>
           </header>
         )}
-        {theme === 'MILK' && <h1>우유</h1>}
+        {theme === 'MILK' && (
+          <header className={`${styles['milk-header']}`}>
+            <div className={styles['milk-logo']}>
+              <img src={require(`@/assets/home/milk_main.png`)} alt='milk' />
+            </div>
+          </header>
+        )}
         {theme === 'ALCHOL' && <h1>술</h1>}
       </div>
 
