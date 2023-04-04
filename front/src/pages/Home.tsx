@@ -62,6 +62,7 @@ export default function Home() {
 
   useEffect(() => {
     if (recommendIdList.length === 0){
+    // if (typeof recommendIdList === 'undefined'){
     console.log(memberData.grade, 'this is grade')
     recommendIdAPI(Number(memberData.id), memberData.grade).then((result) => {
       setRecommendIdList(result);
