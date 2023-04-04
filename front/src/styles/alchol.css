@@ -1,6 +1,6 @@
 .alchol-container {
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   position: relative;
   background-color: #ffd84b;
 }
@@ -9,13 +9,13 @@
   text-align: center;
   font-size: 50px;
   font-weight: 700;
-  padding-top: 40px;
-  margin-bottom: 90px;
+  padding-top: 80px;
+  margin-bottom: 60px;
 }
 
 .alchol-button {
   position: relative;
-  margin-top: 100px;
+  margin-top: 70px;
 }
 
 .alchol-img {

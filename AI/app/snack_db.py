@@ -66,6 +66,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.post("/prefer")
 def prefer_list(items: Item):
     from sklearn.feature_extraction.text import TfidfVectorizer

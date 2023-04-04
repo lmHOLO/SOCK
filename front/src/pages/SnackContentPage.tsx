@@ -37,6 +37,9 @@ export default function SnackContentPage() {
   return (
     <div className='side-margin'>
       <TopNav />
+      <audio autoPlay>
+        <source src={require('@/assets/eating_cracker.mp3')} type='audio/mpeg'></source>
+      </audio>
       <div className={styles['theme-container']}>
         {theme === 'RETRO' && (
           <header className={`${styles['retro-header']}`}>
