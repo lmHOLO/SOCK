@@ -1,9 +1,9 @@
-import BottomNav from "@/components/Navbar/BottomNav";
-import TopNav from "@/components/Navbar/TopNav";
-import { useNavigate } from "react-router";
-import sbti_title from "@/assets/event/sbti_title.png";
-import worldcup_title from "@/assets/event/worldcup_title.png";
-import styles from "@/styles/event_list.module.css";
+import BottomNav from '@/components/Navbar/BottomNav';
+import TopNav from '@/components/Navbar/TopNav';
+import { useNavigate } from 'react-router';
+import sbti_title from '@/assets/event/sbti_title.png';
+import worldcup_title from '@/assets/event/worldcup_title.png';
+import styles from '@/styles/event_list.module.css';
 
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
@@ -16,28 +16,23 @@ export default function EventList() {
   };
 
   return (
-    <div className="side-margin">
+    <div className='side-margin'>
       <TopNav />
-      <div className={styles["event-list-img"]}>
-        <Card sx={{ maxWidth: 350 }}  onClick={() => navigateTo("sbti")}>
-          <CardActionArea >
-            <CardMedia
-              component="img"
-              image={sbti_title}
-              alt="SBTI"
-            />
+      <audio autoPlay>
+        <source src={require('@/assets/eating_cracker.mp3')} type='audio/mpeg'></source>
+      </audio>
+      <div className={styles['event-list-img']}>
+        <Card sx={{ maxWidth: 350 }} onClick={() => navigateTo('sbti')}>
+          <CardActionArea>
+            <CardMedia component='img' image={sbti_title} alt='SBTI' />
           </CardActionArea>
         </Card>
       </div>
-      
-      <div className={styles["event-list-img"]}>
-        <Card sx={{ maxWidth: 350 }}  onClick={() => navigateTo("worldcup")}>
-          <CardActionArea >
-            <CardMedia
-              component="img"
-              image={worldcup_title}
-              alt="SBTI"
-            />
+
+      <div className={styles['event-list-img']}>
+        <Card sx={{ maxWidth: 350 }} onClick={() => navigateTo('worldcup')}>
+          <CardActionArea>
+            <CardMedia component='img' image={worldcup_title} alt='SBTI' />
           </CardActionArea>
         </Card>
       </div>

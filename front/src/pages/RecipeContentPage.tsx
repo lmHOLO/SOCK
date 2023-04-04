@@ -39,7 +39,10 @@ export default function RecipeContentPage() {
   return (
     <div className='side-margin'>
       <TopNav />
-      <div className={styles['theme-container']}></div>
+      <audio autoPlay>
+        <source src={require('@/assets/eating_cracker.mp3')} type='audio/mpeg'></source>
+      </audio>
+      {/* <div className={styles['theme-container']}>{theme === 'recipes' && <h1>레시피</h1>}</div> */}
       <div className={styles['sort']}>
         {sort === 'popular' && (
           <>
