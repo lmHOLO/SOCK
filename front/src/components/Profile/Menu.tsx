@@ -1,23 +1,39 @@
+import React from 'react';
 import useMember from '@/hooks/memberHook';
 import { MemberProfileType, MenuType } from '@/types/member';
-import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from '@/styles/profile.module.css';
 interface Props {
+  menu: MenuType;
   member: MemberProfileType;
-  setMenu: React.Dispatch<React.SetStateAction<MenuType>>;
+  handleMenuClick: (menu: MenuType) => void;
 }
-export default function Menu({ setMenu }: Props) {
+export default function Menu({ menu, handleMenuClick }: Props) {
   const { memberData } = useMember();
   const { id } = useParams();
-  const handleMenu = async (menu: MenuType) => {
-    setMenu(menu);
-  };
+
   return (
     <div className={styles['menu']}>
-      <button onClick={() => handleMenu('POST_RECIPE')}>RECIPES</button>
-      <button onClick={() => handleMenu('LIKE_SNACK')}>LIKED SNACKS</button>
-      {memberData.id === id && <button onClick={() => handleMenu('LIKE_RECIPE')}>LIKED RECIPES</button>}
+      <button
+        className={menu === 'POST_RECIPE' ? `${styles['menu-active']}` : `${styles['menu-not-active']}`}
+        onClick={() => handleMenuClick('POST_RECIPE')}
+      >
+        RECIPES
+      </button>
+      <button
+        className={menu === 'LIKE_SNACK' ? `${styles['menu-active']}` : `${styles['menu-not-active']}`}
+        onClick={() => handleMenuClick('LIKE_SNACK')}
+      >
+        관심있는 과자
+      </button>
+      {memberData.id == id && (
+        <button
+          className={menu === 'LIKE_RECIPE' ? `${styles['menu-active']}` : `${styles['menu-not-active']}`}
+          onClick={() => handleMenuClick('LIKE_RECIPE')}
+        >
+          좋아요한 레시피
+        </button>
+      )}
     </div>
   );
 }

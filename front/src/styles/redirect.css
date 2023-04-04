@@ -1,0 +1,23 @@
+.redirect-container {
+  background-color: #6ab5eb;
+  padding-top: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.main-loading-animation {
+  width: 80%;
+  object-fit: contain;
+}
+
+.sub-loading-animation {
+  height: 200px;
+}
+
+.loading-text {
+  text-align: center;
+  font-weight: 700;
+  font-size: 3rem;
+}

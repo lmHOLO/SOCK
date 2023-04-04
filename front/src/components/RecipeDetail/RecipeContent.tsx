@@ -91,17 +91,21 @@ export default function RecipeContent() {
         </Swiper>
         {/* <Images images={recipe.recipeImages} /> */}
       </div>
-      <div className={styles['recipe-like']}>
-        {recipe.like ? <FavoriteIcon onClick={likeClickEvent} /> : <FavoriteBorderIcon onClick={likeClickEvent} />}
-        <p>{recipe.totalLikes}</p>
-      </div>
-      <h2 className={styles['recipe-title']}>{recipe.title}</h2>
       <ul className={styles['tag-list']}>
         {recipe.tag.map((item) => (
           <Tag key={item.tagId} tag={item} />
         ))}
       </ul>
-      <div className={styles['recipe-content']}>{recipe.content}</div>
+      <div className={styles['recipe-like']}>
+        <div>
+          <h1 className={styles['recipe-title']}>{recipe.title}</h1>
+        </div>
+        <div className={styles['likes']}>
+          {recipe.like ? <FavoriteIcon onClick={likeClickEvent} /> : <FavoriteBorderIcon onClick={likeClickEvent} />}
+          <p>{recipe.totalLikes}</p>
+        </div>
+      </div>
+      <pre className={styles['recipe-content']}>{recipe.content}</pre>
     </div>
   );
 }

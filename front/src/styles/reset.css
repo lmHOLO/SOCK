@@ -11,8 +11,8 @@
   font-family: 'Noto Sans KR', sans-serif;
 }
 body {
-  background-color: #fde8dc;
-  /* background-color: white; */
+  background-color: #fff;
+  /* background-color: #fde8dc; */
 }
 button {
   background-color: inherit;

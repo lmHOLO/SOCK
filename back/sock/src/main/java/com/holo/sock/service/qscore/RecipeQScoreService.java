@@ -68,13 +68,11 @@ public class RecipeQScoreService {
 
     @Transactional
     public void deleteRecipeQScore(Recipe recipe){
-        RecipeQScore recipeQScore = recipeQScoreRepository.findByRecipe(recipe).orElseThrow(RecipeQScoreNotFoundException::new);
-        recipeQScoreRepository.delete(recipeQScore);
+        Optional<RecipeQScore> optionalRecipeQScore = recipeQScoreRepository.findByRecipe(recipe);
+        optionalRecipeQScore.ifPresent(recipeQScoreRepository::delete);
 
         Optional<RecipeQScoreRedis> recipeQScoreRedis = recipeQScoreRedisRepository.findByRecipeId(recipe.getId());
-        if(recipeQScoreRedis.isPresent()){
-            recipeQScoreRedisRepository.delete(recipeQScoreRedis.get());
-        }
+        recipeQScoreRedis.ifPresent(recipeQScoreRedisRepository::delete);
     }
 
     @Scheduled(fixedDelay = 300000)

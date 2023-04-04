@@ -7,8 +7,9 @@ import styles from '@/styles/search.module.css';
 interface Props {
   theme: SearchThemeType;
   setTheme: React.Dispatch<React.SetStateAction<SearchThemeType>>;
+  handleSetTheme: (menu: string) => void;
 }
-export default function PositionedMenu({ theme, setTheme }: Props) {
+export default function PositionedMenu({ theme, setTheme, handleSetTheme }: Props) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -18,13 +19,13 @@ export default function PositionedMenu({ theme, setTheme }: Props) {
     setAnchorEl(null);
     switch (menu) {
       case 'snack':
-        setTheme('snack');
+        handleSetTheme('snack');
         break;
       case 'recipe':
-        setTheme('recipe');
+        handleSetTheme('recipe');
         break;
       case 'member':
-        setTheme('member');
+        handleSetTheme('member');
     }
   };
 

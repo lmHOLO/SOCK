@@ -4,8 +4,9 @@ import styles from '@/styles/comment.module.css';
 import StarRating from './StarRating';
 import useMember from '@/hooks/memberHook';
 
-import { deleteSnackReviewAPI, getSnackReviewsAPI } from '@/apis/api/snackDetail';
+import { deleteSnackReviewAPI, getSnackReviewsAPI, getSnackDetailApi } from '@/apis/api/snackDetail';
 import { getMyReview, getOtherReviewList } from '@/apis/services/snackDetail';
+import { getGradeImage, getSbtiImage } from '@/utils/memberInfo';
 
 interface Props {
   isValid: boolean;
@@ -13,11 +14,22 @@ interface Props {
   snackId: string;
   setCommentList: React.Dispatch<React.SetStateAction<ReviewType[]>>;
   setIsValid: React.Dispatch<React.SetStateAction<boolean>>;
+  starAvg: number;
+  setStarAvg: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function CommentListItem({ isValid, comment, snackId, setCommentList, setIsValid }: Props) {
+export default function CommentListItem({
+  isValid,
+  comment,
+  snackId,
+  setCommentList,
+  setIsValid,
+  setStarAvg,
+  starAvg,
+}: Props) {
   const { memberData } = useMember();
-
+  const gradeImage = getGradeImage(comment.writer.grade);
+  const sbtiImage = getSbtiImage(comment.writer.sbti);
   const reviewDeleteEvent = () => {
     if (comment) {
       deleteSnackReviewAPI(snackId).then(() => {
@@ -36,6 +48,11 @@ export default function CommentListItem({ isValid, comment, snackId, setCommentL
 
           setIsValid(true);
         });
+
+        getSnackDetailApi(snackId).then((data) => {
+          if (data.numberOfParticipants == 0) setStarAvg(0);
+          else setStarAvg(data.sumOfStars / data.numberOfParticipants);
+        });
       });
     }
   };
@@ -43,19 +60,34 @@ export default function CommentListItem({ isValid, comment, snackId, setCommentL
   return (
     <li className={styles['comment-item']}>
       <div className={styles['member-data']}>
-        <img src={comment.writer.image} alt={comment.writer.image} />
+        <div className={styles['member-image']}>
+          <img src={comment.writer.image} alt={comment.writer.image} />
+        </div>
         <p>{comment.writer.nickname}</p>
-      </div>
-      <div className={styles['comment-data']}>
-        <StarRating star={comment.star} />
-        <p>{comment.createdDate}</p>
+        <div className={styles['grade-sbti']}>
+          {gradeImage && <img src={`${gradeImage}`} alt={comment.writer.grade} />}
+          {sbtiImage && <img src={`${sbtiImage}`} alt={comment.writer.sbti} />}
+        </div>
+        <div className={styles['comment-data']}>
+          <p>{comment.createdDate}</p>
+        </div>
       </div>
       {!isValid && memberData.id === comment.writer.writerId && (
         <button className={styles['delete-btn']} onClick={reviewDeleteEvent}>
           삭제
         </button>
       )}
-      <p>{comment.content}</p>
+
+      <div className={styles['comment-data']}>
+        <StarRating star={comment.star} />
+        {/* <p>{comment.createdDate}</p> */}
+      </div>
+      {/* {!isValid && memberData.id === comment.writer.writerId && (
+        <button className={styles['delete-btn']} onClick={reviewDeleteEvent}>
+          삭제
+        </button>
+      )} */}
+      <pre className={styles['comment-content']}>{comment.content}</pre>
     </li>
   );
 }

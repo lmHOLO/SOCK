@@ -1,7 +1,7 @@
 export type RecipeListItemType = {
   recipeId: string;
-  image: string;
-  title: string;
+  recipeImage: string;
+  recipeTitle: string;
 };
 
 export type GridRecipeListItemType = {

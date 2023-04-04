@@ -33,6 +33,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -53,7 +54,7 @@ public class RecipeService {
     private final GradeService gradeService;
 
     @Transactional
-    public void registerRecipe(Member writer,RegisterRecipeRequestDto requestDto){
+    public Long registerRecipe(Member writer,RegisterRecipeRequestDto requestDto){
         Recipe recipe = Recipe.builder()
                 .writer(writer)
                 .title(requestDto.getTitle())
@@ -83,8 +84,9 @@ public class RecipeService {
 
             tagRepository.save(saveTag);
         }
-        gradeService.addExp(writer, gradeService.REGISTER_RECIPE);
 
+        gradeService.addExp(writer, gradeService.REGISTER_RECIPE);
+        return saveRecipe.getId();
     }
     @Transactional
     public void likeRecipe(Member loginMember,Long recipeId){
@@ -132,7 +134,6 @@ public class RecipeService {
         tagRepository.deleteAllInBatch(tagList);
         
         recipeRepository.delete(recipe);
-
     }
 
     @Transactional
@@ -156,7 +157,6 @@ public class RecipeService {
         recipeQScoreService.addQScore(recipe);
 
         return new RecipeDetailResponseDto(recipe,tagDtoList,recipeImageDtoList,existsLike,totalLikes);
-
     }
     @Transactional
     public void updateRecipeDetail(Member loginMember,Long recipeId, UpdateRecipeRequestDto updateDto){
@@ -197,7 +197,7 @@ public class RecipeService {
     public List<LikeRecipeResponseDto> likeRecipeList(Long memberId){
         Member member = memberRepository.findById(memberId).orElseThrow(MemberNotFoundException::new);
 
-        return member.getLikeRecipes().stream()
+        return member.getLikeRecipes().stream().sorted(Comparator.comparing(LikeRecipe::getCreateDate).reversed())
                 .map(likeRecipe -> LikeRecipeResponseDto.createFromLikeRecipe(likeRecipe.getRecipe()))
                 .collect(Collectors.toList());
 

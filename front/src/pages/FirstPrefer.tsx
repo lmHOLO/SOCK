@@ -164,12 +164,6 @@ export default function FirstPrefer() {
         }
       })}
     </div>
-    <div>
-      {token}
-    </div>
-    {likeList.length === 5 && (
-        <button onClick={() => console.log("Done button clicked!")}>Done</button>
-      )}
   </div>
     {/* <div>
       {firstPreferList[2].snackId}

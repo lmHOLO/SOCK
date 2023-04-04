@@ -1,43 +1,60 @@
 .notfound-container {
+  padding-top: 100px;
   box-sizing: border-box;
-  background-color: #85c6ff;
-  height: 100vh;
-  padding: 24px 0;
+  background-color: #fde8dc;
+  height: 90vh;
   color: #333333;
-  flex-direction: column;
-  display: flex;
-  justify-content: center;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
 }
 .error {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   width: 100%;
+  align-items: center;
 }
 
 .error > img {
   width: 100%;
   object-fit: contain;
-}
-header {
-  width: 100%;
-}
-
-main {
-  height: 100%;
+  max-width: 600px;
 }
 
 .error-txt {
   display: flex;
   flex-direction: column;
 }
-.error-txt > h2 {
+
+.error-txt > img {
+  width: 90%;
+  max-width: 400px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+/* .error-txt > h2 {
   text-align: center;
   font-weight: 700;
   font-size: 3rem;
   line-height: 71.09px;
   letter-spacing: -3.5%;
   margin: 26px 0;
+} */
+
+.error-txt > h1 {
+  text-align: center;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.error-txt > h2 {
+  margin-top: 10px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 1rem;
 }
 
 .error-txt > p {
@@ -49,7 +66,7 @@ main {
   margin-bottom: 40px;
 }
 
-a .btn {
+.btn {
   display: flex;
   justify-content: center;
   cursor: pointer;
@@ -68,9 +85,13 @@ a .btn {
   padding: 20px;
 }
 
+.footer {
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
 .footer-text,
 .footer-text a {
-  font-family: 'Montserrat', sans-serif;
   text-decoration: none;
   font-weight: 700;
   font-size: 14px;
@@ -81,39 +102,6 @@ a .btn {
 .footer-text a:hover,
 .footer-text a:focus {
   color: #ff6d5b;
-}
-
-@media (min-width: 375px) {
-  header,
-  main,
-  footer {
-    width: 95%;
-  }
-
-  main {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-around;
-  }
-
-  @media (min-width: 768px) {
-    main {
-      justify-content: space-between;
-      flex-direction: row;
-    }
-
-    figure {
-      margin-right: 2em;
-    }
-
-    .error-txt p {
-      font-size: 32px;
-      line-height: 35px;
-      letter-spacing: -3.5%;
-      margin-bottom: 30px;
-    }
-  }
 }
 
 @media (min-width: 1024px) {
@@ -144,4 +132,10 @@ a .btn {
   .error-txt p {
     width: 381px;
   }
+}
+
+/* 메인화면 관련 */
+.sock-logo {
+  width: 400px;
+  margin-bottom: 20px;
 }

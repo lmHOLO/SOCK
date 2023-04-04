@@ -4,11 +4,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 60px;
 }
 .member-data {
   display: flex;
   align-items: center;
-  padding: 10px 0px;
+  padding: 13px 0px;
 }
 .member-data > img {
   width: 28px;
@@ -24,11 +25,27 @@
 .recipe-like {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 .recipe-like > svg {
   color: rgb(255, 119, 119);
+}
+.recipe-like > .likes {
+  float: left;
+  justify-content: center;
+  display: flex;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  padding-right: 10px;
+}
+.recipe-like > .likes > svg {
+  margin-right: 3px;
+  color: rgb(255, 119, 119);
+}
+.recipe-like > .likes > p {
+  font-size: 20px;
 }
 
 .recipe-paper {
@@ -59,7 +76,10 @@
 
 .recipe-title {
   font-weight: 700;
-  font-size: 20px;
+  font-size: 25px;
+  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 /* 태그 관련 */
@@ -80,8 +100,8 @@
   align-items: center;
   padding: 6px 8px;
   border-radius: 10px;
-  background-color: sock-brown;
   margin-right: 4px;
+  border: 2px solid sock-brown;
 }
 .tag-container > img {
   width: 21px;
@@ -91,13 +111,16 @@
   margin-right: 4px;
 }
 .tag-container > p {
-  color: white-color;
+  color: sock-brown;
 }
 
 /* 레시피 내용 관련 */
 .recipe-content {
   padding: 5px 10px;
   margin-bottom: 10px;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 /* 스와이프 */
@@ -126,4 +149,10 @@
 
 .more-btn {
   float: right;
+}
+
+/* 댓글 관련 */
+.recipe-comment {
+  margin-top: 10px;
+  margin-bottom: 15px;
 }

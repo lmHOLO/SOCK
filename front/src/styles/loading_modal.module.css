@@ -1,0 +1,33 @@
+.loading-container {
+  background-color: #6ab5eb;
+  padding-top: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw;
+  padding: 10px;
+
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  display: flex;
+}
+
+.main-loading-animation {
+  width: 80%;
+  object-fit: contain;
+}
+
+.sub-loading-animation {
+  height: 200px;
+}
+
+.loading-text {
+  text-align: center;
+  font-weight: 700;
+  font-size: 3rem;
+}

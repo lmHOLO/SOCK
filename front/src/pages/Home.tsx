@@ -13,6 +13,7 @@ import Milk from '@/components/Home/Milk';
 import Alchol from '@/components/Home/Alchol';
 import { recommendIdAPI, snackDetailAPI } from '@/apis/api/main';
 import { setDefaultResultOrder } from 'dns';
+import FirstMain from '@/components/Home/FirstMain';
 
 export default function Home() {
   // const nickname = useSelector((state: RootState) => state.member.nickname);
@@ -173,15 +174,11 @@ export default function Home() {
 
   return (
     <div ref={outerDivRef} className={styles['outer']}>
-      <div>{recommendIdList}</div>
-      <div>{recommendIdList.length}</div>
-      
       <TopNav />
-      {/* <Ads /> */}
+      <FirstMain />
       <Recommend recommendSnackList={recommendSnackList} />
-      {/* <div className='divider'></div> */}
-      {/* <Movie recommendSnackList={recommendSnackList} />
-      <Retro recommendSnackList={recommendSnackList} /> */}
+      <Movie />
+      <Retro />
       <Milk />
       <Alchol />
       <BottomNav />

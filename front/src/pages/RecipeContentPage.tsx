@@ -1,61 +1,45 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TopNav from '@/components/Navbar/TopNav';
 import BottomNav from '@/components/Navbar/BottomNav';
 import styles from '@/styles/grid.module.css';
 import { GridRecipeListItemType } from '@/types/recipe';
 import RecipeGridList from '@/components/common/RecipeGridList';
+// import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router';
+import { getRecipeListAPI } from '@/apis/api/recipeList';
+import { useNavigate } from 'react-router-dom';
+import AddIcon from '@mui/icons-material/Add';
 
 export default function RecipeContentPage() {
-  const [sort, setSort] = useState<string>('popular');
-  const [recipeList, setRecipeList] = useState<GridRecipeListItemType[]>([
-    {
-      myLikeCheck: false,
-      writer: '김수빈',
-      writerImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      recipeId: '1',
-      recipeTitle: '감자칩을 맛있게 해서 먹어봅시다?>?????',
-      recipeImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-    },
-    {
-      myLikeCheck: false,
-      writer: '김수빈',
-      writerImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      recipeId: '2',
-      recipeTitle: '감자칩을 맛있게 해서 먹어봅시다?>?????',
-      recipeImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-    },
-    {
-      myLikeCheck: false,
-      writer: '김수빈',
-      writerImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      recipeId: '3',
-      recipeTitle: '감자칩을 맛있게 해서 먹어봅시다?>?????',
-      recipeImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-    },
-    {
-      myLikeCheck: false,
-      writer: '김수빈',
-      writerImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      recipeId: '4',
-      recipeTitle: '감자칩을 맛있게 해서 먹어봅시다?>?????',
-      recipeImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-    },
-    {
-      myLikeCheck: false,
-      writer: '김수빈',
-      writerImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-      recipeId: '5',
-      recipeTitle: '감자칩을 맛있게 해서 먹어봅시다?>?????',
-      recipeImage: 'https://i.postimg.cc/x8VV5MyD/image.jpg',
-    },
-  ]);
+  const navigate = useNavigate();
+  const [sort, setSort] = useState<string>('latest');
+  const [recipeList, setRecipeList] = useState<GridRecipeListItemType[]>([]);
+
+  const { state } = useLocation();
+
+  useEffect(() => {
+    if (!state) {
+      getRecipeListAPI('', sort, '').then((data) => {
+        setRecipeList(data.content);
+      });
+    } else {
+      getRecipeListAPI(state, sort, '').then((data) => {
+        setRecipeList(data.content);
+      });
+    }
+  }, [state]);
+
   const handleSort = async (sort: string) => {
     setSort(sort);
+    getRecipeListAPI('', sort, '').then((data) => {
+      setRecipeList(data.content);
+    });
   };
+
   return (
     <div className='side-margin'>
       <TopNav />
-      {/* <div className={styles['theme-container']}>{theme === 'recipes' && <h1>레시피</h1>}</div> */}
+      <div className={styles['theme-container']}></div>
       <div className={styles['sort']}>
         {sort === 'popular' && (
           <>
@@ -71,6 +55,9 @@ export default function RecipeContentPage() {
         )}
       </div>
       <RecipeGridList recipeList={recipeList} />
+      <button className={styles['write-btn']} onClick={() => navigate('/recipe-posting')}>
+        <AddIcon />
+      </button>
       <BottomNav />
     </div>
   );

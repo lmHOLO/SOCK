@@ -11,9 +11,21 @@
 }
 
 .purchase-btn {
+  padding: 3px 10px;
   float: right;
+  display: flex;
+  align-items: center;
   margin-bottom: 10px;
+  font-size: 15px;
+  background-color: #669966;
+  color: azure;
+  border-radius: 50px;
 }
+.purchase-btn > img {
+  width: 20px;
+  height: 20px;
+}
+
 /* snack content */
 .grade-flavors-like {
   display: flex;
@@ -40,8 +52,9 @@
   justify-content: center;
   width: 100%;
   height: 215px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   border-radius: 10px;
+  margin-top: 70px;
 }
 
 .snack-img-container > img {
@@ -56,14 +69,24 @@
   white-space: nowrap;
 }
 .flavor-list-item-container {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background-color: sock-yellow;
   font-size: 12px;
   padding: 5px 10px;
   border-radius: 100px;
   margin-right: 5px;
+  height: 30px;
+}
+.flavor-list-item-container > img {
+  height: 100%;
 }
 
-.grade-flavors-like > svg {
+.snack-img-container > svg {
   color: rgb(255, 119, 119);
+  align-self: flex-end;
+}
+.snack-comment {
+  margin-bottom: 15px;
 }

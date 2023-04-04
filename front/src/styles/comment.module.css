@@ -1,10 +1,14 @@
 @value sock-brown, sock-nagative, sock-yellow, white-color  from './common/colors.css';
-.comment-container {
+/* .comment-container {
   margin: 10px 0px;
-}
+} */
 
 .comment-item {
   margin: 10px 0px;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+  background-color: rgba(211, 211, 211, 0.5);
 }
 .member-date {
   display: flex;
@@ -15,12 +19,15 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .comment-write > textarea {
   border-radius: 5px;
   padding: 3px;
   width: 80%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  margin-bottom: 5px;
 }
 
 .comment-write > button {
@@ -35,29 +42,85 @@
   display: flex;
   align-items: center;
 }
-
-.member-data > img {
+.member-image {
+  position: relative;
   width: 28px;
   height: 28px;
-  border-radius: 100px;
+  margin-right: 4px;
+}
+.member-image::after {
+  display: block;
+  content: '';
+  padding-bottom: 100%;
+}
+.member-image > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  margin-right: 5px;
+  border-radius: 50%;
+}
+.member-data > p {
+  max-width: 30vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .comment-data {
   display: flex;
   justify-content: space-between;
+  word-break: break-all;
+  white-space: pre-wrap;
+  text-overflow: ellipsis;
 }
 
 .delete-btn {
-  color: sock-nagative;
+  color: rgb(255, 0, 0);
+  background-color: rgba(211, 211, 211, 0);
+  border-radius: 10px;
   float: right;
 }
 
 /* 별점 관련 */
 .star {
   display: flex;
+  margin-top: 5px;
+  /* margin-bottom: 5px; */
 }
 .star > div > svg {
   color: sock-yellow;
+}
+
+/* 댓글 관련 */
+.comment-content {
+  margin-top: 8px;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+.p-createDate {
+  margin-left: 140px;
+}
+.delete-btn-margin {
+  margin: 10px;
+}
+
+/* 등급 */
+/* grade */
+.grade-sbti {
+  display: flex;
+  align-items: center;
+}
+.grade-sbti > img:first-child {
+  width: 25px;
+  height: 25px;
+  border-radius: 100px;
+}
+.grade-sbti > img:last-child {
+  width: 25px;
+  height: 25px;
+  border-radius: 100px;
 }

@@ -15,6 +15,11 @@ export type ProfileType = {
   content: string;
 };
 
+export type SearchMemberType = {
+  id: string;
+  nickname: string;
+  image: string;
+};
 // 초기 상태 타입
 export type MemberStateType = {
   isLoggedIn: boolean;
@@ -38,3 +43,45 @@ export type MemberPreferType = {
 
 // 프로필
 export type MenuType = 'POST_RECIPE' | 'LIKE_SNACK' | 'LIKE_RECIPE';
+
+export type UpdateProfileType = {
+  nickname: string;
+  profile: ProfileType;
+};
+
+// 마이페이지 그리드
+export type ProfileGridItemType = {
+  id: string;
+  image: string;
+};
+
+// 등급
+export type GradeType =
+  | 'NONE'
+  | 'FIRST_FLOOR'
+  | 'SECOND_FLOOR'
+  | 'THIRD_FLOOR'
+  | 'TF_SWEET'
+  | 'TF_SALT'
+  | 'TF_MILD'
+  | 'TF_SPICY'
+  | 'TF_SOUR';
+
+export type SbtiType =
+  | 'NONE'
+  | 'INTJ'
+  | 'INTP'
+  | 'ENTJ'
+  | 'ENTP'
+  | 'INFJ'
+  | 'INFP'
+  | 'ENFJ'
+  | 'ENFP'
+  | 'ISTJ'
+  | 'ISFJ'
+  | 'ESTJ'
+  | 'ESFJ'
+  | 'ISTP'
+  | 'ISFP'
+  | 'ESTP'
+  | 'ESFP';

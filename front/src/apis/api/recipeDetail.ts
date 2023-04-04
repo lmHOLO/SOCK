@@ -6,7 +6,6 @@ import { RecipeWriteType } from '@/types/recipe';
 export const getContainRecipeAPI = async (page: string, id: string) => {
   try {
     const { data } = await authApiInstance().get(`recipes/contain?${page}-id=${id}`);
-    console.log(data);
     return data.data;
   } catch (error) {
     if (isAxiosError(error)) {
@@ -20,7 +19,6 @@ export const getContainRecipeAPI = async (page: string, id: string) => {
 export const getRecipeDetailApi = async (id: string) => {
   try {
     const { data } = await authApiInstance().get(`/recipes/${id}`);
-    console.log('레시피 상세', data);
     return data.data;
   } catch (error) {
     if (isAxiosError(error)) {
@@ -35,7 +33,7 @@ export const postRecipeAPI = async (data: RecipeWriteType) => {
   try {
     console.log(data);
     const result = await authApiInstance().post(`/recipes`, data);
-    return result;
+    return result.data;
   } catch (error) {
     if (isAxiosError(error)) {
       console.log('에러: ', error.response);

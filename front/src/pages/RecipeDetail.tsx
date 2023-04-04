@@ -48,7 +48,7 @@ export default function RecipeDetail() {
         <SnackList snackList={similarSnackList} />
       </div>
       <div>
-        <div>
+        <div className={styles['recipe-comment']}>
           <p>댓글</p>
         </div>
         {id && <Comment recipeId={id} />}

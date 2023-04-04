@@ -1,39 +1,128 @@
-@value sock-brown, white-color  from './common/colors.css';
+@value sock-brown, sock-yellow, white-color  from './common/colors.css';
 
 .search-bar-conatiner {
+  margin-top: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 70px;
 }
 
 .search-bar {
-  width: 250px;
+  width: 65%;
   margin-bottom: 0px;
-  border-radius: 10px;
+  height: 30px;
+  margin-right: 10px;
+  background-color: ligh;
+  border-radius: 100px;
+  padding-left: 15px;
+  background-color: lightcyan;
 }
 
 .search-btn {
-  background-color: sock-brown;
+  background-color: lightseagreen;
   border-radius: 3px;
   padding: 3px 10px;
   color: white-color;
+  height: 30px;
+  /* overflow: hidden; */
+  word-break: break-all;
+  white-space: pre-wrap;
+  border-radius: 100px;
+}
+
+.search-word {
+  word-break: break-all;
+  white-space: pre-wrap;
+  text-overflow: ellipsis;
+  /* overflow: auto; */
+  width: 30px;
 }
 
 .theme-select-btn {
   background-color: sock-brown;
   color: white-color;
+  margin-right: 5px;
+}
+
+/* 필터 아이콘 */
+.filter-container {
+  display: flex;
+  justify-content: end;
+  padding: 10px;
+}
+.filter-btn {
+  width: 40px;
+  height: 40px;
 }
 
 /* 인기검색 */
 .popular-container {
-  width: 90%;
-  background-color: sock-brown;
+  /* background-color: g; */
+
+  /* background-color: rgb(180, 215, 254); */
+  box-shadow: rgba(99, 99, 99, 0.5) 0px 2px 8px 0px;
+
   border-radius: 10px;
   margin: 0 auto;
-  padding: 10px;
+  padding: 10px 3px;
+  margin-top: 20px;
 }
 
 .popular-list > li {
-  color: white;
+  border-radius: 15px;
+  box-shadow: rgba(99, 99, 99, 0.5) 0px 2px 3px 0px;
+
+  /* background-color: rgba(213, 241, 254); */
+  background-color: #8aaae5;
+
+  color: #fff;
   padding: 10px;
+  margin: 5px 3px;
+}
+
+.filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+/* .selected {
+  padding: 5px 10px;
+  color: white-color;
+  border-radius: 100px;
+  background-color: sock-yellow;
+  color: sock-brown;
+  font-size: 13px;
+  margin-left: 4px;
+  margin-bottom: 10px;
+} */
+.selected {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid sock-brown;
+  border-radius: 100px;
+  margin: 4px 6px 4px 0px;
+  padding: 5px 10px;
+  width: max-content;
+  background-color: sock-brown;
+  color: white-color;
+  height: 30px;
+}
+
+.selected > img {
+  height: 100%;
+}
+
+.selected-icon-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sort > button {
+  margin-left: 4px;
+}
+.bold {
+  font-weight: 700;
 }
