@@ -11,7 +11,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableJpaAuditing
 @SpringBootApplication
 @EnableConfigurationProperties(AppProperties.class)
-public class SockApplication {
+public class  SockApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SockApplication.class, args);
 	}

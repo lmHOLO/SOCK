@@ -64,13 +64,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
-
-if __name__ == "__main__":
-    uvicorn.run("snack_db:app", host="j8c103.p.ssafy.io", port=9000)
-
 
 @app.post("/prefer")
 def prefer_list(items: Item):
