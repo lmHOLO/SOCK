@@ -39,8 +39,12 @@ export default function SnackContentPage() {
       <TopNav />
       <div className={styles['theme-container']}>
         {theme === 'RETRO' && (
-          <header>
-            <h1 className=''>레트로</h1>
+          <header className={`${styles['retro-header']}`}>
+            <div className={styles['retro-logo']}>
+              {/* <img src={require(`@/assets/home/retro_green_main.png`)} alt='retro' /> */}
+              <img src={require(`@/assets/home/retro_red_letter.png`)} alt='retro' />
+              <img src={require(`@/assets/home/retro_red_main.png`)} alt='retro' />
+            </div>
           </header>
         )}
         {theme === 'MOVIE' && (
@@ -58,7 +62,13 @@ export default function SnackContentPage() {
             </div>
           </header>
         )}
-        {theme === 'ALCHOL' && <h1>술</h1>}
+        {theme === 'ALCHOL' && (
+          <header className={`${styles['alchol-header']}`}>
+            <div className={styles['milk-logo']}>
+              <img src={require(`@/assets/home/alchol.png`)} alt='알코올' />
+            </div>
+          </header>
+        )}
       </div>
 
       {!theme && (

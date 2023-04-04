@@ -195,3 +195,35 @@
   height: 100%;
   transform: translate(-50%, 0);
 }
+
+/* 알코올 */
+.alchol-header {
+  width: 100%;
+  color: white-color;
+  background-color: #ffd84b;
+}
+/* 레트로 */
+.retro-header {
+  width: 100%;
+  color: white-color;
+  background-color: #223527;
+}
+
+.retro-logo {
+  height: 200px;
+  position: relative;
+}
+.retro-logo > img:first-child {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 50%;
+  transform: translate(-50%, -10%) scale(0.6);
+}
+.retro-logo > img:last-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 70%;
+  transform: translate(-50%, -30%);
+}
