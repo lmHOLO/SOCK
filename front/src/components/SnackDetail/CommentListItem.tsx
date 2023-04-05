@@ -7,6 +7,7 @@ import useMember from '@/hooks/memberHook';
 import { deleteSnackReviewAPI, getSnackReviewsAPI, getSnackDetailApi } from '@/apis/api/snackDetail';
 import { getMyReview, getOtherReviewList } from '@/apis/services/snackDetail';
 import { getGradeImage, getSbtiImage } from '@/utils/memberInfo';
+import { useNavigate } from 'react-router';
 
 interface Props {
   isValid: boolean;
@@ -28,6 +29,7 @@ export default function CommentListItem({
   starAvg,
 }: Props) {
   const { memberData } = useMember();
+  const navigate = useNavigate();
   const gradeImage = getGradeImage(comment.writer.grade);
   const sbtiImage = getSbtiImage(comment.writer.sbti);
   const reviewDeleteEvent = () => {
@@ -63,7 +65,7 @@ export default function CommentListItem({
 
   return (
     <li className={styles['comment-item']}>
-      <div className={styles['member-data']}>
+      <div className={styles['member-data']} onClick={() => navigate(`/profile/${comment.writer.writerId}`)}>
         <div className={styles['member-image']}>
           <img src={comment.writer.image} alt={comment.writer.image} />
         </div>
