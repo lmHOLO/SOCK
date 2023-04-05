@@ -12,7 +12,6 @@ import { checkPreferType } from '@/types/snack';
 import axios, { AxiosResponse } from 'axios';
 import styles from '@/styles/firstprefer.module.css';
 import '@react-spring/web';
-
 interface SwipeCounts {
   left: number;
   right: number;
@@ -115,35 +114,51 @@ export default function FirstPrefer() {
     console.log('this is likeList', likeList);
   }, [likeList]);
   useEffect(() => {
-    console.log('this is currentImdex', currentIndex);
-  }, [currentIndex]);
+    console.log('this is currentImdex', currentIndex)
+  }, [currentIndex])
 
-  return (
-    <>
-      <div>
-        <React.Fragment>
-          <LinearProgress variant='determinate' value={likeList.length * 20} />
-        </React.Fragment>
-        <h2>Left Swipes: {swipeCounts.left}</h2>
-        <h2>Right Swipes: {swipeCounts.right}</h2>
-        <div>
-          {firstPreferList.map((snack, index) => {
-            if (index === currentIndex) {
-              return (
-                <TinderCard onSwipe={(direction) => handleSwipe(direction, snack.snackId)} key={snack.snackId}>
-                  <div>
-                    <img src={snack.image} alt='' />
-                    <div>{snack.name}</div>
-                  </div>
-                </TinderCard>
-              );
-            } else {
-              return null;
-            }
-          })}
-        </div>
+
+
+
+
+
+
+  return (<>
+
+  <div className={styles['prefer-page']}>
+    <React.Fragment>
+      <LinearProgress variant="determinate" value={((likeList.length)*20)} />
+    </React.Fragment>
+    <h2>Left Swipes: {swipeCounts.left}</h2>
+    <h2>Right Swipes: {swipeCounts.right}</h2>
+    <div className={styles['prefer-container']}>
+      <div className={styles['left-arrow-container']}>
+        <img src={require(`@/assets/login/dislike.png`)} alt="left arrow" />
+        <img src={require(`@/assets/login/left_arrow.png`)} alt="left arrow" />
       </div>
-      {/* <div>
+      {firstPreferList.map((snack, index) => {
+        if (index === currentIndex) {
+          return (
+            <TinderCard onSwipe={(direction) => handleSwipe(direction, snack.snackId)} key={snack.snackId}>
+              <div className={styles['prefer-card']}>
+                <img src={snack.image} alt={snack.name} />
+                <p>
+                  {snack.name}
+                </p>
+              </div>
+            </TinderCard>
+          )
+        } else {
+          return null;
+        }
+      })}
+      <div className={styles['right-arrow-container']}>
+        <img src={require(`@/assets/login/like.png`)} alt="left arrow" />
+        <img src={require(`@/assets/login/right_arrow.png`)} alt="left arrow" />
+      </div>
+    </div>
+  </div>
+    {/* <div>
       {firstPreferList[2].snackId}
     </div> */}
       {/* <div>

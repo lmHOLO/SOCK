@@ -16,9 +16,6 @@ export default function Milk() {
   return (
     <div className='milk-container'>
       {/* <a id='myButton' href='#' data-text='CSS쯜꺼워'></a> */}
-      <div className='milk-letter'>
-        <img src={require(`@/assets/home/milk_main_letter.png`)} alt='milk' />
-      </div>
 
       <div className='milk-text-container'>
         <h1>우유와 함께</h1>

@@ -43,11 +43,7 @@ export default function PhotoList({ setTab, originFiles, setOriginFiles }: Props
     >
       <button type='button' className={styles['upload-container']}>
         {/* <AddPhotoAlternateIcon /> */}
-        <img
-          src={require(`@/assets/home/icon_photo.png`)}
-          alt='AddPhotoAlternateIcon'
-          className={styles['image-regist-btn']}
-        />
+        <img src={require(`@/assets/home/icon_photo.png`)} alt='AddPhotoAlternateIcon' className={styles['image-regist-btn']} />
       </button>
     </FileUploader>
   );

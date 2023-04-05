@@ -26,6 +26,11 @@ export default function CommentListItem({ comment, recipeId, commentList, setCom
     }
   };
 
+  const timeStr = comment.createdDate; // 예제 시간 문자열
+  // 정규식 사용하여 T와 ss 제거
+  const newTimeStr = timeStr.replace(/T(\d{2}:\d{2}):\d{2}/, ' $1');
+  console.log(newTimeStr); // 출력: "2023-04-04 12:30"
+
   return (
     <div className={styles['comment-item']}>
       <div className={styles['member-date']}>
@@ -40,7 +45,8 @@ export default function CommentListItem({ comment, recipeId, commentList, setCom
           </div>
         </div>
         <div className={styles['comment-data']}>
-          <p>{comment.createdDate}</p>
+          {/* <p>{comment.createdDate}</p> */}
+          <p>{newTimeStr}</p>
         </div>
       </div>
       <div className={styles['delete-btn-margin']}>
