@@ -1,6 +1,5 @@
 @value sock-brown, sock-yellow, white-color  from './common/colors.css';
 .primary {
-  padding: 1rem;
 }
 
 .card-list {
@@ -11,7 +10,9 @@
 .card-item {
   margin-bottom: 2rem;
   background: inherit;
-  border-radius: 30px;
+  border-radius: 20px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 10px;
 }
 .card-image {
   position: relative;
