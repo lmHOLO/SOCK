@@ -57,8 +57,8 @@ export default function FilterModal({ modalOpen, setModalOpen, filter, applyFilt
       setNewFilter((prevState) => {
         return { ...prevState, flavors: newFlavors };
       });
-      snackList.map((item) => {
-        if (sliceStr(item.name) == value) {
+      flavorList.map((item) => {
+        if (item.name === value) {
           const newFlavors2 = newFilter2.flavors.filter((item) => item.name !== value);
           setNewFilter2((prevState) => {
             return { ...prevState, flavors: newFlavors2 };
