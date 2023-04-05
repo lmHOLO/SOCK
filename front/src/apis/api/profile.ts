@@ -15,7 +15,6 @@ export const getMyRecipeListAPI = async (memberId: string) => {
 export const getLikedRecipeListAPI = async (memberId: string) => {
   try {
     const { data } = await authApiInstance().get(`/recipes/like?member-id=${memberId}`);
-    console.log(data);
     return data.data;
   } catch (error) {
     if (isAxiosError(error)) {
@@ -27,7 +26,6 @@ export const getLikedRecipeListAPI = async (memberId: string) => {
 export const getLikedSnackListAPI = async (memberId: string) => {
   try {
     const { data } = await authApiInstance().get(`/snacks/like?member-id=${memberId}`);
-    console.log(data);
     return data.data;
   } catch (error) {
     if (isAxiosError(error)) {

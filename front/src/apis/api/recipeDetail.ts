@@ -1,7 +1,6 @@
 import { authApiInstance } from '@/apis/axiosConfig';
 import { isAxiosError } from 'axios';
 import { RecipeWriteType } from '@/types/recipe';
-// const authApi = authApiInstance();
 //  추천 레시피
 export const getContainRecipeAPI = async (page: string, id: string) => {
   try {
