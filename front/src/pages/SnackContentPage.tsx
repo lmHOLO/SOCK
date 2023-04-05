@@ -26,7 +26,7 @@ export default function SnackContentPage() {
         setSnackList(data.content);
       });
     }
-  }, [keyword, flavors, types, arrange]);
+  }, [theme, keyword, flavors, types, arrange]);
 
   const handleSort = async (sort: string) => {
     setSort(sort);
