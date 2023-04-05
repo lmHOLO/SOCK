@@ -29,7 +29,7 @@ export default function Profile() {
 
   const { memberData } = useMember();
 
-  const { id } = useParams();
+  const { id } = useParams<string>();
   const [itemList, setItemList] = useState<ProfileGridItemType[]>([]);
   useEffect(() => {
     handleMenuClick('POST_RECIPE');
@@ -37,11 +37,11 @@ export default function Profile() {
 
   const handleMenuClick = (menu: MenuType) => {
     if (menu === 'LIKE_RECIPE') {
-      getLikedRecipeListAPI(memberData.id).then(getLikedRecipeList).then(setItemList);
+      id && getLikedRecipeListAPI(id).then(getLikedRecipeList).then(setItemList);
     } else if (menu === 'POST_RECIPE') {
-      getMyRecipeListAPI(memberData.id).then(getMyRecipeList).then(setItemList);
+      id && getMyRecipeListAPI(id).then(getMyRecipeList).then(setItemList);
     } else if (menu === 'LIKE_SNACK') {
-      getLikedSnackListAPI(memberData.id).then(getLikedSnackList).then(setItemList);
+      id && getLikedSnackListAPI(id).then(getLikedSnackList).then(setItemList);
     }
     setMenu(menu);
   };
