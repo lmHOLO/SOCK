@@ -1,9 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from '@/styles/retro.module.css';
-// Import Swiper React components
-
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCoverflow, Pagination } from 'swiper';
 import { SnackListItemType } from '@/types/snack';
 import { useNavigate } from 'react-router';
 interface Props {

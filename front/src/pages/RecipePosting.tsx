@@ -27,19 +27,12 @@ export default function RecipePosting() {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
-  // const [cropedFiles, setCropedFiles] = useState<File[]>([]);
   let imageUrlList: string[] = [];
   const navigate = useNavigate();
   const handleUploadButton = async () => {
-    console.log('click!');
-    console.log('originFiles: ', originFiles);
     if (title && content.length >= 10 && tagList.length > 0) {
       setLoading(true);
       await uploadFiles().then(async (result) => {
-        console.log('title: ', title);
-        console.log('content: ', content);
-        console.log('tagList: ', tagList);
-        console.log('imageUrlList: ', imageUrlList);
         result &&
           (await postRecipeAPI({
             content: content.replace(/(?:\r\n|\r|\n)/g, '\n'),
@@ -47,7 +40,6 @@ export default function RecipePosting() {
             title: title,
             snackIds: tagList.map((tag) => tag.id),
           }).then((result) => {
-            console.log(result);
             navigate(`/recipes/${result.data}`);
           }));
       });
@@ -65,8 +57,6 @@ export default function RecipePosting() {
 
   const addTag = (snack: PostSnackTagType) => {
     setTagList([...tagList, snack]);
-    console.log(snack);
-    console.log(tagList);
   };
 
   const deleteTag = (id: string) => {
@@ -94,10 +84,8 @@ export default function RecipePosting() {
           (snapshot) => {
             switch (snapshot.state) {
               case 'paused':
-                console.log('Upload is paused');
                 break;
               case 'running':
-                console.log('Upload is running');
                 break;
             }
           },
@@ -106,14 +94,14 @@ export default function RecipePosting() {
           },
           () => {
             getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-              let now = new Date();
-              let File_id = name + ' + ' + now;
+              // let now = new Date();
+              // let File_id = name + ' + ' + now;
               imageUrlList.push(url);
-              console.log('storage에 파일 업로드 성공 url: ', url);
-              console.log('File_id: ', File_id);
-              console.log('File_Title: ', name);
-              console.log('Create_Date: ', now);
-              console.log(imageUrlList);
+              // console.log('storage에 파일 업로드 성공 url: ', url);
+              // console.log('File_id: ', File_id);
+              // console.log('File_Title: ', name);
+              // console.log('Create_Date: ', now);
+              // console.log(imageUrlList);
               resolve();
             });
           },

@@ -4,8 +4,6 @@ import { SearchThemeType } from '@/types/search';
 import React, { useEffect, useState } from 'react';
 import styles from '@/styles/search.module.css';
 import Popular from '@/components/Search/Popular';
-import { useNavigate } from 'react-router-dom';
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { getTopPopularListAPI } from '@/apis/api/search';
 import FilterModal from '@/components/Search/FilterModal';
 import BottomNav from '@/components/Navbar/BottomNav';

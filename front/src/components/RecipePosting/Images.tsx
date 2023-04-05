@@ -10,7 +10,6 @@ interface Props {
   originFiles: File[];
 }
 export default function Images({ originFiles }: Props) {
-  // 나중에 api로 받기
   return (
     <>
       <Swiper

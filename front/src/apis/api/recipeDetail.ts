@@ -31,7 +31,6 @@ export const getRecipeDetailApi = async (id: string) => {
 //  레시피 등록
 export const postRecipeAPI = async (data: RecipeWriteType) => {
   try {
-    console.log(data);
     const result = await authApiInstance().post(`/recipes`, data);
     return result.data;
   } catch (error) {
@@ -46,7 +45,6 @@ export const postRecipeAPI = async (data: RecipeWriteType) => {
 export const getSnackKeywordSearch = async (keyword: string) => {
   try {
     const { data } = await authApiInstance().get(`/snacks?keyword=${keyword}`);
-    console.log(data);
     return data.data.content;
   } catch (error) {
     if (isAxiosError(error)) {

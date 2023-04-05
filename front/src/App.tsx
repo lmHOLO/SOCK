@@ -9,7 +9,6 @@ import useMember from '@/hooks/memberHook';
 import SnackDetail from '@/pages/SnackDetail';
 import RecipeDetail from '@/pages/RecipeDetail';
 import RecipePosting from '@/pages/RecipePosting';
-import FirebaseUploadTest from './pages/FirebaseUploadTest';
 import EventList from '@/pages/EventList';
 import EventResult from './pages/EventrResult';
 import WorldcupEvent from '@/pages/WorldcupEvent';
@@ -21,15 +20,6 @@ import SnackContentPage from '@/pages/SnackContentPage';
 import RecipeContentPage from '@/pages/RecipeContentPage';
 
 const router = createBrowserRouter([
-  /*   {
-    path: '/',
-    element: <Root />,
-    errorElement: <NotFound />,
-    children: [
-      { index: true, element: <Home /> },
-      { path: '/login', element: <Login /> },
-    ],
-  }, */
   {
     path: '/',
     element: <Home />,
@@ -63,11 +53,6 @@ const router = createBrowserRouter([
   {
     path: '/recipe-posting',
     element: <RecipePosting />,
-    errorElement: <NotFound />,
-  },
-  {
-    path: '/firebasetest',
-    element: <FirebaseUploadTest />,
     errorElement: <NotFound />,
   },
   {
@@ -114,7 +99,6 @@ const router = createBrowserRouter([
     path: '/firstprefer',
     element: <FirstPrefer />,
   },
-  
 ]);
 export default function App() {
   const { isLoggedIn } = useMember();

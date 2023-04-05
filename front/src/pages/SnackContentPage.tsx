@@ -44,7 +44,6 @@ export default function SnackContentPage() {
         {theme === 'RETRO' && (
           <header className={`${styles['retro-header']}`}>
             <div className={styles['retro-logo']}>
-              {/* <img src={require(`@/assets/home/retro_green_main.png`)} alt='retro' /> */}
               <img src={require(`@/assets/home/retro_red_letter.png`)} alt='retro' />
               <img src={require(`@/assets/home/retro_red_main.png`)} alt='retro' />
             </div>

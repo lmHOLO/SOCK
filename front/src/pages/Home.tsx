@@ -1,18 +1,15 @@
 import React, { useEffect, useState, useRef } from 'react';
 import TopNav from '@/components/Navbar/TopNav';
 import BottomNav from '@/components/Navbar/BottomNav';
-import SnackList from '@/components/common/SnackList';
 import useMember from '@/hooks/memberHook';
 import styles from '@/styles/home.module.css';
 import { SnackListItemType } from '@/types/snack';
-import ThemeList from '@/components/Home/ThemeList';
 import Recommend from '@/components/Home/Recommend';
 import Retro from '@/components/Home/Retro';
 import Movie from '@/components/Home/Movie';
 import Milk from '@/components/Home/Milk';
 import Alchol from '@/components/Home/Alchol';
 import { recommendIdAPI, snackDetailAPI } from '@/apis/api/main';
-import { setDefaultResultOrder } from 'dns';
 import FirstMain from '@/components/Home/FirstMain';
 
 export default function Home() {
@@ -79,7 +76,11 @@ export default function Home() {
     const newdatas: SnackListItemType[] = [];
     for (let i = 0; i < 5; i++) {
       snackDetailAPI(recommendIdList[i]).then((result) => {
-        let newdata: SnackListItemType = { snackId: result.data.snackId, image: result.data.image, title: result.data.title };
+        let newdata: SnackListItemType = {
+          snackId: result.data.snackId,
+          image: result.data.image,
+          title: result.data.title,
+        };
         newdatas.push(newdata);
         // setRecommendSnackList([...recommendSnackList, newdata])
         setRecommendSnackList([...recommendSnackList, ...newdatas]);
