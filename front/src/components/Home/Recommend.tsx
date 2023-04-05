@@ -4,7 +4,10 @@ import { SnackListItemType } from '@/types/snack';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { Pagination, Navigation } from 'swiper';
+import "swiper/css/effect-cube";
+import "swiper/css/pagination";
+
+import { Pagination, Navigation, EffectCube } from 'swiper';
 import { useNavigate } from 'react-router';
 interface Props {
   recommendSnackList: SnackListItemType[];
@@ -31,11 +34,20 @@ export default function Recommend({ recommendSnackList }: Props) {
         <br /> 맞춤추천
       </h1>
       <Swiper
+        effect='cube'
+        cubeEffect={{
+          // shadow: true,
+          // slideShadows: true,
+          // shadowOffset: 20,
+          // shadowScale: 0.94,
+        }}
         pagination={{
           dynamicBullets: true,
         }}
-        loop={true}
-        modules={[Pagination, Navigation]}
+        // loop={true}
+        grabCursor={true}
+        // modules={[Pagination, Navigation]}
+        modules={[EffectCube, Pagination, Navigation]}
         className={`${styles['mySwiper']}`}
       >
         {recommendSnackList.map((item, index) => (
