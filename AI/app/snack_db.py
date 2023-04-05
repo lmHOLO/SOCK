@@ -179,10 +179,10 @@ def recommend_by_cbf(member_id: int, grade: str):
 
 
         # 유저-아이템 종합 평점 테이블
-        member_snack_arr = [[0]*snack_cursor for _ in range(user_cursor+1)]
+        member_snack_arr = [[0]*(snack_cursor+1) for _ in range(user_cursor+1)]
 
         # 이것을 나눌 분모 테이블
-        demoni = [[6]*snack_cursor for _ in range(user_cursor+1)]
+        demoni = [[6]*(snack_cursor+1) for _ in range(user_cursor+1)]
 
 
         # 검색에 관련된 평점
