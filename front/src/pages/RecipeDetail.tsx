@@ -17,7 +17,6 @@ export default function RecipeDetail() {
   useEffect(() => {
     if (id) {
       getSimilarSnackAPI('recipe', id).then((data) => {
-        console.log(data, '유사과자리스트')
         setSimilarSnackList(data);
       });
       getContainRecipeAPI('recipe', id).then((data) => {

@@ -16,7 +16,6 @@ export default function useMember() {
   );
   const logout = useCallback(() => {
     dispatch(logoutAction());
-    // localStorage.removeItem('token');
   }, [dispatch]);
   return { isLoggedIn, memberData, login, logout };
 }

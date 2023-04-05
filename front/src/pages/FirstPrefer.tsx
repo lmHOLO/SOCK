@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import useMember from '@/hooks/memberHook';
 import { useNavigate } from 'react-router-dom';
-import { authApiInstance } from '@/apis/axiosConfig';
-import { apiInstance } from '@/apis/axiosConfig';
-import { fastApiInstance } from '@/apis/axiosConfig';
 import { firstPreferApi, CbfApi, checkPreferenceAPI } from '@/apis/api/firstprefer';
 import { SnackPreferType } from '@/types/snack';
 import TinderCard from 'react-tinder-card';
 import { LinearProgress } from '@mui/material';
 import { checkPreferType } from '@/types/snack';
-import axios, { AxiosResponse } from 'axios';
 import styles from '@/styles/firstprefer.module.css';
 import '@react-spring/web';
 interface SwipeCounts {
@@ -40,7 +36,7 @@ export default function FirstPrefer() {
   };
 
   const [firstPreferList, setFirstPreferList] = useState<SnackPreferType[]>([]);
-  // const normalise = (firstPreferList.length) => (firstPreferList.length/5 * 100);
+
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
@@ -60,30 +56,9 @@ export default function FirstPrefer() {
       });
     }
   }, [firstPreferList]);
-  // useEffect(() => {
-  //   if (likeList.length === 5){
-  //     // fetch data and update state when component mounts
-  //     CbfApi2()
-  //       // setFirstPreferList(response);
-  //       // console.log(firstPreferList, 'one of preferlist')
-
-  //   }
-  //   }, [likeList]
-  // )
-
-  // const updateMyPreference = myPreference.map((obj, idx) => {
-  //   return {...obj, snackId: likeList[idx], likes: 1}
-  // });
 
   useEffect(() => {
     if (likeList.length === 5) {
-      // fetch data and update state when component mounts
-      CbfApi({ id: Number(memberData.id), favor_list: likeList }).then((response) => {
-        console.log(response, '컨텐츠기반 선호도조사의 결과');
-        // setFirstPreferList(response);
-        // console.log(firstPreferList, 'one of preferlist')
-      });
-
       likeList.forEach((snackId) => {
         const newPreference: checkPreferType = {
           snackId: snackId,
@@ -91,31 +66,34 @@ export default function FirstPrefer() {
         };
         console.log(newPreference, 'newPreference');
         setMyPreference((prevPreferences) => [...prevPreferences, newPreference]);
-        // setMyPreference([...myPreference, newPreference])
       });
-      console.log(localStorage.getItem('token'), '04/04 token check');
-      checkPreferenceAPI(myPreference).then((response) => {
-        console.log(response, 'check_preference를 1로 변경');
-      });
-      if (token) {
-        navigate('/');
-      }
+      // fetch data and update state when component mounts
+      CbfApi({ id: Number(memberData.id), favor_list: likeList }).then((response) => {
+        console.log(response, '컨텐츠기반 선호도조사의 결과');
+
+      }).then(() => checkPreferenceAPI(myPreference).then(() =>
+      navigate('/')
+      ))
+
+      
+      // console.log(localStorage.getItem('token'), '04/04 token check');
+      // checkPreferenceAPI(myPreference).then((response) => {
+      //   // console.log(response, 'check_preference를 1로 변경');
+      // });
+      // if (token) {
+      //   navigate('/');
+      // }
     }
   }, [likeList]);
 
-  // useEffect(() => {
-  //   if (myPreference){
-  //     console.log(myPreference, 'this is mypreference')
-  //   }
-  //   }, [myPreference]
-  // )
+
 
   useEffect(() => {
     console.log('this is likeList', likeList);
   }, [likeList]);
   useEffect(() => {
-    console.log('this is currentImdex', currentIndex)
-  }, [currentIndex])
+    console.log('this is currentImdex', currentIndex);
+  }, [currentIndex]);
 
 
 
@@ -129,13 +107,16 @@ export default function FirstPrefer() {
     <React.Fragment>
       <LinearProgress variant="determinate" value={((likeList.length)*20)} />
     </React.Fragment>
-    <h2>Left Swipes: {swipeCounts.left}</h2>
-    <h2>Right Swipes: {swipeCounts.right}</h2>
     <div className={styles['prefer-container']}>
+    <div className={styles['prefer-count']}>
+
+{likeList.length}/5
+</div>
       <div className={styles['left-arrow-container']}>
         <img src={require(`@/assets/login/dislike.png`)} alt="left arrow" />
         <img src={require(`@/assets/login/left_arrow.png`)} alt="left arrow" />
       </div>
+
       {firstPreferList.map((snack, index) => {
         if (index === currentIndex) {
           return (

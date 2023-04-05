@@ -42,7 +42,6 @@ export default function RecipeContentPage() {
       <audio autoPlay>
         <source src={require('@/assets/eating_cracker.mp3')} type='audio/mpeg'></source>
       </audio>
-      {/* <div className={styles['theme-container']}>{theme === 'recipes' && <h1>레시피</h1>}</div> */}
       <div className={styles['sort']}>
         {sort === 'popular' && (
           <>
@@ -58,9 +57,12 @@ export default function RecipeContentPage() {
         )}
       </div>
       <RecipeGridList recipeList={recipeList} />
-      <button className={styles['write-btn']} onClick={() => navigate('/recipe-posting')}>
-        <AddIcon />
-      </button>
+      <img
+        src={require(`@/assets/home/btn_close.png`)}
+        alt='icon_filter'
+        className={styles['write-btn']}
+        onClick={() => navigate('/recipe-posting')}
+      />
       <BottomNav />
     </div>
   );

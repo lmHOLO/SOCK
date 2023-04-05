@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import BottomNav from "@/components/Navbar/BottomNav";
-import TopNav from "@/components/Navbar/TopNav";
-import { WorldcupSnackType } from "@/types/event";
+import React, { useEffect, useState } from 'react';
+import BottomNav from '@/components/Navbar/BottomNav';
+import TopNav from '@/components/Navbar/TopNav';
+import { WorldcupSnackType } from '@/types/event';
 
-import styles from "@/styles/event_worldcup.module.css";
+import styles from '@/styles/event_worldcup.module.css';
 
-import { getWorldcupSnackListAPI } from "@/apis/api/event";
+import { getWorldcupSnackListAPI } from '@/apis/api/event';
 
 export default function WorldcupEvent() {
   const [worldcupSnackList, setWorldcupSnackList] = useState<WorldcupSnackType[]>([]);
@@ -23,7 +23,7 @@ export default function WorldcupEvent() {
       setDisplays([data[0], data[1]]);
     });
 
-    setTotal("8강");
+    setTotal('8강');
     setRound(4);
     setNow(1);
     setFinish(false);
@@ -43,8 +43,8 @@ export default function WorldcupEvent() {
 
         setNow(1);
         round && setRound(round / 2);
-        if (updatedSnack.length == 4) setTotal("4강");
-        else if (updatedSnack.length == 2) setTotal("결승");
+        if (updatedSnack.length == 4) setTotal('4강');
+        else if (updatedSnack.length == 2) setTotal('결승');
       }
     } else if (worldcupSnackList.length > 2) {
       setWinners([...winners, snack]);
@@ -58,7 +58,9 @@ export default function WorldcupEvent() {
   const noFinish = () => {
     return (
       <div>
-      <div className={styles["title"]}>과자 이상형 월드컵 {total} {now}/{round} </div>
+        <div className={styles['title']}>
+          과자 이상형 월드컵 {total} {now}/{round}{' '}
+        </div>
       </div>
     );
   };
@@ -66,39 +68,35 @@ export default function WorldcupEvent() {
   const yesFinish = () => {
     return (
       <div>
-        <div className={styles["title"]}>과자 이상형 월드컵 </div>
-        <p className={styles["your-pick"]}>당신의 선택은? </p>
+        <div className={styles['title']}>과자 이상형 월드컵 </div>
+        <p className={styles['your-pick']}>당신의 선택은? </p>
       </div>
     );
   };
-  const winnerResult =() =>{
-    return(
+  const winnerResult = () => {
+    return (
       <div>
-        <p className={styles["vs-text-none"]}>VS</p>
+        <p className={styles['vs-text-none']}>VS</p>
       </div>
-    )
-  }
+    );
+  };
 
   return (
-    <div className="side-margin">
+    <div className='side-margin'>
       <TopNav />
-        <div>
-          <div>
-            {finish ? yesFinish() : noFinish()}
-          </div>
-          {displays.map((snack) => {
-            return (
-              <div className={styles["flex-1"]} key={snack.name} onClick={() => clickHandler(snack)}>
-                <img className={styles["food-img"]} src={snack.image} alt={snack.name} />
-                <div className={styles["name"]}>{snack.name}</div>
-              </div>
-            );
-          })}
-          <div>
-            {finish ? <p className={styles["vs-text-none"]}>VS</p> : <p className={styles["vs-text"]}>VS</p> }
-          </div>
-        </div>
-        
+      <div>
+        <div>{finish ? yesFinish() : noFinish()}</div>
+        {displays.map((snack) => {
+          return (
+            <div className={styles['flex-1']} key={snack.name} onClick={() => clickHandler(snack)}>
+              <img className={styles['food-img']} src={snack.image} alt={snack.name} />
+              <div className={styles['name']}>{snack.name}</div>
+            </div>
+          );
+        })}
+        <div>{finish ? <p className={styles['vs-text-none']}>VS</p> : <p className={styles['vs-text']}>VS</p>}</div>
+      </div>
+
       <BottomNav />
     </div>
   );

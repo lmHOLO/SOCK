@@ -1,6 +1,5 @@
 import React from 'react';
 import { Paper } from '@mui/material';
-import { RecipeImageType } from '@/types';
 import styles from '@/styles/recipe_detail.module.css';
 interface Props {
   image: string;

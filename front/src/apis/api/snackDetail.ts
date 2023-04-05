@@ -5,7 +5,6 @@ import { isAxiosError } from 'axios';
 export const getSnackDetailApi = async (id: string) => {
   try {
     const { data } = await authApiInstance().get(`snacks/${id}`);
-    // console.log('snack', data);
     return data.data;
   } catch (error) {
     if (isAxiosError(error)) {
@@ -43,7 +42,6 @@ export const getSimilarSnackAPI = async (page: string, id: string) => {
 // 과자 리뷰 등록
 export const postSnackReviewAPI = async (id: string, data: ReviewSubmitType) => {
   try {
-    // await authApi.post(`/snacks/${id}/reviews`, data);
     const result = await authApiInstance().post(`/snacks/${id}/reviews`, data);
     return result;
   } catch (error) {

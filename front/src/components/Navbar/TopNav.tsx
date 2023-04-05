@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from '@/styles/nav.module.css';
-import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router';
 export default function TopNav() {
   const navigate = useNavigate();
@@ -11,7 +10,6 @@ export default function TopNav() {
       </button>
       <img className={styles['sock-logo']} src={require(`@/assets/sock-logo-color.png`)} alt='logo' />
       <button className={styles['btn-search']} onClick={() => navigate('/search')}>
-        {/* <SearchIcon fontSize='large' style={{ color: 'white' }} /> */}
         <img src={require(`@/assets/home/icon_search.png`)} alt='search' className={styles['search-btn-icon']} />
       </button>
     </div>

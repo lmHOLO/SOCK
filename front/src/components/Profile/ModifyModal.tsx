@@ -32,7 +32,6 @@ export default function ModifyModal({ modalOpen, setModalOpen, member, id, setMe
 
   const handleNicknameInput = async (e: React.ChangeEvent<HTMLInputElement>) => {
     checkNicknameDuplicationAPI(e.target.value).then((data) => {
-      console.log('nickCheck = ', data);
       if (data == false) {
         setCheck(false);
         setCheckNickname('닉네임 중복입니다. 다시 작성해주세요.');
@@ -48,10 +47,6 @@ export default function ModifyModal({ modalOpen, setModalOpen, member, id, setMe
     });
 
     setNickname(e.target.value);
-    // TODO: 닉네임 중복인지 체크해주기
-    /*     await getSnackKeywordSearch(searchBar).then((result) => {
-      setSnackList(getSnackForTag(result));
-    }); */
   };
   const handleContentInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
@@ -64,8 +59,6 @@ export default function ModifyModal({ modalOpen, setModalOpen, member, id, setMe
   }, []);
 
   const handleModifyBtnClick = () => {
-    // console.log('수정하기');
-    // TODO: 수정하기 API
     let newProfile = {
       image: member.profile.image,
       content: content,
@@ -76,12 +69,9 @@ export default function ModifyModal({ modalOpen, setModalOpen, member, id, setMe
       profile: newProfile,
     };
     if (check == false) {
-      console.log('수정이 되면 안되는 경우');
+      return;
     } else {
-      console.log('수정이 가능한 경우');
-
       updateProfileAPI(newUpdateProfile).then(() => {
-        console.log('프로필 수정');
         if (id == memberData.id) {
           loginApi().then((data) => {
             setMember(data);

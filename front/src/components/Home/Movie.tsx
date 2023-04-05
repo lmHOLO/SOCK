@@ -1,17 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from '@/styles/movie.module.css';
-// Import Swiper React components
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
-import 'swiper/css/pagination';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCoverflow, Pagination } from 'swiper';
-import { SnackListItemType } from '@/types/snack';
 import { useNavigate } from 'react-router';
 
-// interface Props {
-//   recommendSnackList: SnackListItemType[];
-// }
 export default function Movie() {
   const navigate = useNavigate();
   const clickEvent = () => {
