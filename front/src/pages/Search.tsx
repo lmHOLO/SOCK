@@ -19,6 +19,7 @@ import { getSnackListAPI } from '@/apis/api/snackList';
 import { SearchMemberType } from '@/types/member';
 import MemeberList from '@/components/common/MemeberList';
 import { getMemberListAPI } from '@/apis/api/member';
+import { sliceStr } from '@/utils/sliceStr';
 
 export default function Search() {
   const [theme, setTheme] = useState<SearchThemeType>('snack'); // 찾는 주제
@@ -156,7 +157,7 @@ export default function Search() {
           return (
             <button key={index} className={`${styles['selected']}`}>
               <img src={item.image} alt={item.name} />
-              <span>{item.name}</span>
+              <span>{sliceStr(item.name)}</span>
             </button>
           );
         })}
