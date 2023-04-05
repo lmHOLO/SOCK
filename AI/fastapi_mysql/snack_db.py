@@ -190,17 +190,19 @@ def recommend_by_cbf(member_id: int, grade: str):
         total_user = "SELECT member_id FROM member ORDER BY member_id DESC LIMIT 1;"
         cursor.execute(total_user)
         user_cursor = cursor.fetchall()[0]['member_id']
+        print(user_cursor, 'this is total_user')
 
         total_snack = "SELECT COUNT(*) FROM sock.snack;"
         cursor.execute(total_snack)
         snack_cursor = cursor.fetchall()[0]['COUNT(*)']
+        print(snack_cursor, 'this is total_snack')
 
 
         # 유저-아이템 종합 평점 테이블
-        member_snack_arr = [[0]*snack_cursor for _ in range(user_cursor+1)]
+        member_snack_arr = [[0]*(snack_cursor+1) for _ in range(user_cursor+1)]
 
         # 이것을 나눌 분모 테이블
-        demoni = [[6]*snack_cursor for _ in range(user_cursor+1)]
+        demoni = [[6]*(snack_cursor+1) for _ in range(user_cursor+1)]
 
 
         # 검색에 관련된 평점
