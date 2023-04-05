@@ -238,7 +238,7 @@ def recommend_by_cbf(member_id: int, grade: str):
             for pred in top_predictions:
 
                 snack_id = int(pred.iid)
-                snack_title = snack_db[snack_db["snack_id"] == snack_id]["이름"].tolist()
+                snack_title = snack_db[snack_db["snack_id"] == snack_id]["name"].tolist()
                 snack_rating = pred.est
                 top_snack_preds.append(round(snack_rating, 2))
 
