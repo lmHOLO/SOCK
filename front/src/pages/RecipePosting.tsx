@@ -94,14 +94,7 @@ export default function RecipePosting() {
           },
           () => {
             getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-              // let now = new Date();
-              // let File_id = name + ' + ' + now;
               imageUrlList.push(url);
-              // console.log('storage에 파일 업로드 성공 url: ', url);
-              // console.log('File_id: ', File_id);
-              // console.log('File_Title: ', name);
-              // console.log('Create_Date: ', now);
-              // console.log(imageUrlList);
               resolve();
             });
           },
