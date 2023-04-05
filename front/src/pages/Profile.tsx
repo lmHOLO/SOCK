@@ -62,7 +62,7 @@ export default function Profile() {
     //     setRecipeList(recipeData);
     //   });
     // }
-  }, []);
+  }, [id]);
 
   return (
     <div>
