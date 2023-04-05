@@ -4,8 +4,6 @@ import { SearchThemeType } from '@/types/search';
 import React, { useEffect, useState } from 'react';
 import styles from '@/styles/search.module.css';
 import Popular from '@/components/Search/Popular';
-import { useNavigate } from 'react-router-dom';
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { getTopPopularListAPI } from '@/apis/api/search';
 import FilterModal from '@/components/Search/FilterModal';
 import BottomNav from '@/components/Navbar/BottomNav';
@@ -19,6 +17,7 @@ import { getSnackListAPI } from '@/apis/api/snackList';
 import { SearchMemberType } from '@/types/member';
 import MemeberList from '@/components/common/MemeberList';
 import { getMemberListAPI } from '@/apis/api/member';
+import { sliceStr } from '@/utils/sliceStr';
 
 export default function Search() {
   const [theme, setTheme] = useState<SearchThemeType>('snack'); // 찾는 주제
@@ -81,6 +80,10 @@ export default function Search() {
     }
     setSearchClicked(false);
     setFilter({
+      flavors: [],
+      types: [],
+    });
+    setFilter2({
       flavors: [],
       types: [],
     });
@@ -152,7 +155,7 @@ export default function Search() {
           return (
             <button key={index} className={`${styles['selected']}`}>
               <img src={item.image} alt={item.name} />
-              <span>{item.name}</span>
+              <span>{sliceStr(item.name)}</span>
             </button>
           );
         })}

@@ -56,12 +56,6 @@ export default function Profile() {
         setMember(data);
       });
     }
-    // 마이페이지에서 내가 작성한 레시피 뿌리기 - 수정필요
-    // if (id) {
-    //   getRecipeListAPI('', '', id).then((recipeData) => {
-    //     setRecipeList(recipeData);
-    //   });
-    // }
   }, [id]);
 
   return (
@@ -73,7 +67,9 @@ export default function Profile() {
       {memberData.id === member.id && <PositionedMenu setModalOpen={setModalOpen} />}
       {member && <Header member={member} />}
       {member && <Menu member={member} menu={menu} handleMenuClick={handleMenuClick} />}
-      {member && id && <ModifyModal member={member} modalOpen={modalOpen} setModalOpen={setModalOpen} id={id} setMember={setMember} />}
+      {member && id && (
+        <ModifyModal member={member} modalOpen={modalOpen} setModalOpen={setModalOpen} id={id} setMember={setMember} />
+      )}
       <GridItem menu={menu} itemList={itemList} />
       <BottomNav />
     </div>

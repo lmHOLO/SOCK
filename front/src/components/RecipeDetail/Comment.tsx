@@ -55,7 +55,6 @@ export default function Comment({ recipeId }: Props) {
           textRef.current.style.height = 'auto';
         }
       });
-    // window.history.go(0); // 임시로
   };
   return (
     <div>

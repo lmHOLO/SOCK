@@ -4,6 +4,7 @@ import Fade from '@mui/material/Fade';
 import Backdrop from '@mui/material/Backdrop';
 import styles from '@/styles/filter_modal.module.css';
 import { Filter2Type, FilterType } from '@/types/snack';
+import { sliceStr } from '@/utils/sliceStr';
 interface Props {
   modalOpen: boolean;
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -48,7 +49,6 @@ export default function FilterModal({ modalOpen, setModalOpen, filter, applyFilt
         }
       });
     }
-    console.log(newFilter);
   };
   const handleFlavorBtnClick = (e: React.MouseEvent<HTMLElement>) => {
     const value = (e.target as HTMLButtonElement).value;
@@ -57,15 +57,28 @@ export default function FilterModal({ modalOpen, setModalOpen, filter, applyFilt
       setNewFilter((prevState) => {
         return { ...prevState, flavors: newFlavors };
       });
+      snackList.map((item) => {
+        if (sliceStr(item.name) == value) {
+          const newFlavors2 = newFilter2.flavors.filter((item) => item.name !== value);
+          setNewFilter2((prevState) => {
+            return { ...prevState, flavors: newFlavors2 };
+          });
+        }
+      });
     } else {
       const newFlavors = [...newFilter.flavors, value];
       setNewFilter((prevState) => {
         return { ...prevState, flavors: newFlavors };
       });
+      flavorList.map((item, index) => {
+        if (item.name === value) {
+          const newFlavors2 = [...newFilter2.flavors, flavorList[index]];
+          setNewFilter2((prevState) => {
+            return { ...prevState, flavors: newFlavors2 };
+          });
+        }
+      });
     }
-  };
-  const sliceStr = (str: string): string => {
-    return str.slice(0, -2);
   };
 
   const snackList = [
@@ -136,7 +149,7 @@ export default function FilterModal({ modalOpen, setModalOpen, filter, applyFilt
     },
     {
       id: '14',
-      name: '양파/마늘맛',
+      name: '양파/마늘',
       image: 'https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/icon%2Fonion.png?alt=media',
     },
     {

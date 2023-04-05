@@ -1,8 +1,7 @@
 import React from 'react';
 import styles from '@/styles/nav.module.css';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate } from 'react-router';
-import Button from '@mui/material/Button';
+
 interface Props {
   handleUploadButton: () => void;
 }

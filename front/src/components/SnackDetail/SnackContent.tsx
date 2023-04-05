@@ -8,7 +8,6 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { deleteSnackLikeAPI, getSnackDetailApi, postSnackLikeAPI } from '@/apis/api/snackDetail';
 import { getSnackDetail } from '@/apis/services/snackDetail';
 import { purchaseSnackAPI } from '@/apis/api/snackDetail';
-import { ErrorType } from '@/types/error';
 import FlavorList from './FlavorList';
 
 interface Props {
@@ -42,14 +41,14 @@ export default function SnackContent({ setStarAvg, starAvg }: Props) {
   const handleClick = () => {
     if (id) {
       if (!snack.like) {
-        postSnackLikeAPI(id).then(console.log);
+        postSnackLikeAPI(id).then();
         setSnack((prevState) => ({
           ...prevState,
           like: true,
         }));
         return;
       }
-      deleteSnackLikeAPI(id).then(console.log);
+      deleteSnackLikeAPI(id).then();
       setSnack((prevState) => ({
         ...prevState,
         like: false,
@@ -58,7 +57,6 @@ export default function SnackContent({ setStarAvg, starAvg }: Props) {
   };
 
   useEffect(() => {
-    // TODO: 없는 과자일 때 error 처리하기
     if (id) {
       getSnackDetailApi(id)
         .then(getSnackDetail)

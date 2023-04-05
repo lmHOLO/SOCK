@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import useMember from '@/hooks/memberHook';
 import { useNavigate } from 'react-router-dom';
-import { authApiInstance } from '@/apis/axiosConfig';
-import { apiInstance } from '@/apis/axiosConfig';
-import { fastApiInstance } from '@/apis/axiosConfig';
 import { firstPreferApi, CbfApi, checkPreferenceAPI } from '@/apis/api/firstprefer';
 import { SnackPreferType } from '@/types/snack';
 import TinderCard from 'react-tinder-card';
 import { LinearProgress } from '@mui/material';
 import { checkPreferType } from '@/types/snack';
-import axios, { AxiosResponse } from 'axios';
 import styles from '@/styles/firstprefer.module.css';
 import '@react-spring/web';
 interface SwipeCounts {
@@ -70,7 +66,6 @@ export default function FirstPrefer() {
         };
         console.log(newPreference, 'newPreference');
         setMyPreference((prevPreferences) => [...prevPreferences, newPreference]);
-        // setMyPreference([...myPreference, newPreference])
       });
       // fetch data and update state when component mounts
       CbfApi({ id: Number(memberData.id), favor_list: likeList }).then((response) => {
@@ -97,8 +92,8 @@ export default function FirstPrefer() {
     console.log('this is likeList', likeList);
   }, [likeList]);
   useEffect(() => {
-    console.log('this is currentImdex', currentIndex)
-  }, [currentIndex])
+    console.log('this is currentImdex', currentIndex);
+  }, [currentIndex]);
 
 
 

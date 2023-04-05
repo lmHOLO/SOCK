@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Backdrop from '@mui/material/Backdrop';
-import SearchSnack from './SearchSnack';
 import styles from '@/styles/snack_modal.module.css';
 import { PostSnackTagType } from '@/types/recipe';
 import { getSnackKeywordSearch } from '@/apis/api/recipeDetail';
@@ -19,22 +18,11 @@ export default function SnackModal({ modalOpen, setModalOpen, addTag }: Props) {
   const handleClose = () => setModalOpen(false);
   const handleSearchBar = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchBar(e.target.value);
-    /* await getSnackKeywordSearch(searchBar).then((result) => {
-      console.log(result);
-      setSnackList(result);
-    }); */
 
     await getSnackKeywordSearch(e.target.value).then((result) => {
-      console.log('e.target.value = ', e.target.value);
-      console.log('result = ', result);
       setSnackList(getSnackForTag(result));
-      console.log('snackList = ', snackList);
     });
   };
-
-  /*   const handleTagAdd = async (snack: TagSearchType) => {
-    addTag(snack.snackId);
-  }; */
 
   return (
     <div>

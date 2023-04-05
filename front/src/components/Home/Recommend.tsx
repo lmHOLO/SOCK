@@ -25,7 +25,6 @@ export default function Recommend({ recommendSnackList }: Props) {
       });
     });
     let opacity = document.querySelectorAll('.opacity');
-    console.log(opacity);
     observer.observe(opacity[0]);
   }, []);
   return (

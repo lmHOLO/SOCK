@@ -12,8 +12,6 @@ export default function RecommendListItem({ snack }: Props) {
   };
   return (
     <li className={styles['snack-list-item-container']} onClick={() => snackNavigate(snack.snackId)}>
-      {/* <div className={styles['snack-list-item']}></div> */}
-      {/* <div style={{ background: `url(${snack.image})` }} className={styles['snack-list-item']}></div> */}
       <img src={snack.image} alt={snack.title} className={styles['snack-list-item']} />
     </li>
   );

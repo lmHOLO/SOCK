@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React from 'react';
 import styles from '@/styles/recipe_posting.module.css';
 interface Props {
   setContent: React.Dispatch<React.SetStateAction<string>>;
