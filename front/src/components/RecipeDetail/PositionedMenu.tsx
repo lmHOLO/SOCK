@@ -17,11 +17,9 @@ export default function PositionedMenu() {
     setAnchorEl(event.currentTarget);
   };
   const handleModify = () => {
-    // console.log('수정');
     setAnchorEl(null);
   };
   const handleDelete = () => {
-    // console.log('삭제');
     setAnchorEl(null);
     if (id) {
       deleteRecipeAPI(id).then(() => {

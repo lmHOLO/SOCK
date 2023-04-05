@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import LoginBtn from '@/components/Login/LoginBtn';
-// import Nickname from '@/components/Login/Nickname';
 import styles from '@/styles/login.module.css';
 import useMember from '@/hooks/memberHook';
 import Logo from '@/components/Login/Logo';

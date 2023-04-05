@@ -1,15 +1,10 @@
-import { apiInstance, authApiInstance } from '@/apis/axiosConfig';
+import { authApiInstance } from '@/apis/axiosConfig';
 import { isAxiosError } from 'axios';
 import { UpdateProfileType } from '@/types/member';
 
-// const api = apiInstance();
-// const authApi = authApiInstance();
-
 export const loginApi = async () => {
   try {
-    // const authApi = authApiInstance();
     const { data } = await authApiInstance().get(`/member`);
-    console.log(data);
     return data.data;
   } catch (error) {
     if (isAxiosError(error)) {
@@ -20,9 +15,7 @@ export const loginApi = async () => {
 
 export const otherMemberProfileApi = async (memberId: string) => {
   try {
-    // const authApi = authApiInstance();
     const { data } = await authApiInstance().get(`/member/${memberId}`);
-    // console.log(data);
     return data.data;
   } catch (error) {
     if (isAxiosError(error)) {
@@ -56,7 +49,6 @@ export const getMemberListAPI = async (nickname: string) => {
 export const checkNicknameDuplicationAPI = async (nickname: string) => {
   try {
     const { data } = await authApiInstance().get(`/member/nickname?nickname=${nickname}`);
-    console.log('checkNicknameDuplicationAPI = ', data.data);
     return data.data;
   } catch (error) {
     if (isAxiosError(error)) {

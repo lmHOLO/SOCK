@@ -3,11 +3,6 @@ import '@/styles/milk.css';
 import { useNavigate } from 'react-router';
 
 export default function Milk() {
-  /* const myButton = document.getElementById('myButton');
-  myButton &&
-    myButton.addEventListener('click', function () {
-      myButton.classList.add('clicked');
-    }); */
   const navigate = useNavigate();
   const clickEvent = () => {
     navigate('/snack-content/MILK');
@@ -15,8 +10,6 @@ export default function Milk() {
 
   return (
     <div className='milk-container'>
-      {/* <a id='myButton' href='#' data-text='CSS쯜꺼워'></a> */}
-
       <div className='milk-text-container'>
         <h1>우유와 함께</h1>
         <button className='more-button' onClick={clickEvent}>

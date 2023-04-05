@@ -49,7 +49,6 @@ export default function FilterModal({ modalOpen, setModalOpen, filter, applyFilt
         }
       });
     }
-    console.log(newFilter);
   };
   const handleFlavorBtnClick = (e: React.MouseEvent<HTMLElement>) => {
     const value = (e.target as HTMLButtonElement).value;
@@ -59,10 +58,7 @@ export default function FilterModal({ modalOpen, setModalOpen, filter, applyFilt
         return { ...prevState, flavors: newFlavors };
       });
       snackList.map((item) => {
-        console.log(item.name);
-        console.log(value);
         if (sliceStr(item.name) == value) {
-          console.log('ddddd');
           const newFlavors2 = newFilter2.flavors.filter((item) => item.name !== value);
           setNewFilter2((prevState) => {
             return { ...prevState, flavors: newFlavors2 };
@@ -70,14 +66,11 @@ export default function FilterModal({ modalOpen, setModalOpen, filter, applyFilt
         }
       });
     } else {
-      console.log('2222ddddd');
-      console.log(value);
       const newFlavors = [...newFilter.flavors, value];
       setNewFilter((prevState) => {
         return { ...prevState, flavors: newFlavors };
       });
       flavorList.map((item, index) => {
-        console.log(item.name, 'item.name');
         if (item.name === value) {
           const newFlavors2 = [...newFilter2.flavors, flavorList[index]];
           setNewFilter2((prevState) => {
@@ -86,7 +79,6 @@ export default function FilterModal({ modalOpen, setModalOpen, filter, applyFilt
         }
       });
     }
-    console.log(newFilter);
   };
 
   const snackList = [

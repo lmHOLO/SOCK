@@ -8,8 +8,6 @@ interface Props {
   images: GetRecipeImageType[];
 }
 export default function Images({ images }: Props) {
-  // 나중에 api로 받기
-
   return (
     <Carousel autoPlay={false} cycleNavigation={false} NextIcon={<ChevronRightIcon />} PrevIcon={<ChevronLeftIcon />}>
       {images.map((image) => (

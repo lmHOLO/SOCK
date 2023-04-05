@@ -22,7 +22,6 @@ export default function Recommend({ recommendSnackList }: Props) {
       });
     });
     let opacity = document.querySelectorAll('.opacity');
-    console.log(opacity);
     observer.observe(opacity[0]);
   }, []);
   return (
@@ -39,7 +38,6 @@ export default function Recommend({ recommendSnackList }: Props) {
         modules={[Pagination, Navigation]}
         className={`${styles['mySwiper']}`}
       >
-
         {recommendSnackList.map((item, index) => (
           <SwiperSlide key={index} className={styles['swiper-slide']}>
             <img src={item.image} alt={item.title} onClick={() => navigate(`/snacks/${item.snackId}`)} />

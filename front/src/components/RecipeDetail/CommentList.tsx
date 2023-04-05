@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import CommentListItem from './CommentListItem';
 import { useParams } from 'react-router-dom';
 import { getRecipeCommentsAPI } from '@/apis/api/recipeDetail';
@@ -23,7 +23,13 @@ export default function CommentList({ recipeId, commentList, setCommentList }: P
   return (
     <ul>
       {commentList.map((comment) => (
-        <CommentListItem key={comment.commentId} comment={comment} recipeId={recipeId} commentList={commentList} setCommentList={setCommentList} />
+        <CommentListItem
+          key={comment.commentId}
+          comment={comment}
+          recipeId={recipeId}
+          commentList={commentList}
+          setCommentList={setCommentList}
+        />
       ))}
     </ul>
   );
