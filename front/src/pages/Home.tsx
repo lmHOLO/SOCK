@@ -15,14 +15,10 @@ import FirstMain from '@/components/Home/FirstMain';
 export default function Home() {
   // const nickname = useSelector((state: RootState) => state.member.nickname);
   const { memberData } = useMember();
-  // TODO: 나중에 api로 추천 snack 받아오기
   const [token, setToken] = useState('');
   const outerDivRef = useRef<HTMLDivElement>(null);
-  const [scrollIndex, setScrollIndex] = useState(1);
   const [recommendIdList, setRecommendIdList] = useState<number[]>([]);
-  const [recommendSnackList, setRecommendSnackList] = useState<SnackListItemType[]>([
-
-  ]);
+  const [recommendSnackList, setRecommendSnackList] = useState<SnackListItemType[]>([]);
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
@@ -33,13 +29,10 @@ export default function Home() {
 
   useEffect(() => {
     if (recommendIdList.length === 0) {
-      console.log(memberData.grade, 'this is grade');
       recommendIdAPI(Number(memberData.id), memberData.grade).then((result) => {
         setRecommendIdList(result);
-        console.log(recommendIdList, 'this is myResult');
       });
     }
-    // console.log(recommendIdAPI(Number(memberData.id), memberData.grade), typeof(recommendIdAPI(Number(memberData.id), memberData.grade)), 'this is home recommend list')
   }, [recommendIdList]);
 
   useEffect(() => {
@@ -58,19 +51,14 @@ export default function Home() {
           title: result.data.title,
         };
         newdatas.push(newdata);
-        // setRecommendSnackList([...recommendSnackList, newdata])
         setRecommendSnackList([...recommendSnackList, ...newdatas]);
       });
     }
   };
 
-
   return (
     <div ref={outerDivRef} className={styles['outer']}>
       <TopNav />
-      {/* <audio autoPlay>
-        <source src={require('@/assets/eating_cracker.mp3')} type='audio/mpeg'></source>
-      </audio> */}
       <FirstMain />
       <Recommend recommendSnackList={recommendSnackList} />
       <Movie />
