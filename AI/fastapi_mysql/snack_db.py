@@ -252,7 +252,6 @@ def recommend_by_cbf(member_id: int, grade: str):
         model = SVD(n_epochs=20, n_factors=50, random_state=0)
         model.fit(trainset)
         snack_db = pd.read_csv('snack_db_final.csv', encoding='cp949')
-        # snack_db = pd.read_json('snack_test.json')
         def get_unseen_surprise(ratings, snack_db, member_id):
         #입력값으로 들어온 userId에 해당하는 사용자가 평점을 매긴 모든 과자를 리스트로 생성
             seen_snacks = ratings[ratings['member_id']== member_id]['snack_id'].tolist()
