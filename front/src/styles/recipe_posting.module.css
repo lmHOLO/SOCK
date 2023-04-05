@@ -117,12 +117,22 @@
   margin-right: 4px;
 }
 
+.tag-item {
+  color: sock-brown;
+  padding: 3px 10px;
+  padding-left: 0;
+}
+
 .tag-list {
   margin: 10px 0px;
   overflow-x: auto;
   white-space: nowrap;
   display: inline-flex;
   width: 100%;
+}
+
+.tag-list > svg {
+  margin-top: 10px;
 }
 
 .tag-list::-webkit-scrollbar {
@@ -134,6 +144,6 @@
 }
 
 .add-btn {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
 }

@@ -3,13 +3,10 @@ import React, { useState } from 'react';
 import TopNavOnlyBack from '@/components/Navbar/TopNavOnlyBack';
 import styles from '@/styles/recipe_posting.module.css';
 import UploadImage from '@/components/RecipePosting/UploadImage';
-import RecipeCropImage from '@/components/RecipePosting/RecipeCropImage';
 import { PostingTabType, PostSnackTagType } from '@/types/recipe';
-import PostingCropTopNav from '@/components/Navbar/PostingCropTopNav';
 import Images from '@/components/RecipePosting/Images';
 import WriteContent from '@/components/RecipePosting/WriteContent';
 import WriteTitle from '@/components/RecipePosting/WriteTitle';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Tag from '@/components/RecipePosting/Tag';
 import PostingUploadTopNav from '@/components/Navbar/PostingUploadTopNav';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
@@ -119,7 +116,7 @@ export default function RecipePosting() {
               console.log(imageUrlList);
               resolve();
             });
-          }
+          },
         );
       } else {
         console.error('File not found');
@@ -141,13 +138,18 @@ export default function RecipePosting() {
           <WriteTitle setTitle={setTitle} />
           <div className={styles['tag-container']}>
             {tagList.map((tag, index) => (
-              <div key={index}>
-                <Tag key={tag.id} tag={tag} />
+              <div key={index} className={styles['tag-item']}>
                 <HighlightOffIcon onClick={() => deleteTag(tag.id)} />
+                <Tag key={tag.id} tag={tag} />
               </div>
             ))}
             {tagList.length === 0 && <p>태그를 추가해보세요!</p>}
-            <img src={require(`@/assets/home/btn_close.png`)} alt='close-button' className={styles['add-btn']} onClick={() => setModalOpen(true)} />
+            <img
+              src={require(`@/assets/home/btn_close.png`)}
+              alt='close-button'
+              className={styles['add-btn']}
+              onClick={() => setModalOpen(true)}
+            />
             {/* <AddCircleIcon className={styles['color-brown']} onClick={() => setModalOpen(true)} /> */}
           </div>
           <SnackModal modalOpen={modalOpen} setModalOpen={setModalOpen} addTag={addTag} />
