@@ -14,7 +14,7 @@ interface Props {
 }
 export default function PhotoList({ setTab, originFiles, setOriginFiles }: Props) {
   // const [imageList, setImageList] = useState<File[]>([]);
-  const fileTypes = ['png', 'jpeg'];
+  const fileTypes = ['png', 'jpeg', 'jpg'];
   // image 추가 시 핸들링 함수
   const imageRegistHandler = (files: File[]) => {
     // let tempImagelist = [...imageList];
