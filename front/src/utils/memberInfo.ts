@@ -58,7 +58,7 @@ export const getSbtiImage = (sbti: string) => {
     case 'ISFP':
       return 'https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/sbti%2FISFP.png?alt=media&token=54d17b2a-08df-41d9-8cc7-e1caaf59a639';
     case 'ESTP':
-      return '@/assets/member/sbti/ESTP.png';
+      return 'https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/sbti%2FESTP.png?alt=media&token=9ce884a2-8b2c-4ae9-a4e4-0324f0ee8463';
     case 'ESFP':
       return 'https://firebasestorage.googleapis.com/v0/b/sock-f6e94.appspot.com/o/sbti%2FESFP.png?alt=media&token=a9e0d726-4962-4313-92a1-c333605bf4f0';
   }
