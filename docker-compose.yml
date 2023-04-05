@@ -69,6 +69,10 @@ services:
       - "9000:9000"
     restart: unless-stopped
     volumes:
-      - /fastapi:/code
+      - my-fastapi-volume:/code
     depends_on:
       - mysql
+
+volumes:
+  my-fastapi-volume:
+    external: true
