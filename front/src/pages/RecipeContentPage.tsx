@@ -58,9 +58,15 @@ export default function RecipeContentPage() {
         )}
       </div>
       <RecipeGridList recipeList={recipeList} />
-      <button className={styles['write-btn']} onClick={() => navigate('/recipe-posting')}>
+      <img
+        src={require(`@/assets/home/btn_close.png`)}
+        alt='icon_filter'
+        className={styles['write-btn']}
+        onClick={() => navigate('/recipe-posting')}
+      />
+      {/*       <button className={styles['write-btn']} onClick={() => navigate('/recipe-posting')}>
         <AddIcon />
-      </button>
+      </button> */}
       <BottomNav />
     </div>
   );
