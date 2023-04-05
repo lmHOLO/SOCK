@@ -68,11 +68,11 @@ services:
     ports:
       - "9000:9000"
     restart: unless-stopped
-    # volumes:
-    #   - fastApi-volume:/code
+    volumes:
+      - my-fastapi-volume:/code
     depends_on:
       - mysql
 
-# volumes:
-#   fastApi-volume:
-#     external: true
+volumes:
+  my-fastapi-volume:
+    external: true
