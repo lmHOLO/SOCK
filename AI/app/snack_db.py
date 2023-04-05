@@ -169,10 +169,9 @@ def recommend_by_cbf(member_id: int, grade: str):
         review_cursor = cursor.fetchall()
         review_df = pd.DataFrame(review_cursor)
 
-        total_user = "SELECT COUNT(*) FROM sock.member;"
+        total_user = "SELECT member_id FROM member ORDER BY member_id DESC LIMIT 1;"
         cursor.execute(total_user)
-        user_cursor = cursor.fetchall()[0]['COUNT(*)']
-        print('check', user_cursor)
+        user_cursor = cursor.fetchall()[0]['member_id']
 
         total_snack = "SELECT COUNT(*) FROM sock.snack;"
         cursor.execute(total_snack)
