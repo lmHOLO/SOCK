@@ -84,6 +84,10 @@ export default function Search() {
       flavors: [],
       types: [],
     });
+    setFilter2({
+      flavors: [],
+      types: [],
+    });
   };
 
   const handleSearchBtnClick = () => {
