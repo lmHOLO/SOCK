@@ -3,8 +3,11 @@
 # pip install surprise
 # uvicorn snack_db:app --reload
 
+# 가상환경 실행
+# source venv/Scripts/activate
 # 9000번 포트번호로 실행
 # uvicorn snack_db:app --reload --port 9000
+
 import json
 import random
 import os
@@ -22,7 +25,7 @@ from starlette.middleware.cors import CORSMiddleware
 class Item(BaseModel):
     id: int
     favor_list: list[int]
-    
+
 # USER = "ssafy"
 # PASSWORD = "ssafy"
 # HOST = "localhost"
@@ -112,7 +115,7 @@ def prefer_list(items: Item):
             'preference': result,
         }
         return result_obejct
-    
+
     filename = 'first_prefer.json'
     if os.path.exists(filename):
         with open(filename, 'r') as f:
@@ -123,17 +126,17 @@ def prefer_list(items: Item):
     new_data = make_preference_object()
     data.append(new_data)
     # data = make_preference_object()
-    
+
     with open(filename, 'w') as f:
         json.dump(data, f)
-    
+
     return {"message": "json_update success"}
 
 @app.get("/recommend/cbf/{member_id}")
 def recommend_by_cbf(member_id: int, grade: str):
     import pymysql.cursors
-    connection = pymysql.connect(host='localhost', port=3306, user='ssafy',
-                                password='ssafy', db='sock',
+    connection = pymysql.connect(host='localhost', port=3306, user='root',
+                                password='1234', db='sock',
                                 charset='utf8', autocommit=True,
                                 cursorclass=pymysql.cursors.DictCursor)
 
@@ -209,9 +212,9 @@ def recommend_by_cbf(member_id: int, grade: str):
             member_snack_arr[search_df.loc[i, 'member_id']][search_df.loc[i, 'snack_id']] += search_df.loc[i, 'count']
             # demoni[search_df.loc[i, 'member_id']][search_df.loc[i, 'snack_id']] += 1
         # print(member_snack_arr)
-        
+
         # 검색에 참여한 유저의 숫자 구하기 (테스트 데이터 : user_num = 8)
-        user_num = search_df.iloc[-1]['member_id'] 
+        user_num = search_df.iloc[-1]['member_id']
 
         # 구매에 관련된 평점
         for i in range(len(purchase_df)):
@@ -239,7 +242,7 @@ def recommend_by_cbf(member_id: int, grade: str):
             'snack_id': non_zero_indices[1],
             'rating': np.around(result[non_zero_indices], decimals = 2)
         })
-        
+
         total_rating.to_csv('total_rating_noh.csv', index=False, header=False)
 
         total_rating_json = total_rating.to_json(orient="records")
@@ -278,20 +281,20 @@ def recommend_by_cbf(member_id: int, grade: str):
             # top_snack_ids = [int(pred.iid) for pred in top_predictions]
             # top_snack_rating = [pred.est for pred in top_predictions]
             # top_snack_titles = snack_db[snack_db.snack_id.isin(top_snack_ids)]['이름']
-            
+
             top_snack_preds = []
             for pred in top_predictions:
-                
+
                 snack_id = int(pred.iid)
                 snack_title = snack_db[snack_db["snack_id"] == snack_id]["이름"].tolist()
                 snack_rating = pred.est
                 # print(f"{snack_id}, {snack_title}: {snack_rating:.2f}")
                 top_snack_preds.append(round(snack_rating, 2))
-            
+
                 # top_snack_preds.append([int(snack_id), f"{snack_title}: {snack_rating:.2f}"])
             # top_snack_preds = [ (id, title, rating) for id, title, rating in zip(top_snack_ids, top_snack_titles, top_snack_rating)]
             return top_snack_preds
-    
+
         total_snack_id = [i for i in range(1, 730)]
         # print(total_snack_id, 'this is total_snack_id')
         unseen_snacks = get_unseen_surprise(total_rating, snack_db, member_id)
@@ -302,10 +305,10 @@ def recommend_by_cbf(member_id: int, grade: str):
         preference_factor = []
         for i in range(len(top_snack_preds)):
             preference_factor.append(round(cbf_result[i] * top_snack_preds[i], 2))
-        
+
         # top_snack_preds = recomm_snack_by_surprise(model, member_id, unseen_snacks, top_n=snack_cursor)
         # print(top_snack_preds[0][0])
-        
+
         # preference_json = json.dumps(hybrid_list, ensure_ascii=False)
     recommend_id = weighted_random_indexes(preference_factor)
     # recommend_list = json.dumps(recommend_id, ensure_ascii=False)
@@ -322,7 +325,7 @@ def recommend_by_cbf(member_id: int, grade: str):
     #     unseen_snacks = get_unseen_surprise(total_rating, snack_db, i+1)
     #     top_snack_preds = recomm_snack_by_surprise(model, i, unseen_snacks, top_n=snack_cursor)
     #     top_snack_preds_list.append(top_snack_preds)
-        
+
     # # unseen_snacks = get_unseen_surprise(total_rating, snack_db, 1)
     # # top_snack_preds = recomm_snack_by_surprise(model, 1, unseen_snacks, top_n=10)
     #     top_snack_preds_list_json = json.dumps(top_snack_preds_list, ensure_ascii=False)
@@ -332,10 +335,10 @@ def recommend_by_cbf(member_id: int, grade: str):
     # result = [item for item in data if item.get(key) == value][0]['preference']
     # return preference_json
     # recommend_id = weighted_random_indexes(result)
-    
+
     # # 추천하는 5개의 과자 id 반환
     # return recommend_id
-    
+
 
 # @app.post("/data/{member_id}")
 # def send_data(member_id: int, list: Item):
@@ -345,15 +348,15 @@ def send_data():
 # def send_data():
     import pymysql.cursors
     # from surprise import SVD
-    # from surprise import Dataset 
-    # from surprise import accuracy 
+    # from surprise import Dataset
+    # from surprise import accuracy
     # from surprise.model_selection import train_test_split
     from sklearn.feature_extraction.text import TfidfVectorizer
     from sklearn.metrics.pairwise import cosine_similarity
     import pandas as pd
     import numpy as np
-    connection = pymysql.connect(host='localhost', port=3306, user='ssafy',
-                                password='ssafy', db='sock',
+    connection = pymysql.connect(host='localhost', port=3306, user='root',
+                                password='1234', db='sock',
                                 charset='utf8', autocommit=True,
                                 cursorclass=pymysql.cursors.DictCursor)
 
@@ -397,8 +400,8 @@ def send_data():
     # new_df = pd.concat((df, df2), axis = 1)
 
 
-    
-    
+
+
     # result4 = result3.to_json(force_ascii=False, orient='values')
     # result4 = df2.to_json(force_ascii=False, orient="columns")
     # # result4 = df.to_csv('snack_db3.csv', index=False, encoding="utf-8-sig")
@@ -410,12 +413,12 @@ def send_data():
 @app.get("/recommend")
 def recommend():
     import pymysql.cursors
-    
-    connection = pymysql.connect(host='localhost', port=3306, user='ssafy',
-                            password='ssafy', db='sock',
+
+    connection = pymysql.connect(host='localhost', port=3306, user='root',
+                            password='1234', db='sock',
                             charset='utf8', autocommit=True,
                             cursorclass=pymysql.cursors.DictCursor)
-    
+
     cursor = connection.cursor()
     # purchase db에서 member_id, snack_id, count 가져오기
     # review db에서 writer_id, snack_id, star 가져오기
@@ -452,7 +455,7 @@ def recommend():
     snack_cursor = cursor.fetchall()[0]['COUNT(*)']
 
     print(snack_cursor, 'checnk snack count')
-    
+
     # 유저-아이템 종합 평점 테이블
     member_snack_arr = [[0]*snack_cursor for _ in range(user_cursor+1)]
 
@@ -465,9 +468,9 @@ def recommend():
         member_snack_arr[search_df.loc[i, 'member_id']][search_df.loc[i, 'snack_id']] += search_df.loc[i, 'count']
         # demoni[search_df.loc[i, 'member_id']][search_df.loc[i, 'snack_id']] += 1
     print(member_snack_arr)
-    
+
     # 검색에 참여한 유저의 숫자 구하기 (테스트 데이터 : user_num = 8)
-    user_num = search_df.iloc[-1]['member_id'] 
+    user_num = search_df.iloc[-1]['member_id']
 
     # 구매에 관련된 평점
     for i in range(len(purchase_df)):
@@ -495,7 +498,7 @@ def recommend():
         'snack_id': non_zero_indices[1],
         'rating': np.around(result[non_zero_indices], decimals = 2)
     })
-    
+
     total_rating.to_csv('total_rating_noh.csv', index=False, header=False)
 
     total_rating_json = total_rating.to_json(orient="records")
@@ -534,10 +537,10 @@ def recommend():
         # top_snack_ids = [int(pred.iid) for pred in top_predictions]
         # top_snack_rating = [pred.est for pred in top_predictions]
         # top_snack_titles = snack_db[snack_db.snack_id.isin(top_snack_ids)]['이름']
-        
+
         top_snack_preds = []
         for pred in top_predictions:
-            
+
             snack_id = int(pred.iid)
             snack_title = snack_db[snack_db["snack_id"] == snack_id]["이름"].tolist()
             snack_rating = pred.est
@@ -545,19 +548,19 @@ def recommend():
             top_snack_preds.append([f"{snack_id}, {snack_title}: {snack_rating:.2f}"])
         # top_snack_preds = [ (id, title, rating) for id, title, rating in zip(top_snack_ids, top_snack_titles, top_snack_rating)]
         return top_snack_preds
-    
-    
+
+
     top_snack_preds_list = []
     for i in range(1, int(user_num)+1):
         unseen_snacks = get_unseen_surprise(total_rating, snack_db, i+1)
         top_snack_preds = recomm_snack_by_surprise(model, i, unseen_snacks, top_n=snack_cursor)
         top_snack_preds_list.append(top_snack_preds)
-        
+
     # unseen_snacks = get_unseen_surprise(total_rating, snack_db, 1)
     # top_snack_preds = recomm_snack_by_surprise(model, 1, unseen_snacks, top_n=10)
         top_snack_preds_list_json = json.dumps(top_snack_preds_list, ensure_ascii=False)
     # top_snack_preds_json = top_snack_preds.to_json(force_ascii=False, orient = "split")
-    
+
     return top_snack_preds_list_json
     # return total_rating_json
-    
+

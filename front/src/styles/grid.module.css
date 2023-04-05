@@ -1,7 +1,4 @@
 @value sock-brown, sock-yellow, white-color  from './common/colors.css';
-.primary {
-}
-
 .card-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, auto));
