@@ -5,6 +5,7 @@ import useMember from '@/hooks/memberHook';
 
 import { deleteRecipeCommentAPI, getRecipeCommentsAPI } from '@/apis/api/recipeDetail';
 import { getGradeImage, getSbtiImage } from '@/utils/memberInfo';
+import { useNavigate } from 'react-router';
 
 interface Props {
   comment: RecipeCommentType;
@@ -16,6 +17,7 @@ export default function CommentListItem({ comment, recipeId, commentList, setCom
   const { memberData } = useMember();
   const gradeImage = getGradeImage(comment.grade);
   const sbtiImage = getSbtiImage(comment.sbti);
+  const navigate = useNavigate();
   const commentDeleteEvent = () => {
     if (comment) {
       deleteRecipeCommentAPI(recipeId, comment.commentId).then(() => {
@@ -33,7 +35,7 @@ export default function CommentListItem({ comment, recipeId, commentList, setCom
   return (
     <div className={styles['comment-item']}>
       <div className={styles['member-date']}>
-        <div className={styles['member-data']}>
+        <div className={styles['member-data']} onClick={() => navigate(`/profile/${comment.memberId}`)}>
           <div className={styles['member-image']}>
             <img src={comment.memberImage} alt={comment.nickname} />
           </div>
