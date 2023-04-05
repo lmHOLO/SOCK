@@ -19,11 +19,13 @@ export default function GridSnackListItem({ snack }: Props) {
   }, [snack]);
   return (
     <li className={styles['card-item']} onClick={() => snackNavigate(snack.snackId)}>
-      <figure className={styles['card-image']}>
-        <img src={snack.image} alt={snack.name} />
-      </figure>
       <div>
+        <figure className={styles['card-image']}>
+          <img src={snack.image} alt={snack.name} />
+        </figure>
         <p>{snack.name}</p>
+      </div>
+      <div>
         <div className={styles['snack-info']}>
           <div className={styles['snack-grade']}>
             <StarIcon />
