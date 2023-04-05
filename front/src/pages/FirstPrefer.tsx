@@ -37,7 +37,6 @@ export default function FirstPrefer() {
 
   const [firstPreferList, setFirstPreferList] = useState<SnackPreferType[]>([]);
 
-
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
@@ -50,9 +49,7 @@ export default function FirstPrefer() {
     if (firstPreferList.length === 0) {
       // fetch data and update state when component mounts
       firstPreferApi().then((response) => {
-        console.log(response, 'list of initial preference surveys');
         setFirstPreferList(response);
-        console.log(firstPreferList, 'one of preferlist');
       });
     }
   }, [firstPreferList]);
@@ -64,96 +61,49 @@ export default function FirstPrefer() {
           snackId: snackId,
           likes: 1,
         };
-        console.log(newPreference, 'newPreference');
         setMyPreference((prevPreferences) => [...prevPreferences, newPreference]);
       });
       // fetch data and update state when component mounts
-      CbfApi({ id: Number(memberData.id), favor_list: likeList }).then((response) => {
-        console.log(response, '컨텐츠기반 선호도조사의 결과');
-
-      }).then(() => checkPreferenceAPI(myPreference).then(() =>
-      navigate('/')
-      ))
-
-      
-      // console.log(localStorage.getItem('token'), '04/04 token check');
-      // checkPreferenceAPI(myPreference).then((response) => {
-      //   // console.log(response, 'check_preference를 1로 변경');
-      // });
-      // if (token) {
-      //   navigate('/');
-      // }
+      CbfApi({ id: Number(memberData.id), favor_list: likeList })
+        .then((response) => {
+          // console.log(response, '컨텐츠기반 선호도조사의 결과');
+        })
+        .then(() => checkPreferenceAPI(myPreference).then(() => navigate('/')));
     }
   }, [likeList]);
+  return (
+    <>
+      <div className={styles['prefer-page']}>
+        <React.Fragment>
+          <LinearProgress variant='determinate' value={likeList.length * 20} />
+        </React.Fragment>
+        <div className={styles['prefer-container']}>
+          <div className={styles['prefer-count']}>{likeList.length}/5</div>
+          <div className={styles['left-arrow-container']}>
+            <img src={require(`@/assets/login/dislike.png`)} alt='left arrow' />
+            <img src={require(`@/assets/login/left_arrow.png`)} alt='left arrow' />
+          </div>
 
-
-
-  useEffect(() => {
-    console.log('this is likeList', likeList);
-  }, [likeList]);
-  useEffect(() => {
-    console.log('this is currentImdex', currentIndex);
-  }, [currentIndex]);
-
-
-
-
-
-
-
-  return (<>
-
-  <div className={styles['prefer-page']}>
-    <React.Fragment>
-      <LinearProgress variant="determinate" value={((likeList.length)*20)} />
-    </React.Fragment>
-    <div className={styles['prefer-container']}>
-    <div className={styles['prefer-count']}>
-
-{likeList.length}/5
-</div>
-      <div className={styles['left-arrow-container']}>
-        <img src={require(`@/assets/login/dislike.png`)} alt="left arrow" />
-        <img src={require(`@/assets/login/left_arrow.png`)} alt="left arrow" />
+          {firstPreferList.map((snack, index) => {
+            if (index === currentIndex) {
+              return (
+                <TinderCard onSwipe={(direction) => handleSwipe(direction, snack.snackId)} key={snack.snackId}>
+                  <div className={styles['prefer-card']}>
+                    <img src={snack.image} alt={snack.name} />
+                    <p>{snack.name}</p>
+                  </div>
+                </TinderCard>
+              );
+            } else {
+              return null;
+            }
+          })}
+          <div className={styles['right-arrow-container']}>
+            <img src={require(`@/assets/login/like.png`)} alt='left arrow' />
+            <img src={require(`@/assets/login/right_arrow.png`)} alt='left arrow' />
+          </div>
+        </div>
       </div>
-
-      {firstPreferList.map((snack, index) => {
-        if (index === currentIndex) {
-          return (
-            <TinderCard onSwipe={(direction) => handleSwipe(direction, snack.snackId)} key={snack.snackId}>
-              <div className={styles['prefer-card']}>
-                <img src={snack.image} alt={snack.name} />
-                <p>
-                  {snack.name}
-                </p>
-              </div>
-            </TinderCard>
-          )
-        } else {
-          return null;
-        }
-      })}
-      <div className={styles['right-arrow-container']}>
-        <img src={require(`@/assets/login/like.png`)} alt="left arrow" />
-        <img src={require(`@/assets/login/right_arrow.png`)} alt="left arrow" />
-      </div>
-    </div>
-  </div>
-    {/* <div>
-      {firstPreferList[2].snackId}
-    </div> */}
-      {/* <div>
-      <p>Initial preference survey page</p>
-      {firstPreferList.length === 0 ? (
-        <p>Loading...</p>
-        ) : (
-          <ul>
-          {firstPreferList.map((item) => (
-            <li key={item.snackId}>{item.name}</li>
-            ))}
-        </ul>
-      )}
-    </div> */}
     </>
   );
 }
