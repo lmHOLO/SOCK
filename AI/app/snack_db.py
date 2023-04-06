@@ -120,7 +120,7 @@ def prefer_list(items: Item):
 def recommend_by_cbf(member_id: int, grade: str):
     import pymysql.cursors
     connection = pymysql.connect(host='j8c103.p.ssafy.io', port=3306, user='root',
-                        password='1234', db='sock',
+                        password='sock103', db='sock',
                         charset='utf8', autocommit=True,
                         cursorclass=pymysql.cursors.DictCursor)
     cursor = connection.cursor()
@@ -265,7 +265,7 @@ def send_data():
     import pandas as pd
     import numpy as np
     connection = pymysql.connect(host='j8c103.p.ssafy.io', port=3306, user='root',
-                                password='1234', db='sock',
+                                password='sock103', db='sock',
                                 charset='utf8', autocommit=True,
                                 cursorclass=pymysql.cursors.DictCursor)
 
