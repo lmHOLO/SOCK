@@ -217,7 +217,7 @@ def recommend_by_cbf(member_id: int, grade: str):
         total_rating.to_csv('./app/total_rating_noh.csv', index=False, header=False)
 
 
-        # surprise 를 활용한 협업 필터링 구현 부분
+        # surprise 를 활용한 협업 필터링 구현 부분입니다.
         reader = Reader(line_format='user item rating', sep=',', rating_scale=(0, 5))
         data_folds = DatasetAutoFolds('./app/total_rating_noh.csv', reader=reader)
         trainset = data_folds.build_full_trainset()
