@@ -6,7 +6,7 @@
 
 ### 1) 프로젝트 목표
 
-늘 똑같은 과자에 질린 사람, 새로운 과자를 원하는 사람들을 위한 과자 맞춤 추천 서비스
+늘 먹는 똑같은 과자에 질린 사람, 새로운 과자를 원하는 사람들을 위한 과자 맞춤 추천 서비스
 
 ### 2) 주요 기능 ⚙
 
@@ -46,11 +46,11 @@
   <tr>
     <td align="center"><b>Github</b></td>
     <td align="center"><a href="https://github.com/gggeon96"><img src="https://avatars.githubusercontent.com/u/39759666?v=4" width="100px;" alt=""/></td>
-    <td align="center"><a href="https://github.com/imnooy"><img src="https://avatars.githubusercontent.com/u/75800620?v=4" width="100px;" alt=""/></td>
+    <td align="center"><a href="https://github.com/YoungSeok222222"><img src="https://avatars.githubusercontent.com/u/109319895?v=4" width="100px;" alt=""/></td>
     <td align="center"><a href="https://github.com/tabss2003"><img src="https://avatars.githubusercontent.com/u/43884708?v=4" width="100px;" alt=""/><br /></td>
     <td align="center"><a href="https://github.com/0takkk"><img src="https://avatars.githubusercontent.com/u/89503136?s=400&v=4" width="100px;" alt=""/><br /></td>
     <td align="center"><a href="https://github.com/rachaen"><img src="https://avatars.githubusercontent.com/u/78066837?v=4" width="100px;" alt=""/><br /></td>
-    <td align="center"><a href="https://github.com/0takkk"><img src="https://avatars.githubusercontent.com/u/89503136?s=400&v=4" width="100px;" alt=""/><br /></td>
+    <td align="center"><a href="https://github.com/meanwo"><img src="https://avatars.githubusercontent.com/u/86656448?v=4" width="100px;" alt=""/><br /></td>
   </tr>
   <tr>
     <td align="center"><b>Position</b></td>
@@ -73,7 +73,7 @@
 
 | Backend            | FestAPI | Frontend   | CI      | Collaboration Tools |
 | ------------------ | ------- | ---------- | ------- | ------------------- |
-| Java 11            |         | React      | AWS EC2 | GitLab              |
+| Java 11            | Python  | React      | AWS EC2 | GitLab              |
 | Spring Boot Gradle |         | TypeScript | Docker  | Jira                |
 | Spring Data JPA    |         | node.js    | Jenkins | Notion              |
 | QueryDSL           |         | Redux      |         | Discord             |
@@ -95,3 +95,39 @@
 </br>
 
 ## 3. 프로젝트 소개
+
+### 로그인 및 선호도 조사
+
+![로그인 및 선호도 조사](https://user-images.githubusercontent.com/89503136/230250457-15939e80-3a54-42a1-b9ef-14c922b94322.gif)
+
+### 과자 맞춤 추천
+
+![과자 맞춤 추천](https://user-images.githubusercontent.com/89503136/230254341-f68ba551-8508-418d-99e4-f75cc9626002.gif)
+
+### 테마별 추천
+
+![2  테마별 추천1](https://user-images.githubusercontent.com/89503136/230251822-2e8f5b08-9329-4922-a0a2-9e96f7c217c6.gif)
+
+### 과자 상세조회
+
+![3  과자 상세조회](https://user-images.githubusercontent.com/89503136/230253746-84bd534f-da4b-439e-b8d9-5953e9c450fd.gif)
+
+### 검색
+
+![검색](https://user-images.githubusercontent.com/89503136/230255473-2e5c38fd-54a9-4bd1-a78f-b70170a65b3b.gif)
+
+### 레시피 작성
+
+![레시피 작성](https://user-images.githubusercontent.com/89503136/230259024-200eb910-be2b-4e19-a99a-cb9578765e1a.gif)
+
+### 마이프로필
+
+![마이프로필1](https://user-images.githubusercontent.com/89503136/230262045-afc2c4ca-835e-4661-9603-fceca94633b6.gif)
+
+### 이벤트(과자 MBTI)
+
+![SBTI](https://user-images.githubusercontent.com/89503136/230272644-2fb20a06-214c-4213-aa1f-6630516a7bdf.gif)
+
+### 이벤트(과자 이상형 월드컵)
+
+![과자 이상형 월드컵](https://user-images.githubusercontent.com/89503136/230272895-3c25dfc6-51fb-444a-82e6-0c412663cdc1.gif)
