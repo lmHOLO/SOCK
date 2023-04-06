@@ -87,7 +87,9 @@ export default function FirstPrefer() {
           {firstPreferList.map((snack, index) => {
             if (index === currentIndex) {
               return (
-                <TinderCard onSwipe={(direction) => handleSwipe(direction, snack.snackId)} key={snack.snackId}>
+                <TinderCard
+                  className='swipe'
+                 onSwipe={(direction) => handleSwipe(direction, snack.snackId)} key={snack.snackId}>
                   <div className={styles['prefer-card']}>
                     <img src={snack.image} alt={snack.name} />
                     <p>{snack.name}</p>

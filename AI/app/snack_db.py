@@ -120,7 +120,7 @@ def prefer_list(items: Item):
 def recommend_by_cbf(member_id: int, grade: str):
     import pymysql.cursors
     connection = pymysql.connect(host='j8c103.p.ssafy.io', port=3306, user='root',
-                        password='1234', db='sock',
+                        password='sock103', db='sock',
                         charset='utf8', autocommit=True,
                         cursorclass=pymysql.cursors.DictCursor)
     cursor = connection.cursor()
@@ -217,7 +217,7 @@ def recommend_by_cbf(member_id: int, grade: str):
         total_rating.to_csv('./app/total_rating_noh.csv', index=False, header=False)
 
 
-        # surprise 를 활용한 협업 필터링 구현 부분
+        # surprise 를 활용한 협업 필터링 구현 부분입니다.
         reader = Reader(line_format='user item rating', sep=',', rating_scale=(0, 5))
         data_folds = DatasetAutoFolds('./app/total_rating_noh.csv', reader=reader)
         trainset = data_folds.build_full_trainset()
@@ -265,7 +265,7 @@ def send_data():
     import pandas as pd
     import numpy as np
     connection = pymysql.connect(host='j8c103.p.ssafy.io', port=3306, user='root',
-                                password='1234', db='sock',
+                                password='sock103', db='sock',
                                 charset='utf8', autocommit=True,
                                 cursorclass=pymysql.cursors.DictCursor)
 
