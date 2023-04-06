@@ -88,7 +88,7 @@
 
 ### 4) 아키텍처
 
-<img width="704" alt="image" src="https://user-images.githubusercontent.com/89503136/219449502-62d3b139-7735-40ee-a4d3-d92d54cf7b93.png">
+<img width="704" alt="image" src="https://user-images.githubusercontent.com/39759666/230249124-0870e0ba-3f48-40f6-96d0-71faffcb6ce3.png">
 
 ### 5) [REST API](https://www.notion.so/API-677411b5c72c41cdb1e88bad01abd363?pvs=4)
 
