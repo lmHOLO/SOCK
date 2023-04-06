@@ -31,9 +31,6 @@ export default function Profile() {
 
   const { id } = useParams<string>();
   const [itemList, setItemList] = useState<ProfileGridItemType[]>([]);
-  useEffect(() => {
-    handleMenuClick('POST_RECIPE');
-  }, []);
 
   const handleMenuClick = (menu: MenuType) => {
     if (menu === 'LIKE_RECIPE') {
@@ -56,7 +53,8 @@ export default function Profile() {
         setMember(data);
       });
     }
-  }, [id]);
+    handleMenuClick('POST_RECIPE');
+  }, [id, memberData.id]);
 
   return (
     <div>
