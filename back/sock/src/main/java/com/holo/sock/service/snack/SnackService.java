@@ -202,7 +202,7 @@ public class SnackService {
         StringBuilder sb = new StringBuilder();
 
         int count = 0;
-        while(count < 30){
+        while(count < 50){
             for (long[] group : groupSnack) {
                 int size = group.length;
                 while (true) {
@@ -213,7 +213,7 @@ public class SnackService {
                         count++;
                         set.add(id);
                         sb.append(id);
-                        if(count != 30) sb.append(',');
+                        if(count != 50) sb.append(',');
                         break;
                     }
                 }
