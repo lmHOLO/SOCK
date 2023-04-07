@@ -24,8 +24,8 @@
 | 기간          | 내용                                 |
 | ------------- | ------------------------------------ |
 | 02.20 ~ 02.22 | 아이디어 선정                        |
-| 02.23 ~ 02.27 | 요구사항 분석 및 기능 명세서 작성,   |
-| 02.28 ~ 03.03 | 와이어프레임, REST API 작성,         |
+| 02.23 ~ 02.27 | 요구사항 분석 및 기능 명세서 작성    |
+| 02.28 ~ 03.03 | 와이어프레임, REST API 작성          |
 | 03.06 ~ 03.10 | 회원가입, 로그인 등 회원 서비스 개발 |
 | 03.13 ~ 03.24 | 과자, 레시피 기능 개발               |
 | 03.27 ~ 03.31 | 서비스 배포 자동화                   |
@@ -71,16 +71,16 @@
 
 ### 2) 개발환경
 
-| Backend            | FestAPI | Frontend   | CI      | Collaboration Tools |
-| ------------------ | ------- | ---------- | ------- | ------------------- |
-| Java 11            | Python  | React      | AWS EC2 | GitLab              |
-| Spring Boot Gradle |         | TypeScript | Docker  | Jira                |
-| Spring Data JPA    |         | node.js    | Jenkins | Notion              |
-| QueryDSL           |         | Redux      |         | Discord             |
-| JWT                |         | Firebase   |         |                     |
-| Spring Security    |         |            |         |                     |
-| MySQL              |         |            |         |                     |
-| Redis              |         |            |         |                     |
+| Backend            | FestAPI         | Frontend   | CI      | Collaboration Tools |
+| ------------------ | --------------- | ---------- | ------- | ------------------- |
+| Java 11            | Python          | React      | AWS EC2 | GitLab              |
+| Spring Boot Gradle | scikit-surprise | TypeScript | Docker  | Jira                |
+| Spring Data JPA    | scikit-learn    | node.js    | Jenkins | Notion              |
+| QueryDSL           | beautifulsoup4  | Redux      |         | Discord             |
+| JWT                |                 | Firebase   |         |                     |
+| Spring Security    |                 |            |         |                     |
+| MySQL              |                 |            |         |                     |
+| Redis              |                 |            |         |                     |
 
 ### 3) ERD
 
@@ -131,3 +131,7 @@
 ### 이벤트(과자 이상형 월드컵)
 
 ![과자 이상형 월드컵](https://user-images.githubusercontent.com/89503136/230272895-3c25dfc6-51fb-444a-82e6-0c412663cdc1.gif)
+
+## 4. 발표 자료
+
+[C103 SOCK 최종발표자료.pdf](https://github.com/0takkk/Algorithm/files/11175663/C103_SOCK_.pdf)
