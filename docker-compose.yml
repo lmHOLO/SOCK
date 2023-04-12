@@ -32,7 +32,7 @@ services:
     volumes:
       - /var/lib/mysql:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: sock103
     restart: unless-stopped
 
   nginx:
